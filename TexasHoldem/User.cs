@@ -8,5 +8,7 @@ namespace TexasHoldem
 {
     class User
     {
+        private bool isAdmin;
+
     }
 }
