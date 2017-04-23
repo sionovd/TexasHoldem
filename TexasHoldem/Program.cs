@@ -10,7 +10,17 @@ namespace TexasHoldem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("HUMUS!");
+            while (true)
+            {
+                Console.WriteLine("HUMUS!");
+                Console.WriteLine("Y/n?");
+                string c = Console.ReadLine();
+                if (c.Equals("Y") || c.Equals("y")) break;
+                else
+                {
+                    Console.WriteLine("Wrong!\n");
+                }
+            }
         }
     }
 }
