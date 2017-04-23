@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class Game
+    class FeedbackMessage
     {
     }
 }
