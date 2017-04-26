@@ -42,9 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="DataBase.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="FeedbackMessage.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameCenter.cs" />
+    <Compile Include="GameCenterDB.cs" />
     <Compile Include="GameLog.cs" />
     <Compile Include="GamePreferences.cs" />
     <Compile Include="League.cs" />

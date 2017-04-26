@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TexasHoldem
+namespace TexasHoldem.Backend
 {
-    class GameCenter
+    class League
     {
     }
 }

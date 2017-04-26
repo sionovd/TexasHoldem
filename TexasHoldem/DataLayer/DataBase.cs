@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class User
+    interface DataBase
     {
+       
     }
 }
