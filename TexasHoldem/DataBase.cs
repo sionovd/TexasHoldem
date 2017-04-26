@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TexasHoldem.Backend
+namespace TexasHoldem
 {
-    class Deck
+    interface DataBase
     {
+       
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TexasHoldem.BusinessLayer
+namespace TexasHoldem
 {
-    class GamePreferences
+    class Deck
     {
     }
 }

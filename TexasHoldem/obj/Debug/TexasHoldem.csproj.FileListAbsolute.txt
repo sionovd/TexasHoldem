@@ -8,3 +8,4 @@ C:\Users\Leon\Desktop\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.pdb
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.exe.config
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.exe
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.pdb
+C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.csprojResolveAssemblyReference.cache

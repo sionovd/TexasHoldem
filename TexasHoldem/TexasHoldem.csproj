@@ -41,19 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend\Card.cs" />
-    <Compile Include="DataLayer\DataBase.cs" />
-    <Compile Include="Backend\Deck.cs" />
-    <Compile Include="BusinessLayer\FeedbackMessage.cs" />
-    <Compile Include="Backend\Game.cs" />
-    <Compile Include="BusinessLayer\GameCenter.cs" />
-    <Compile Include="DataLayer\GameCenterDB.cs" />
-    <Compile Include="BusinessLayer\GameLog.cs" />
-    <Compile Include="BusinessLayer\GamePreferences.cs" />
-    <Compile Include="Backend\League.cs" />
-    <Compile Include="Backend\Player.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="DataBase.cs" />
+    <Compile Include="Deck.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameCenter.cs" />
+    <Compile Include="GameLog.cs" />
+    <Compile Include="GamePreferences.cs" />
+    <Compile Include="League.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Backend\User.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
