@@ -12,6 +12,12 @@ namespace TexasHoldem
         private string username;
         private string password;
         private string email;
+
+        public User(string username)
+        {
+            // this = database.getUser(username);
+        }
+
         public User (string username, string password, string email, bool isAdmin)
         {
             this.username = username;

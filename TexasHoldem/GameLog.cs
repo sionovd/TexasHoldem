@@ -8,6 +8,11 @@ namespace TexasHoldem
 {
     class GameLog
     {
+        public GameLog(int gameLogID)
+        {
+            //this = database.getGameLog(gameLogID);
+        }
+
         public bool ShowReplay(User user)
         {
             //TODO

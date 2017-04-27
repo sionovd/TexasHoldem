@@ -8,5 +8,9 @@ namespace TexasHoldem
 {
     class Player
     {
+        public Player(int playerID)
+        {
+            // this = game.getPlayer(playerID);
+        }
     }
 }

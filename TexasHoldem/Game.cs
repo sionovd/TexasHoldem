@@ -8,6 +8,11 @@ namespace TexasHoldem
 {
     class Game
     {
+        public Game(int gameID)
+        {
+            //this = gameCenter.getGame(gameID);
+        }
+
         public User AddPlayer(User user)
         {
             //TODO
