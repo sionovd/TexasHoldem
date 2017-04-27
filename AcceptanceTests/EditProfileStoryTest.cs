@@ -20,33 +20,20 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheBad()
         {
-            Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
-            Assert.IsFalse(EditProfile("Doron", "009password", "user@gmail.com"));
-            Assert.IsTrue(EditProfile("Doron123", "bldnsaldasl544324", "yossi@post.bgu.ac.il"));
-            Assert.IsTrue(EditProfile("Doron123", "009password", "user@gmail.com"));
-
-
-            Assert.IsFalse(Register("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-                "ccccccccccccccccccccccccccccccccccccccccccccccc"));
-            Register("Doron", "pass", "user@gmail.com");
-            Assert.IsFalse(Register("Doron", "pass123", "name@gmail.com"));
+            Assert.IsTrue(Register("user", "pass", "user@gmail.com"));
+            Assert.IsFalse(EditProfile("user", "", "name@gmail.com"));
+            Assert.IsFalse(EditProfile("user", "password", ""));
+            Assert.IsFalse(EditProfile("user", "pass", "blahblah"));
             //deleteUser("Doron");
-            Assert.IsFalse(Register("", "password", "email@gmail.com"));
-            Assert.IsFalse(Register("user", "", "email@gmail.com"));
-            Assert.IsFalse(Register("user", "password", ""));
-            Assert.IsFalse(Register("user", "pass", "blahblah"));
-
         }
 
         [TestMethod]
         public void TestTheSad()
         {
-            Assert.IsFalse(Register("user,name", "password", "user@gmail.com"));
-            Assert.IsFalse(Register("user name", "password", "user@gmail.com"));
-            Assert.IsFalse(Register("user:name", "password", "user@gmail.com"));
-            Assert.IsFalse(Register("user;name", "password", "user@gmail.com"));
-            Assert.IsFalse(Register("user_name", "password", "user@gmail.com"));
+            Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
+            Assert.IsFalse(EditProfile("Doron", "pass", "user@gmail.com"));
+            Assert.IsTrue(EditProfile("Doron123", "bldnsaldasl544324", "yossi@post.bgu.ac.il"));
+            //deleteUser("Doron");
         }
     }
 }

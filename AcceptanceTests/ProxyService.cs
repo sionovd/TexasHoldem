@@ -16,7 +16,7 @@ namespace AcceptanceTests
 
         public bool EditProfile(string username, string password, string email)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool Login(string username, string password)
