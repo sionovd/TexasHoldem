@@ -31,7 +31,7 @@ namespace AcceptanceTests
 
         public int JoinGame(string username, int gameID)
         {
-            return 0; //playerID
+            return 1; //playerID
         }
 
         public bool LeaveGame(string username, int gameID)
@@ -72,7 +72,7 @@ namespace AcceptanceTests
         public int CreateGame(int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
             bool isSpectatable)
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
         public bool SetDefaultLeague(int leagueID)

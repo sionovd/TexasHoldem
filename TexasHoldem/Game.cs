@@ -13,7 +13,7 @@ namespace TexasHoldem
             //this = gameCenter.getGame(gameID);
         }
 
-        public User AddPlayer(User user)
+        public Player AddPlayer(User user)
         {
             //TODO
             return null;
