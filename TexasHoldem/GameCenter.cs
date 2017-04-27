@@ -15,16 +15,16 @@ namespace TexasHoldem
         //TODO
             return null;
         }
-    public List<Game> GetSpectatableGame()
-    {
-        //TODO
-        return null;
-    }
-        public bool ShowGame(User user, Game game)
-    {
-        //TODO
-        return true;
-    }
+        public List<Game> GetSpectatableGame()
+        {
+            //TODO
+            return null;
+        }
+            public bool ShowGame(User user, Game game)
+        {
+            //TODO
+            return true;
+        }
         public Game CreateGame(int gameTypePolicy,int buylnPolicy,int chipPolicy,int minBet,int minPlayerCount, int maxPlayerCount, bool isSectatable)
         {
             //TODO

@@ -9,3 +9,5 @@ C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.ex
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.exe
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.pdb
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.csprojResolveAssemblyReference.cache
+C:\Users\shavit\Desktop\לימודים\שנה ג\סמסטר ב\sadna\TexasHoldem\bin\Debug\TexasHoldem.exe.config
+C:\Users\shavit\Desktop\לימודים\שנה ג\סמסטר ב\sadna\TexasHoldem\obj\Debug\TexasHoldem.exe
