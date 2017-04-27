@@ -8,6 +8,6 @@ namespace TexasHoldem
 {
     interface DataBase
     {
-       
+        public List<User> getRegisterUsers();
     }
 }
