@@ -25,7 +25,7 @@ namespace TexasHoldem
             //TODO
             return true;
         }
-        public Game CreateGame(int gameTypePolicy,int buylnPolicy,int chipPolicy,int minBet,int minPlayerCount, int maxPlayerCount, bool isSectatable)
+        public Game CreateGame(User user,GamePreferences preferences)
         {
             //TODO
             return null;
