@@ -11,6 +11,8 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheGood()
         {
+            Assert.IsTrue(Register("doron", "password", "doron@gmail.com"));
+            string username = "doron";
             int gameTypePolicy = 0;
             int buyInPolicy = 0;
             int chipPolicy = 100;
@@ -18,10 +20,10 @@ namespace AcceptanceTests
             int minPlayerCount = 2;
             int maxPlayerCount = 5;
             bool isSpectatable = true;
-            int game1 = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            int game1 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game1 > 0);
-            int game2 = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            int game2 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game2 > 0);
             Assert.AreNotEqual(game1, game2);
@@ -33,7 +35,7 @@ namespace AcceptanceTests
             minPlayerCount = 4;
             maxPlayerCount = 9;
             isSpectatable = true;
-            int game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            int game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game > 0);
 
@@ -44,7 +46,7 @@ namespace AcceptanceTests
             minPlayerCount = 3;
             maxPlayerCount = 6;
             isSpectatable = false;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game > 0);
 
@@ -55,7 +57,7 @@ namespace AcceptanceTests
             minPlayerCount = 4;
             maxPlayerCount = 9;
             isSpectatable = true;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game > 0);
 
@@ -66,14 +68,17 @@ namespace AcceptanceTests
             minPlayerCount = 4;
             maxPlayerCount = 9;
             isSpectatable = false;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game > 0);
+            //deleteUser("doron");
         }
 
         [TestMethod]
         public void TestTheBad()
         {
+            Assert.IsTrue(Register("doron", "password", "doron@gmail.com"));
+            string username = "doron";
             int gameTypePolicy = -1;
             int buyInPolicy = 0;
             int chipPolicy = 100;
@@ -81,7 +86,7 @@ namespace AcceptanceTests
             int minPlayerCount = 2;
             int maxPlayerCount = 5;
             bool isSpectatable = true;
-            int game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            int game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game < 0);
 
@@ -91,7 +96,7 @@ namespace AcceptanceTests
             minBet = 5;
             minPlayerCount = 2;
             maxPlayerCount = 5;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                isSpectatable);
             Assert.IsTrue(game < 0);
 
@@ -101,7 +106,7 @@ namespace AcceptanceTests
             minBet = 5;
             minPlayerCount = 2;
             maxPlayerCount = 5;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game < 0);
 
@@ -111,7 +116,7 @@ namespace AcceptanceTests
             minBet = -5;
             minPlayerCount = 2;
             maxPlayerCount = 5;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game < 0);
 
@@ -121,7 +126,7 @@ namespace AcceptanceTests
             minBet = 10;
             minPlayerCount = 0;
             maxPlayerCount = 2;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game < 0);
 
@@ -131,7 +136,7 @@ namespace AcceptanceTests
             minBet = 10;
             minPlayerCount = 1;
             maxPlayerCount = 2;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game < 0);
 
@@ -141,24 +146,37 @@ namespace AcceptanceTests
             minBet = 10;
             minPlayerCount = 5;
             maxPlayerCount = 2;
-            game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game < 0);
+            //deleteUser("doron");
         }
 
         [TestMethod]
         public void TestTheSad()
         {
+            Assert.IsTrue(Register("yossi", "pass", "yos@gmail.com"));
+            string username = "yos";
             int gameTypePolicy = 1;
             int buyInPolicy = 100;
             int chipPolicy = 100;
             int minBet = 0;
             int minPlayerCount = 2;
             int maxPlayerCount = 5;
-            int game = CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            int game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 false);
             Assert.IsTrue(game < 0);
 
+            gameTypePolicy = 1;
+            buyInPolicy = 100;
+            chipPolicy = 100;
+            minBet = 5;
+            minPlayerCount = 2;
+            maxPlayerCount = 10;
+            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+                true);
+            Assert.IsTrue(game < 0);
+            //deleteUser("yossi");
         }
     }
 }

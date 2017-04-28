@@ -21,12 +21,12 @@ namespace AcceptanceTests
 
         public bool Login(string username, string password)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool Logout(string username)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public int JoinGame(string username, int gameID)
@@ -69,10 +69,10 @@ namespace AcceptanceTests
             throw new NotImplementedException();
         }
 
-        public int CreateGame(int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
+        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
             bool isSpectatable)
         {
-            return 1;
+            return 1; //gameID
         }
 
         public bool SetDefaultLeague(int leagueID)

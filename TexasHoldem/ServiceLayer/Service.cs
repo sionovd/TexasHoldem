@@ -68,7 +68,7 @@ namespace TexasHoldem.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public int CreateGame(int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
+        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
             bool isSpectatable)
         {
             throw new NotImplementedException();

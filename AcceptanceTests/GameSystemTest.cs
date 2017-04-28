@@ -42,20 +42,45 @@ namespace AcceptanceTests
             }
         }
 
-        public int CreateGame(int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
+        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
             int maxPlayerCount,
             bool isSpectatable)
         {
             try
             {
-                int gameID = bridge.CreateGame(gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount,
-                    maxPlayerCount,
-                    isSpectatable);
+                int gameID = bridge.CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount,
+                    maxPlayerCount, isSpectatable);
                 return gameID;
             }
             catch (ApplicationException)
             {
                 return -1;
+            }
+        }
+
+        public bool Login(string username, string password)
+        {
+            try
+            {
+                bridge.Login(username, password);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                return false;
+            }
+        }
+
+        public bool Logout(string username)
+        {
+            try
+            {
+                bridge.Logout(username);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                return false;
             }
         }
 

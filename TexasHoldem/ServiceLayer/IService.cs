@@ -25,7 +25,7 @@ namespace TexasHoldem.ServiceLayer
         // GameCenter
         List<int> SearchActiveGames(string username, string filter);                        // gc.GetActiveGames(user, filter);
         List<int> ListSpectatableGames();                                  // gc.GetSpectatableGames();
-        int CreateGame(int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet,
+        int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet,
             int minPlayerCount, int maxPlayerCount, bool isSpectatable);                        // gc.CreateGame(...);
         bool SetDefaultLeague(int leagueID);
         bool SetLeagueCriteria(int leagueID, int points);
