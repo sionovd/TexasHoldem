@@ -38,7 +38,8 @@ namespace TexasHoldem
             //TODO
             return true;
         }
-        public Game CreateGame(User user, int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, bool spectateGame)
+
+        public Game CreateGame(User user, int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, bool spectateGame) 
         {
             lock (lockThis)
             {
@@ -56,8 +57,8 @@ namespace TexasHoldem
                     throw new illegalGapPlayersException(minPlayers.ToString(), maxPlayers.ToString());
                 if (maxPlayers > 9)
                     throw new illegalMaxPlayersException(maxPlayers.ToString());
-                if (buyIn > 0 && user.getMoney < buyIn)
-                    throw new notEnoughMoneyException(user.getMoney, buyIn);
+                if (user.getmoneyBalance() < buyIn)
+                    throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), buyIn.ToString());
                 GamePreferences pref = new GamePreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame);
                 Game game = new Game(pref);
                 game.addPlayer(user);

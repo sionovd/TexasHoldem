@@ -12,6 +12,8 @@ namespace TexasHoldem
         private string username;
         private string password;
         private string email;
+        private double moneyBalance;
+
         public User (string username, string password, string email, bool isAdmin)
         {
             this.username = username;
@@ -28,6 +30,14 @@ namespace TexasHoldem
         public void setAdmin()
         {
             isAdmin = true;
+        }
+        public double getmoneyBalance()
+        {
+            return moneyBalance;
+        }
+        public void setmoneyBalance(double moneyBalance)
+        {
+            this.moneyBalance = moneyBalance;
         }
         public bool chackPassword(string password)
         {
