@@ -23,11 +23,38 @@ namespace TexasHoldem
                 games = new Dictionary<int, Game>();
         }
 
-        public List<Game> GetActiveGames(User user,string filter)
+        public List<Game> GetActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, int spectateGame)
         {
-        //TODO
-            return null;
+            var filteredGames = games.Values.AsEnumerable<Game>();
+            if (gameType >= 0)
+                filteredGames = filteredGames.Where(g=>g.Pref.GameType==gameType);
+            if (buyIn >= 0)
+                filteredGames = filteredGames.Where(g => g.Pref.BuyIn == buyIn);
+            if (chipPolicy >= 0)
+                filteredGames = filteredGames.Where(g => g.Pref.ChipPolicy == chipPolicy);
+            if (minBet >= 0)
+                filteredGames = filteredGames.Where(g => g.Pref.MinBet == minBet);
+            if (maxPlayers >= 2)
+                filteredGames = filteredGames.Where(g => g.Pref.MaxPlayers == maxPlayers);
+            if (minPlayers >= 2)
+                filteredGames = filteredGames.Where(g => g.Pref.MinPlayers == minPlayers);
+            if (spectateGame == 0)
+                filteredGames = filteredGames.Where(g => g.Pref.SpectateGame == false);
+            if (spectateGame == 1)
+                filteredGames = filteredGames.Where(g => g.Pref.SpectateGame == true);
+            return filteredGames.ToList<Game>();
         }
+
+        public List<Game> GetActiveGamesByPot(int pot)
+        {
+            return this.games.Values.ToList<Game>().Where(p => p.Pot == pot).ToList<Game>();
+        }
+
+        public List<Game> GetActiveGamesByPlayerName(string name)
+        {
+            return this.games.Values.ToList<Game>().Where(p => p.IsPlayerExist(name)==true).ToList<Game>();
+        }
+
         public List<Game> GetSpectatableGame()
         {
             //TODO

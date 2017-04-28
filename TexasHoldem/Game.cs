@@ -27,7 +27,7 @@ namespace TexasHoldem
             pot = 0;
         }
 
-        public Player addPlayer(User user)
+        public Player AddPlayer(User user)
         {
             Player p;
             if (pref.ChipPolicy == 0)
@@ -42,6 +42,14 @@ namespace TexasHoldem
             else
                 p = new Player(pref.ChipPolicy, user.getUsername());
             return p;
+        }
+
+        public bool IsPlayerExist(string name)
+        {
+            foreach (Player p in sits)
+                if (p.Name.Equals(name))
+                    return true;
+            return false;
         }
 
         public bool Bet(Player player,int amount)
