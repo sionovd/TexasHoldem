@@ -22,25 +22,19 @@ namespace TexasHoldem
  
         public User Register(string username, string password, string email)
         {
-            User user = new User(username, password, email, false);
-            user = updateRegisterList(user);
-            return user;
-        }
-
-        private User updateRegisterList(User user)
-        {
             lock (lockThis)
             {
                 if (init)
                     Initialized();
+                User user = new User(username, password, email, false);
                 if (registerUsers == null)
                 {
                     user.setAdmin();
                     registerUsers = new Dictionary<string, User>();
                 }
-                if (registerUsers.ContainsKey(user.getUsername()))
+                if (registerUsers.ContainsKey(username))
                     throw new allreadyHasNameException(user.getUsername());
-                registerUsers.Add(user.getUsername(), user);
+                registerUsers.Add(username, user);
                 return user;
             }
         }
@@ -50,8 +44,9 @@ namespace TexasHoldem
             lock (lockThis)
             {
                 if (!registerUsers.ContainsKey(username))
-                    return false;
-                registerUsers.Add(username, new User(username, password, email, false));
+                    throw new NoUserNameException(username);
+                bool admin = registerUsers[username].getAdmin();
+                registerUsers.Add(username, new User(username, password, email, admin));
                 return true;
             }
         }

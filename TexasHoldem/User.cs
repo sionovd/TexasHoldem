@@ -21,9 +21,17 @@ namespace TexasHoldem
             this.email = email;
             this.isAdmin = isAdmin;
         }
+        public bool getAdmin()
+        {
+            return isAdmin;
+        }
         public string getUsername()
         {
             return username;
+        }
+        public string getEmail()
+        {
+            return email;
         }
         public void setAdmin()
         {
