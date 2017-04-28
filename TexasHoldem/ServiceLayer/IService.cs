@@ -21,7 +21,7 @@ namespace TexasHoldem.ServiceLayer
         bool Check(int playerID, int gameID);                                              // game.Check(user)
         bool Fold(int playerID, int gameID);                                               // game.Fold(user)
         bool Call(int playerID, int gameID);                                               // game.Call(user)
-
+        
         // GameCenter
         List<int> SearchActiveGames(string username, string filter);                        // gc.GetActiveGames(user, filter);
         List<int> ListSpectatableGames();                                  // gc.GetSpectatableGames();

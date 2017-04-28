@@ -42,21 +42,7 @@ namespace AcceptanceTests
             }
         }
 
-        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
-            int maxPlayerCount,
-            bool isSpectatable)
-        {
-            try
-            {
-                int gameID = bridge.CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount,
-                    maxPlayerCount, isSpectatable);
-                return gameID;
-            }
-            catch (ApplicationException)
-            {
-                return -1;
-            }
-        }
+        
 
         public bool Login(string username, string password)
         {
@@ -84,6 +70,22 @@ namespace AcceptanceTests
             }
         }
 
+        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
+            int maxPlayerCount,
+            bool isSpectatable)
+        {
+            try
+            {
+                int gameID = bridge.CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount,
+                    maxPlayerCount, isSpectatable);
+                return gameID;
+            }
+            catch (ApplicationException)
+            {
+                return -1;
+            }
+        }
+
         public int JoinGame(string username, int gameID)
         {
             try
@@ -91,9 +93,23 @@ namespace AcceptanceTests
                 bridge.JoinGame(username, gameID);
                 return 1;
             }
+            catch (ApplicationException e)
+            {
+                //if e == joingame exception return -2, or -3, or -4...
+                    return -1;
+            }
+        }
+
+        public bool Bet(int playerID, int gameID, int amount)
+        {
+            try
+            {
+                bridge.Bet(playerID, gameID, amount);
+                return true;
+            }
             catch (ApplicationException)
             {
-                return -1;
+                return false;
             }
         }
 
