@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationException.cs" />
+    <Compile Include="allreadyHasNameExeption.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="DataBase.cs" />
     <Compile Include="Deck.cs" />
@@ -50,6 +51,8 @@
     <Compile Include="GameLog.cs" />
     <Compile Include="GamePreferences.cs" />
     <Compile Include="League.cs" />
+    <Compile Include="NotAPasswordException.cs" />
+    <Compile Include="NoUserNameException.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -21,10 +21,23 @@ namespace TexasHoldem
         public User (string username, string password, string email, bool isAdmin)
         {
             this.username = username;
+            if (password.Equals(""))
+                throw new NotAPasswordException(password);
             this.password = password;
             this.email = email;
             this.isAdmin = isAdmin;
         }
-
+        public string getUsername()
+        {
+            return username;
+        }
+        public void setAdmin()
+        {
+            isAdmin = true;
+        }
+        public bool chackPassword(string password)
+        {
+            return this.password.Equals(password);
+        }
     }
 }
