@@ -49,9 +49,20 @@
     <Compile Include="GameCenter.cs" />
     <Compile Include="GameLog.cs" />
     <Compile Include="GamePreferences.cs" />
+    <Compile Include="illegalbuyInException.cs" />
+    <Compile Include="illegalChipPolicyException.cs" />
+    <Compile Include="illegalGameType.cs" />
+    <Compile Include="illegalGapPlayersException.cs" />
+    <Compile Include="illegalMaxPlayersException.cs" />
+    <Compile Include="illegalMinBetException.cs" />
+    <Compile Include="illegalMinPlayersException.cs" />
     <Compile Include="League.cs" />
+<<<<<<< HEAD
     <Compile Include="NotAPasswordException.cs" />
     <Compile Include="NoUserNameException.cs" />
+=======
+    <Compile Include="notEnoughMoneyException.cs" />
+>>>>>>> refs/remotes/origin/CreateGame
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />

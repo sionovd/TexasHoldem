@@ -8,6 +8,11 @@ namespace TexasHoldem
 {
     interface DataBase
     {
+<<<<<<< HEAD
         public List<User> getRegisterUsers();
+=======
+        List<Game> getAllGames();
+        void AddGame(Game game);
+>>>>>>> refs/remotes/origin/CreateGame
     }
 }
