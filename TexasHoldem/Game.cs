@@ -10,7 +10,7 @@ namespace TexasHoldem
     {
         private static int id=0; 
         private GamePreferences pref; 
-        private Player[] sits; 
+        private List<Player> sits; 
         private Deck cards; 
         private int pot;
         private Card[] tableCards;
@@ -21,7 +21,7 @@ namespace TexasHoldem
         {
             id++;
             this.pref = pref;
-            sits = new Player[pref.MaxPlayers];
+            sits = new List<Player>();
             tableCards = new Card[5];
             cards = new Deck();
             pot = 0;
@@ -29,6 +29,8 @@ namespace TexasHoldem
 
         public Player AddPlayer(User user)
         {
+            if(sits.Count() >= pref.MaxPlayers)
+                throw new FullTableException();
             Player p;
             if (pref.ChipPolicy == 0)
             {
@@ -37,10 +39,11 @@ namespace TexasHoldem
                 int m = user.decreaseMoney(pref.BuyIn);
                 user.decreaseMoney(m);
                 p = new Player(m, user.getUsername());
+                sits.Add(p);
                 return p;
             }
-            else
-                p = new Player(pref.ChipPolicy, user.getUsername());
+            p = new Player(pref.ChipPolicy, user.getUsername());
+            sits.Add(p);
             return p;
         }
 
