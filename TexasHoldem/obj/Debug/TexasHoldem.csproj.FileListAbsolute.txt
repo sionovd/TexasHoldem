@@ -13,3 +13,4 @@ C:\Users\shavit\Desktop\לימודים\שנה ג\סמסטר ב\sadna\TexasHoldem
 C:\Users\shavit\Desktop\לימודים\שנה ג\סמסטר ב\sadna\TexasHoldem\obj\Debug\TexasHoldem.exe
 C:\Users\shavit\Documents\GitHub\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.exe.config
 C:\Users\shavit\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.exe
+C:\Users\shavit\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.csprojResolveAssemblyReference.cache
