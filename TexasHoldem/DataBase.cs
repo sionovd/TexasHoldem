@@ -8,6 +8,7 @@ namespace TexasHoldem
 {
     interface DataBase
     {
-       
+        List<Game> getAllGames();
+        void AddGame(Game game);
     }
 }
