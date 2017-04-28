@@ -12,11 +12,13 @@ namespace TexasHoldem
         private string username;
         private string password;
         private string email;
+        private int moneyBalance;// at start?
 
         public User(string username)
         {
             // this = database.getUser(username);
         }
+        
 
         public User (string username, string password, string email, bool isAdmin)
         {
@@ -27,13 +29,34 @@ namespace TexasHoldem
             this.email = email;
             this.isAdmin = isAdmin;
         }
+        public bool getAdmin()
+        {
+            return isAdmin;
+        }
         public string getUsername()
         {
             return username;
         }
+        public string getEmail()
+        {
+            return email;
+        }
         public void setAdmin()
         {
             isAdmin = true;
+        }
+        public double getmoneyBalance()
+        {
+            return moneyBalance;
+        }
+        public void setmoneyBalance(int moneyBalance)
+        {
+            this.moneyBalance = moneyBalance;
+        }
+        public int decreaseMoney(int money)
+        {
+            this.moneyBalance = this.moneyBalance - money;
+            return moneyBalance;
         }
         public bool chackPassword(string password)
         {

@@ -14,9 +14,10 @@ namespace TexasHoldem
             //this = gameCenter.getGame(gameID);
         }
 
-        private static int id=0; 
+        private static int counter = 0;
+        private int id;
         private GamePreferences pref; 
-        private Player[] sits; 
+        private List<Player> sits; 
         private Deck cards; 
         private int pot;
         private Card[] tableCards;
@@ -25,18 +26,41 @@ namespace TexasHoldem
 
         public Game(GamePreferences pref)
         {
-            id++;
+            counter++;
+            id = counter;
             this.pref = pref;
-            sits = new Player[pref.MaxPlayers];
+            sits = new List<Player>();
             tableCards = new Card[5];
             cards = new Deck();
             pot = 0;
         }
 
-        public Player addPlayer(User user)
+        public Player AddPlayer(User user)
         {
-            //TODO
-            return null;
+            if(sits.Count() >= pref.MaxPlayers)
+                throw new FullTableException();
+            Player p;
+            if (pref.ChipPolicy == 0)
+            {
+                if (user.getmoneyBalance() < pref.BuyIn + pref.MinBet)
+                    throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), pref.BuyIn.ToString());
+                int m = user.decreaseMoney(pref.BuyIn);
+                user.decreaseMoney(m);
+                p = new Player(m, user.getUsername());
+                sits.Add(p);
+                return p;
+            }
+            p = new Player(pref.ChipPolicy, user.getUsername());
+            sits.Add(p);
+            return p;
+        }
+
+        public bool IsPlayerExist(string name)
+        {
+            foreach (Player p in sits)
+                if (p.Name.Equals(name))
+                    return true;
+            return false;
         }
 
         public bool Bet(Player player,int amount)
@@ -81,7 +105,7 @@ namespace TexasHoldem
             }
         }
 
-        public Player[] Sits
+        public List<Player> Sits
         {
             get
             {
