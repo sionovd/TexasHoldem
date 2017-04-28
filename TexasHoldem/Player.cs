@@ -8,27 +8,34 @@ namespace TexasHoldem
 {
     class Player
     {
-        private int chips;
+        private static int playerId = 0;
+        private int moneyBalance;
         private string name;
         private Card[] cards;
 
-        public Player(int chips, string name)
+        public Player(int moneyBalance, string name)
         {
-            this.chips = chips;
+            playerId++;
+            this.moneyBalance = moneyBalance;
             this.name = name;
             this.cards = new Card[2];
         }
 
-        public int Chips
+        public int getPlayerId()
+        {
+            return playerId;
+        }
+
+        public int MoneyBalance
         {
             get
             {
-                return chips;
+                return moneyBalance;
             }
 
             set
             {
-                chips = value;
+                moneyBalance = value;
             }
         }
 

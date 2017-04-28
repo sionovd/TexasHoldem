@@ -29,15 +29,19 @@ namespace TexasHoldem
 
         public Player addPlayer(User user)
         {
-            if(user.getmoneyBalance() < pref.BuyIn)
-                throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), pref.BuyIn.ToString());
-
-
-
-            Player p = new Player(pref.ChipPolicy,user.getUsername());
-
-            //TODO
-            return null;
+            Player p;
+            if (pref.ChipPolicy == 0)
+            {
+                if (user.getmoneyBalance() < pref.BuyIn + pref.MinBet)
+                    throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), pref.BuyIn.ToString());
+                int m = user.decreaseMoney(pref.BuyIn);
+                user.decreaseMoney(m);
+                p = new Player(m, user.getUsername());
+                return p;
+            }
+            else
+                p = new Player(pref.ChipPolicy, user.getUsername());
+            return p;
         }
 
         public bool Bet(Player player,int amount)

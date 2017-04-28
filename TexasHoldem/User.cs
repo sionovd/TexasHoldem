@@ -12,7 +12,7 @@ namespace TexasHoldem
         private string username;
         private string password;
         private string email;
-        private double moneyBalance;
+        private int moneyBalance;// at start?
 
         public User (string username, string password, string email, bool isAdmin)
         {
@@ -38,6 +38,11 @@ namespace TexasHoldem
         public void setmoneyBalance(double moneyBalance)
         {
             this.moneyBalance = moneyBalance;
+        }
+        public int decreaseMoney(int money)
+        {
+            this.moneyBalance = this.moneyBalance - money;
+            return moneyBalance;
         }
         public bool chackPassword(string password)
         {
