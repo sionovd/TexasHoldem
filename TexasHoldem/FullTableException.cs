@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class FullTableException : Exception
+    public class FullTableException : Exception
     {
         public FullTableException()
         : base(string.Format("table is full")) { }
