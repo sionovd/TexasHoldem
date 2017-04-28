@@ -52,13 +52,12 @@ namespace TexasHoldem
 
         public List<Game> GetActiveGamesByPlayerName(string name)
         {
-            return this.games.Values.ToList<Game>().Where(p => p.IsPlayerExist(name)==true).ToList<Game>();
+            return games.Values.ToList().Where(p => p.IsPlayerExist(name)==true).ToList();
         }
 
         public List<Game> GetSpectatableGame()
         {
-            //TODO
-            return null;
+            return games.Values.ToList().Where(p => p.Pref.SpectateGame == true).ToList();
         }
             public bool ShowGame(User user, Game game)
         {
@@ -88,7 +87,7 @@ namespace TexasHoldem
                     throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), buyIn.ToString());
                 GamePreferences pref = new GamePreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame);
                 Game game = new Game(pref);
-                game.addPlayer(user);
+                game.AddPlayer(user);
                 games.Add(game.Id, game);
                 db.AddGame(game);
                 return game;
