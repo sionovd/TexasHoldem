@@ -8,5 +8,9 @@ namespace TexasHoldem
 {
     class League
     {
+        public League(int leagueID)
+        {
+            //this = database.getLeague(leagueID);
+        }
     }
 }

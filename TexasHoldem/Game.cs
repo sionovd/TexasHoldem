@@ -8,7 +8,14 @@ namespace TexasHoldem
 {
     class Game
     {
-        private static int id=0; 
+
+        public Game(int gameID)
+        {
+            //this = gameCenter.getGame(gameID);
+        }
+
+        private static int counter = 0;
+        private int id;
         private GamePreferences pref; 
         private List<Player> sits; 
         private Deck cards; 
@@ -19,7 +26,8 @@ namespace TexasHoldem
 
         public Game(GamePreferences pref)
         {
-            id++;
+            counter++;
+            id = counter;
             this.pref = pref;
             sits = new List<Player>();
             tableCards = new Card[5];
@@ -97,7 +105,7 @@ namespace TexasHoldem
             }
         }
 
-        public Player[] Sits
+        public List<Player> Sits
         {
             get
             {

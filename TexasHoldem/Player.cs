@@ -8,14 +8,21 @@ namespace TexasHoldem
 {
     class Player
     {
-        private static int playerId = 0;
+        public Player(int playerID)
+        {
+            // this = game.getPlayer(playerID);
+        }
+
+        private static int counter = 0;
+        private int playerID;
         private int moneyBalance;
         private string name;
         private Card[] cards;
 
         public Player(int moneyBalance, string name)
         {
-            playerId++;
+            counter++;
+            playerID = counter;
             this.moneyBalance = moneyBalance;
             this.name = name;
             this.cards = new Card[2];
@@ -23,7 +30,7 @@ namespace TexasHoldem
 
         public int getPlayerId()
         {
-            return playerId;
+            return playerID;
         }
 
         public int MoneyBalance

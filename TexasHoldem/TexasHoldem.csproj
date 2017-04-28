@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationException.cs" />
     <Compile Include="allreadyHasNameExeption.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="DataBase.cs" />
@@ -62,7 +63,10 @@
     <Compile Include="NoUserNameException.cs" />
     <Compile Include="notEnoughMoneyException.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLayer\IService.cs" />
+    <Compile Include="ServiceLayer\Service.cs" />
     <Compile Include="SearchNodeFilter.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserController.cs" />
@@ -70,6 +74,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
