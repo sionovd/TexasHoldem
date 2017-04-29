@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TexasHoldem
 {
 
-    class GamePreferences
+    public class GamePreferences
     {
         private int gameType;
         private int buyIn;
