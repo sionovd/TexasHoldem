@@ -13,7 +13,7 @@ namespace AcceptanceTests
 
         public GameSystemTest()
         {
-            bridge = new ProxyService();
+            bridge = new Service();
         }
 
         public bool Register(string username, string password, string email)
@@ -21,6 +21,19 @@ namespace AcceptanceTests
             try
             {
                 bridge.Register(username, password, email);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                return false;
+            }
+        }
+
+        public bool RegisterWithMoney(string username, string password, string email, int money)
+        {
+            try
+            {
+                bridge.RegisterWithMoney(username, password, email, money);
                 return true;
             }
             catch (ApplicationException)
@@ -42,7 +55,7 @@ namespace AcceptanceTests
             }
         }
 
-        
+
 
         public bool Login(string username, string password)
         {
@@ -68,6 +81,11 @@ namespace AcceptanceTests
             {
                 return false;
             }
+        }
+
+        public int ViewMoneyBalanceOfUser(string username)
+        {
+            return bridge.ViewMoneyBalanceOfUser(username);
         }
 
         public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
@@ -96,7 +114,7 @@ namespace AcceptanceTests
             catch (ApplicationException e)
             {
                 //if e == joingame exception return -2, or -3, or -4...
-                    return -1;
+                return -1;
             }
         }
 
@@ -111,6 +129,67 @@ namespace AcceptanceTests
             {
                 return false;
             }
+        }
+
+        public bool Call(int playerID, int gameID)
+        {
+            try
+            {
+                bridge.Call(playerID, gameID);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                return false;
+            }
+        }
+
+        public bool Check(int playerID, int gameID)
+        {
+            try
+            {
+                bridge.Check(playerID, gameID);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                return false;
+            }
+        }
+
+        public bool Fold(int playerID, int gameID)
+        {
+            try
+            {
+                bridge.Fold(playerID, gameID);
+                return true;
+            }
+            catch (ApplicationException)
+            {
+                return false;
+            }
+        }
+
+        public bool SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int minPlayers, int maxPlayers, int spectateGame)
+        {
+            return bridge.SearchActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers,
+                           spectateGame)
+                       .Count > 0;
+        }
+
+        public bool SearchAciveGamesByPot(int potSize)
+        {
+            return bridge.SearchActiveGamesByPot(potSize).Count > 0;
+        }
+
+        public bool SearchActiveGamesByPlayerName(string playerName)
+        {
+            return bridge.SearchActiveGamesByPlayerName(playerName).Count > 0;
+        }
+
+        public bool ViewSpectatableGames()
+        {
+            return bridge.ViewSpectatableGames().Count > 0;
         }
 
     }
