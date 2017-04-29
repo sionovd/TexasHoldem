@@ -35,6 +35,14 @@ namespace TexasHoldem
             pot = 0;
         }
 
+        public Boolean RemovePlayer(Player p)
+        {
+                foreach(Player player in sits)
+                    if (player.PlayerId == p.PlayerId)
+                        return true;
+                return false;
+        }
+
         public Player AddPlayer(User user)
         {
             if(sits.Count() >= pref.MaxPlayers)

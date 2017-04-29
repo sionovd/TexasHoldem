@@ -18,7 +18,17 @@ namespace TexasHoldem
         {
             // this = database.getUser(username);
         }
-        
+
+        public User(string username, string password, string email, bool isAdmin,int moneyBalance)
+        {
+            this.username = username;
+            if (password.Equals(""))
+                throw new NotAPasswordException(password);
+            this.password = password;
+            this.email = email;
+            this.isAdmin = isAdmin;
+            this.moneyBalance = moneyBalance;
+        }
 
         public User (string username, string password, string email, bool isAdmin)
         {

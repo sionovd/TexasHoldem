@@ -6,10 +6,23 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    interface DataBase
+    class DataBase : IDataBase
     {
-        List<User> getRegisterUsers();
-        List<Game> getAllGames();
-        void AddGame(Game game);
+        public void AddGame(Game game)
+        {
+          //  throw new NotImplementedException();
+        }
+
+        public List<Game> getAllGames()
+        {
+            return new List<Game>();
+          //  throw new NotImplementedException();
+        }
+
+        public List<User> getRegisterUsers()
+        {
+            return new List<User>();
+            //  throw new NotImplementedException();
+        }
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="allreadyHasNameExeption.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="IDataBase.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="FullTableException.cs" />
     <Compile Include="Game.cs" />
