@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TexasHoldem
 {
-    class NoUserNameException : DomainException
+    public class NoUserNameException : DomainException
     {
         public NoUserNameException(string username)
         {

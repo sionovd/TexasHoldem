@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TexasHoldem
 {
-    class AlreadyHasNameException : Exception
+    public class AlreadyHasNameException : Exception
     {
         public AlreadyHasNameException(string name) : base()
         {

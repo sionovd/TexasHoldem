@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainException.cs" />
-    <Compile Include="allreadyHasNameExeption.cs" />
+    <Compile Include="AlreadyHasNameException.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="DataBase.cs" />
     <Compile Include="IDataBase.cs" />
