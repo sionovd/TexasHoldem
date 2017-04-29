@@ -13,3 +13,6 @@ C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.dll
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.pdb
+C:\Users\shavit\Documents\GitHub\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
+C:\Users\shavit\Documents\GitHub\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.dll
+C:\Users\shavit\Documents\GitHub\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.pdb

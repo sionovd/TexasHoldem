@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class Player
+    public class Player
     {
         public Player(int playerID)
         {

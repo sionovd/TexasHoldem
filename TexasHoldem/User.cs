@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class User
+    public class User
     {
         private bool isAdmin;
         private string username;
@@ -19,7 +19,7 @@ namespace TexasHoldem
             // this = database.getUser(username);
         }
 
-        public User(string username, string password, string email, bool isAdmin,int moneyBalance)
+        public User(string username, string password, string email, bool isAdmin, int money)
         {
             this.username = username;
             if (password.Equals(""))
@@ -27,7 +27,7 @@ namespace TexasHoldem
             this.password = password;
             this.email = email;
             this.isAdmin = isAdmin;
-            this.moneyBalance = moneyBalance;
+            this.moneyBalance = money;
         }
 
         public User (string username, string password, string email, bool isAdmin)

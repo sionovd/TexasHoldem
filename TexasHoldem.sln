@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TexasHoldem", "TexasHoldem\TexasHoldem.csproj", "{A814D20E-B88F-43E2-AA71-412FBF291185}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{76B5B2C3-4903-48BB-B0F5-CAE277A29EEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{3ECFC38B-FB26-4B06-9F0F-80111F5D2D26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{76B5B2C3-4903-48BB-B0F5-CAE277A29EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B5B2C3-4903-48BB-B0F5-CAE277A29EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76B5B2C3-4903-48BB-B0F5-CAE277A29EEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ECFC38B-FB26-4B06-9F0F-80111F5D2D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECFC38B-FB26-4B06-9F0F-80111F5D2D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECFC38B-FB26-4B06-9F0F-80111F5D2D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECFC38B-FB26-4B06-9F0F-80111F5D2D26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
