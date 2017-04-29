@@ -14,7 +14,7 @@ namespace TexasHoldem
         private IDataBase db = new DataBase();
         private System.Object lockThis = new System.Object();
 
-        GameCenter()
+        public GameCenter()
         {
             List <Game> tmp= db.getAllGames();
             if(tmp!=null)

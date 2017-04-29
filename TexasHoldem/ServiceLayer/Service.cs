@@ -51,10 +51,11 @@ namespace TexasHoldem.ServiceLayer
 
         public int JoinGame(string username, int gameID)
         {
-            Game game = gameCenter.GetGame(gameID);
+        /*    Game game = gameCenter.GetGame(gameID);
             User user = new User(username);
             Player player = game.AddPlayer(user);
-            return player.getPlayerId();
+            return player.getPlayerId();*/
+            throw new NotImplementedException();
         }
 
         public bool LeaveGame(string username, int gameID)
