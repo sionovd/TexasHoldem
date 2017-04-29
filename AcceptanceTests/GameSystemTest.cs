@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TexasHoldem;
 using TexasHoldem.ServiceLayer;
 
 namespace AcceptanceTests
@@ -23,7 +24,7 @@ namespace AcceptanceTests
                 bridge.Register(username, password, email);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException e)
             {
                 return false;
             }
@@ -36,7 +37,7 @@ namespace AcceptanceTests
                 bridge.RegisterWithMoney(username, password, email, money);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -49,7 +50,7 @@ namespace AcceptanceTests
                 bridge.EditProfile(username, password, email);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -64,7 +65,7 @@ namespace AcceptanceTests
                 bridge.Login(username, password);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -77,7 +78,7 @@ namespace AcceptanceTests
                 bridge.Logout(username);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -98,7 +99,7 @@ namespace AcceptanceTests
                     maxPlayerCount, isSpectatable);
                 return gameID;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return -1;
             }
@@ -111,7 +112,7 @@ namespace AcceptanceTests
                 bridge.JoinGame(username, gameID);
                 return 1;
             }
-            catch (ApplicationException e)
+            catch (DomainException e)
             {
                 //if e == joingame exception return -2, or -3, or -4...
                 return -1;
@@ -125,7 +126,7 @@ namespace AcceptanceTests
                 bridge.Bet(playerID, gameID, amount);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -138,7 +139,7 @@ namespace AcceptanceTests
                 bridge.Call(playerID, gameID);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -151,7 +152,7 @@ namespace AcceptanceTests
                 bridge.Check(playerID, gameID);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -164,7 +165,7 @@ namespace AcceptanceTests
                 bridge.Fold(playerID, gameID);
                 return true;
             }
-            catch (ApplicationException)
+            catch (DomainException)
             {
                 return false;
             }
@@ -190,6 +191,11 @@ namespace AcceptanceTests
         public bool ViewSpectatableGames()
         {
             return bridge.ViewSpectatableGames().Count > 0;
+        }
+
+        public int SpectateGame(string username, int gameLogID)
+        {
+            return bridge.SpectateGame(username, gameLogID);
         }
 
     }

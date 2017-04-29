@@ -18,6 +18,7 @@ namespace TexasHoldem
         private int moneyBalance;
         private string name;
         private Card[] cards;
+        private bool passive;
 
         public Player(int moneyBalance, string name)
         {
@@ -26,8 +27,16 @@ namespace TexasHoldem
             this.moneyBalance = moneyBalance;
             this.name = name;
             this.cards = new Card[2];
+            this.passive = false;
         }
 
+        public Player(string name)
+        {
+            counter++;
+            playerID = counter;
+            this.name = name;
+            this.passive = true;
+        }
         
         public int MoneyBalance
         {

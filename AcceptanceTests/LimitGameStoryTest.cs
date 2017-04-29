@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AcceptanceTests
 {
     [TestClass]
-    public class NoLimitGameStoryTest : GameSystemTest
+    public class LimitGameStoryTest : GameSystemTest
     {
         private int game1;
         private string username;
@@ -24,7 +24,7 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
             Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
             username = "doron";
-            int gameTypePolicy = 1;
+            int gameTypePolicy = 0;
             int buyInPolicy = 0;
             int chipPolicy = 100; // played with chips
             int minBet = 5;
@@ -49,14 +49,15 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheGood()
         {
-            Assert.IsTrue(Bet(player1, game1, 25));
-            Assert.IsTrue(Call(player2, game1));
+            Assert.IsTrue(Bet(player1, game1, 5));
+            Assert.IsTrue(Bet(player2, game1, 10));
             Assert.IsTrue(Call(player3, game1));
             Assert.IsTrue(Call(player4, game1));
             Assert.IsTrue(Fold(player5, game1));
+            Assert.IsTrue(Call(player1, game1));
 
-            Assert.IsTrue(Bet(player1, game1, 50));
-            Assert.IsTrue(Bet(player2, game1, 75));
+            Assert.IsTrue(Bet(player1, game1, 5));
+            Assert.IsTrue(Call(player2, game1));
             Assert.IsTrue(Call(player3, game1));
             Assert.IsTrue(Call(player4, game1));
             Assert.IsTrue(Call(player1, game1));
@@ -64,10 +65,11 @@ namespace AcceptanceTests
             Assert.IsTrue(Check(player1, game1));
             Assert.IsTrue(Check(player2, game1));
             Assert.IsTrue(Check(player3, game1));
-            Assert.IsTrue(Bet(player4, game1, 25));
-            Assert.IsTrue(Fold(player1, game1));
+            Assert.IsTrue(Bet(player4, game1, 10));
+            Assert.IsTrue(Bet(player1, game1, 20));
             Assert.IsTrue(Fold(player2, game1));
             Assert.IsTrue(Fold(player3, game1));
+            Assert.IsTrue(Call(player4, game1));
 
 
         }
@@ -76,13 +78,16 @@ namespace AcceptanceTests
         public void TestTheBad()
         {
             Assert.IsFalse(Bet(player1, game1, -1));
-            Assert.IsFalse(Bet(player1, game1, 101));
+            
         }
 
         [TestMethod]
         public void TestTheSad()
         {
-            Assert.IsFalse(Bet(player1, game1, 3));
+            Assert.IsFalse(Bet(player1, game1, 4));
+            Assert.IsFalse(Bet(player1, game1, 6));
+            Assert.IsFalse(Bet(player1, game1, 9));
+            Assert.IsFalse(Bet(player1, game1, 11));
         }
 
         [TestCleanup]
@@ -90,6 +95,5 @@ namespace AcceptanceTests
         {
             //delete objects from setup...
         }
-
     }
 }

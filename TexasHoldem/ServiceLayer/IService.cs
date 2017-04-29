@@ -39,7 +39,7 @@ namespace TexasHoldem.ServiceLayer
         // GameLog
         bool ReplayGame(string username, int gameLogID);
         bool SaveTurns(string username, int gameID, string turnData);
-        bool SpectateGame(string username, int gameLogID);
+        int SpectateGame(string username, int gameID);
 
 
     }

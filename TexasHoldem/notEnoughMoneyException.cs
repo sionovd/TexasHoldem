@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TexasHoldem
 {
     [Serializable]
-    public class notEnoughMoneyException : Exception
+    public class notEnoughMoneyException : DomainException
     {
         public notEnoughMoneyException()
         : base() { }

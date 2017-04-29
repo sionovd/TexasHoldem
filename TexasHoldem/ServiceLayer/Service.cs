@@ -51,11 +51,10 @@ namespace TexasHoldem.ServiceLayer
 
         public int JoinGame(string username, int gameID)
         {
-        /*    Game game = gameCenter.GetGame(gameID);
-            User user = new User(username);
+            Game game = gameCenter.GetGameById(gameID);
+            User user = userController.GetUserByName(username);
             Player player = game.AddPlayer(user);
-            return player.getPlayerId();*/
-            throw new NotImplementedException();
+            return player.PlayerId;
         }
 
         public bool LeaveGame(string username, int gameID)
@@ -65,22 +64,30 @@ namespace TexasHoldem.ServiceLayer
 
         public bool Bet(int playerID, int gameID, int amount)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            Player player = game.GetPlayerById(playerID);
+            return game.Bet(player, amount);
         }
 
         public bool Check(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            Player player = game.GetPlayerById(playerID);
+            return game.Check(player);
         }
 
         public bool Fold(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            Player player = game.GetPlayerById(playerID);
+            return game.Fold(player);
         }
 
         public bool Call(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            Player player = game.GetPlayerById(playerID);
+            return game.Call(player);
         }
 
         public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
@@ -160,9 +167,12 @@ namespace TexasHoldem.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public bool SpectateGame(string username, int gameLogID)
+        public int SpectateGame(string username, int gameID)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            User user = userController.GetUserByName(username);
+            Player player = game.AddSpectatingPlayer(user);
+            return player.PlayerId;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TexasHoldem
 {
-    class allreadyHasNameException : Exception
+    public class allreadyHasNameException : DomainException
     {
         public allreadyHasNameException(string name) : base()
         {

@@ -20,5 +20,6 @@ C:\Users\shavit\Documents\GitHub\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.p
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.exe.config
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.exe
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.pdb
+C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.csprojResolveAssemblyReference.cache
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.exe
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.pdb

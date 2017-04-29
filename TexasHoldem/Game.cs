@@ -18,7 +18,8 @@ namespace TexasHoldem
         private static int counter = 0;
         private int id;
         private GamePreferences pref; 
-        private List<Player> sits; 
+        private List<Player> sits;
+        private List<Player> spectators;
         private Deck cards; 
         private int pot;
         private Card[] tableCards;
@@ -31,9 +32,20 @@ namespace TexasHoldem
             id = counter;
             this.pref = pref;
             sits = new List<Player>();
+            spectators = new List<Player>();
             tableCards = new Card[5];
             cards = new Deck();
             pot = 0;
+        }
+
+        public Player GetPlayerById(int playerID)
+        {
+            foreach (Player player in sits)
+            {
+                if (player.PlayerId == playerID)
+                    return player;
+            }
+            return null;
         }
 
         public bool IsPlayerPlay(Player player)
@@ -61,6 +73,13 @@ namespace TexasHoldem
             return p;
         }
 
+        public Player AddSpectatingPlayer(User user)
+        {
+            Player specPlayer = new Player(user.getUsername());
+            spectators.Add(specPlayer);
+            return specPlayer;
+        }
+
         public bool IsPlayerExist(string name)
         {
             foreach (Player p in sits)
@@ -80,6 +99,12 @@ namespace TexasHoldem
             return true;
         }
         public bool Check(Player player)
+        {
+            //TODO
+            return true;
+        }
+
+        public bool Fold(Player player)
         {
             //TODO
             return true;

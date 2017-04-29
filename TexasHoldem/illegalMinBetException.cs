@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TexasHoldem
 {
     [Serializable]
-    internal class illegalMinBetException : Exception
+    internal class illegalMinBetException : DomainException
     {
         public illegalMinBetException()
         : base() { }

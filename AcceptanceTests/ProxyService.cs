@@ -129,7 +129,7 @@ namespace AcceptanceTests
             throw new NotImplementedException();
         }
 
-        public bool SpectateGame(string username, int gameLogID)
+        public int SpectateGame(string username, int gameID)
         {
             throw new NotImplementedException();
         }

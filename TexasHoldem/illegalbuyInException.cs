@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TexasHoldem
 {
     [Serializable]
-    internal class illegalbuyInException : Exception
+    internal class illegalbuyInException : DomainException
     {
         public illegalbuyInException()
         : base() { }

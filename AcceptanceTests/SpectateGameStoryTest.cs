@@ -4,8 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AcceptanceTests
 {
     [TestClass]
-    public class NoLimitGameStoryTest : GameSystemTest
+    public class SpectateGameStoryTest : GameSystemTest
     {
+
         private int game1;
         private string username;
         private int player1;
@@ -49,47 +50,7 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheGood()
         {
-            Assert.IsTrue(Bet(player1, game1, 25));
-            Assert.IsTrue(Call(player2, game1));
-            Assert.IsTrue(Call(player3, game1));
-            Assert.IsTrue(Call(player4, game1));
-            Assert.IsTrue(Fold(player5, game1));
-
-            Assert.IsTrue(Bet(player1, game1, 50));
-            Assert.IsTrue(Bet(player2, game1, 75));
-            Assert.IsTrue(Call(player3, game1));
-            Assert.IsTrue(Call(player4, game1));
-            Assert.IsTrue(Call(player1, game1));
-
-            Assert.IsTrue(Check(player1, game1));
-            Assert.IsTrue(Check(player2, game1));
-            Assert.IsTrue(Check(player3, game1));
-            Assert.IsTrue(Bet(player4, game1, 25));
-            Assert.IsTrue(Fold(player1, game1));
-            Assert.IsTrue(Fold(player2, game1));
-            Assert.IsTrue(Fold(player3, game1));
-
-
+            
         }
-
-        [TestMethod]
-        public void TestTheBad()
-        {
-            Assert.IsFalse(Bet(player1, game1, -1));
-            Assert.IsFalse(Bet(player1, game1, 101));
-        }
-
-        [TestMethod]
-        public void TestTheSad()
-        {
-            Assert.IsFalse(Bet(player1, game1, 3));
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            //delete objects from setup...
-        }
-
     }
 }
