@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TexasHoldem
 {
     public class UserController
@@ -13,6 +14,7 @@ namespace TexasHoldem
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;
         private System.Object lockThis = new System.Object();
+
         public void Initialized()
         {
             init = false;
@@ -46,7 +48,7 @@ namespace TexasHoldem
                 if (!registerUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
                 bool admin = registerUsers[username].getAdmin();
-                registerUsers.Add(username, new User(username, password, email, admin));
+                registerUsers[username] =  new User(username, password, email, admin);
                 return true;
             }
         }
