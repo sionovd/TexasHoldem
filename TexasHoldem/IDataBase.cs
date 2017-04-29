@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    public class League
+    interface IDataBase
     {
-        public League(int leagueID)
-        {
-            //this = database.getLeague(leagueID);
-        }
+        List<User> getRegisterUsers();
+        List<Game> getAllGames();
+        void AddGame(Game game);
     }
 }

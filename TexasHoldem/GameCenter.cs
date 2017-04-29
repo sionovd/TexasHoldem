@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class GameCenter
+    public class GameCenter
     {
         private Dictionary<int, Game> games;   // int-Game id
-        private DataBase db;
+        private IDataBase db = new DataBase();
         private System.Object lockThis = new System.Object();
 
         GameCenter()
@@ -21,6 +21,11 @@ namespace TexasHoldem
                 games = tmp.ToDictionary(g => g.Id);
             else
                 games = new Dictionary<int, Game>();
+        }
+
+        public Game GetGameById(int id)
+        {
+            return games[id];
         }
 
         public List<Game> GetActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, int spectateGame)

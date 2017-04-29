@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class Game
+    public class Game
     {
 
         public Game(int gameID)
@@ -35,7 +36,12 @@ namespace TexasHoldem
             pot = 0;
         }
 
-        public Player AddPlayer(User user)
+        public bool IsPlayerPlay(Player player)
+        {
+            return sits.Contains(player);   
+        }
+
+        public Player AddPlayer(User user) 
         {
             if(sits.Count() >= pref.MaxPlayers)
                 throw new FullTableException();
@@ -92,7 +98,7 @@ namespace TexasHoldem
             }
         }
 
-        internal GamePreferences Pref
+        public GamePreferences Pref
         {
             get
             {

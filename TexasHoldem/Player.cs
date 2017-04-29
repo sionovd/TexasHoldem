@@ -28,11 +28,7 @@ namespace TexasHoldem
             this.cards = new Card[2];
         }
 
-        public int getPlayerId()
-        {
-            return playerID;
-        }
-
+        
         public int MoneyBalance
         {
             get
@@ -56,6 +52,19 @@ namespace TexasHoldem
             set
             {
                 name = value;
+            }
+        }
+
+        public int PlayerId
+        {
+            get
+            {
+                return playerID;
+            }
+
+            set
+            {
+                playerID = value;
             }
         }
 

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class UserController
+    public class UserController
     {
-        private DataBase db;
+        private IDataBase db = new DataBase();
         private static bool init = true;
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;
@@ -19,7 +19,10 @@ namespace TexasHoldem
             List<User> tmp = db.getRegisterUsers();
             loginUsers = new Dictionary<string, User>();
         }
- 
+        public User GetUserByName(string name)
+        {
+            return registerUsers[name];
+        }
         public User Register(string username, string password, string email)
         {
             lock (lockThis)
