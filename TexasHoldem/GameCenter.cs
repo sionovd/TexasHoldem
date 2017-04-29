@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class GameCenter
+    public class GameCenter
     {
         private Dictionary<int, Game> games;   // int-Game id
         private DataBase db;

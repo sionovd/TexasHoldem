@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class UserController
+    public class UserController
     {
         private DataBase db;
         private static bool init = true;
