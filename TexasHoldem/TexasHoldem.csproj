@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="allreadyHasNameExeption.cs" />
+    <Compile Include="AlreadyHasNameException.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="DataBase.cs" />
     <Compile Include="Deck.cs" />

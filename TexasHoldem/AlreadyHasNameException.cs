@@ -5,9 +5,9 @@ using System.Text;
 
 namespace TexasHoldem
 {
-    class allreadyHasNameException : Exception
+    class AlreadyHasNameException : Exception
     {
-        public allreadyHasNameException(string name) : base()
+        public AlreadyHasNameException(string name) : base()
         {
             Console.Error.WriteLine(name + " this name already exits.");
 
