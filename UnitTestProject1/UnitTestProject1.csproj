@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="GameUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestUserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TexasHoldem\TexasHoldem.csproj">

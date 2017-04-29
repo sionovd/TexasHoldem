@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TexasHoldem
 {
     public class UserController
     {
-        private IDataBase db = new DataBase();
+        private DataBase db = new DataBase();
         private static bool init = true;
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;
         private System.Object lockThis = new System.Object();
+
         public void Initialized()
         {
             init = false;
@@ -36,7 +38,7 @@ namespace TexasHoldem
                     registerUsers = new Dictionary<string, User>();
                 }
                 if (registerUsers.ContainsKey(username))
-                    throw new allreadyHasNameException(user.getUsername());
+                    throw new AlreadyHasNameException(user.getUsername());
                 registerUsers.Add(username, user);
                 return user;
             }
@@ -49,7 +51,7 @@ namespace TexasHoldem
                 if (!registerUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
                 bool admin = registerUsers[username].getAdmin();
-                registerUsers.Add(username, new User(username, password, email, admin));
+                registerUsers[username] =  new User(username, password, email, admin);
                 return true;
             }
         }
@@ -62,7 +64,7 @@ namespace TexasHoldem
                     throw new NoUserNameException(username);
                 if (!registerUsers[username].chackPassword(password))
                     throw new NotAPasswordException(password);
-                loginUsers.Add(username, registerUsers[username]);
+                loginUsers[username] = registerUsers[username];
                 return true;
             }
         }
@@ -71,7 +73,7 @@ namespace TexasHoldem
         {
             lock (lockThis)
             {
-                if (!registerUsers.ContainsKey(username))
+                if (!registerUsers.ContainsKey(username) || loginUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
                 loginUsers.Remove(username);
                 return true;
