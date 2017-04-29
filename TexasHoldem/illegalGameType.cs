@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace TexasHoldem
 {
-    public class illegalGameTypeException : Exception
+    public class illegalGameTypeException : DomainException
     {
         public illegalGameTypeException()
         : base() { }

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TexasHoldem
 {
     [Serializable]
-    internal class illegalMaxPlayersException : Exception
+    internal class illegalMaxPlayersException : DomainException
     {
         public illegalMaxPlayersException()
         : base() { }

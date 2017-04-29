@@ -4,9 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AcceptanceTests
 {
     [TestClass]
-    public class BetStoryTest : GameSystemTest
+    public class SpectateGameStoryTest : GameSystemTest
     {
-        private int game;
+
+        private int game1;
         private string username;
         private int player1;
         private int player2;
@@ -26,42 +27,30 @@ namespace AcceptanceTests
             username = "doron";
             int gameTypePolicy = 1;
             int buyInPolicy = 0;
-            int chipPolicy = 100;
+            int chipPolicy = 100; // played with chips
             int minBet = 5;
             int minPlayerCount = 2;
             int maxPlayerCount = 5;
             bool isSpectatable = true;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game1 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
-            Assert.IsTrue(game > 0);
-            player1 = JoinGame("doron", game);
+            Assert.IsTrue(game1 > 0);
+            player1 = JoinGame("doron", game1);
             Assert.IsTrue(player1 > 0);
-            player2 = JoinGame("tamir", game);
+            player2 = JoinGame("tamir", game1);
             Assert.IsTrue(player2 > 0);
-            player3 = JoinGame("avner", game);
+            player3 = JoinGame("avner", game1);
             Assert.IsTrue(player3 > 0);
-            player4 = JoinGame("leon", game);
+            player4 = JoinGame("leon", game1);
             Assert.IsTrue(player4 > 0);
-            player5 = JoinGame("shavit", game);
+            player5 = JoinGame("shavit", game1);
             Assert.IsTrue(player5 > 0);
         }
 
         [TestMethod]
         public void TestTheGood()
         {
-            Assert.IsTrue(Bet(player1, game, 50));
-            Assert.IsTrue(Bet(player2, game, 50));
-            Assert.IsTrue(Bet(player3, game, 75));
-            Assert.IsTrue(Bet(player4, game, 80));
-            Assert.IsTrue(Bet(player5, game, 100));
-
+            
         }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            //deleteUsers...
-        }
-
     }
 }

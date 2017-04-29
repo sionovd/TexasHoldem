@@ -15,8 +15,7 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("michaEl", "PaSsWord", "MichaEL987@gmail.com"));
             //deleteUser("Doron_123");
             //deleteUser("Yossi");
-            //deleteUser("michaEl");
-            
+            //deleteUser("michaEl");            
         }
 
         [TestMethod]

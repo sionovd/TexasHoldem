@@ -71,7 +71,7 @@ namespace AcceptanceTests
             game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game > 0);
-            //deleteUser("doron");
+            
         }
 
         [TestMethod]
@@ -149,7 +149,6 @@ namespace AcceptanceTests
             game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game < 0);
-            //deleteUser("doron");
         }
 
         [TestMethod]
@@ -176,7 +175,14 @@ namespace AcceptanceTests
             game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 true);
             Assert.IsTrue(game < 0);
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            //deleteUser("doron");
             //deleteUser("yossi");
+            //deleteGames(...);
         }
     }
 }

@@ -9,15 +9,15 @@ namespace AcceptanceTests
         private int game1;
         private int game2;
 
-        [ClassInitialize]
+        [TestInitialize]
         public void SetUp()
         {
-            Assert.IsTrue(Register("doron", "password1", "doron@gmail.com"));
-            Assert.IsTrue(Register("tamir", "password2", "tamir@gmail.com"));
-            Assert.IsTrue(Register("shavit", "password3", "shavit@gmail.com"));
-            Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
-            Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
-            Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
+            Assert.IsTrue(RegisterWithMoney("doron", "password1", "doron@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("tamir", "password2", "tamir@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("shavit", "password3", "shavit@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("leon", "password4", "leon@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("avner", "password5", "avner@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 100));
             string username = "doron";
             int gameTypePolicy = 0;
             int buyInPolicy = 0;
@@ -28,7 +28,7 @@ namespace AcceptanceTests
             bool isSpectatable = true;
             game1 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
-            game2 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+            game2 = CreateGame(username, gameTypePolicy, 200, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game1 > 0);
             Assert.IsTrue(game2 > 0);
@@ -69,13 +69,9 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheBad()
         {
-            
-        }
-
-        [TestMethod]
-        public void TestTheSad()
-        {
-
+            int player1 = JoinGame("doron", game1);
+            Assert.IsFalse(player1 > 0);
+            Assert.IsTrue(ViewMoneyBalanceOfUser("doron") > 0);
         }
 
         [ClassCleanup]
