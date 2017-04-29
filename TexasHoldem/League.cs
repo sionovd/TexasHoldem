@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class League
+    public class League
     {
+        public League(int leagueID)
+        {
+            //this = database.getLeague(leagueID);
+        }
     }
 }

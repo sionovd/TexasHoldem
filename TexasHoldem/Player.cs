@@ -6,7 +6,79 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class Player
+    public class Player
     {
+        public Player(int playerID)
+        {
+            // this = game.getPlayer(playerID);
+        }
+
+        private static int counter = 0;
+        private int playerID;
+        private int moneyBalance;
+        private string name;
+        private Card[] cards;
+
+        public Player(int moneyBalance, string name)
+        {
+            counter++;
+            playerID = counter;
+            this.moneyBalance = moneyBalance;
+            this.name = name;
+            this.cards = new Card[2];
+        }
+
+        
+        public int MoneyBalance
+        {
+            get
+            {
+                return moneyBalance;
+            }
+
+            set
+            {
+                moneyBalance = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
+
+        public int PlayerId
+        {
+            get
+            {
+                return playerID;
+            }
+
+            set
+            {
+                playerID = value;
+            }
+        }
+
+        public Card[] Cards
+        {
+            get
+            {
+                return cards;
+            }
+
+            set
+            {
+                cards = value;
+            }
+        }
     }
 }

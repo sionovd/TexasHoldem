@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,68 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
-    class Game
+    public class Game
     {
-        public User AddPlayer(User user)
+
+        public Game(int gameID)
         {
-            //TODO
-            return null;
+            //this = gameCenter.getGame(gameID);
         }
-        public void RemovePlayer(Player player)
+
+        private static int counter = 0;
+        private int id;
+        private GamePreferences pref; 
+        private List<Player> sits; 
+        private Deck cards; 
+        private int pot;
+        private Card[] tableCards;
+        private System.Object lockThis = new System.Object();
+
+
+        public Game(GamePreferences pref)
         {
-            //TODO 
+            counter++;
+            id = counter;
+            this.pref = pref;
+            sits = new List<Player>();
+            tableCards = new Card[5];
+            cards = new Deck();
+            pot = 0;
         }
+
+        public bool IsPlayerPlay(Player player)
+        {
+            return sits.Contains(player);   
+        }
+
+        public Player AddPlayer(User user) 
+        {
+            if(sits.Count() >= pref.MaxPlayers)
+                throw new FullTableException();
+            Player p;
+            if (pref.ChipPolicy == 0)
+            {
+                if (user.getmoneyBalance() < pref.BuyIn + pref.MinBet)
+                    throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), pref.BuyIn.ToString());
+                int m = user.decreaseMoney(pref.BuyIn);
+                user.decreaseMoney(m);
+                p = new Player(m, user.getUsername());
+                sits.Add(p);
+                return p;
+            }
+            p = new Player(pref.ChipPolicy, user.getUsername());
+            sits.Add(p);
+            return p;
+        }
+
+        public bool IsPlayerExist(string name)
+        {
+            foreach (Player p in sits)
+                if (p.Name.Equals(name))
+                    return true;
+            return false;
+        }
+
         public bool Bet(Player player,int amount)
         {
             //TODO
@@ -32,10 +84,64 @@ namespace TexasHoldem
             //TODO
             return true;
         }
-        public bool Fold(Player player)
+
+        public int Id
         {
-            //TODO
-            return true;
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
         }
+
+        public GamePreferences Pref
+        {
+            get
+            {
+                return pref;
+            }
+
+            set
+            {
+                pref = value;
+            }
+        }
+
+        public List<Player> Sits
+        {
+            get
+            {
+                return sits;
+            }
+        }
+
+        public Deck Cards
+        {
+            get
+            {
+                return cards;
+            }
+            set
+            {
+                cards = value;
+            }
+        }
+
+        public int Pot
+        {
+            get
+            {
+                return pot;
+            }
+            set
+            {
+                pot = value;
+            }
+        }
+        
     }
 }
