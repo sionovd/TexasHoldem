@@ -48,15 +48,7 @@ namespace TexasHoldem
             }
             return null;
         }
-
-        public bool IsPlayerPlay(Player player)
-        {
-            foreach (Player p in sits)
-                if (p.PlayerId == player.PlayerId)
-                    return true;
-            return false;   
-        }
-
+        
         public bool RemovePlayer(Player player)
         {
             for (int i = 0; i < sits.Length; i++)
@@ -82,10 +74,12 @@ namespace TexasHoldem
                 user.decreaseMoney(m);
                 p = new Player(m, user.getUsername());
                 p.TakeSit(AddPlayerToSit(p));
+                numOfPlayers++;
                 return p;
             }
             p = new Player(pref.ChipPolicy, user.getUsername());
             p.TakeSit(AddPlayerToSit(p));
+            numOfPlayers++;
             return p;
         }
 
@@ -120,11 +114,21 @@ namespace TexasHoldem
             return false;
         }
 
+
+        public bool IsPlayerExist(Player player)
+        {
+                foreach (Player p in sits)
+                    if (p!=null && p.PlayerId == player.PlayerId)
+                        return true;
+            return false;
+        }
+
+
         public bool IsPlayerExist(string name)
         {
-            foreach (Player p in sits)
-                if (p.Name.Equals(name))
-                    return true;
+                foreach (Player p in sits)
+                    if (p!=null && p.Name.Equals(name))
+                        return true;
             return false;
         }
 

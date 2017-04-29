@@ -29,7 +29,7 @@ namespace UnitTestProject1
         {
             User user = new User("roni","4363","roni55@gmail.com",false,233);
             Player player = game.AddPlayer(user);
-            Assert.IsTrue(game.Sits.Contains(player));
+            Assert.IsTrue(game.IsPlayerExist(player));
         }
 
         [TestMethod]
@@ -45,7 +45,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void IsPlayerExistWhenNotExist()
         {
-            Player p = new Player(234, "gigi");
+            Player p = new Player(234, "guri");
             Assert.IsFalse(game.IsPlayerExist(p.Name));
         }
 
@@ -73,7 +73,7 @@ namespace UnitTestProject1
         {
             User user = new User("roni", "4363", "roni55@gmail.com", false);
             Player player = game.AddPlayer(user);
-            Assert.IsTrue(game.IsPlayerPlay(player));
+            Assert.IsTrue(game.IsPlayerExist(player));
         }
 
     }
