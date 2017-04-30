@@ -24,16 +24,16 @@ namespace TexasHoldem
     };
     public class Card
     {
+        private Cards card = Cards.HeartTwo;
 
-        private int cardId = -1;
-        public Card(int cardId)
+        public Card(Cards card)
         {
-            this.cardId = cardId;
+            this.card = card;
         }
 
-        public int getCardId()
+        public Cards getCardId()
         {
-            return this.cardId;
+            return this.card;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace TexasHoldem
 {
+    public enum TypeOfGame { LimitHoldem, NoLimitHoldem, PotLimitHoldem };
     public class Game
     {
         public Game(int gameID)
@@ -303,6 +304,39 @@ namespace TexasHoldem
             set
             {
                 MinStake = value;
+            }
+        }
+        public int SmallBlind
+        {
+            get
+            {
+                return SmallBlind;
+            }
+            set
+            {
+                SmallBlind = value;
+            }
+        }
+        public int BigBlind
+        {
+            get
+            {
+                return BigBlind;
+            }
+            set
+            {
+                BigBlind = value;
+            }
+        }
+        public TypeOfGame GameType
+        {
+            get
+            {
+                return GameType;
+            }
+            set
+            {
+                GameType = value;
             }
         }
     }

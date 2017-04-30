@@ -18,9 +18,9 @@ namespace TexasHoldem
 
         private void InitDeck()
         {
-            for (int i = 0; i < 52; i++)
+            foreach (Cards card in Enum.GetValues(typeof(Cards)))
             {
-                deckOfCards.Add(new Card(i));
+                this.deckOfCards.Add(new Card(card));
             }
         }
 
