@@ -27,6 +27,7 @@ namespace TexasHoldem
             this.moneyBalance = moneyBalance;
             this.name = name;
             this.cards = new Card[2];
+            this.AlreadyPayed = 0;
             position = -1;
         }
 
@@ -110,6 +111,19 @@ namespace TexasHoldem
             set
             {
                 cards = value;
+            }
+        }
+
+        public int AlreadyPayed
+        {
+            get
+            {
+                return AlreadyPayed;
+            }
+
+            set
+            {
+                AlreadyPayed = value;
             }
         }
     }
