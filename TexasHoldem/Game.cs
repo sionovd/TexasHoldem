@@ -94,7 +94,6 @@ namespace TexasHoldem
             return -1;
         }
 
-
         public Spectator AddSpectatingPlayer(User user)
         {
             Spectator spec = new Spectator(user.getUsername());
@@ -114,6 +113,22 @@ namespace TexasHoldem
             return false;
         }
 
+
+        public bool IsSpectatorExist(Spectator spec)
+        {
+            foreach (Spectator s in spectators)
+                if (s.Id == spec.Id)
+                    return true;
+            return false;
+        }
+
+        public bool IsSpectatorExist(string name)
+        {
+            foreach (Spectator s in spectators)
+                if (s.Name.Equals(name))
+                    return true;
+            return false;
+        }
 
         public bool IsPlayerExist(Player player)
         {

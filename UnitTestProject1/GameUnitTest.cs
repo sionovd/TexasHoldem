@@ -43,18 +43,64 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void IsPlayerExistWhenNotExist()
+        public void IsSpectatorExistWhenNotExistById()
+        {
+            Spectator s = new Spectator("guri");
+            Assert.IsFalse(game.IsSpectatorExist(s));
+        }
+
+        [TestMethod]
+        public void IsSpectatorExistWhenExistById()
+        {
+            User user = new User("ni", "4363", "ro5@gmail.com", false, 233);
+            Spectator spec = game.AddSpectatingPlayer(user);
+            Assert.IsTrue(game.IsSpectatorExist(spec));
+        }
+
+        [TestMethod]
+        public void IsSpectatorExistWhenNotExistByName()
+        {
+            Spectator s = new Spectator("guri");
+            Assert.IsFalse(game.IsSpectatorExist(s.Name));
+        }
+
+        [TestMethod]
+        public void IsSpectatorExistWhenExistByName()
+        {
+            User user = new User("ni", "4363", "ro5@gmail.com", false, 233);
+            Spectator spec = game.AddSpectatingPlayer(user);
+            Assert.IsTrue(game.IsSpectatorExist(spec.Name));
+        }
+
+        [TestMethod]
+        public void IsPlayerExistWhenNotExistByName()
         {
             Player p = new Player(234, "guri");
             Assert.IsFalse(game.IsPlayerExist(p.Name));
         }
 
         [TestMethod]
-        public void IsPlayerExistWhenExist()
+        public void IsPlayerExistWhenExistByName()
         {
             User user = new User("roni", "4363", "roni55@gmail.com", false, 233);
             Player player = game.AddPlayer(user);
             Assert.IsTrue(game.IsPlayerExist(player.Name));
+        }
+
+
+        [TestMethod]
+        public void IsPlayerExistWhenNotExistById()
+        {
+            Player p = new Player(234, "guri");
+            Assert.IsFalse(game.IsPlayerExist(p));
+        }
+
+        [TestMethod]
+        public void IsPlayerExistWhenExistById()
+        {
+            User user = new User("roni", "4363", "roni55@gmail.com", false, 233);
+            Player player = game.AddPlayer(user);
+            Assert.IsTrue(game.IsPlayerExist(player));
         }
 
         [TestMethod]
@@ -74,6 +120,24 @@ namespace UnitTestProject1
             User user = new User("roni", "4363", "roni55@gmail.com", false);
             Player player = game.AddPlayer(user);
             Assert.IsTrue(game.IsPlayerExist(player));
+        }
+
+        [TestMethod]
+        public void AddSpectatingTest()
+        {
+            User user = new User("roni", "4363", "roni55@gmail.com", false);
+            Spectator spec = game.AddSpectatingPlayer(user);
+            Assert.IsTrue(game.IsSpectatorExist(spec));
+        }
+
+
+        [TestMethod]
+        public void RemovePlayerTest()
+        {
+            User user = new User("roni", "4363", "roni55@gmail.com", false);
+            Player player = game.AddPlayer(user);
+            game.RemovePlayer(player);
+            Assert.IsFalse(game.IsPlayerExist(player));
         }
 
     }
