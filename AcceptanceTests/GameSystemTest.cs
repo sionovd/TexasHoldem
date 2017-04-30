@@ -99,8 +99,9 @@ namespace AcceptanceTests
                     maxPlayerCount, isSpectatable);
                 return gameID;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                Console.WriteLine(e.ToString());
                 return -1;
             }
         }
@@ -109,13 +110,24 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.JoinGame(username, gameID);
-                return 1;
+                return bridge.JoinGame(username, gameID);
             }
             catch (DomainException e)
             {
                 //if e == joingame exception return -2, or -3, or -4...
                 return -1;
+            }
+        }
+
+        public bool LeaveGame(int playerID, int gameID)
+        {
+            try
+            {
+                return bridge.LeaveGame(playerID, gameID);
+            }
+            catch (DomainException)
+            {
+                return false;
             }
         }
 
@@ -193,10 +205,28 @@ namespace AcceptanceTests
             return bridge.ViewSpectatableGames().Count > 0;
         }
 
-        public int SpectateGame(string username, int gameLogID)
+        public int SpectateGame(string username, int gameID)
         {
-            return bridge.SpectateGame(username, gameLogID);
+            try
+            {
+                return bridge.SpectateGame(username, gameID);
+            }
+            catch (DomainException)
+            {
+                return -1;
+            }
         }
 
+        public bool ReplayGame(string username, int gameLogID)
+        {
+            try
+            {
+                return bridge.ReplayGame(username, gameLogID);
+            }
+            catch (DomainException)
+            {
+                return false;
+            }
+        }
     }
 }

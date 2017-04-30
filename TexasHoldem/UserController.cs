@@ -15,11 +15,17 @@ namespace TexasHoldem
         private Dictionary<string, User> loginUsers;
         private System.Object lockThis = new System.Object();
 
+        public UserController()
+        {
+            loginUsers = new Dictionary<string, User>();
+            registerUsers = new Dictionary<string, User>();
+        }
+
         public void Initialized()
         {
             init = false;
             List<User> tmp = db.getRegisterUsers();
-            loginUsers = new Dictionary<string, User>();
+            
         }
         public User GetUserByName(string name)
         {
@@ -32,6 +38,24 @@ namespace TexasHoldem
                 if (init)
                     Initialized();
                 User user = new User(username, password, email, false);
+                if (registerUsers == null)
+                {
+                    user.setAdmin();
+                }
+                if (registerUsers.ContainsKey(username))
+                    throw new AlreadyHasNameException(user.getUsername());
+                registerUsers.Add(username, user);
+                return user;
+            }
+        }
+
+        public User RegisterWithMoney(string username, string password, string email, int money)
+        {
+            lock (lockThis)
+            {
+                if (init)
+                    Initialized();
+                User user = new User(username, password, email, false, money);
                 if (registerUsers == null)
                 {
                     user.setAdmin();
@@ -73,11 +97,14 @@ namespace TexasHoldem
         {
             lock (lockThis)
             {
-                if (!registerUsers.ContainsKey(username) || loginUsers.ContainsKey(username))
+                if (!registerUsers.ContainsKey(username) || !loginUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
                 loginUsers.Remove(username);
                 return true;
             }
         }
+
+        
+
     }
 }

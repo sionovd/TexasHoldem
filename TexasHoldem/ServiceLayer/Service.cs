@@ -26,7 +26,8 @@ namespace TexasHoldem.ServiceLayer
 
         public bool RegisterWithMoney(string username, string password, string email, int money)
         {
-            throw new NotImplementedException();
+            User user = userController.RegisterWithMoney(username, password, email, money);
+            return user != null;
         }
 
         public bool EditProfile(string username, string password, string email)
@@ -57,9 +58,11 @@ namespace TexasHoldem.ServiceLayer
             return player.PlayerId;
         }
 
-        public bool LeaveGame(string username, int gameID)
+        public bool LeaveGame(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            Player player = game.GetPlayerById(playerID);
+            return game.RemovePlayer(player);
         }
 
         public bool Bet(int playerID, int gameID, int amount)
@@ -93,8 +96,8 @@ namespace TexasHoldem.ServiceLayer
         public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
             int maxPlayerCount, bool isSpectatable)
         {
-            
-            User user = new User(username);
+
+            User user = userController.GetUserByName(username);
             Game game = gameCenter.CreateGame(user, gameTypePolicy, buyInPolicy, chipPolicy, minBet, maxPlayerCount, minPlayerCount,
                 isSpectatable);
             return game.Id;
@@ -169,16 +172,10 @@ namespace TexasHoldem.ServiceLayer
 
         public int SpectateGame(string username, int gameID)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            User user = userController.GetUserByName(username);
+            Spectator spectator = game.AddSpectatingPlayer(user);
+            return spectator.Id;
         }
-        /*
-public int SpectateGame(string username, int gameID)
-{
-   Game game = gameCenter.GetGameById(gameID);
-   User user = userController.GetUserByName(username);
-   Player player = game.AddSpectatingPlayer(user);
-   return player.PlayerId;
-}
-*/
     }
 }

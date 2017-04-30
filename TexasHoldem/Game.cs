@@ -44,7 +44,7 @@ namespace TexasHoldem
         {
             foreach (Player player in sits)
             {
-                if (player.PlayerId == playerID)
+                if (player != null && player.PlayerId == playerID)
                     return player;
             }
             return null;
@@ -53,7 +53,7 @@ namespace TexasHoldem
         public bool RemovePlayer(Player player)
         {
             for (int i = 0; i < sits.Length; i++)
-                if (sits[i].PlayerId == player.PlayerId)
+                if (sits[i] != null && sits[i].PlayerId == player.PlayerId)
                 {
                     sits[i] = null;
                     player.GetUp();
@@ -72,7 +72,6 @@ namespace TexasHoldem
                 if (user.getmoneyBalance() < pref.BuyIn + pref.MinBet)
                     throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), pref.BuyIn.ToString());
                 int m = user.decreaseMoney(pref.BuyIn);
-                user.decreaseMoney(m);
                 p = new Player(m, user.getUsername());
                 p.TakeSit(AddPlayerToSit(p));
                 numOfPlayers++;
@@ -97,6 +96,10 @@ namespace TexasHoldem
 
         public Spectator AddSpectatingPlayer(User user)
         {
+            if(!pref.SpectateGame)
+                throw new DomainException("game not spectatable");
+            if(IsSpectatorExist(user.getUsername()))
+                throw new DomainException("the user " + user + " is already watching this game");
             Spectator spec = new Spectator(user.getUsername());
             spectators.Add(spec);
             return spec;

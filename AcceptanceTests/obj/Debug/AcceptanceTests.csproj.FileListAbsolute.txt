@@ -1,6 +1,3 @@
-C:\Users\shavit\Documents\GitHub\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
-C:\Users\shavit\Documents\GitHub\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.dll
-C:\Users\shavit\Documents\GitHub\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.pdb
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
