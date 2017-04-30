@@ -33,7 +33,12 @@ namespace TexasHoldem
             this.Name = name;
             Position = -1;
         }
-        
+
+        public void PlayMove()
+        {
+            //either bet, check, call or fold
+        }
+
         public void GetUp()
         {
             this.Position = -1;

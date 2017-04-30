@@ -38,6 +38,71 @@ namespace TexasHoldem
             isActive = false;
         }
 
+        public void Play()
+        {
+            Player winner = null;
+            switch (GameType)
+            {
+                case (TypeOfGame.LimitHoldem):
+                case (TypeOfGame.PotLimitHoldem):
+                case (TypeOfGame.NoLimitHoldem):
+                    winner = PlayNoLimitHoldem();
+                    break;
+                default:
+                    Console.WriteLine("bugbugbgu");
+                    break;
+
+            }
+        }
+        private Player PlayNoLimitHoldem()
+        {
+            Player winner = null;
+            int sitIndex = 0;
+            Player currentPlayer = null;
+            bool gameOver = false;
+            int roundStarted = 0;
+            int nextCard = 0;
+            while (!gameOver)
+            {
+                currentPlayer = Sits[sitIndex % Sits.Length];
+                currentPlayer.PlayMove();
+                if (sitIndex % Sits.Length == 0 && roundStarted > 0) //check if round has been made
+                {
+                    if (BettingPlayer == FirstInRoundPlayer)
+                    {
+                        //done round of bets, flip
+                        if (nextCard++ == 6)
+                        {
+                            gameOver = true;
+                            break;
+                        }
+                        tableCards[nextCard] = cards.GetCard();
+                    }
+                    else
+                    {
+                        FirstInRoundPlayer = BettingPlayer;
+                        //continue iterations
+                    }
+                }
+                else
+                {
+                    roundStarted++;
+                }
+                //do whatever functionality
+                sitIndex++;
+            }
+            winner = currentPlayer;
+            return winner;
+        }
+        private Player PlayLimitHoldem()
+        {
+            return null;
+        }
+        private Player PlayPotLimitHoldem()
+        {
+            return null;
+        }
+
         public Player GetPlayerById(int playerID)
         {
             foreach (Player player in sits)

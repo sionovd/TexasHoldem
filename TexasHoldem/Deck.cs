@@ -23,7 +23,12 @@ namespace TexasHoldem
                 this.deckOfCards.Add(new Card(card));
             }
         }
-
+        public Card GetCard()
+        {
+            Card card = this.deckOfCards[0];
+            this.deckOfCards.RemoveAt(0);
+            return card;
+        }
         public int GetSize()
         {
             return deckOfCards.Count<Card>();
