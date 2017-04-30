@@ -17,10 +17,10 @@ namespace AcceptanceTests
             Assert.IsTrue(RegisterWithMoney("shavit", "password3", "shavit@gmail.com", 100));
             Assert.IsTrue(RegisterWithMoney("leon", "password4", "leon@gmail.com", 100));
             Assert.IsTrue(RegisterWithMoney("avner", "password5", "avner@gmail.com", 100));
-            Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 5));
             string username = "doron";
             int gameTypePolicy = 0;
-            int buyInPolicy = 0;
+            int buyInPolicy = 5;
             int chipPolicy = 100;
             int minBet = 5;
             int minPlayerCount = 2;
@@ -64,14 +64,25 @@ namespace AcceptanceTests
             Assert.AreNotEqual(player4, player9);
             Assert.AreNotEqual(player5, player10);
             Assert.IsFalse(JoinGame("someone", game2) > 0);
+
+            Assert.IsTrue(LeaveGame("doron", game1));
+            Assert.IsTrue(LeaveGame("doron", game2));
+            Assert.IsTrue(LeaveGame("tamir", game1));
+            Assert.IsTrue(LeaveGame("avner", game1));
+            Assert.IsTrue(LeaveGame("shavit", game1));
+            Assert.IsTrue(LeaveGame("leon", game1));
+            Assert.IsTrue(LeaveGame("tamir", game2));
+            Assert.IsTrue(LeaveGame("avner", game2));
+            Assert.IsTrue(LeaveGame("shavit", game2));
+            Assert.IsTrue(LeaveGame("leon", game2));
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void TestTheSad()
         {
-            int player1 = JoinGame("doron", game1);
+            int player1 = JoinGame("someone", game1);
             Assert.IsFalse(player1 > 0);
-            Assert.IsTrue(ViewMoneyBalanceOfUser("doron") > 0);
+            Assert.IsTrue(ViewMoneyBalanceOfUser("someone") > 0);
         }
 
         [ClassCleanup]

@@ -75,6 +75,8 @@ namespace TexasHoldem
 
         public Player AddSpectatingPlayer(User user)
         {
+            if (!pref.SpectateGame)
+                return null;
             Player specPlayer = new Player(user.getUsername());
             spectators.Add(specPlayer);
             return specPlayer;

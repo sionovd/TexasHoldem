@@ -8,6 +8,7 @@ namespace AcceptanceTests
     {
 
         private int game1;
+        private int game2;
         private string username;
         private int player1;
         private int player2;
@@ -34,6 +35,8 @@ namespace AcceptanceTests
             bool isSpectatable = true;
             game1 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
+            game2 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
+                isSpectatable);
             Assert.IsTrue(game1 > 0);
             player1 = JoinGame("doron", game1);
             Assert.IsTrue(player1 > 0);
@@ -45,12 +48,44 @@ namespace AcceptanceTests
             Assert.IsTrue(player4 > 0);
             player5 = JoinGame("shavit", game1);
             Assert.IsTrue(player5 > 0);
+            int player6 = JoinGame("doron", game2);
+            Assert.IsTrue(player6 > 0);
+            int player7 = JoinGame("tamir", game2);
+            Assert.IsTrue(player7 > 0);
+            int player8 = JoinGame("avner", game2);
+            Assert.IsTrue(player8 > 0);
+            int player9 = JoinGame("leon", game2);
+            Assert.IsTrue(player9 > 0);
+            int player10 = JoinGame("shavit", game2);
+            Assert.IsTrue(player10 > 0);
         }
 
         [TestMethod]
         public void TestTheGood()
         {
-            
+            Assert.IsTrue(ViewSpectatableGames());
+            Assert.IsTrue(SpectateGame("someone", game1) > 0); 
+            Assert.IsTrue(SpectateGame("someone", game2) > 0);
+        }
+
+        [TestMethod]
+        public void TestTheBad()
+        {
+            Assert.IsTrue(ViewSpectatableGames());
+            int game = CreateGame("doron", 1, 50, 100, 5, 2, 5,
+                true);
+            Assert.IsTrue(SpectateGame("doron", game) > 0);
+            Assert.IsFalse(SpectateGame("doron", game) > 0);
+        }
+
+        [TestMethod]
+        public void TestTheSad()
+        {
+            //end game1 and game2
+            int game = CreateGame("doron", 1, 50, 100, 5, 2, 5,
+                false);
+            Assert.IsFalse(ViewSpectatableGames());
+            Assert.IsFalse(SpectateGame("doron", game) > 0);
         }
     }
 }

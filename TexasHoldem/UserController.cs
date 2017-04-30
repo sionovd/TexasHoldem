@@ -44,6 +44,25 @@ namespace TexasHoldem
             }
         }
 
+        public User RegisterWithMoney(string username, string password, string email, int money)
+        {
+            lock (lockThis)
+            {
+                if (init)
+                    Initialized();
+                User user = new User(username, password, email, false, money);
+                if (registerUsers == null)
+                {
+                    user.setAdmin();
+                    registerUsers = new Dictionary<string, User>();
+                }
+                if (registerUsers.ContainsKey(username))
+                    throw new AlreadyHasNameException(user.getUsername());
+                registerUsers.Add(username, user);
+                return user;
+            }
+        }
+
         public bool EditProfile(string username, string password, string email)
         {
             lock (lockThis)
