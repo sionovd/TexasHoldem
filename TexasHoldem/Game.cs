@@ -95,6 +95,10 @@ namespace TexasHoldem
 
         public Spectator AddSpectatingPlayer(User user)
         {
+            if(!pref.SpectateGame)
+                throw new DomainException("game not spectatable");
+            if(IsSpectatorExist(user.getUsername()))
+                throw new DomainException("the user " + user + " is already watching this game");
             Spectator spec = new Spectator(user.getUsername());
             spectators.Add(spec);
             return spec;

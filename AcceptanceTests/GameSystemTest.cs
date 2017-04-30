@@ -207,7 +207,14 @@ namespace AcceptanceTests
 
         public int SpectateGame(string username, int gameID)
         {
-            return bridge.SpectateGame(username, gameID);
+            try
+            {
+                return bridge.SpectateGame(username, gameID);
+            }
+            catch (DomainException)
+            {
+                return -1;
+            }
         }
 
         public bool ReplayGame(string username, int gameLogID)

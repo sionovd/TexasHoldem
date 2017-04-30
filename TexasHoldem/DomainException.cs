@@ -9,12 +9,12 @@ namespace TexasHoldem
     public class DomainException : Exception
     {
 
-        protected DomainException()
+        public DomainException()
         {
           
         }
 
-        protected DomainException(string message) : base(message)
+        public DomainException(string message) : base(message)
         {
         }
 
