@@ -171,5 +171,14 @@ namespace TexasHoldem.ServiceLayer
         {
             throw new NotImplementedException();
         }
+        /*
+public int SpectateGame(string username, int gameID)
+{
+   Game game = gameCenter.GetGameById(gameID);
+   User user = userController.GetUserByName(username);
+   Player player = game.AddSpectatingPlayer(user);
+   return player.PlayerId;
+}
+*/
     }
 }

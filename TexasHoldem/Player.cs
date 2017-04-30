@@ -18,7 +18,7 @@ namespace TexasHoldem
         private int moneyBalance;
         private string name;
         private Card[] cards;
-        private bool passive;
+        private int position;
 
         public Player(int moneyBalance, string name)
         {
@@ -27,17 +27,27 @@ namespace TexasHoldem
             this.moneyBalance = moneyBalance;
             this.name = name;
             this.cards = new Card[2];
-            this.passive = false;
+            position = -1;
         }
 
-        public Player(string name)
+        public Player(string name)//???
         {
             counter++;
             playerID = counter;
             this.name = name;
-            this.passive = true;
+            position = -1;
         }
         
+        public void GetUp()
+        {
+            this.position = -1;
+        }
+
+        public void TakeSit(int pos)
+        {
+            this.position = pos;
+        }
+
         public int MoneyBalance
         {
             get
@@ -61,6 +71,19 @@ namespace TexasHoldem
             set
             {
                 name = value;
+            }
+        }
+
+        public int Position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
             }
         }
 

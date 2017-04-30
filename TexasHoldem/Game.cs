@@ -18,24 +18,25 @@ namespace TexasHoldem
         private static int counter = 0;
         private int id;
         private GamePreferences pref; 
-        private List<Player> sits;
-        private List<Player> spectators;
+        private Player[] sits;
+        private List<Spectator> spectators;
         private Deck cards; 
         private int pot;
         private Card[] tableCards;
         private System.Object lockThis = new System.Object();
-
+        private int numOfPlayers;    // players that sits
 
         public Game(GamePreferences pref)
         {
             counter++;
             id = counter;
             this.pref = pref;
-            sits = new List<Player>();
-            spectators = new List<Player>();
+            sits = new Player[pref.MaxPlayers];
+            spectators = new List<Spectator>();
             tableCards = new Card[5];
             cards = new Deck();
             pot = 0;
+            numOfPlayers = 0;
         }
 
         public Player GetPlayerById(int playerID)
@@ -47,15 +48,22 @@ namespace TexasHoldem
             }
             return null;
         }
-
-        public bool IsPlayerPlay(Player player)
+        
+        public bool RemovePlayer(Player player)
         {
-            return sits.Contains(player);   
+            for (int i = 0; i < sits.Length; i++)
+                if (sits[i].PlayerId == player.PlayerId)
+                {
+                    sits[i] = null;
+                    player.GetUp();
+                    return true;
+                }
+            return false;
         }
 
         public Player AddPlayer(User user) 
         {
-            if(sits.Count() >= pref.MaxPlayers)
+            if(numOfPlayers == pref.MaxPlayers)
                 throw new FullTableException();
             Player p;
             if (pref.ChipPolicy == 0)
@@ -65,28 +73,77 @@ namespace TexasHoldem
                 int m = user.decreaseMoney(pref.BuyIn);
                 user.decreaseMoney(m);
                 p = new Player(m, user.getUsername());
-                sits.Add(p);
+                p.TakeSit(AddPlayerToSit(p));
+                numOfPlayers++;
                 return p;
             }
             p = new Player(pref.ChipPolicy, user.getUsername());
-            sits.Add(p);
+            p.TakeSit(AddPlayerToSit(p));
+            numOfPlayers++;
             return p;
         }
 
-        public Player AddSpectatingPlayer(User user)
+        private int AddPlayerToSit(Player player)
         {
-            if (!pref.SpectateGame)
-                return null;
-            Player specPlayer = new Player(user.getUsername());
-            spectators.Add(specPlayer);
-            return specPlayer;
+            for (int i = 0; i < sits.Length; i++)
+                if (sits[i] == null)
+                {
+                    sits[i] = player;
+                    return i;
+                }
+            return -1;
         }
+
+        public Spectator AddSpectatingPlayer(User user)
+        {
+            Spectator spec = new Spectator(user.getUsername());
+            spectators.Add(spec);
+            return spec;
+        }
+
+
+        public bool RemoveSpectatingPlayer(Spectator spectator)
+        {
+            foreach(Spectator spec in spectators)
+                if(spec.Id==spectator.Id)
+                {
+                    spectators.Remove(spec);
+                    return true;
+                }
+            return false;
+        }
+
+
+        public bool IsSpectatorExist(Spectator spec)
+        {
+            foreach (Spectator s in spectators)
+                if (s.Id == spec.Id)
+                    return true;
+            return false;
+        }
+
+        public bool IsSpectatorExist(string name)
+        {
+            foreach (Spectator s in spectators)
+                if (s.Name.Equals(name))
+                    return true;
+            return false;
+        }
+
+        public bool IsPlayerExist(Player player)
+        {
+                foreach (Player p in sits)
+                    if (p!=null && p.PlayerId == player.PlayerId)
+                        return true;
+            return false;
+        }
+
 
         public bool IsPlayerExist(string name)
         {
-            foreach (Player p in sits)
-                if (p.Name.Equals(name))
-                    return true;
+                foreach (Player p in sits)
+                    if (p!=null && p.Name.Equals(name))
+                        return true;
             return false;
         }
 
@@ -138,7 +195,7 @@ namespace TexasHoldem
             }
         }
 
-        public List<Player> Sits
+        public Player[] Sits
         {
             get
             {
