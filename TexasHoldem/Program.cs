@@ -12,6 +12,7 @@ namespace TexasHoldem
         {
             Console.WriteLine(new Deck().GetSize());
             Console.Read();
+
         }
     }
 }
