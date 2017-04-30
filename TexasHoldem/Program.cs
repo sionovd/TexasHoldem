@@ -10,7 +10,7 @@ namespace TexasHoldem
     {
         static void Main()
         {
-            
+
         }
     }
 }

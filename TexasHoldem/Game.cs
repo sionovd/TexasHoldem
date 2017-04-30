@@ -71,7 +71,6 @@ namespace TexasHoldem
                 if (user.getmoneyBalance() < pref.BuyIn + pref.MinBet)
                     throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), pref.BuyIn.ToString());
                 int m = user.decreaseMoney(pref.BuyIn);
-                user.decreaseMoney(m);
                 p = new Player(m, user.getUsername());
                 p.TakeSit(AddPlayerToSit(p));
                 numOfPlayers++;

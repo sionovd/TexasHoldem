@@ -11,7 +11,7 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheGood()
         {
-            Assert.IsTrue(Register("doron", "password", "doron@gmail.com"));
+            Assert.IsTrue(RegisterWithMoney("doron", "password", "doron@gmail.com", 10000));
             string username = "doron";
             int gameTypePolicy = 0;
             int buyInPolicy = 0;
@@ -155,7 +155,7 @@ namespace AcceptanceTests
         public void TestTheSad()
         {
             Assert.IsTrue(Register("yossi", "pass", "yos@gmail.com"));
-            string username = "yos";
+            string username = "yossi";
             int gameTypePolicy = 1;
             int buyInPolicy = 100;
             int chipPolicy = 100;

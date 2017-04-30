@@ -98,5 +98,22 @@ namespace TexasHoldem
                 return true;
             }
         }
+
+        public bool SetDefaultLeague(League league)
+        {
+            //TODO
+            return true; ;
+        }
+        public bool AddLeague(League league, int criteria)
+        {
+            //TODO
+            return true; ;
+        }
+        public bool MoveUserToLeague(User user, League league)
+        {
+            //TODO
+            return true; ;
+        }
+
     }
 }
