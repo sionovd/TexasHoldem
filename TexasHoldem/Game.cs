@@ -17,10 +17,10 @@ namespace TexasHoldem
 
         private static int counter = 0;
         private int id;
-        private GamePreferences pref; 
+        private GamePreferences pref;
         private Player[] sits;
         private List<Spectator> spectators;
-        private Deck cards; 
+        private Deck cards;
         private int pot;
         private Card[] tableCards;
         private System.Object lockThis = new System.Object();
@@ -43,16 +43,16 @@ namespace TexasHoldem
         {
             foreach (Player player in sits)
             {
-                if (player.PlayerId == playerID)
+                if (player != null && player.PlayerId == playerID)
                     return player;
             }
             return null;
         }
-        
+
         public bool RemovePlayer(Player player)
         {
             for (int i = 0; i < sits.Length; i++)
-                if (sits[i].PlayerId == player.PlayerId)
+                if (sits[i] != null && sits[i].PlayerId == player.PlayerId)
                 {
                     sits[i] = null;
                     player.GetUp();
@@ -61,9 +61,9 @@ namespace TexasHoldem
             return false;
         }
 
-        public Player AddPlayer(User user) 
+        public Player AddPlayer(User user)
         {
-            if(numOfPlayers == pref.MaxPlayers)
+            if (numOfPlayers == pref.MaxPlayers)
                 throw new FullTableException();
             Player p;
             if (pref.ChipPolicy == 0)
@@ -103,8 +103,8 @@ namespace TexasHoldem
 
         public bool RemoveSpectatingPlayer(Spectator spectator)
         {
-            foreach(Spectator spec in spectators)
-                if(spec.Id==spectator.Id)
+            foreach (Spectator spec in spectators)
+                if (spec.Id == spectator.Id)
                 {
                     spectators.Remove(spec);
                     return true;
@@ -131,22 +131,22 @@ namespace TexasHoldem
 
         public bool IsPlayerExist(Player player)
         {
-                foreach (Player p in sits)
-                    if (p!=null && p.PlayerId == player.PlayerId)
-                        return true;
+            foreach (Player p in sits)
+                if (p != null && p.PlayerId == player.PlayerId)
+                    return true;
             return false;
         }
 
 
         public bool IsPlayerExist(string name)
         {
-                foreach (Player p in sits)
-                    if (p!=null && p.Name.Equals(name))
-                        return true;
+            foreach (Player p in sits)
+                if (p != null && p.Name.Equals(name))
+                    return true;
             return false;
         }
 
-        public bool Bet(Player player,int amount)
+        public bool Bet(Player player, int amount)
         {
             //TODO
             return true;
@@ -225,6 +225,6 @@ namespace TexasHoldem
                 pot = value;
             }
         }
-        
+
     }
 }

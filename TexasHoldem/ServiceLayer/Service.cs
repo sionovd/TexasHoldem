@@ -58,9 +58,11 @@ namespace TexasHoldem.ServiceLayer
             return player.PlayerId;
         }
 
-        public bool LeaveGame(string username, int gameID)
+        public bool LeaveGame(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            Game game = gameCenter.GetGameById(gameID);
+            Player player = game.GetPlayerById(playerID);
+            return game.RemovePlayer(player);
         }
 
         public bool Bet(int playerID, int gameID, int amount)

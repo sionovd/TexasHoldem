@@ -110,8 +110,7 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.JoinGame(username, gameID);
-                return 1;
+                return bridge.JoinGame(username, gameID);
             }
             catch (DomainException e)
             {
@@ -120,11 +119,11 @@ namespace AcceptanceTests
             }
         }
 
-        public bool LeaveGame(string username, int gameID)
+        public bool LeaveGame(int playerID, int gameID)
         {
             try
             {
-                return bridge.LeaveGame(username, gameID);
+                return bridge.LeaveGame(playerID, gameID);
             }
             catch (DomainException)
             {
@@ -211,5 +210,16 @@ namespace AcceptanceTests
             return bridge.SpectateGame(username, gameID);
         }
 
+        public bool ReplayGame(string username, int gameLogID)
+        {
+            try
+            {
+                return bridge.ReplayGame(username, gameLogID);
+            }
+            catch (DomainException)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace AcceptanceTests
             return 1; //playerID
         }
 
-        public bool LeaveGame(string username, int gameID)
+        public bool LeaveGame(int playerID, int gameID)
         {
             throw new NotImplementedException();
         }

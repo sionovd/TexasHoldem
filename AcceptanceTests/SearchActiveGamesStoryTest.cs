@@ -32,8 +32,6 @@ namespace AcceptanceTests
             game1 = CreateGame("doron", gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
                 isSpectatable);
             Assert.IsTrue(game1 > 0);
-            player1 = JoinGame("doron", game1);
-            Assert.IsTrue(player1 > 0);
             player2 = JoinGame("tamir", game1);
             Assert.IsTrue(player2 > 0);
             player3 = JoinGame("avner", game1);
