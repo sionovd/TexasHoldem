@@ -242,105 +242,22 @@ namespace TexasHoldem
                 pot = value;
             }
         }
-        public int TemporaryPot
-        {
-            get
-            {
-                return TemporaryPot;
-            }
-            set
-            {
-                TemporaryPot = value;
-            }
-        }
-        public int CurrentStake
-        {
-            get
-            {
-                return CurrentStake;
-            }
-            set
-            {
-                CurrentStake = value;
-            }
-        }
-        public Player FirstInRoundPlayer
-        {
-            get
-            {
-                return FirstInRoundPlayer;
-            }
-            set
-            {
-                FirstInRoundPlayer = value;
-            }
-        }
-        public Player BettingPlayer
-        {
-            get
-            {
-                return BettingPlayer;
-            }
-            set
-            {
-                BettingPlayer = value;
-            }
-        }
-        public int FinishedRound
-        {
-            get
-            {
-                return FinishedRound;
-            }
-            set
-            {
-                FinishedRound = value;
-            }
-        }
+        public int TemporaryPot { get; set; }
+        public int CurrentStake { get; set; }
+    
+        public Player FirstInRoundPlayer { get; set; }
+      
+        public Player BettingPlayer { get; set; }
 
-        public int MinStake
-        {
-            get
-            {
-                return MinStake;
-            }
-            set
-            {
-                MinStake = value;
-            }
-        }
-        public int SmallBlind
-        {
-            get
-            {
-                return SmallBlind;
-            }
-            set
-            {
-                SmallBlind = value;
-            }
-        }
-        public int BigBlind
-        {
-            get
-            {
-                return BigBlind;
-            }
-            set
-            {
-                BigBlind = value;
-            }
-        }
-        public TypeOfGame GameType
-        {
-            get
-            {
-                return GameType;
-            }
-            set
-            {
-                GameType = value;
-            }
-        }
+        public int FinishedRound { get; set; }
+
+        public int MinStake { get; set; }
+     
+        public int SmallBlind { get; set; }
+        
+        public int BigBlind { get; set; }
+     
+        public TypeOfGame GameType { get; set; }
+      
     }
 }
