@@ -16,28 +16,26 @@ namespace TexasHoldem
         }
 
         private static int counter = 0;
-        private int id;
-        private GamePreferences pref;
         private Player[] sits;
         private List<Spectator> spectators;
-        private Deck cards;
-        private int pot;
         private Card[] tableCards;
         private System.Object lockThis = new System.Object();
         private int numOfPlayers;    // players that sits
+        private bool isActive;
 
         public Game(GamePreferences pref)
         {
             counter++;
-            id = counter;
-            this.pref = pref;
+            Id = counter;
+            this.Pref = pref;
             sits = new Player[pref.MaxPlayers];
             spectators = new List<Spectator>();
             tableCards = new Card[5];
-            cards = new Deck();
-            pot = 0;
+            Cards = new Deck();
+            Pot = 0;
             numOfPlayers = 0;
             MinStake = 100; //this field needs to hold the minimal stake
+            isActive = false;
         }
 
         public Player GetPlayerById(int playerID)
@@ -64,22 +62,24 @@ namespace TexasHoldem
 
         public Player AddPlayer(User user)
         {
-            if (numOfPlayers == pref.MaxPlayers)
+            if (numOfPlayers == Pref.MaxPlayers)
                 throw new FullTableException();
             Player p;
-            if (pref.ChipPolicy == 0)
+            if (Pref.ChipPolicy == 0)
             {
-                if (user.getmoneyBalance() < pref.BuyIn + pref.MinBet)
-                    throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), pref.BuyIn.ToString());
-                int m = user.decreaseMoney(pref.BuyIn);
+                if (user.getmoneyBalance() < Pref.BuyIn + Pref.MinBet)
+                    throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), Pref.BuyIn.ToString());
+                int m = user.decreaseMoney(Pref.BuyIn);
                 p = new Player(m, user.getUsername());
                 p.TakeSit(AddPlayerToSit(p));
                 numOfPlayers++;
                 return p;
             }
-            p = new Player(pref.ChipPolicy, user.getUsername());
+            p = new Player(Pref.ChipPolicy, user.getUsername());
             p.TakeSit(AddPlayerToSit(p));
             numOfPlayers++;
+            if (numOfPlayers == Pref.MinPlayers)
+                isActive = true;
             return p;
         }
 
@@ -96,7 +96,7 @@ namespace TexasHoldem
 
         public Spectator AddSpectatingPlayer(User user)
         {
-            if(!pref.SpectateGame)
+            if(!Pref.SpectateGame)
                 throw new DomainException("game not spectatable");
             if(IsSpectatorExist(user.getUsername()))
                 throw new DomainException("the user " + user + " is already watching this game");
@@ -185,31 +185,9 @@ namespace TexasHoldem
             return true;
         }
 
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
+        public int Id { get; set; }
 
-            set
-            {
-                id = value;
-            }
-        }
-
-        public GamePreferences Pref
-        {
-            get
-            {
-                return pref;
-            }
-
-            set
-            {
-                pref = value;
-            }
-        }
+        public GamePreferences Pref { get; set; }
 
         public Player[] Sits
         {
@@ -219,29 +197,10 @@ namespace TexasHoldem
             }
         }
 
-        public Deck Cards
-        {
-            get
-            {
-                return cards;
-            }
-            set
-            {
-                cards = value;
-            }
-        }
+        public Deck Cards { get; set; }
 
-        public int Pot
-        {
-            get
-            {
-                return pot;
-            }
-            set
-            {
-                pot = value;
-            }
-        }
+        public int Pot { get; set; }
+
         public int TemporaryPot { get; set; }
         public int CurrentStake { get; set; }
     

@@ -24,7 +24,7 @@ namespace AcceptanceTests
                 bridge.Register(username, password, email);
                 return true;
             }
-            catch (DomainException e)
+            catch (DomainException)
             {
                 return false;
             }
@@ -112,7 +112,7 @@ namespace AcceptanceTests
             {
                 return bridge.JoinGame(username, gameID);
             }
-            catch (DomainException e)
+            catch (DomainException)
             {
                 //if e == joingame exception return -2, or -3, or -4...
                 return -1;
