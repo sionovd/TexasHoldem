@@ -36,6 +36,7 @@ namespace TexasHoldem
             numOfPlayers = 0;
             MinStake = 100; //this field needs to hold the minimal stake
             isActive = false;
+            BettingPlayer = null;
         }
 
         public void Play()
@@ -54,46 +55,138 @@ namespace TexasHoldem
 
             }
         }
+
+        private void StartRound()
+        {
+            //initialize table cards
+            for (int i = 0; i < 3; i++)
+            {
+                AddCardToTable(i);
+            }
+
+            //add cards to players
+            for (int i = 0; i < Sits.Length; i++)
+            {
+                Sits[i].AddHand(Id, Cards.GetCard(), Cards.GetCard());
+            }
+        }
+        private void AddCardToTable(int cardNum)
+        {
+            tableCards[cardNum] = Cards.GetCard();
+        }
         private Player PlayNoLimitHoldem()
         {
             Player winner = null;
-            int sitIndex = 0;
             Player currentPlayer = null;
-            bool gameOver = false;
-            int roundStarted = 0;
-            int nextCard = 0;
-            while (!gameOver)
+            BettingPlayer = null;
+              
+            bool firstBetting = true;
+            bool secondBetting = true;
+            bool thirdBetting = true;
+            bool lastBetting = true;
+            int sitIndex = 0;
+            int roundCounter = 0;
+
+            StartRound(); //put three cards on table, deal 2 card for each player, take money from each
+            while (firstBetting)
             {
-                currentPlayer = Sits[sitIndex % Sits.Length];
-                currentPlayer.PlayMove();
-                if (sitIndex % Sits.Length == 0 && roundStarted > 0) //check if round has been made
+                currentPlayer = sits[sitIndex++ % Sits.Length];
+                if (BettingPlayer == currentPlayer || (BettingPlayer == null && roundCounter > 0 && sitIndex % Sits.Length == 0)) //check if done round after bets or everybody called/folded/checked and we done round
                 {
-                    if (BettingPlayer == FirstInRoundPlayer)
-                    {
-                        //done round of bets, flip
-                        if (nextCard++ == 6)
-                        {
-                            gameOver = true;
-                            break;
-                        }
-                        tableCards[nextCard] = cards.GetCard();
-                    }
-                    else
-                    {
-                        FirstInRoundPlayer = BettingPlayer;
-                        //continue iterations
-                    }
+                    firstBetting = false;
+                    break;
                 }
-                else
+                if (currentPlayer.IsPlaying(Id))
                 {
-                    roundStarted++;
+                    currentPlayer.PlayMove();
                 }
-                //do whatever functionality
-                sitIndex++;
+                roundCounter++;
             }
-            winner = currentPlayer;
+            sitIndex = 0;
+            roundCounter = 0;
+            currentPlayer = null;
+            BettingPlayer = null;
+
+            AddCardToTable(3);
+            while (secondBetting)
+            {
+                currentPlayer = sits[sitIndex++ % Sits.Length];
+                if (BettingPlayer == currentPlayer || (BettingPlayer == null && roundCounter > 0 && sitIndex % Sits.Length == 0)) //check if done round after bets or everybody called/folded/checked and we done round
+                {
+                    secondBetting = false;
+                    break;
+                }
+                if (currentPlayer.IsPlaying(Id))
+                {
+                    currentPlayer.PlayMove();
+                }
+                roundCounter++;
+            }
+            sitIndex = 0;
+            roundCounter = 0;
+            currentPlayer = null;
+            BettingPlayer = null;
+
+            AddCardToTable(4);
+            while (thirdBetting)
+            {
+                currentPlayer = sits[sitIndex++ % Sits.Length];
+                if (BettingPlayer == currentPlayer || (BettingPlayer == null && roundCounter > 0 && sitIndex % Sits.Length == 0)) //check if done round after bets or everybody called/folded/checked and we done round
+                {
+                    thirdBetting = false;
+                    break;
+                }
+                if (currentPlayer.IsPlaying(Id))
+                {
+                    currentPlayer.PlayMove();
+                }
+                roundCounter++;
+            }
+            sitIndex = 0;
+            roundCounter = 0;
+            currentPlayer = null;
+            BettingPlayer = null;
+
+            AddCardToTable(5);
+            while (lastBetting)
+            {
+                currentPlayer = sits[sitIndex++ % Sits.Length];
+                if (BettingPlayer == currentPlayer || (BettingPlayer == null && roundCounter > 0 && sitIndex % Sits.Length == 0)) //check if done round after bets or everybody called/folded/checked and we done round
+                {
+                    lastBetting = false;
+                    break;
+                }
+                if (currentPlayer.IsPlaying(Id))
+                {
+                    currentPlayer.PlayMove();
+                }
+                roundCounter++;
+            }
+
+            winner = EvaluateWinner();
             return winner;
         }
+
+        private Player EvaluateWinner()
+        {
+            Player bestHand = null;
+            int bestHandScore = 0;
+            int currHandScore = 0;
+            for (int i = 0; i < Sits.Length; i++)
+            {
+                if (Sits[i].IsPlaying(Id))
+                {
+                    currHandScore = Sits[i].getBestHand(tableCards, Id);
+                    if (currHandScore > bestHandScore)
+                    {
+                        bestHandScore = currHandScore;
+                        bestHand = Sits[i];
+                    }
+                }
+            }
+            return bestHand;
+        }
+
         private Player PlayLimitHoldem()
         {
             return null;
@@ -267,6 +360,7 @@ namespace TexasHoldem
         public int Pot { get; set; }
 
         public int TemporaryPot { get; set; }
+
         public int CurrentStake { get; set; }
     
         public Player FirstInRoundPlayer { get; set; }

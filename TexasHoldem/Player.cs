@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TexasHoldem
 {
     public class Player
@@ -21,7 +22,8 @@ namespace TexasHoldem
             PlayerId = counter;
             this.MoneyBalance = moneyBalance;
             this.Name = name;
-            this.Cards = new Card[2];
+            this.Cards = new Dictionary<int, Card[]>();
+            this.IsPlayingCurrentGames = new Dictionary<int, bool>();
             this.AlreadyPayed = 0;
             Position = -1;
         }
@@ -34,6 +36,28 @@ namespace TexasHoldem
             Position = -1;
         }
 
+        public int getBestHand(Card[] tableCards, int GameId)
+        {
+            Card[] unionCards = new Card[7];
+            for (int i = 0; i < tableCards.Length; i++)
+            {
+                unionCards[i] = tableCards[i];
+            }
+            unionCards[5] = this.Cards[GameId][0];
+            unionCards[6] = this.Cards[GameId][1];
+            // need to evaluate Hand
+            HandEvaluator handEval = new HandEvaluator(unionCards);
+            return handEval.Evaluate();
+        }
+
+        public void AddHand(int GameId, Card c1, Card c2)
+        {
+            Cards.Add(GameId, new Card[] { c1, c2 });
+        }
+        public bool IsPlaying(int GameId)
+        {
+            return IsPlayingCurrentGames[GameId];
+        }
         public void PlayMove()
         {
             //either bet, check, call or fold
@@ -57,8 +81,8 @@ namespace TexasHoldem
 
         public int PlayerId { get; set; }
 
-        public Card[] Cards { get; set; }
-
+        public Dictionary <int, Card[]> Cards { get; set; }
+        public Dictionary<int, bool> IsPlayingCurrentGames { get; set; }
         public int AlreadyPayed { get; set; }
     }
 }
