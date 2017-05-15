@@ -55,6 +55,7 @@
     <Compile Include="GameCenter.cs" />
     <Compile Include="GameLog.cs" />
     <Compile Include="GamePreferences.cs" />
+    <Compile Include="HandEvaluator.cs" />
     <Compile Include="illegalbuyInException.cs" />
     <Compile Include="illegalChipPolicyException.cs" />
     <Compile Include="illegalGameType.cs" />
