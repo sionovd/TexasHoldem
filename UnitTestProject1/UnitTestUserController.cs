@@ -1,27 +1,23 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TexasHoldem;
+using TexasHoldem.UserModule;
 
 namespace UnitTestProject1
 {
     [TestClass]
-    class UnitTestUserController
+    public class UnitTestUserController
     {
-        UserController uc;
-         [TestInitialize]
-        public void init()
-        {
-            uc = new UserController();
-        }
-
-         [TestMethod]
-         public void RegisterTest1()
-         {
-             Assert.IsNotNull(uc.Register("David", "soda", "david4325@gmail.com"));
-         }
+        UserController uc = new UserController();
 
         [TestMethod]
-         [ExpectedException(typeof(AlreadyHasNameException))]
+        public void RegisterTest1()
+        {
+            Assert.IsNotNull(uc.Register("David", "soda", "david4325@gmail.com"));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(AlreadyHasNameException))]
         public void RegisterTest2()
         {
             uc.Register("Avi", "Iva", "ai847562@gmail.com");
@@ -32,7 +28,7 @@ namespace UnitTestProject1
         public void RegisterTest3()
         {
             uc.Register("Mair", "wow", "ska45@gmail.com");
-            Assert.IsTrue(uc.GetUserByName("Mair").getAdmin());
+            Assert.IsFalse(uc.GetUserByName("Mair").getAdmin());
         }
 
         [TestMethod]
@@ -60,7 +56,7 @@ namespace UnitTestProject1
         [ExpectedException(typeof(NoUserNameException))]
         public void LoginTest2()
         {
-            uc.Login("Bug","1234");
+            uc.Login("Bug", "1234");
         }
 
         [TestMethod]
@@ -68,7 +64,7 @@ namespace UnitTestProject1
         public void LoginTest3()
         {
             uc.Register("Forgetit", "4321", "for@gmail.com");
-            uc.Login("Forgtit", "1234");
+            uc.Login("Forgetit", "1234");
         }
 
         [TestMethod]

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-
-namespace TexasHoldem
+namespace TexasHoldem.GameModule
 {
     public class Player
     {
@@ -16,12 +11,12 @@ namespace TexasHoldem
 
         private static int counter = 0;
 
-        public Player(int moneyBalance, string name)
+        public Player(int moneyBalance, string username)
         {
             counter++;
             PlayerId = counter;
             this.MoneyBalance = moneyBalance;
-            this.Name = name;
+            this.Username = username;
             this.Cards = new Dictionary<int, Card[]>();
             this.IsPlayingCurrentGames = new Dictionary<int, bool>();
             this.AlreadyPayed = 0;
@@ -32,7 +27,7 @@ namespace TexasHoldem
         {
             counter++;
             PlayerId = counter;
-            this.Name = name;
+            this.Username = name;
             Position = -1;
         }
 
@@ -75,7 +70,7 @@ namespace TexasHoldem
 
         public int MoneyBalance { get; set; }
 
-        public string Name { get; set; }
+        public string Username { get; set; }
 
         public int Position { get; set; }
 

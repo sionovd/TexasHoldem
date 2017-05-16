@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TexasHoldem
+﻿namespace TexasHoldem.GameModule
 {
 
     public class GamePreferences
@@ -16,6 +10,17 @@ namespace TexasHoldem
         private int maxPlayers;
         private int minPlayers;
         private bool spectateGame;
+
+        public GamePreferences()
+        {
+            gameType = 1;
+            buyIn = 5;
+            chipPolicy = 100;
+            minBet = 5;
+            maxPlayers = 9;
+            minPlayers = 2;
+            spectateGame = true;
+        }
 
         public GamePreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, bool spectateGame)
         {

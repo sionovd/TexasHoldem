@@ -44,9 +44,14 @@ namespace AcceptanceTests
             return 1; //playerID
         }
 
+        public bool LeaveGame(string username, int gameID)
+        {
+            return true;
+        }
+
         public bool LeaveGame(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool Bet(int playerID, int gameID, int amount)
@@ -102,21 +107,6 @@ namespace AcceptanceTests
             List<int> list = new List<int>();
             list.Add(1);
             return list;
-        }
-
-        public bool SetDefaultLeague(int leagueID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool SetLeagueCriteria(int leagueID, int points)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool MoveUserToLeague(string username, int leagueID)
-        {
-            throw new NotImplementedException();
         }
 
         public bool ReplayGame(string username, int gameLogID)

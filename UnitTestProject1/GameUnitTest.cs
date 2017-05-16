@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TexasHoldem;
+using TexasHoldem.GameModule;
+using TexasHoldem.UserModule;
 
 namespace UnitTestProject1
 {
@@ -76,7 +78,7 @@ namespace UnitTestProject1
         public void IsPlayerExistWhenNotExistByName()
         {
             Player p = new Player(234, "guri");
-            Assert.IsFalse(game.IsPlayerExist(p.Name));
+            Assert.IsFalse(game.IsPlayerExist(p.Username));
         }
 
         [TestMethod]
@@ -84,7 +86,7 @@ namespace UnitTestProject1
         {
             User user = new User("roni", "4363", "roni55@gmail.com", false, 233);
             Player player = game.AddPlayer(user);
-            Assert.IsTrue(game.IsPlayerExist(player.Name));
+            Assert.IsTrue(game.IsPlayerExist(player.Username));
         }
 
 

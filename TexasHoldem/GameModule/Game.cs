@@ -1,20 +1,30 @@
 ﻿using System;
-
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TexasHoldem.UserModule;
 
-namespace TexasHoldem
+namespace TexasHoldem.GameModule
 {
-    public enum TypeOfGame { LimitHoldem, NoLimitHoldem, PotLimitHoldem };
-    public class Game
+    public interface IGame
     {
-        public Game(int gameID)
-        {
-            //this = gameCenter.getGame(gameID);
-        }
+        Player AddPlayer(User user);
+        bool RemovePlayer(Player player);
+        Spectator AddSpectatingPlayer(User user);
+        bool RemoveSpectatingPlayer(Spectator spectator);
+        bool Bet(Player player, int amount);
+        bool Check(Player player);
+        bool Fold(Player player);
+        bool Call(Player player);
+        bool IsPlayerExist(string name);
+        Player GetPlayerByUsername(string username);
+        Player GetPlayerById(int playerId);
 
+        GamePreferences Pref { get; set; }
+        int Id { get; set; }
+        int Pot { get; set; }
+    }
+
+    public class Game : IGame
+    {
         private static int counter = 0;
         private Player[] sits;
         private List<Spectator> spectators;
@@ -28,26 +38,30 @@ namespace TexasHoldem
             counter++;
             Id = counter;
             this.Pref = pref;
-            sits = new Player[pref.MaxPlayers];
+            sits = new Player[9];
             spectators = new List<Spectator>();
             tableCards = new Card[5];
             Cards = new Deck();
             Pot = 0;
             numOfPlayers = 0;
-            MinStake = 100; //this field needs to hold the minimal stake
             isActive = false;
             BettingPlayer = null;
         }
 
         public void Play()
         {
+            int type = Pref.GameType;
             Player winner = null;
-            switch (GameType)
+            switch (type)
             {
-                case (TypeOfGame.LimitHoldem):
-                case (TypeOfGame.PotLimitHoldem):
-                case (TypeOfGame.NoLimitHoldem):
+                case (0):
+                    winner = PlayLimitHoldem();
+                    break;
+                case (1):
                     winner = PlayNoLimitHoldem();
+                    break;
+                case (2):
+                    winner = PlayPotLimitHoldem();
                     break;
                 default:
                     Console.WriteLine("bugbugbgu");
@@ -206,6 +220,16 @@ namespace TexasHoldem
             return null;
         }
 
+        public Player GetPlayerByUsername(string username)
+        {
+            foreach (Player player in sits)
+            {
+                if (player != null && player.Username == username)
+                    return player;
+            }
+            return null;
+        }
+
         public bool RemovePlayer(Player player)
         {
             for (int i = 0; i < sits.Length; i++)
@@ -304,7 +328,7 @@ namespace TexasHoldem
         public bool IsPlayerExist(string name)
         {
             foreach (Player p in sits)
-                if (p != null && p.Name.Equals(name))
+                if (p != null && p.Username.Equals(name))
                     return true;
             return false;
         }
@@ -312,7 +336,7 @@ namespace TexasHoldem
         {
             Pot += TemporaryPot;
             TemporaryPot = 0;
-            CurrentStake = MinStake;
+            //CurrentStake = MinStake;
         }
         public bool Bet(Player player, int amount)
         {
@@ -369,13 +393,10 @@ namespace TexasHoldem
 
         public int FinishedRound { get; set; }
 
-        public int MinStake { get; set; }
      
         public int SmallBlind { get; set; }
         
         public int BigBlind { get; set; }
-     
-        public TypeOfGame GameType { get; set; }
-      
+           
     }
 }

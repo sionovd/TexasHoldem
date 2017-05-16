@@ -18,6 +18,7 @@ namespace TexasHoldem.ServiceLayer
 
         // Game
         int JoinGame(string username, int gameID);
+        bool LeaveGame(string username, int gameID);
         bool LeaveGame(int playerID, int gameID);
         bool Bet(int playerID, int gameID, int amount);
         bool Check(int playerID, int gameID);
@@ -32,9 +33,7 @@ namespace TexasHoldem.ServiceLayer
         List<int> SearchActiveGamesByPot(int pot);
         List<int> SearchActiveGamesByPlayerName(string name);
         List<int> ViewSpectatableGames();
-        bool SetDefaultLeague(int leagueID);
-        bool SetLeagueCriteria(int leagueID, int points);
-        bool MoveUserToLeague(string username, int leagueID);
+        
 
         // GameLog
         bool ReplayGame(string username, int gameLogID);
