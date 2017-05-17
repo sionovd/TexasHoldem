@@ -1,0 +1,13 @@
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\bin\Debug\Presentation.exe.config
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\bin\Debug\Presentation.exe
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\bin\Debug\Presentation.pdb
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\MainWindow.g.cs
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\App.g.cs
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation_MarkupCompile.cache
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation_MarkupCompile.lref
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\MainWindow.baml
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.g.resources
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.Properties.Resources.resources
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.csproj.GenerateResource.Cache
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.exe
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.pdb
