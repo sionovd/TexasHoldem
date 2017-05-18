@@ -18,9 +18,8 @@ namespace TexasHoldem.GameModule
             this.MoneyBalance = moneyBalance;
             this.Username = username;
             this.Cards = new Dictionary<int, Card[]>();
-            this.IsPlayingCurrentGames = new Dictionary<int, bool>();
-            this.AlreadyPayed = 0;
             Position = -1;
+            AmountBetOnCurrentRound = 0;
         }
 
         public Player(string name)//???
@@ -49,10 +48,7 @@ namespace TexasHoldem.GameModule
         {
             Cards.Add(GameId, new Card[] { c1, c2 });
         }
-        public bool IsPlaying(int GameId)
-        {
-            return IsPlayingCurrentGames[GameId];
-        }
+        
         public void PlayMove()
         {
             //either bet, check, call or fold
@@ -63,12 +59,16 @@ namespace TexasHoldem.GameModule
             this.Position = -1;
         }
 
-        public void TakeSit(int pos)
+        public void TakeSeat(int pos)
         {
             this.Position = pos;
         }
 
         public int MoneyBalance { get; set; }
+
+        public int AmountBetOnCurrentRound { get; set; }
+
+        public bool Folded { get; set; }
 
         public string Username { get; set; }
 
@@ -77,7 +77,5 @@ namespace TexasHoldem.GameModule
         public int PlayerId { get; set; }
 
         public Dictionary <int, Card[]> Cards { get; set; }
-        public Dictionary<int, bool> IsPlayingCurrentGames { get; set; }
-        public int AlreadyPayed { get; set; }
     }
 }

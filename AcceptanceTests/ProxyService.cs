@@ -44,6 +44,11 @@ namespace AcceptanceTests
             return 1; //playerID
         }
 
+        public bool StartGame(string username, int gameID)
+        {
+            return true;
+        }
+
         public bool LeaveGame(string username, int gameID)
         {
             return true;

@@ -15,7 +15,7 @@ namespace TexasHoldem.ServiceLayer
 
         public Service()
         {
-            gameCenter = new GameCenter();
+            gameCenter = GameCenter.GetInstance;
         }
 
         public bool Register(string username, string password, string email)
@@ -52,6 +52,11 @@ namespace TexasHoldem.ServiceLayer
         public int JoinGame(string username, int gameID)
         {
             return gameCenter.JoinGame(username, gameID);
+        }
+
+        public bool StartGame(string username, int gameID)
+        {
+            return gameCenter.StartGame(username, gameID);
         }
 
         public bool LeaveGame(string username, int gameID)

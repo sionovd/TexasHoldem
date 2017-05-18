@@ -18,6 +18,7 @@ namespace TexasHoldem.ServiceLayer
 
         // Game
         int JoinGame(string username, int gameID);
+        bool StartGame(string username, int gameID);
         bool LeaveGame(string username, int gameID);
         bool LeaveGame(int playerID, int gameID);
         bool Bet(int playerID, int gameID, int amount);

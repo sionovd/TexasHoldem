@@ -8,12 +8,12 @@ namespace TexasHoldem.GameCenterModule
 {
     public class GameCenter
     {
+        private static GameCenter gameCenter;
         private Dictionary<int, IGame> games;   // int-Game id
         private IDataBase db = new DataBase();
         private UserController userController;
-        private System.Object lockThis = new System.Object();
-
-        public GameCenter()
+        
+        private GameCenter()
         {
             userController = new UserController();
             List<IGame> tmp = db.getAllGames();
@@ -21,6 +21,16 @@ namespace TexasHoldem.GameCenterModule
                 games = tmp.ToDictionary(g => g.Id);
             else
                 games = new Dictionary<int, IGame>();
+        }
+
+        public static GameCenter GetInstance
+        {
+            get
+            {
+                if(gameCenter == null)
+                    gameCenter = new GameCenter();
+                return gameCenter;
+            }
         }
 
         public IGame GetGameById(int id)
@@ -169,6 +179,17 @@ namespace TexasHoldem.GameCenterModule
             User user = userController.GetUserByName(username);
             Player player = game.AddPlayer(user);
             return player.PlayerId;
+        }
+
+        public bool StartGame(string username, int gameID)
+        {
+            IGame game = GetGameById(gameID);
+            if (game.NumOfPlayers >= game.Pref.MinPlayers)
+            {
+                game.Play();
+                return true;
+            }
+            throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.NumOfPlayers + " have joined.");
         }
 
         public bool LeaveGame(string username, int gameID)

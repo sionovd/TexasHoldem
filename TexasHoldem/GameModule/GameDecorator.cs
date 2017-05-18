@@ -22,6 +22,11 @@ namespace TexasHoldem.GameModule
             return gameToBeDecorated.AddPlayer(user);
         }
 
+        public void Play()
+        {
+            gameToBeDecorated.Play();
+        }
+
         public bool RemovePlayer(Player player)
         {
             return gameToBeDecorated.RemovePlayer(player);
@@ -75,6 +80,7 @@ namespace TexasHoldem.GameModule
         public GamePreferences Pref { get; set; }
         public int Id { get; set; }
         public int Pot { get; set; }
+        public int NumOfPlayers { get; }
     }
 
     class BuyInDecorator : GameDecorator
