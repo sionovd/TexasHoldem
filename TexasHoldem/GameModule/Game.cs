@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TexasHoldem.GameCenterModule;
 using TexasHoldem.UserModule;
 
 namespace TexasHoldem.GameModule
@@ -8,7 +7,7 @@ namespace TexasHoldem.GameModule
     public interface IGame
     {
         Player AddPlayer(User user);
-        void Play();
+        Player Play();
         bool RemovePlayer(Player player);
         Spectator AddSpectatingPlayer(User user);
         bool RemoveSpectatingPlayer(Spectator spectator);
@@ -21,10 +20,13 @@ namespace TexasHoldem.GameModule
         Player GetPlayerById(int playerId);
 
         GamePreferences Pref { get; set; }
-        int Id { get; set; }
-        int Pot { get; set; }
+        Player[] Seats { get; }
+        int Id { get; }
+        int Pot { get; }
         int NumOfPlayers { get; }
-
+        int RoundNumber { get; }
+        int BigBlind { get; }
+        int CurrentStake { get; }
     }
 
     public class Game : IGame
@@ -33,17 +35,16 @@ namespace TexasHoldem.GameModule
         private List<Spectator> spectators;
         private Card[] tableCards;
         public int NumOfPlayers { get; private set; }
-        public int Id { get; set; }
+        public int Id { get; }
         public GamePreferences Pref { get; set; }
         public Player[] Seats { get; }
         public Deck Cards { get; set; }
-        public int Pot { get; set; }
-        public int TemporaryPot { get; set; }
-        public int CurrentStake { get; set; }
-        public Player FirstInRoundPlayer { get; set; }
-        public int SmallBlind { get; set; }
-        public int BigBlind { get; set; }
-        public bool IsActive { get; set; }
+        public int RoundNumber { get; private set; }
+        public int Pot { get; private set; }
+        public int CurrentStake { get; private set; }
+        public int SmallBlind { get; }
+        public int BigBlind { get; }
+        public bool IsActive { get; private set; }
 
         public Game(GamePreferences pref)
         {
@@ -59,29 +60,8 @@ namespace TexasHoldem.GameModule
             BigBlind = Pref.MinBet;
             SmallBlind = BigBlind / 2;
             CurrentStake = 0;
+            RoundNumber = 0;
             IsActive = false;
-        }
-
-        public void Play()
-        {
-            IsActive = true;
-            int type = Pref.GameType;
-            switch (type)
-            {
-                case (0):
-                    PlayLimitHoldem();
-                    break;
-                case (1):
-                    PlayNoLimitHoldem();
-                    break;
-                case (2):
-                    PlayPotLimitHoldem();
-                    break;
-                default:
-                    Console.WriteLine("bugbugbgu");
-                    break;
-
-            }
         }
 
         private void DealCards()
@@ -105,7 +85,7 @@ namespace TexasHoldem.GameModule
                 tableCards[cardNum] = Cards.GetCard();
             }
         }
-        private void PlayNoLimitHoldem()
+        public Player Play()
         {
             bool finishedRound = false;
             int numOfCardsToShow = 3;
@@ -113,9 +93,9 @@ namespace TexasHoldem.GameModule
             int finishCounter = 0;
             
             DealCards(); // deal 2 cards for each player, take money from each
-            Bet(Seats[0], SmallBlind);
-            Bet(Seats[1], BigBlind);
-            for (int roundNumber = 1; roundNumber <= 4; roundNumber++)
+            PlaceSmallBlind(Seats[0]);
+            PlaceBigBlind(Seats[1]);
+            for (RoundNumber = 1; RoundNumber <= 4; RoundNumber++)
             {
                 while (!finishedRound)
                 {
@@ -129,7 +109,7 @@ namespace TexasHoldem.GameModule
                     {
                         for (int i = 0; i < Seats.Length; i++)
                         {
-                            if (Seats[i] != null && (Seats[i].MoneyBalance == 0 ||
+                            if (Seats[i] != null && (Seats[i].ChipBalance == 0 ||
                                                      Seats[i].Folded))
                             {
                                 finishCounter++;
@@ -155,24 +135,25 @@ namespace TexasHoldem.GameModule
                         if (finishCounter == Seats.Length)
                         {
                             finishedRound = true;
-                            foreach (Player p in Seats)
-                                if (p != null)
-                                    p.AmountBetOnCurrentRound = 0;
                         }
                     }
 
                 }
                 seatIndex = 0;
+                CurrentStake = 0;
                 AddCardToTable(numOfCardsToShow);
                 numOfCardsToShow++;
+                foreach (Player p in Seats)
+                    if (p != null)
+                        p.AmountBetOnCurrentRound = 0;
             }
 
-            EvaluateWinner();
+            Player winner = EvaluateWinner();
+            return winner;
         }
 
-        private void EvaluateWinner()
+        private Player EvaluateWinner()
         {
-            GameCenter gameCenter = GameCenter.GetInstance;
             Player bestHand = null;
             int bestHandScore = 0;
             int currHandScore = 0;
@@ -180,7 +161,7 @@ namespace TexasHoldem.GameModule
             {
                 if (Seats[i] != null)
                 {
-                    currHandScore = Seats[i].getBestHand(tableCards, Id);
+                    currHandScore = Seats[i].GetBestHand(tableCards);
                     if (currHandScore > bestHandScore)
                     {
                         bestHandScore = currHandScore;
@@ -188,16 +169,8 @@ namespace TexasHoldem.GameModule
                     }
                 }
             }
-            
-        }
-
-        private void PlayLimitHoldem()
-        {
-            
-        }
-        private void PlayPotLimitHoldem()
-        {
-            
+            bestHand.ChipBalance = Pot;
+            return bestHand;
         }
 
         public Player GetPlayerById(int playerID)
@@ -326,20 +299,39 @@ namespace TexasHoldem.GameModule
                     return true;
             return false;
         }
-        public void FinishStaking()
+
+        public void PlaceSmallBlind(Player player)
         {
-            Pot += TemporaryPot;
-            TemporaryPot = 0;
-            //CurrentStake = MinStake;
+            int balance = player.ChipBalance;
+            if (balance >= SmallBlind && SmallBlind >= CurrentStake || SmallBlind == balance)
+            {
+                CurrentStake = SmallBlind;
+                Pot += SmallBlind;
+                player.ChipBalance -= SmallBlind;
+                player.AmountBetOnCurrentRound += SmallBlind;
+            }
         }
+
+        public void PlaceBigBlind(Player player)
+        {
+            int balance = player.ChipBalance;
+            if (balance >= BigBlind && BigBlind >= CurrentStake || BigBlind == balance)
+            {
+                CurrentStake = BigBlind;
+                Pot += BigBlind;
+                player.ChipBalance -= BigBlind;
+                player.AmountBetOnCurrentRound += BigBlind;
+            }
+        }
+
         public bool Bet(Player player, int amount)
         {
-            int balance = player.MoneyBalance;
-            if (balance >= amount && amount > CurrentStake || amount == balance)
+            int balance = player.ChipBalance;
+            if (balance >= amount && amount >= CurrentStake || amount == balance)
             {
                 CurrentStake = amount;
-                TemporaryPot += amount;
-                player.MoneyBalance -= amount;
+                Pot += amount;
+                player.ChipBalance -= amount;
                 player.AmountBetOnCurrentRound += amount;
                 return true;
             }
@@ -348,16 +340,21 @@ namespace TexasHoldem.GameModule
 
         public bool Call(Player player)
         {
-            if (player.MoneyBalance < CurrentStake)
-                return false; //not enough money
-            TemporaryPot += CurrentStake;
-            player.MoneyBalance -= CurrentStake;
+            if (CurrentStake == 0) // no bet was made yet
+                return false;
+            if (player.ChipBalance < CurrentStake) // not enough money
+                return false;
+            Pot += CurrentStake;
+            player.ChipBalance -= CurrentStake;
             player.AmountBetOnCurrentRound += CurrentStake;
             return true;
         }
         public bool Check(Player player)
         {
-            //player checked
+            if (RoundNumber == 1)
+            {
+                return Call(player);
+            }
             return true;
         }
 

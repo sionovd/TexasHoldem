@@ -3,126 +3,41 @@
 
     public class GamePreferences
     {
-        private int gameType;
-        private int buyIn;
-        private int chipPolicy;
-        private int minBet;
-        private int maxPlayers;
-        private int minPlayers;
-        private bool spectateGame;
-
         public GamePreferences()
         {
-            gameType = 1;
-            buyIn = 5;
-            chipPolicy = 100;
-            minBet = 5;
-            maxPlayers = 9;
-            minPlayers = 2;
-            spectateGame = true;
+            GameType = 1;
+            BuyIn = 5;
+            ChipPolicy = 100;
+            MinBet = 5;
+            MaxPlayers = 9;
+            MinPlayers = 2;
+            SpectateGame = true;
         }
 
         public GamePreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, bool spectateGame)
         {
-            this.gameType = gameType;
-            this.buyIn = buyIn;
-            this.chipPolicy = chipPolicy;
-            this.minBet = minBet;
-            this.maxPlayers = maxPlayers;
-            this.MinPlayers = minPlayers;
-            this.spectateGame = spectateGame;
+            GameType = gameType;
+            BuyIn = buyIn;
+            ChipPolicy = chipPolicy;
+            MinBet = minBet;
+            MaxPlayers = maxPlayers;
+            MinPlayers = minPlayers;
+            SpectateGame = spectateGame;
         }
 
-        public int GameType
-        {
-            get
-            {
-                return gameType;
-            }
+        public int GameType { get; set; }
 
-            set
-            {
-                gameType = value;
-            }
-        }
+        public int BuyIn { get; set; }
 
-        public int BuyIn
-        {
-            get
-            {
-                return buyIn;
-            }
+        public int ChipPolicy { get; set; }
 
-            set
-            {
-                buyIn = value;
-            }
-        }
+        public int MinBet { get; set; }
 
-        public int ChipPolicy
-        {
-            get
-            {
-                return chipPolicy;
-            }
+        public int MaxPlayers { get; set; }
 
-            set
-            {
-                chipPolicy = value;
-            }
-        }
+        public int MinPlayers { get; set; }
 
-        public int MinBet
-        {
-            get
-            {
-                return minBet;
-            }
-
-            set
-            {
-                minBet = value;
-            }
-        }
-
-        public int MaxPlayers
-        {
-            get
-            {
-                return maxPlayers;
-            }
-
-            set
-            {
-                maxPlayers = value;
-            }
-        }
-
-        public int MinPlayers
-        {
-            get
-            {
-                return minPlayers;
-            }
-
-            set
-            {
-                minPlayers = value;
-            }
-        }
-
-        public bool SpectateGame
-        {
-            get
-            {
-                return spectateGame;
-            }
-
-            set
-            {
-                spectateGame = value;
-            }
-        }
+        public bool SpectateGame { get; set; }
     }
 
 }

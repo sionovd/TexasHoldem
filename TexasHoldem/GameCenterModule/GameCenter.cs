@@ -117,7 +117,6 @@ namespace TexasHoldem.GameCenterModule
             games.Add(game.Id, game);
             db.AddGame(game);
             return game;
-
         }
 
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
@@ -129,7 +128,7 @@ namespace TexasHoldem.GameCenterModule
             IGame game = new Game(pref);
             foreach (var pair in preferenceList)
             {
-                if (pair.Key == "buyin")
+                if (pair.Key == "buyIn")
                 {
                     game = new BuyInDecorator(game, pair.Value);
                 }
@@ -137,6 +136,15 @@ namespace TexasHoldem.GameCenterModule
                 {
                     game = new MaxPlayersDecorator(game, pair.Value);
                 }
+                if (pair.Key == "gameType" && pair.Value == 0)
+                {
+                    game = new LimitHoldemDecorator(game);
+                }
+                if (pair.Key == "gameType" && pair.Value == 2)
+                {
+                    game = new PotLimitHoldemDecorator(game);
+                }
+
                 // to be finished later....
             }
             game.AddPlayer(user);
@@ -186,7 +194,11 @@ namespace TexasHoldem.GameCenterModule
             IGame game = GetGameById(gameID);
             if (game.NumOfPlayers >= game.Pref.MinPlayers)
             {
-                game.Play();
+                Player winner = game.Play();
+                if (game.Pref.ChipPolicy > 0)
+                    return true;
+                User user = userController.GetUserByName(winner.Username);
+                user.setmoneyBalance(winner.ChipBalance);
                 return true;
             }
             throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.NumOfPlayers + " have joined.");

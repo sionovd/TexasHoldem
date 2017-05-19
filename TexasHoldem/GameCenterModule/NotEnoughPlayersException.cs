@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
-using TexasHoldem.GameModule;
 
 namespace TexasHoldem.GameCenterModule
 {

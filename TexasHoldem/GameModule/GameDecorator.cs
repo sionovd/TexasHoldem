@@ -78,16 +78,20 @@ namespace TexasHoldem.GameModule
         }
 
         public GamePreferences Pref { get; set; }
+        public Player[] Seats { get; }
         public int Id { get; set; }
         public int Pot { get; set; }
         public int NumOfPlayers { get; }
+        public int RoundNumber { get; }
+        public int BigBlind { get; }
+        public int CurrentStake { get; }
     }
 
     class BuyInDecorator : GameDecorator
     {
         public BuyInDecorator(IGame gameToBeDecorated, int buyIn) : base(gameToBeDecorated)
         {
-            gameToBeDecorated.Pref.BuyIn = buyIn;
+            Pref.BuyIn = buyIn;
         }
     }
 
@@ -95,7 +99,43 @@ namespace TexasHoldem.GameModule
     {
         public MaxPlayersDecorator(IGame gameToBeDecorated, int maxPlayers) : base(gameToBeDecorated)
         {
-            gameToBeDecorated.Pref.MaxPlayers = maxPlayers;
+            Pref.MaxPlayers = maxPlayers;
+        }
+    }
+
+    class LimitHoldemDecorator : GameDecorator
+    {
+        public LimitHoldemDecorator(IGame gameToBeDecorated) : base(gameToBeDecorated)
+        {
+            Pref.GameType = 0;
+        }
+
+        public new bool Bet(Player player, int amount)
+        {
+            if (RoundNumber <= 2 && amount == BigBlind)
+            {
+                return base.Bet(player, amount);
+            }
+            if (RoundNumber > 2 && amount == 2 * BigBlind)
+            {
+                return base.Bet(player, amount);
+            }
+            return false;
+        }
+    }
+
+    class PotLimitHoldemDecorator : GameDecorator
+    {
+        public PotLimitHoldemDecorator(IGame gameToBeDecorated) : base(gameToBeDecorated)
+        {
+            Pref.GameType = 2;
+        }
+
+        public new bool Bet(Player player, int amount)
+        {
+            if (amount >= CurrentStake && amount <= Pot + 2 * CurrentStake)
+                return base.Bet(player, amount);
+            return false;
         }
     }
 }
