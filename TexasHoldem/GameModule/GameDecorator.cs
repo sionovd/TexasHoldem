@@ -22,9 +22,9 @@ namespace TexasHoldem.GameModule
             return gameToBeDecorated.AddPlayer(user);
         }
 
-        public void Play()
+        public Player Play()
         {
-            gameToBeDecorated.Play();
+            return gameToBeDecorated.Play();
         }
 
         public bool RemovePlayer(Player player)
