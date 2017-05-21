@@ -28,11 +28,18 @@ namespace Presentation
 
         private void Button_Click_Login(object sender, RoutedEventArgs e)
         {
-
+          MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            this.Close();
+            
+            
         }
 
         private void Button_Click_Register(object sender, RoutedEventArgs e)
         {
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Show();
+            this.Close();
 
         }
 

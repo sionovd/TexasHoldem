@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Texas Hold'em" Height="350" Width="525"
+        Title="Texas Hold'em" Height="560.959" Width="759.932"
+        WindowStartupLocation="CenterScreen"
         Icon="images/gray_chip.png">
     <Grid>
         <Grid.Background>
@@ -39,18 +40,18 @@
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
-        <Button Content="Login" Grid.Column="7" Grid.Row="5" 
+        <Button x:Name="btnLogin" Content="Login" Grid.Column="7" Grid.Row="5" 
      HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.ColumnSpan="2" Click="Button_Click_Login" Background="#FFC3D4C2" />
-        <Button Content="Create Account" Grid.Column="7" Grid.Row="7" 
+        <Button x:Name="btnCreateAccount" Content="Create Account" Grid.Column="7" Grid.Row="7" 
      HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.ColumnSpan="2" Click="Button_Click_Register" Background="#FFC3D4C2" />
-        <TextBox Grid.ColumnSpan="3" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  Grid.Column="3" Grid.Row="5" TextChanged="TextBox_TextChanged" Background="#FFC3D4C2"/>
+        <TextBox x:Name="txbxUsername" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  Grid.Column="3" Grid.Row="5" TextChanged="TextBox_TextChanged" Background="#FFC3D4C2"/>
         <Image Source="images/logo.png" Grid.ColumnSpan="6" Grid.Column="3" HorizontalAlignment="Stretch"  Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Stretch" >
 
         </Image>
         <Image  Source="images/gray_chip.png"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Stretch" Grid.Column="9" />
         <Image  Source="images/gray_chip.png"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="1" Grid.RowSpan="3" VerticalAlignment="Stretch" Grid.Column="1" />
-        <PasswordBox Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" Background="#FFC3D4C2"/>
-        <Label Content="Username"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
-        <Label Content="Password"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Width="86" />
+        <PasswordBox x:Name="txbxPassword" Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" Background="#FFC3D4C2"/>
+        <Label x:Name="labelUsername" Content="Username"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Bottom" Grid.ColumnSpan="2" />
+        <Label x:Name="labelPassword" Content="Password"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Width="86" />
     </Grid>
 </Window>

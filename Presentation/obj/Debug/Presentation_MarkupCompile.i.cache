@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\App.xaml
-11151548125
+211213618687
 
-9944287927
-13738642453
-MainWindow.xaml;
+29787268168
+141164396027
+CreateGame.xaml;GameWindow.xaml;JoinGameWindow.xaml;MainMenu.xaml;MainWindow.xaml;SearchToJoinWindow.xaml;SearchToSpectateWindow.xaml;SpectateGameWindow.xaml;UserControlJoinGame.xaml;UserControlMenu.xaml;ProfileWindow.xaml;UserControlCreateGame.xaml;UserControlGame.xaml;UserControlProfile.xaml;UserControlReplay.xaml;UserControlSearchToJoin.xaml;UserControlSearchToSpectate.xaml;UserControlSpectate.xaml;UserControlSpectateGame.xaml;UserControlWatchReplayes.xaml;WatchReplayesWindow.xaml;
 
 True
 

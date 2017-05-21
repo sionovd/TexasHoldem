@@ -48,12 +48,76 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\..\..\Desktop\Extended WPF Toolkit Binaries\Extended WPF Toolkit Binaries\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="JoinGameWindow.xaml.cs">
+      <DependentUpon>JoinGameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchToJoinWindow.xaml.cs">
+      <DependentUpon>SearchToJoinWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchToSpectateWindow.xaml.cs">
+      <DependentUpon>SearchToSpectateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpectateGameWindow.xaml.cs">
+      <DependentUpon>SpectateGameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlCreateGame.xaml.cs">
+      <DependentUpon>UserControlCreateGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlGame.xaml.cs">
+      <DependentUpon>UserControlGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlJoinGame.xaml.cs">
+      <DependentUpon>UserControlJoinGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlProfile.xaml.cs">
+      <DependentUpon>UserControlProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlReplay.xaml.cs">
+      <DependentUpon>UserControlReplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlSearchToJoin.xaml.cs">
+      <DependentUpon>UserControlSearchToJoin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlSearchToSpectate.xaml.cs">
+      <DependentUpon>UserControlSearchToSpectate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlSpectate.xaml.cs">
+      <DependentUpon>UserControlSpectate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlSpectateGame.xaml.cs">
+      <DependentUpon>UserControlSpectateGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlWatchReplayes.xaml.cs">
+      <DependentUpon>UserControlWatchReplayes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WatchReplayesWindow.xaml.cs">
+      <DependentUpon>WatchReplayesWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CreateGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JoinGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,12 +126,91 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CreateGame.xaml.cs">
+      <DependentUpon>CreateGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GameWindow.xaml.cs">
+      <DependentUpon>GameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SearchToJoinWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchToSpectateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpectateGameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlJoinGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlCreateGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlReplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlSearchToJoin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlSearchToSpectate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlSpectate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlSpectateGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlWatchReplayes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WatchReplayesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserControlMenu.xaml.cs">
+      <DependentUpon>UserControlMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileWindow.xaml.cs">
+      <DependentUpon>ProfileWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,7 +236,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\mainBackground.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="images\gray_chip.png" />
   </ItemGroup>
@@ -102,6 +247,76 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\loginBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\avatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\profile-cards.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cards\10_of_clubs.png" />
+    <Resource Include="images\cards\10_of_diamonds.png" />
+    <Resource Include="images\cards\10_of_hearts.png" />
+    <Resource Include="images\cards\10_of_spades.png" />
+    <Resource Include="images\cards\2_of_clubs.png" />
+    <Resource Include="images\cards\2_of_diamonds.png" />
+    <Resource Include="images\cards\2_of_hearts.png" />
+    <Resource Include="images\cards\2_of_spades.png" />
+    <Resource Include="images\cards\3_of_clubs.png" />
+    <Resource Include="images\cards\3_of_diamonds.png" />
+    <Resource Include="images\cards\3_of_hearts.png" />
+    <Resource Include="images\cards\3_of_spades.png" />
+    <Resource Include="images\cards\4_of_clubs.png" />
+    <Resource Include="images\cards\4_of_diamonds.png" />
+    <Resource Include="images\cards\4_of_hearts.png" />
+    <Resource Include="images\cards\4_of_spades.png" />
+    <Resource Include="images\cards\5_of_clubs.png" />
+    <Resource Include="images\cards\5_of_diamonds.png" />
+    <Resource Include="images\cards\5_of_hearts.png" />
+    <Resource Include="images\cards\5_of_spades.png" />
+    <Resource Include="images\cards\6_of_clubs.png" />
+    <Resource Include="images\cards\6_of_diamonds.png" />
+    <Resource Include="images\cards\6_of_hearts.png" />
+    <Resource Include="images\cards\6_of_spades.png" />
+    <Resource Include="images\cards\7_of_clubs.png" />
+    <Resource Include="images\cards\7_of_diamonds.png" />
+    <Resource Include="images\cards\7_of_hearts.png" />
+    <Resource Include="images\cards\7_of_spades.png" />
+    <Resource Include="images\cards\8_of_clubs.png" />
+    <Resource Include="images\cards\8_of_diamonds.png" />
+    <Resource Include="images\cards\8_of_hearts.png" />
+    <Resource Include="images\cards\8_of_spades.png" />
+    <Resource Include="images\cards\9_of_clubs.png" />
+    <Resource Include="images\cards\9_of_diamonds.png" />
+    <Resource Include="images\cards\9_of_hearts.png" />
+    <Resource Include="images\cards\9_of_spades.png" />
+    <Resource Include="images\cards\ace_of_clubs.png" />
+    <Resource Include="images\cards\ace_of_diamonds.png" />
+    <Resource Include="images\cards\ace_of_hearts.png" />
+    <Resource Include="images\cards\ace_of_spades.png" />
+    <Resource Include="images\cards\back%402x.png" />
+    <Resource Include="images\cards\back.png" />
+    <Resource Include="images\cards\black_joker.png" />
+    <Resource Include="images\cards\jack_of_clubs.png" />
+    <Resource Include="images\cards\jack_of_diamonds.png" />
+    <Resource Include="images\cards\jack_of_hearts.png" />
+    <Resource Include="images\cards\jack_of_spades.png" />
+    <Resource Include="images\cards\king_of_clubs.png" />
+    <Resource Include="images\cards\king_of_diamonds.png" />
+    <Resource Include="images\cards\king_of_hearts.png" />
+    <Resource Include="images\cards\king_of_spades.png" />
+    <Resource Include="images\cards\queen_of_clubs.png" />
+    <Resource Include="images\cards\queen_of_diamonds.png" />
+    <Resource Include="images\cards\queen_of_hearts.png" />
+    <Resource Include="images\cards\queen_of_spades.png" />
+    <Resource Include="images\cards\red_joker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\table.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\table1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
