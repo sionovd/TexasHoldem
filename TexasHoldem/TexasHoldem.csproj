@@ -51,6 +51,7 @@
     <Compile Include="DataBase.cs" />
     <Compile Include="GameModule\GameAlreadyStartedException.cs" />
     <Compile Include="GameModule\GameDecorator.cs" />
+    <Compile Include="GameModule\LeagueMismatchException.cs" />
     <Compile Include="IDataBase.cs" />
     <Compile Include="GameModule\Deck.cs" />
     <Compile Include="FullTableException.cs" />

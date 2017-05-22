@@ -27,6 +27,7 @@ namespace TexasHoldem.GameModule
         int RoundNumber { get; }
         int BigBlind { get; }
         int CurrentStake { get; }
+        League League { get; set; }
     }
 
     public class Game : IGame
@@ -45,7 +46,7 @@ namespace TexasHoldem.GameModule
         public int SmallBlind { get; }
         public int BigBlind { get; }
         public bool IsActive { get; private set; }
-
+        public League League { get; set; }
         public Game(GamePreferences pref)
         {
             counter++;
@@ -91,7 +92,7 @@ namespace TexasHoldem.GameModule
             int numOfCardsToShow = 3;
             int seatIndex = 2;
             int finishCounter = 0;
-            
+
             DealCards(); // deal 2 cards for each player, take money from each
             PlaceSmallBlind(Seats[0]);
             PlaceBigBlind(Seats[1]);
@@ -211,22 +212,24 @@ namespace TexasHoldem.GameModule
 
         public Player AddPlayer(User user)
         {
+            if (user.Rank.NumOfCalibrationsLeft == 0 && user.League.Id != this.League.Id)
+                throw new LeagueMismatchException("The user " + user.Username + " is in league \"" + user.League.Name + "\" but the game is in league \"" + this.League.Name + "\".");
             if (IsActive)
-                throw new GameAlreadyStartedException("The user " + user.getUsername() + " tried to join game #" + Id + " but the game has already started.");
+                throw new GameAlreadyStartedException("The user " + user.Username + " tried to join game #" + Id + " but the game has already started.");
             if (NumOfPlayers == Pref.MaxPlayers)
                 throw new FullTableException();
             Player p;
             if (Pref.ChipPolicy == 0)
             {
-                if (user.getmoneyBalance() < Pref.BuyIn + Pref.MinBet)
-                    throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), Pref.BuyIn.ToString());
-                int m = user.decreaseMoney(Pref.BuyIn);
-                p = new Player(m, user.getUsername());
+                if (user.MoneyBalance < Pref.BuyIn + Pref.MinBet)
+                    throw new notEnoughMoneyException(user.MoneyBalance.ToString(), Pref.BuyIn.ToString());
+                int m = user.DecreaseMoney(Pref.BuyIn);
+                p = new Player(m, user.Username);
                 p.TakeSeat(AddPlayerToSeat(p));
                 NumOfPlayers++;
                 return p;
             }
-            p = new Player(Pref.ChipPolicy, user.getUsername());
+            p = new Player(Pref.ChipPolicy, user.Username);
             p.TakeSeat(AddPlayerToSeat(p));
             NumOfPlayers++;
             return p;
@@ -247,9 +250,9 @@ namespace TexasHoldem.GameModule
         {
             if (!Pref.SpectateGame)
                 throw new DomainException("game not spectatable");
-            if (IsSpectatorExist(user.getUsername()))
+            if (IsSpectatorExist(user.Username))
                 throw new DomainException("the user " + user + " is already watching this game");
-            Spectator spec = new Spectator(user.getUsername());
+            Spectator spec = new Spectator(user.Username);
             spectators.Add(spec);
             return spec;
         }

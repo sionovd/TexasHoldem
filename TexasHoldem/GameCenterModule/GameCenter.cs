@@ -108,8 +108,8 @@ namespace TexasHoldem.GameCenterModule
                 throw new illegalGapPlayersException(minPlayers.ToString(), maxPlayers.ToString());
             if (maxPlayers > 9)
                 throw new illegalMaxPlayersException(maxPlayers.ToString());
-            if (user.getmoneyBalance() < buyIn)
-                throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), buyIn.ToString());
+            if (user.MoneyBalance < buyIn)
+                throw new notEnoughMoneyException(user.MoneyBalance.ToString(), buyIn.ToString());
             //GamePreferences pref = new GamePreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame);
             GamePreferences pref = new GamePreferences();
             Game game = new Game(pref);
@@ -126,6 +126,7 @@ namespace TexasHoldem.GameCenterModule
             User user = userController.GetUserByName(username);
             GamePreferences pref = new GamePreferences();
             IGame game = new Game(pref);
+            
             foreach (var pair in preferenceList)
             {
                 if (pair.Key == "buyIn")
@@ -148,6 +149,7 @@ namespace TexasHoldem.GameCenterModule
                 // to be finished later....
             }
             game.AddPlayer(user);
+            game.League = user.League;
             games.Add(game.Id, game);
             db.AddGame(game);
             return game.Id;
@@ -198,7 +200,8 @@ namespace TexasHoldem.GameCenterModule
                 if (game.Pref.ChipPolicy > 0)
                     return true;
                 User user = userController.GetUserByName(winner.Username);
-                user.setmoneyBalance(winner.ChipBalance);
+                user.MoneyBalance += winner.ChipBalance;
+                //if(user.Rank.NumOfCalibrationsLeft)
                 return true;
             }
             throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.NumOfPlayers + " have joined.");
