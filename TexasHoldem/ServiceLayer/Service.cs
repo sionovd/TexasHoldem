@@ -3,46 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TexasHoldem.GameCenterModule;
+using TexasHoldem.GameModule;
+using TexasHoldem.UserModule;
 
 namespace TexasHoldem.ServiceLayer
 {
     public class Service : IService
     {
-        private UserController userController;
         private GameCenter gameCenter;
 
         public Service()
         {
-            userController = new UserController();
-            gameCenter = new GameCenter();
+            gameCenter = GameCenter.GetInstance;
         }
 
         public bool Register(string username, string password, string email)
         {
-            
-            User user = userController.Register(username, password, email);
-            return user != null;
+
+            return gameCenter.Register(username, password, email);
         }
 
         public bool RegisterWithMoney(string username, string password, string email, int money)
         {
-            User user = userController.RegisterWithMoney(username, password, email, money);
-            return user != null;
+            return gameCenter.RegisterWithMoney(username, password, email, money);
         }
 
         public bool EditProfile(string username, string password, string email)
         {
-            return userController.EditProfile(username, password, email);
+            return gameCenter.EditProfile(username, password, email);
         }
 
         public bool Login(string username, string password)
         {
-            return userController.Login(username, password);
+            return gameCenter.Login(username, password);
         }
 
         public bool Logout(string username)
         {
-            return userController.Logout(username);
+            return gameCenter.Logout(username);
         }
 
         public int ViewMoneyBalanceOfUser(string username)
@@ -52,112 +51,80 @@ namespace TexasHoldem.ServiceLayer
 
         public int JoinGame(string username, int gameID)
         {
-            Game game = gameCenter.GetGameById(gameID);
-            User user = userController.GetUserByName(username);
-            Player player = game.AddPlayer(user);
-            return player.PlayerId;
+            return gameCenter.JoinGame(username, gameID);
+        }
+
+        public bool StartGame(string username, int gameID)
+        {
+            return gameCenter.StartGame(username, gameID);
+        }
+
+        public bool LeaveGame(string username, int gameID)
+        {
+            return gameCenter.LeaveGame(username, gameID);
         }
 
         public bool LeaveGame(int playerID, int gameID)
         {
-            Game game = gameCenter.GetGameById(gameID);
-            Player player = game.GetPlayerById(playerID);
-            return game.RemovePlayer(player);
+            return gameCenter.LeaveGame(playerID, gameID);
         }
 
         public bool Bet(int playerID, int gameID, int amount)
         {
-            Game game = gameCenter.GetGameById(gameID);
-            Player player = game.GetPlayerById(playerID);
-            return game.Bet(player, amount);
+            return gameCenter.Bet(playerID, gameID, amount);
         }
 
         public bool Check(int playerID, int gameID)
         {
-            Game game = gameCenter.GetGameById(gameID);
-            Player player = game.GetPlayerById(playerID);
-            return game.Check(player);
+            return gameCenter.Check(playerID, gameID);
         }
 
         public bool Fold(int playerID, int gameID)
         {
-            Game game = gameCenter.GetGameById(gameID);
-            Player player = game.GetPlayerById(playerID);
-            return game.Fold(player);
+            return gameCenter.Fold(playerID, gameID);
         }
 
         public bool Call(int playerID, int gameID)
         {
-            Game game = gameCenter.GetGameById(gameID);
-            Player player = game.GetPlayerById(playerID);
-            return game.Call(player);
+            return gameCenter.Call(playerID, gameID);
         }
 
         public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
             int maxPlayerCount, bool isSpectatable)
         {
 
-            User user = userController.GetUserByName(username);
+            User user = null; //userController.GetUserByName(username);
             Game game = gameCenter.CreateGame(user, gameTypePolicy, buyInPolicy, chipPolicy, minBet, maxPlayerCount, minPlayerCount,
                 isSpectatable);
             return game.Id;
         }
 
+        public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
+        {
+            return gameCenter.CreateGame(username, preferenceList);
+        }
+
         public List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers,
             int spectateGame)
         {
-            List<Game> games = gameCenter.GetActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers,
+            return gameCenter.GetActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers,
                 spectateGame);
-            List<int> gameIDs = new List<int>();
-            foreach(Game g in games)
-                gameIDs.Add(g.Id);
-
-            return gameIDs;
+            
         }
 
         public List<int> SearchActiveGamesByPot(int pot)
         {
-            List<Game> games = gameCenter.GetActiveGamesByPot(pot);
-            List<int> gameIDs = new List<int>();
-            foreach (Game g in games)
-                gameIDs.Add(g.Id);
-
-            return gameIDs;
+            return gameCenter.GetActiveGamesByPot(pot);
         }
 
         public List<int> SearchActiveGamesByPlayerName(string name)
         {
-            List<Game> games = gameCenter.GetActiveGamesByPlayerName(name);
-            List<int> gameIDs = new List<int>();
-            foreach (Game g in games)
-                gameIDs.Add(g.Id);
-
-            return gameIDs;
+            return gameCenter.GetActiveGamesByPlayerName(name);
         }
 
         public List<int> ViewSpectatableGames()
         {
-            List<Game> games = gameCenter.GetSpectatableGame();
-            List<int> gameIDs = new List<int>();
-            foreach (Game g in games)
-                gameIDs.Add(g.Id);
-
-            return gameIDs;
-        }
-
-        public bool SetDefaultLeague(int leagueID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool SetLeagueCriteria(int leagueID, int points)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool MoveUserToLeague(string username, int leagueID)
-        {
-            throw new NotImplementedException();
+            return gameCenter.GetSpectatableGames();
         }
 
         public bool ReplayGame(string username, int gameLogID)
@@ -172,10 +139,7 @@ namespace TexasHoldem.ServiceLayer
 
         public int SpectateGame(string username, int gameID)
         {
-            Game game = gameCenter.GetGameById(gameID);
-            User user = userController.GetUserByName(username);
-            Spectator spectator = game.AddSpectatingPlayer(user);
-            return spectator.Id;
+            return gameCenter.SpectateGame(username, gameID);
         }
     }
 }

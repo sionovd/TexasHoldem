@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-
-namespace TexasHoldem
+namespace TexasHoldem.UserModule
 {
     public class UserController
     {
@@ -38,10 +33,6 @@ namespace TexasHoldem
                 if (init)
                     Initialized();
                 User user = new User(username, password, email, false);
-                if (registerUsers == null)
-                {
-                    user.setAdmin();
-                }
                 if (registerUsers.ContainsKey(username))
                     throw new AlreadyHasNameException(user.getUsername());
                 registerUsers.Add(username, user);

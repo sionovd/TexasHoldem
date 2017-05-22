@@ -131,6 +131,18 @@ namespace AcceptanceTests
             }
         }
 
+        public bool LeaveGame(string username, int gameID)
+        {
+            try
+            {
+                return bridge.LeaveGame(username, gameID);
+            }
+            catch (DomainException)
+            {
+                return false;
+            }
+        }
+
         public bool Bet(int playerID, int gameID, int amount)
         {
             try

@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TexasHoldem.GameModule;
+using TexasHoldem.UserModule;
 
 namespace TexasHoldem
 {
     class DataBase : IDataBase
     {
-        public void AddGame(Game game)
+        public void AddGame(IGame game)
         {
           //  throw new NotImplementedException();
         }
 
-        public List<Game> getAllGames()
+        public List<IGame> getAllGames()
         {
-            return new List<Game>();
+            return new List<IGame>();
           //  throw new NotImplementedException();
         }
 

@@ -46,16 +46,19 @@
   <ItemGroup>
     <Compile Include="DomainException.cs" />
     <Compile Include="AlreadyHasNameException.cs" />
-    <Compile Include="Card.cs" />
+    <Compile Include="GameCenterModule\NotEnoughPlayersException.cs" />
+    <Compile Include="GameModule\Card.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="GameModule\GameAlreadyStartedException.cs" />
+    <Compile Include="GameModule\GameDecorator.cs" />
     <Compile Include="IDataBase.cs" />
-    <Compile Include="Deck.cs" />
+    <Compile Include="GameModule\Deck.cs" />
     <Compile Include="FullTableException.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameCenter.cs" />
+    <Compile Include="GameModule\Game.cs" />
+    <Compile Include="GameCenterModule\GameCenter.cs" />
     <Compile Include="GameLog.cs" />
-    <Compile Include="GamePreferences.cs" />
-    <Compile Include="HandEvaluator.cs" />
+    <Compile Include="GameModule\GamePreferences.cs" />
+    <Compile Include="GameModule\HandEvaluator.cs" />
     <Compile Include="illegalbuyInException.cs" />
     <Compile Include="illegalChipPolicyException.cs" />
     <Compile Include="illegalGameType.cs" />
@@ -67,14 +70,14 @@
     <Compile Include="NotAPasswordException.cs" />
     <Compile Include="NoUserNameException.cs" />
     <Compile Include="notEnoughMoneyException.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GameModule\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLayer\IService.cs" />
     <Compile Include="ServiceLayer\Service.cs" />
-    <Compile Include="Spectator.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserController.cs" />
+    <Compile Include="GameModule\Spectator.cs" />
+    <Compile Include="UserModule\User.cs" />
+    <Compile Include="UserModule\UserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
