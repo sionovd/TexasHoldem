@@ -3,90 +3,128 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TexasHoldem.GameCenterModule;
+using TexasHoldem.GameModule;
+using TexasHoldem.UserModule;
 
 namespace TexasHoldem.ServiceLayer
 {
-    class Service : IService
+    public class Service : IService
     {
+        private GameCenter gameCenter;
+
+        public Service()
+        {
+            gameCenter = GameCenter.GetInstance;
+        }
+
         public bool Register(string username, string password, string email)
         {
-            throw new NotImplementedException();
+
+            return gameCenter.Register(username, password, email);
+        }
+
+        public bool RegisterWithMoney(string username, string password, string email, int money)
+        {
+            return gameCenter.RegisterWithMoney(username, password, email, money);
         }
 
         public bool EditProfile(string username, string password, string email)
         {
-            throw new NotImplementedException();
+            return gameCenter.EditProfile(username, password, email);
         }
 
         public bool Login(string username, string password)
         {
-            throw new NotImplementedException();
+            return gameCenter.Login(username, password);
         }
 
         public bool Logout(string username)
+        {
+            return gameCenter.Logout(username);
+        }
+
+        public int ViewMoneyBalanceOfUser(string username)
         {
             throw new NotImplementedException();
         }
 
         public int JoinGame(string username, int gameID)
         {
-            throw new NotImplementedException();
+            return gameCenter.JoinGame(username, gameID);
+        }
+
+        public bool StartGame(string username, int gameID)
+        {
+            return gameCenter.StartGame(username, gameID);
         }
 
         public bool LeaveGame(string username, int gameID)
         {
-            throw new NotImplementedException();
+            return gameCenter.LeaveGame(username, gameID);
+        }
+
+        public bool LeaveGame(int playerID, int gameID)
+        {
+            return gameCenter.LeaveGame(playerID, gameID);
         }
 
         public bool Bet(int playerID, int gameID, int amount)
         {
-            throw new NotImplementedException();
+            return gameCenter.Bet(playerID, gameID, amount);
         }
 
         public bool Check(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            return gameCenter.Check(playerID, gameID);
         }
 
         public bool Fold(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            return gameCenter.Fold(playerID, gameID);
         }
 
         public bool Call(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            return gameCenter.Call(playerID, gameID);
         }
 
-        public List<int> SearchActiveGames(string username, string filter)
+        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
+            int maxPlayerCount, bool isSpectatable)
         {
-            throw new NotImplementedException();
+
+            User user = null; //userController.GetUserByName(username);
+            Game game = gameCenter.CreateGame(user, gameTypePolicy, buyInPolicy, chipPolicy, minBet, maxPlayerCount, minPlayerCount,
+                isSpectatable);
+            return game.Id;
         }
 
-        public List<int> ListSpectatableGames()
+        public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
-            throw new NotImplementedException();
+            return gameCenter.CreateGame(username, preferenceList);
         }
 
-        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
-            bool isSpectatable)
+        public List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers,
+            int spectateGame)
         {
-            throw new NotImplementedException();
+            return gameCenter.GetActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers,
+                spectateGame);
+            
         }
 
-        public bool SetDefaultLeague(int leagueID)
+        public List<int> SearchActiveGamesByPot(int pot)
         {
-            throw new NotImplementedException();
+            return gameCenter.GetActiveGamesByPot(pot);
         }
 
-        public bool SetLeagueCriteria(int leagueID, int points)
+        public List<int> SearchActiveGamesByPlayerName(string name)
         {
-            throw new NotImplementedException();
+            return gameCenter.GetActiveGamesByPlayerName(name);
         }
 
-        public bool MoveUserToLeague(string username, int leagueID)
+        public List<int> ViewSpectatableGames()
         {
-            throw new NotImplementedException();
+            return gameCenter.GetSpectatableGames();
         }
 
         public bool ReplayGame(string username, int gameLogID)
@@ -99,9 +137,9 @@ namespace TexasHoldem.ServiceLayer
             throw new NotImplementedException();
         }
 
-        public bool SpectateGame(string username, int gameLogID)
+        public int SpectateGame(string username, int gameID)
         {
-            throw new NotImplementedException();
+            return gameCenter.SpectateGame(username, gameID);
         }
     }
 }

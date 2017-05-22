@@ -9,19 +9,19 @@ namespace AcceptanceTests
         private int game1;
         private int game2;
 
-        [ClassInitialize]
+        [TestInitialize]
         public void SetUp()
         {
-            Assert.IsTrue(Register("doron", "password1", "doron@gmail.com"));
-            Assert.IsTrue(Register("tamir", "password2", "tamir@gmail.com"));
-            Assert.IsTrue(Register("shavit", "password3", "shavit@gmail.com"));
-            Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
-            Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
-            Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
+            Assert.IsTrue(RegisterWithMoney("doron", "password1", "doron@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("tamir", "password2", "tamir@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("shavit", "password3", "shavit@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("leon", "password4", "leon@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("avner", "password5", "avner@gmail.com", 100));
+            Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 5));
             string username = "doron";
             int gameTypePolicy = 0;
-            int buyInPolicy = 0;
-            int chipPolicy = 100;
+            int buyInPolicy = 10;
+            int chipPolicy = 0;
             int minBet = 5;
             int minPlayerCount = 2;
             int maxPlayerCount = 5;
@@ -38,8 +38,7 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheGood()
         {
-            int player1 = JoinGame("doron", game1);
-            Assert.IsTrue(player1 > 0);
+            
             int player2 = JoinGame("tamir", game1);
             Assert.IsTrue(player2 > 0);
             int player3 = JoinGame("avner", game1);
@@ -48,8 +47,6 @@ namespace AcceptanceTests
             Assert.IsTrue(player4 > 0);
             int player5 = JoinGame("shavit", game1);
             Assert.IsTrue(player5 > 0);
-            int player6 = JoinGame("doron", game2);
-            Assert.IsTrue(player6 > 0);
             int player7 = JoinGame("tamir", game2);
             Assert.IsTrue(player7 > 0);
             int player8 = JoinGame("avner", game2);
@@ -58,27 +55,33 @@ namespace AcceptanceTests
             Assert.IsTrue(player9 > 0);
             int player10 = JoinGame("shavit", game2);
             Assert.IsTrue(player10 > 0);
-            Assert.AreNotEqual(player1, player6);
             Assert.AreNotEqual(player2, player7);
             Assert.AreNotEqual(player3, player8);
             Assert.AreNotEqual(player4, player9);
             Assert.AreNotEqual(player5, player10);
             Assert.IsFalse(JoinGame("someone", game2) > 0);
-        }
 
-        [TestMethod]
-        public void TestTheBad()
-        {
-            
+            Assert.IsTrue(LeaveGame(1, game1));
+            Assert.IsTrue(LeaveGame(2, game2));
+            Assert.IsTrue(LeaveGame(3, game1));
+            Assert.IsTrue(LeaveGame(4, game1));
+            Assert.IsTrue(LeaveGame(5, game1));
+            Assert.IsTrue(LeaveGame(6, game1));
+            Assert.IsTrue(LeaveGame(7, game2));
+            Assert.IsTrue(LeaveGame(8, game2));
+            Assert.IsTrue(LeaveGame(9, game2));
+            Assert.IsTrue(LeaveGame(10, game2));
         }
 
         [TestMethod]
         public void TestTheSad()
         {
-
+            int player1 = JoinGame("someone", game1);
+            Assert.IsFalse(player1 > 0);
+           // Assert.IsTrue(ViewMoneyBalanceOfUser("someone") > 0);
         }
 
-        [ClassCleanup]
+        [TestCleanup]
         public void TearDown()
         {
             //deleteUsers....

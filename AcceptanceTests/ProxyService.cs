@@ -14,6 +14,11 @@ namespace AcceptanceTests
             return true;
         }
 
+        public bool RegisterWithMoney(string username, string password, string email, int money)
+        {
+            return true;
+        }
+
         public bool EditProfile(string username, string password, string email)
         {
             return true;
@@ -29,44 +34,49 @@ namespace AcceptanceTests
             return true;
         }
 
+        public int ViewMoneyBalanceOfUser(string username)
+        {
+            return 5;
+        }
+
         public int JoinGame(string username, int gameID)
         {
             return 1; //playerID
         }
 
+        public bool StartGame(string username, int gameID)
+        {
+            return true;
+        }
+
         public bool LeaveGame(string username, int gameID)
         {
-            throw new NotImplementedException();
+            return true;
+        }
+
+        public bool LeaveGame(int playerID, int gameID)
+        {
+            return true;
         }
 
         public bool Bet(int playerID, int gameID, int amount)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool Check(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool Fold(int playerID, int gameID)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool Call(int playerID, int gameID)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<int> SearchActiveGames(string username, string filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<int> ListSpectatableGames()
-        {
-            throw new NotImplementedException();
+            return true;
         }
 
         public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
@@ -75,19 +85,33 @@ namespace AcceptanceTests
             return 1; //gameID
         }
 
-        public bool SetDefaultLeague(int leagueID)
+        public List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers,
+            int spectateGame)
         {
-            throw new NotImplementedException();
+            List<int> list = new List<int>();
+            list.Add(1);
+            return list;
         }
 
-        public bool SetLeagueCriteria(int leagueID, int points)
+        public List<int> SearchActiveGamesByPot(int pot)
         {
-            throw new NotImplementedException();
+            List<int> list = new List<int>();
+            list.Add(1);
+            return list;
         }
 
-        public bool MoveUserToLeague(string username, int leagueID)
+        public List<int> SearchActiveGamesByPlayerName(string name)
         {
-            throw new NotImplementedException();
+            List<int> list = new List<int>();
+            list.Add(1);
+            return list;
+        }
+
+        public List<int> ViewSpectatableGames()
+        {
+            List<int> list = new List<int>();
+            list.Add(1);
+            return list;
         }
 
         public bool ReplayGame(string username, int gameLogID)
@@ -100,7 +124,7 @@ namespace AcceptanceTests
             throw new NotImplementedException();
         }
 
-        public bool SpectateGame(string username, int gameLogID)
+        public int SpectateGame(string username, int gameID)
         {
             throw new NotImplementedException();
         }

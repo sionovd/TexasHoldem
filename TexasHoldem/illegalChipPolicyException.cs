@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TexasHoldem
 {
     [Serializable]
-    internal class illegalChipPolicyException : Exception
+    internal class illegalChipPolicyException : DomainException
     {
         public illegalChipPolicyException()
         : base() { }

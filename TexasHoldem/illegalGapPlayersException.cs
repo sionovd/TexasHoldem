@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace TexasHoldem
 {
     [Serializable]
-    internal class illegalGapPlayersException : Exception
+    internal class illegalGapPlayersException : DomainException
     {
         public illegalGapPlayersException()
         : base() { }

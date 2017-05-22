@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TexasHoldem
 {
-    class NotAPasswordException : Exception
+    public class NotAPasswordException : DomainException
     {
         public NotAPasswordException (string password) :base()
         {

@@ -9,32 +9,37 @@ namespace TexasHoldem.ServiceLayer
     public interface IService
     {
         // UserController 
-        bool Register(string username, string password, string email);      // uc.RegisterUser(username, password, email);
-        bool EditProfile(string username, string password, string email);   // uc.EditUserProfile(username, password, email);
-        bool Login(string username, string password);                       // uc.LoginUser(username, password);
-        bool Logout(string username);                                       // uc.LogoutUser(username); 
+        bool Register(string username, string password, string email);
+        bool RegisterWithMoney(string username, string password, string email, int money);
+        bool EditProfile(string username, string password, string email);
+        bool Login(string username, string password);
+        bool Logout(string username);
+        int ViewMoneyBalanceOfUser(string username);
 
         // Game
-        int JoinGame(string username, int gameID);                                           // game.AddPlayer(user)            
-        bool LeaveGame(string username, int gameID);                                          // game.RemovePlayer(user)
-        bool Bet(int playerID, int gameID, int amount);                                    // game.Bet(user, amount)
-        bool Check(int playerID, int gameID);                                              // game.Check(user)
-        bool Fold(int playerID, int gameID);                                               // game.Fold(user)
-        bool Call(int playerID, int gameID);                                               // game.Call(user)
-        
+        int JoinGame(string username, int gameID);
+        bool StartGame(string username, int gameID);
+        bool LeaveGame(string username, int gameID);
+        bool LeaveGame(int playerID, int gameID);
+        bool Bet(int playerID, int gameID, int amount);
+        bool Check(int playerID, int gameID);
+        bool Fold(int playerID, int gameID);
+        bool Call(int playerID, int gameID);
+
         // GameCenter
-        List<int> SearchActiveGames(string username, string filter);                        // gc.GetActiveGames(user, filter);
-        List<int> ListSpectatableGames();                                  // gc.GetSpectatableGames();
         int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet,
-            int minPlayerCount, int maxPlayerCount, bool isSpectatable);                        // gc.CreateGame(...);
-        bool SetDefaultLeague(int leagueID);
-        bool SetLeagueCriteria(int leagueID, int points);
-        bool MoveUserToLeague(string username, int leagueID);
+            int minPlayerCount, int maxPlayerCount, bool isSpectatable);
+        List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet,
+            int maxPlayers, int minPlayers, int spectateGame);
+        List<int> SearchActiveGamesByPot(int pot);
+        List<int> SearchActiveGamesByPlayerName(string name);
+        List<int> ViewSpectatableGames();
+        
 
         // GameLog
-        bool ReplayGame(string username, int gameLogID);                                         // gamelog.ShowReplay(user, game);
-        bool SaveTurns(string username, int gameID, string turnData);                         // log.SaveTurns(user, game, turnData);
-        bool SpectateGame(string username, int gameLogID);                                       // log.ShowGame(user, game) 
+        bool ReplayGame(string username, int gameLogID);
+        bool SaveTurns(string username, int gameID, string turnData);
+        int SpectateGame(string username, int gameID);
 
 
     }
