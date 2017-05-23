@@ -1,68 +1,65 @@
 ﻿namespace TexasHoldem.UserModule
 {
+    public class UserRank
+    {
+        public UserRank()
+        {
+            Points = 0;
+            NumOfCalibrationsLeft = 10;
+        }
+
+        public int Points { get; set; }
+        public int NumOfCalibrationsLeft { get; set; }
+    }
+
     public class User
     {
-        private bool isAdmin;
-        private string username;
         private string password;
-        private string email;
-        private int moneyBalance;// at start?
-
-        public User(string username)
-        {
-            // this = database.getUser(username);
-        }
 
         public User(string username, string password, string email, bool isAdmin, int money)
         {
-            this.username = username;
+            Username = username;
             if (password.Equals(""))
                 throw new NotAPasswordException(password);
             this.password = password;
-            this.email = email;
-            this.isAdmin = isAdmin;
-            this.moneyBalance = money;
+            Email = email;
+            Admin = isAdmin;
+            MoneyBalance = money;
+            Rank = new UserRank();
+            League = new DefaultLeague();
         }
 
         public User (string username, string password, string email, bool isAdmin)
         {
-            this.username = username;
+            Username = username;
             if (password.Equals(""))
                 throw new NotAPasswordException(password);
             this.password = password;
-            this.email = email;
-            this.isAdmin = isAdmin;
+            Email = email;
+            Admin = isAdmin;
+            Rank = new UserRank();
+            League = new DefaultLeague();
+            
         }
-        public bool getAdmin()
+
+        public UserRank Rank { get; set; }
+
+        public League League { get; set; }
+
+        public bool Admin { get; set; }
+
+        public string Username { get; }
+
+        public string Email { get; }
+
+        public int MoneyBalance { get; set; }
+
+        public int DecreaseMoney(int money)
         {
-            return isAdmin;
+            MoneyBalance = MoneyBalance - money;
+            return MoneyBalance;
         }
-        public string getUsername()
-        {
-            return username;
-        }
-        public string getEmail()
-        {
-            return email;
-        }
-        public void setAdmin()
-        {
-            isAdmin = true;
-        }
-        public double getmoneyBalance()
-        {
-            return moneyBalance;
-        }
-        public void setmoneyBalance(int moneyBalance)
-        {
-            this.moneyBalance = moneyBalance;
-        }
-        public int decreaseMoney(int money)
-        {
-            this.moneyBalance = this.moneyBalance - money;
-            return moneyBalance;
-        }
-        public bool chackPassword(string password)
+        public bool CheckPassword(string password)
         {
             return this.password.Equals(password);
         }

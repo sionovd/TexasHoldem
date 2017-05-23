@@ -106,6 +106,24 @@ namespace AcceptanceTests
             }
         }
 
+        public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
+        {
+            try
+            {
+                int gameID = bridge.CreateGame(username, preferenceList);
+                return gameID;
+            }
+            catch (DomainException)
+            {
+                return -1;
+            }
+        }
+
+        public bool StartGame(string username, int gameID)
+        {
+            return bridge.StartGame(username, gameID);
+        }
+
         public int JoinGame(string username, int gameID)
         {
             try

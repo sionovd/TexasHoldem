@@ -34,7 +34,7 @@ namespace TexasHoldem.UserModule
                     Initialized();
                 User user = new User(username, password, email, false);
                 if (registerUsers.ContainsKey(username))
-                    throw new AlreadyHasNameException(user.getUsername());
+                    throw new AlreadyHasNameException(user.Username);
                 registerUsers.Add(username, user);
                 return user;
             }
@@ -49,11 +49,11 @@ namespace TexasHoldem.UserModule
                 User user = new User(username, password, email, false, money);
                 if (registerUsers == null)
                 {
-                    user.setAdmin();
+                    user.Admin = true;
                     registerUsers = new Dictionary<string, User>();
                 }
                 if (registerUsers.ContainsKey(username))
-                    throw new AlreadyHasNameException(user.getUsername());
+                    throw new AlreadyHasNameException(user.Username);
                 registerUsers.Add(username, user);
                 return user;
             }
@@ -65,7 +65,7 @@ namespace TexasHoldem.UserModule
             {
                 if (!registerUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
-                bool admin = registerUsers[username].getAdmin();
+                bool admin = registerUsers[username].Admin;
                 registerUsers[username] =  new User(username, password, email, admin);
                 return true;
             }
@@ -77,7 +77,7 @@ namespace TexasHoldem.UserModule
             {
                 if (!registerUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
-                if (!registerUsers[username].chackPassword(password))
+                if (!registerUsers[username].CheckPassword(password))
                     throw new NotAPasswordException(password);
                 loginUsers[username] = registerUsers[username];
                 return true;
