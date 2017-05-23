@@ -9,3 +9,4 @@ C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\obj
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\bin\Debug\TexasHoldem.exe.config
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.exe
 C:\Users\avner\Documents\GitHub\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.pdb
+C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\obj\Debug\TexasHoldem.csprojResolveAssemblyReference.cache
