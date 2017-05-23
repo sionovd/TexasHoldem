@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AcceptanceTests
@@ -19,17 +20,18 @@ namespace AcceptanceTests
             Assert.IsTrue(RegisterWithMoney("avner", "password5", "avner@gmail.com", 100));
             Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 5));
             string username = "doron";
-            int gameTypePolicy = 0;
-            int buyInPolicy = 10;
-            int chipPolicy = 0;
-            int minBet = 5;
-            int minPlayerCount = 2;
-            int maxPlayerCount = 5;
-            bool isSpectatable = true;
-            game1 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
-            game2 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            
+            List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 0),
+                new KeyValuePair<string, int>("buyIn", 10),
+                new KeyValuePair<string, int>("chipPolicy", 0),
+                new KeyValuePair<string, int>("minBet", 5),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+            };
+            game1 = CreateGame(username, preferenceList);
+            game2 = CreateGame(username, preferenceList);
             Assert.IsTrue(game1 > 0);
             Assert.IsTrue(game2 > 0);
             Assert.AreNotEqual(game1, game2);
@@ -61,16 +63,16 @@ namespace AcceptanceTests
             Assert.AreNotEqual(player5, player10);
             Assert.IsFalse(JoinGame("someone", game2) > 0);
 
-            Assert.IsTrue(LeaveGame(1, game1));
-            Assert.IsTrue(LeaveGame(2, game2));
-            Assert.IsTrue(LeaveGame(3, game1));
-            Assert.IsTrue(LeaveGame(4, game1));
-            Assert.IsTrue(LeaveGame(5, game1));
-            Assert.IsTrue(LeaveGame(6, game1));
-            Assert.IsTrue(LeaveGame(7, game2));
-            Assert.IsTrue(LeaveGame(8, game2));
-            Assert.IsTrue(LeaveGame(9, game2));
-            Assert.IsTrue(LeaveGame(10, game2));
+            Assert.IsTrue(LeaveGame("doron", game1));
+            Assert.IsTrue(LeaveGame("doron", game2));
+            Assert.IsTrue(LeaveGame("leon", game1));
+            Assert.IsTrue(LeaveGame("tamir", game1));
+            Assert.IsTrue(LeaveGame("shavit", game1));
+            Assert.IsTrue(LeaveGame("avner", game1));
+            Assert.IsTrue(LeaveGame("shavit", game2));
+            Assert.IsTrue(LeaveGame("tamir", game2));
+            Assert.IsTrue(LeaveGame("avner", game2));
+            Assert.IsTrue(LeaveGame("leon", game2));
         }
 
         [TestMethod]

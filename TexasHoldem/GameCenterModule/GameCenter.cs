@@ -131,11 +131,38 @@ namespace TexasHoldem.GameCenterModule
             {
                 if (pair.Key == "buyIn")
                 {
+                    if (pair.Value < 0)  //real money and has to be equal or greater than zero
+                        throw new illegalbuyInException(pair.Value.ToString());
                     game = new BuyInDecorator(game, pair.Value);
+                }
+                if (pair.Key == "minBet")
+                {
+                    if (pair.Value <= 0)
+                        throw new illegalMinBetException(pair.Value.ToString());
+                    game = new MinBetDecorator(game, pair.Value);
+                }
+                if (pair.Key == "minPlayers")
+                {
+                    if (pair.Value > game.Pref.MaxPlayers)
+                        throw new illegalGapPlayersException(pair.Value.ToString(), game.Pref.MaxPlayers.ToString());
+                    game = new MinPlayersDecorator(game, pair.Value);
                 }
                 if (pair.Key == "maxPlayers")
                 {
+                    if (pair.Value > 9)
+                        throw new illegalMaxPlayersException(pair.Value.ToString());
                     game = new MaxPlayersDecorator(game, pair.Value);
+                }
+                if (pair.Key == "chipPolicy")
+                {
+                    if (pair.Value < 0)
+                        throw new illegalChipPolicyException(pair.Value.ToString());
+                    game = new ChipPolicyDecorator(game, pair.Value);
+                }
+                if (pair.Key == "spectateGame")
+                {
+                    bool spectateGame = pair.Value == 1;
+                    game = new SpectateGameDecorator(game, spectateGame);
                 }
                 if (pair.Key == "gameType" && pair.Value == 0)
                 {
@@ -145,9 +172,15 @@ namespace TexasHoldem.GameCenterModule
                 {
                     game = new PotLimitHoldemDecorator(game);
                 }
+                if (pair.Key == "gameType" && (pair.Value < 0 || pair.Value > 2))
+                {
+                    throw new illegalGameTypeException(pair.Value.ToString());
+                }
 
-                // to be finished later....
+                // can be extended....
             }
+            if (user.MoneyBalance < game.Pref.BuyIn)
+                throw new notEnoughMoneyException(user.MoneyBalance.ToString(), game.Pref.BuyIn.ToString());
             game.AddPlayer(user);
             game.League = user.League;
             games.Add(game.Id, game);
@@ -194,6 +227,9 @@ namespace TexasHoldem.GameCenterModule
         public bool StartGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
+            game.StartCounter++;
+            if (game.StartCounter < game.NumOfPlayers)
+                return false;
             if (game.NumOfPlayers >= game.Pref.MinPlayers)
             {
                 Player winner = game.Play();
@@ -201,7 +237,11 @@ namespace TexasHoldem.GameCenterModule
                     return true;
                 User user = userController.GetUserByName(winner.Username);
                 user.MoneyBalance += winner.ChipBalance;
-                //if(user.Rank.NumOfCalibrationsLeft)
+                if (user.Rank.NumOfCalibrationsLeft > 0)
+                {
+                    user.Rank.NumOfCalibrationsLeft--;
+                }
+                user.Rank.Points += 5;
                 return true;
             }
             throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.NumOfPlayers + " have joined.");

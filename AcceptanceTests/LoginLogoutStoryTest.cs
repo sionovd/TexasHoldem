@@ -30,10 +30,10 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheSad()
         {
-            Assert.IsTrue(Register("doron", "password", "doron@gmail.com"));
-            Assert.IsFalse(Login("doron", "wrongpassword"));
-            Assert.IsFalse(Login("doron", "Password"));
-            Assert.IsFalse(Logout("doron"));
+            Assert.IsTrue(Register("doron1", "password", "doron@gmail.com"));
+            Assert.IsFalse(Login("doron1", "wrongpassword"));
+            Assert.IsFalse(Login("doron1", "Password"));
+            Assert.IsFalse(Logout("doron1"));
             //deleteUser("doron");
         }
     }

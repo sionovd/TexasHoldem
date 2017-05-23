@@ -10,88 +10,149 @@ namespace TexasHoldem.GameModule
 
     abstract public class GameDecorator : IGame
     {
-        protected IGame gameToBeDecorated;
+        protected IGame MyGame;
 
         public GameDecorator(IGame gameToBeDecorated)
         {
-            this.gameToBeDecorated = gameToBeDecorated;
+            this.MyGame = gameToBeDecorated;
         }
 
         public Player AddPlayer(User user)
         {
-            return gameToBeDecorated.AddPlayer(user);
+            return MyGame.AddPlayer(user);
         }
 
         public Player Play()
         {
-            return gameToBeDecorated.Play();
+            return MyGame.Play();
         }
 
         public bool RemovePlayer(Player player)
         {
-            return gameToBeDecorated.RemovePlayer(player);
+            return MyGame.RemovePlayer(player);
         }
 
         public Spectator AddSpectatingPlayer(User user)
         {
-            return gameToBeDecorated.AddSpectatingPlayer(user);
+            return MyGame.AddSpectatingPlayer(user);
         }
 
         public bool RemoveSpectatingPlayer(Spectator spectator)
         {
-            return gameToBeDecorated.RemoveSpectatingPlayer(spectator);
+            return MyGame.RemoveSpectatingPlayer(spectator);
         }
 
         public bool Bet(Player player, int amount)
         {
-            return gameToBeDecorated.Bet(player, amount);
+            return MyGame.Bet(player, amount);
         }
 
         public bool Check(Player player)
         {
-            return gameToBeDecorated.Check(player);
+            return MyGame.Check(player);
         }
 
         public bool Fold(Player player)
         {
-            return gameToBeDecorated.Fold(player);
+            return MyGame.Fold(player);
         }
 
         public bool Call(Player player)
         {
-            return gameToBeDecorated.Call(player);
+            return MyGame.Call(player);
         }
 
         public bool IsPlayerExist(string name)
         {
-            return gameToBeDecorated.IsPlayerExist(name);
+            return MyGame.IsPlayerExist(name);
         }
 
         public Player GetPlayerByUsername(string username)
         {
-            return gameToBeDecorated.GetPlayerByUsername(username);
+            return MyGame.GetPlayerByUsername(username);
         }
 
         public Player GetPlayerById(int playerId)
         {
-            return gameToBeDecorated.GetPlayerById(playerId);
+            return MyGame.GetPlayerById(playerId);
         }
 
-        public GamePreferences Pref { get; set; }
-        public Player[] Seats { get; }
-        public int Id { get; set; }
-        public int Pot { get; set; }
-        public int NumOfPlayers { get; }
-        public int RoundNumber { get; }
-        public int BigBlind { get; }
-        public int CurrentStake { get; }
+        public GamePreferences Pref
+        {
+            get { return MyGame.Pref; }
+            set { MyGame.Pref = value; }
+        }
+
+        public Player[] Seats
+        {
+            get { return MyGame.Seats; }
+        }
+
+        public int Id
+        {
+            get { return MyGame.Id; }
+        }
+
+        public int Pot
+        {
+            get { return MyGame.Pot; }
+            set { MyGame.Pot = value; }
+        }
+
+        public int NumOfPlayers
+        {
+            get { return MyGame.NumOfPlayers; }
+        }
+
+        public int RoundNumber
+        {
+            get { return MyGame.RoundNumber; }
+        }
+
+        public int BigBlind
+        {
+            get { return MyGame.BigBlind; }
+        }
+
+        public int CurrentStake
+        {
+            get { return MyGame.CurrentStake; }
+        }
+
+        public int StartCounter
+        {
+            get { return MyGame.StartCounter; }
+            set { MyGame.StartCounter = value; }
+        }
+
+        public League League
+        {
+            get { return MyGame.League; }
+            set { MyGame.League = value; }
+        }
     }
 
     class BuyInDecorator : GameDecorator
     {
         public BuyInDecorator(IGame gameToBeDecorated, int buyIn) : base(gameToBeDecorated)
         {
-            Pref.BuyIn = buyIn;
+            this.MyGame.Pref.BuyIn = buyIn;
+        }
+    }
+
+    class MinBetDecorator : GameDecorator
+    {
+        public MinBetDecorator(IGame gameToBeDecorated, int minBet) : base(gameToBeDecorated)
+        {
+            this.MyGame.Pref.MinBet = minBet;
+        }
+    }
+
+    class MinPlayersDecorator : GameDecorator
+    {
+        public MinPlayersDecorator(IGame gameToBeDecorated, int minPlayers) : base(gameToBeDecorated)
+        {
+            this.MyGame.Pref.MinPlayers = minPlayers;
         }
     }
 
@@ -99,7 +160,23 @@ namespace TexasHoldem.GameModule
     {
         public MaxPlayersDecorator(IGame gameToBeDecorated, int maxPlayers) : base(gameToBeDecorated)
         {
-            Pref.MaxPlayers = maxPlayers;
+            this.MyGame.Pref.MaxPlayers = maxPlayers;
+        }
+    }
+
+    class ChipPolicyDecorator : GameDecorator
+    {
+        public ChipPolicyDecorator(IGame gameToBeDecorated, int chipPolicy) : base(gameToBeDecorated)
+        {
+            this.MyGame.Pref.ChipPolicy = chipPolicy;
+        }
+    }
+
+    class SpectateGameDecorator : GameDecorator
+    {
+        public SpectateGameDecorator(IGame gameToBeDecorated, bool isSpectatable) : base(gameToBeDecorated)
+        {
+            this.MyGame.Pref.SpectateGame = isSpectatable;
         }
     }
 
@@ -107,16 +184,16 @@ namespace TexasHoldem.GameModule
     {
         public LimitHoldemDecorator(IGame gameToBeDecorated) : base(gameToBeDecorated)
         {
-            Pref.GameType = 0;
+            this.MyGame.Pref.GameType = 0;
         }
 
         public new bool Bet(Player player, int amount)
         {
-            if (RoundNumber <= 2 && amount == BigBlind)
+            if (this.MyGame.RoundNumber <= 2 && amount == this.MyGame.BigBlind)
             {
                 return base.Bet(player, amount);
             }
-            if (RoundNumber > 2 && amount == 2 * BigBlind)
+            if (this.MyGame.RoundNumber > 2 && amount == 2 * this.MyGame.BigBlind)
             {
                 return base.Bet(player, amount);
             }
@@ -128,12 +205,12 @@ namespace TexasHoldem.GameModule
     {
         public PotLimitHoldemDecorator(IGame gameToBeDecorated) : base(gameToBeDecorated)
         {
-            Pref.GameType = 2;
+            this.MyGame.Pref.GameType = 2;
         }
 
         public new bool Bet(Player player, int amount)
         {
-            if (amount >= CurrentStake && amount <= Pot + 2 * CurrentStake)
+            if (amount >= this.MyGame.CurrentStake && amount <= this.MyGame.Pot + 2 * this.MyGame.CurrentStake)
                 return base.Bet(player, amount);
             return false;
         }

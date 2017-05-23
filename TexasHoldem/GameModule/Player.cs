@@ -39,7 +39,7 @@ namespace TexasHoldem.GameModule
             return handEval.Evaluate();
         }
 
-        public void AddHand(int GameId, Card c1, Card c2)
+        public void AddHand(Card c1, Card c2)
         {
             Cards = new[] { c1, c2 };
         }

@@ -22,11 +22,12 @@ namespace TexasHoldem.GameModule
         GamePreferences Pref { get; set; }
         Player[] Seats { get; }
         int Id { get; }
-        int Pot { get; }
+        int Pot { get; set; }
         int NumOfPlayers { get; }
         int RoundNumber { get; }
         int BigBlind { get; }
         int CurrentStake { get; }
+        int StartCounter { get; set; }
         League League { get; set; }
     }
 
@@ -41,11 +42,12 @@ namespace TexasHoldem.GameModule
         public Player[] Seats { get; }
         public Deck Cards { get; set; }
         public int RoundNumber { get; private set; }
-        public int Pot { get; private set; }
+        public int Pot { get; set; }
         public int CurrentStake { get; private set; }
         public int SmallBlind { get; }
         public int BigBlind { get; }
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; }
+        public int StartCounter { get; set; }
         public League League { get; set; }
         public Game(GamePreferences pref)
         {
@@ -62,6 +64,7 @@ namespace TexasHoldem.GameModule
             SmallBlind = BigBlind / 2;
             CurrentStake = 0;
             RoundNumber = 0;
+            StartCounter = 0;
             IsActive = false;
         }
 
@@ -70,7 +73,8 @@ namespace TexasHoldem.GameModule
             //add cards to players
             for (int i = 0; i < Seats.Length; i++)
             {
-                Seats[i].AddHand(Id, Cards.GetCard(), Cards.GetCard());
+                if(Seats[i] != null)
+                    Seats[i].AddHand(Cards.GetCard(), Cards.GetCard());
             }
         }
         private void AddCardToTable(int cardNum)

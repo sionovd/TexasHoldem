@@ -13,63 +13,60 @@ namespace AcceptanceTests
         {
             Assert.IsTrue(RegisterWithMoney("doron", "password", "doron@gmail.com", 10000));
             string username = "doron";
-            int gameTypePolicy = 0;
-            int buyInPolicy = 0;
-            int chipPolicy = 100;
-            int minBet = 5;
-            int minPlayerCount = 2;
-            int maxPlayerCount = 5;
-            bool isSpectatable = true;
-            int game1 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+
+            List<KeyValuePair<string, int>> preferenceList1 = new List<KeyValuePair<string, int>>();
+            List<KeyValuePair<string, int>> preferenceList2 = new List<KeyValuePair<string, int>>();
+            int game1 = CreateGame(username, preferenceList1);
             Assert.IsTrue(game1 > 0);
-            int game2 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            int game2 = CreateGame(username, preferenceList2);
             Assert.IsTrue(game2 > 0);
             Assert.AreNotEqual(game1, game2);
 
-            gameTypePolicy = 0;
-            buyInPolicy = 200;
-            chipPolicy = 300;
-            minBet = 10;
-            minPlayerCount = 4;
-            maxPlayerCount = 9;
-            isSpectatable = true;
-            int game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            preferenceList1.Add(new KeyValuePair<string, int>("gameType", 0));
+            preferenceList1.Add(new KeyValuePair<string, int>("buyIn", 200));
+            preferenceList1.Add(new KeyValuePair<string, int>("chipPolicy", 300));
+            preferenceList1.Add(new KeyValuePair<string, int>("minBet", 10));
+            preferenceList1.Add(new KeyValuePair<string, int>("minPlayers", 4));
+            int game = CreateGame(username, preferenceList1);
             Assert.IsTrue(game > 0);
 
-            gameTypePolicy = 0;
-            buyInPolicy = 200;
-            chipPolicy = 0;
-            minBet = 10;
-            minPlayerCount = 3;
-            maxPlayerCount = 6;
-            isSpectatable = false;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            preferenceList1 = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 0),
+                new KeyValuePair<string, int>("buyIn", 200),
+                new KeyValuePair<string, int>("chipPolicy", 0),
+                new KeyValuePair<string, int>("minBet", 10),
+                new KeyValuePair<string, int>("minPlayers", 3),
+                new KeyValuePair<string, int>("maxPlayers", 6),
+                new KeyValuePair<string, int>("spectateGame", 0)
+            };
+            game = CreateGame(username, preferenceList1);
             Assert.IsTrue(game > 0);
 
-            gameTypePolicy = 1;
-            buyInPolicy = 200;
-            chipPolicy = 300;
-            minBet = 10;
-            minPlayerCount = 4;
-            maxPlayerCount = 9;
-            isSpectatable = true;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            preferenceList1 = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 200),
+                new KeyValuePair<string, int>("chipPolicy", 300),
+                new KeyValuePair<string, int>("minBet", 10),
+                new KeyValuePair<string, int>("minPlayers", 4),
+                new KeyValuePair<string, int>("maxPlayers", 9),
+                new KeyValuePair<string, int>("spectateGame", 1)
+            };
+            game = CreateGame(username, preferenceList1);
             Assert.IsTrue(game > 0);
 
-            gameTypePolicy = 2;
-            buyInPolicy = 200;
-            chipPolicy = 300;
-            minBet = 10;
-            minPlayerCount = 4;
-            maxPlayerCount = 9;
-            isSpectatable = false;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            preferenceList1 = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 2),
+                new KeyValuePair<string, int>("buyIn", 200),
+                new KeyValuePair<string, int>("chipPolicy", 300),
+                new KeyValuePair<string, int>("minBet", 10),
+                new KeyValuePair<string, int>("minPlayers", 4),
+                new KeyValuePair<string, int>("maxPlayers", 9),
+                new KeyValuePair<string, int>("spectateGame", 0)
+            };
+            game = CreateGame(username, preferenceList1);
             Assert.IsTrue(game > 0);
             
         }
@@ -77,77 +74,94 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheBad()
         {
-            Assert.IsTrue(Register("doron", "password", "doron@gmail.com"));
-            string username = "doron";
-            int gameTypePolicy = -1;
-            int buyInPolicy = 0;
-            int chipPolicy = 100;
-            int minBet = 5;
-            int minPlayerCount = 2;
-            int maxPlayerCount = 5;
-            bool isSpectatable = true;
-            int game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            Assert.IsTrue(Register("doronBad", "password", "doron@gmail.com"));
+            string username = "doronBad";
+            List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", -1),
+                new KeyValuePair<string, int>("buyIn", 0),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 5),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+                new KeyValuePair<string, int>("spectateGame", 1)
+            };
+            int game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
 
-            gameTypePolicy = 1;
-            buyInPolicy = -100;
-            chipPolicy = 100;
-            minBet = 5;
-            minPlayerCount = 2;
-            maxPlayerCount = 5;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-               isSpectatable);
+           
+            preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", -100),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 5),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+            };
+            game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
 
-            gameTypePolicy = 1;
-            buyInPolicy = 100;
-            chipPolicy = -100;
-            minBet = 5;
-            minPlayerCount = 2;
-            maxPlayerCount = 5;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            
+            preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 100),
+                new KeyValuePair<string, int>("chipPolicy", -100),
+                new KeyValuePair<string, int>("minBet", 5),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+                new KeyValuePair<string, int>("spectateGame", 1)
+            };
+            game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
 
-            gameTypePolicy = 1;
-            buyInPolicy = 100;
-            chipPolicy = 100;
-            minBet = -5;
-            minPlayerCount = 2;
-            maxPlayerCount = 5;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 100),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", -5),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+            };
+            game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
 
-            gameTypePolicy = 1;
-            buyInPolicy = 100;
-            chipPolicy = 100;
-            minBet = 10;
-            minPlayerCount = 0;
-            maxPlayerCount = 2;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 100),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 10),
+                new KeyValuePair<string, int>("minPlayers", 0),
+                new KeyValuePair<string, int>("maxPlayers", 2),
+            };
+            game = CreateGame(username, preferenceList);
+            Assert.IsTrue(game < 0);
+            
+            preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 2),
+                new KeyValuePair<string, int>("buyIn", 100),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 10),
+                new KeyValuePair<string, int>("minPlayers", 1),
+                new KeyValuePair<string, int>("maxPlayers", 2),
+            };
+            game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
 
-            gameTypePolicy = 2;
-            buyInPolicy = 100;
-            chipPolicy = 100;
-            minBet = 10;
-            minPlayerCount = 1;
-            maxPlayerCount = 2;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
-            Assert.IsTrue(game < 0);
-
-            gameTypePolicy = 2;
-            buyInPolicy = 100;
-            chipPolicy = 100;
-            minBet = 10;
-            minPlayerCount = 5;
-            maxPlayerCount = 2;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 2),
+                new KeyValuePair<string, int>("buyIn", 100),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 10),
+                new KeyValuePair<string, int>("minPlayers", 5),
+                new KeyValuePair<string, int>("maxPlayers", 2),
+            };
+            game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
         }
 
@@ -156,24 +170,29 @@ namespace AcceptanceTests
         {
             Assert.IsTrue(Register("yossi", "pass", "yos@gmail.com"));
             string username = "yossi";
-            int gameTypePolicy = 1;
-            int buyInPolicy = 100;
-            int chipPolicy = 100;
-            int minBet = 0;
-            int minPlayerCount = 2;
-            int maxPlayerCount = 5;
-            int game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                false);
+            List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 100),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 0),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+                new KeyValuePair<string, int>("spectateGame", 0)
+            };
+            int game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
 
-            gameTypePolicy = 1;
-            buyInPolicy = 100;
-            chipPolicy = 100;
-            minBet = 5;
-            minPlayerCount = 2;
-            maxPlayerCount = 10;
-            game = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                true);
+            preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 100),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 5),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 10),
+            };
+            game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AcceptanceTests
@@ -24,18 +25,18 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
             Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
             username = "doron";
-            int gameTypePolicy = 1;
-            int buyInPolicy = 0;
-            int chipPolicy = 100; // played with chips
-            int minBet = 5;
-            int minPlayerCount = 2;
-            int maxPlayerCount = 5;
-            bool isSpectatable = true;
-            game1 = CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+            
+            List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 0),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 5),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+            };
+            game1 = CreateGame(username, preferenceList);
             Assert.IsTrue(game1 > 0);
-            player1 = JoinGame("doron", game1);
-            Assert.IsTrue(player1 > 0);
             player2 = JoinGame("tamir", game1);
             Assert.IsTrue(player2 > 0);
             player3 = JoinGame("avner", game1);
@@ -49,6 +50,11 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestTheGood()
         {
+            Assert.IsFalse(StartGame("doron", game1));
+            Assert.IsFalse(StartGame("tamir", game1));
+            Assert.IsFalse(StartGame("shavit", game1));
+            Assert.IsFalse(StartGame("leon", game1));
+            Assert.IsTrue(StartGame("avner", game1));
             Assert.IsTrue(Bet(player1, game1, 25));
             Assert.IsTrue(Call(player2, game1));
             Assert.IsTrue(Call(player3, game1));
