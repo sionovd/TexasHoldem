@@ -1,0 +1,20 @@
+﻿Presentation
+
+
+winexe
+C#
+.cs
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\
+Presentation
+none
+false
+DEBUG;TRACE
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\App.xaml
+211213618687
+
+252120201035
+141164396027
+CreateGame.xaml;GameWindow.xaml;JoinGameWindow.xaml;MainMenu.xaml;MainWindow.xaml;SearchToJoinWindow.xaml;SearchToSpectateWindow.xaml;SpectateGameWindow.xaml;UserControlJoinGame.xaml;UserControlMenu.xaml;ProfileWindow.xaml;UserControlCreateGame.xaml;UserControlGame.xaml;UserControlProfile.xaml;UserControlReplay.xaml;UserControlSearchToJoin.xaml;UserControlSearchToSpectate.xaml;UserControlSpectate.xaml;UserControlSpectateGame.xaml;UserControlWatchReplayes.xaml;WatchReplayesWindow.xaml;
+
+False
+
