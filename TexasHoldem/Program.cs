@@ -11,8 +11,8 @@ namespace TexasHoldem
     {
         static void Main()
         {
-            Console.WriteLine(new Deck().GetSize());
-            Console.Read();
+            Console.WriteLine("hi");
+            ErrorLogger.LogError(new DomainException());
 
         }
     }

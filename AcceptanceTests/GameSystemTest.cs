@@ -24,8 +24,9 @@ namespace AcceptanceTests
                 bridge.Register(username, password, email);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -37,8 +38,9 @@ namespace AcceptanceTests
                 bridge.RegisterWithMoney(username, password, email, money);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -50,8 +52,9 @@ namespace AcceptanceTests
                 bridge.EditProfile(username, password, email);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -65,8 +68,9 @@ namespace AcceptanceTests
                 bridge.Login(username, password);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -78,8 +82,9 @@ namespace AcceptanceTests
                 bridge.Logout(username);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -113,8 +118,9 @@ namespace AcceptanceTests
                 int gameID = bridge.CreateGame(username, preferenceList);
                 return gameID;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return -1;
             }
         }
@@ -130,9 +136,9 @@ namespace AcceptanceTests
             {
                 return bridge.JoinGame(username, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
-                //if e == joingame exception return -2, or -3, or -4...
+                ErrorLogger.LogError(e);
                 return -1;
             }
         }
@@ -143,8 +149,9 @@ namespace AcceptanceTests
             {
                 return bridge.LeaveGame(playerID, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -155,8 +162,9 @@ namespace AcceptanceTests
             {
                 return bridge.LeaveGame(username, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -168,8 +176,9 @@ namespace AcceptanceTests
                 bridge.Bet(playerID, gameID, amount);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -181,8 +190,9 @@ namespace AcceptanceTests
                 bridge.Call(playerID, gameID);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -194,8 +204,9 @@ namespace AcceptanceTests
                 bridge.Check(playerID, gameID);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -207,8 +218,9 @@ namespace AcceptanceTests
                 bridge.Fold(playerID, gameID);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -241,8 +253,9 @@ namespace AcceptanceTests
             {
                 return bridge.SpectateGame(username, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return -1;
             }
         }
@@ -253,8 +266,9 @@ namespace AcceptanceTests
             {
                 return bridge.ReplayGame(username, gameLogID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }

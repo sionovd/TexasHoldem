@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="DomainException.cs" />
     <Compile Include="AlreadyHasNameException.cs" />
+    <Compile Include="ErrorLogger.cs" />
     <Compile Include="GameCenterModule\NotEnoughPlayersException.cs" />
     <Compile Include="GameModule\Card.cs" />
     <Compile Include="DataBase.cs" />
