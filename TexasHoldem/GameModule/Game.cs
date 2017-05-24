@@ -45,11 +45,13 @@ namespace TexasHoldem.GameModule
         public int SmallBlind { get; }
         public int BigBlind { get; }
         public bool IsActive { get; private set; }
+        private GameLog Logger;
 
         public Game(GamePreferences pref)
         {
             counter++;
             Id = counter;
+            Logger = new GameLog(Id);
             Pref = pref;
             Seats = new Player[pref.MaxPlayers];
             spectators = new List<Spectator>();
@@ -70,6 +72,7 @@ namespace TexasHoldem.GameModule
             for (int i = 0; i < Seats.Length; i++)
             {
                 Seats[i].AddHand(Id, Cards.GetCard(), Cards.GetCard());
+                Logger.LogTurn(null, "Deal: " + Seats[i].PlayerId + " , Hand: " + Seats[i].Cards[0].getCardId() + " " + Seats[i].Cards[1].getCardId());
             }
         }
         private void AddCardToTable(int cardNum)
@@ -79,10 +82,12 @@ namespace TexasHoldem.GameModule
                 tableCards[0] = Cards.GetCard();
                 tableCards[1] = Cards.GetCard();
                 tableCards[2] = Cards.GetCard();
+                Logger.LogTurn(null, "Table: " + tableCards[0].getCardId() + " " + tableCards[1].getCardId() + " " + tableCards[2].getCardId());
             }
             else if (cardNum >= 4)
             {
                 tableCards[cardNum] = Cards.GetCard();
+                Logger.LogTurn(null, "Add Table: " + tableCards[cardNum].getCardId());
             }
         }
         public Player Play()
@@ -149,6 +154,7 @@ namespace TexasHoldem.GameModule
             }
 
             Player winner = EvaluateWinner();
+            Logger.LogTurn(null, "Winner: " + winner.PlayerId);
             return winner;
         }
 
@@ -309,6 +315,7 @@ namespace TexasHoldem.GameModule
                 Pot += SmallBlind;
                 player.ChipBalance -= SmallBlind;
                 player.AmountBetOnCurrentRound += SmallBlind;
+                Logger.LogTurn(player, "Smallblind: " + SmallBlind);
             }
         }
 
@@ -321,6 +328,7 @@ namespace TexasHoldem.GameModule
                 Pot += BigBlind;
                 player.ChipBalance -= BigBlind;
                 player.AmountBetOnCurrentRound += BigBlind;
+                Logger.LogTurn(player, "Bigblind: " + BigBlind);
             }
         }
 
@@ -333,6 +341,7 @@ namespace TexasHoldem.GameModule
                 Pot += amount;
                 player.ChipBalance -= amount;
                 player.AmountBetOnCurrentRound += amount;
+                Logger.LogTurn(player, "Bet: " + amount);
                 return true;
             }
             return false;
@@ -347,6 +356,7 @@ namespace TexasHoldem.GameModule
             Pot += CurrentStake;
             player.ChipBalance -= CurrentStake;
             player.AmountBetOnCurrentRound += CurrentStake;
+            Logger.LogTurn(player, "Call: " + CurrentStake);
             return true;
         }
         public bool Check(Player player)
@@ -355,12 +365,14 @@ namespace TexasHoldem.GameModule
             {
                 return Call(player);
             }
+            Logger.LogTurn(player, "Check: ");
             return true;
         }
 
         public bool Fold(Player player)
         {
             player.Folded = true;
+            Logger.LogTurn(player, "Fold: ");
             return true;
         }
     }
