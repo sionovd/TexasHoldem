@@ -228,23 +228,30 @@ namespace TexasHoldem.GameCenterModule
         {
             IGame game = GetGameById(gameID);
             game.StartCounter++;
-            if (game.StartCounter < game.NumOfPlayers)
+            if (game.StartCounter < game.Seats.Count)
                 return false;
-            if (game.NumOfPlayers >= game.Pref.MinPlayers)
+            if (game.Seats.Count >= game.Pref.MinPlayers)
             {
-                Player winner = game.Play();
-                if (game.Pref.ChipPolicy > 0)
-                    return true;
-                User user = userController.GetUserByName(winner.Username);
-                user.MoneyBalance += winner.ChipBalance;
-                if (user.Rank.NumOfCalibrationsLeft > 0)
-                {
-                    user.Rank.NumOfCalibrationsLeft--;
-                }
-                user.Rank.Points += 5;
+                game.Start();
                 return true;
             }
-            throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.NumOfPlayers + " have joined.");
+            throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.Seats.Count + " have joined.");
+        }
+
+        public bool EvaluateEndGame(int gameID)
+        {
+            IGame game = GetGameById(gameID);
+            if (game.Pref.ChipPolicy > 0)
+                return true;
+            Player winner = game.EvaluateWinner();
+            User user = userController.GetUserByName(winner.Username);
+            user.MoneyBalance += winner.ChipBalance;
+            if (user.Rank.NumOfCalibrationsLeft > 0)
+            {
+                user.Rank.NumOfCalibrationsLeft--;
+            }
+            user.Rank.Points += 5;
+            return true;
         }
 
         public bool LeaveGame(string username, int gameID)

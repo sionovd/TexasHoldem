@@ -106,3 +106,4 @@ C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\ob
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.csproj.GenerateResource.Cache
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.exe
 C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.pdb
+C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\Presentation.csprojResolveAssemblyReference.cache

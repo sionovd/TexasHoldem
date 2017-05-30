@@ -13,16 +13,9 @@ namespace TexasHoldem.GameModule
             ChipBalance = chipBalance;
             Username = username;
             Cards = new Card[2];
-            Position = -1;
             AmountBetOnCurrentRound = 0;
-        }
+            Folded = false;
 
-        public Player(string name)//???
-        {
-            counter++;
-            PlayerId = counter;
-            Username = name;
-            Position = -1;
         }
 
         public int GetBestHand(Card[] tableCards)
@@ -49,16 +42,6 @@ namespace TexasHoldem.GameModule
             //either bet, check, call or fold
         }
 
-        public void GetUp()
-        {
-            Position = -1;
-        }
-
-        public void TakeSeat(int pos)
-        {
-            Position = pos;
-        }
-
         public int ChipBalance { get; set; }
 
         public int AmountBetOnCurrentRound { get; set; }
@@ -67,7 +50,6 @@ namespace TexasHoldem.GameModule
 
         public string Username { get; set; }
 
-        public int Position { get; set; }
 
         public int PlayerId { get; set; }
 

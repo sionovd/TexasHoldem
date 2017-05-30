@@ -173,13 +173,17 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.Bet(playerID, gameID, amount);
-                return true;
+                return bridge.Bet(playerID, gameID, amount);
             }
             catch (DomainException e)
             {
                 ErrorLogger.LogError(e);
                 return false;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -187,13 +191,17 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.Call(playerID, gameID);
-                return true;
+                return bridge.Call(playerID, gameID);
             }
             catch (DomainException e)
             {
                 ErrorLogger.LogError(e);
                 return false;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -201,13 +209,17 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.Check(playerID, gameID);
-                return true;
+                return bridge.Check(playerID, gameID);
             }
             catch (DomainException e)
             {
                 ErrorLogger.LogError(e);
                 return false;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -215,13 +227,17 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.Fold(playerID, gameID);
-                return true;
+                return bridge.Fold(playerID, gameID);
             }
             catch (DomainException e)
             {
                 ErrorLogger.LogError(e);
                 return false;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -257,6 +273,11 @@ namespace AcceptanceTests
             {
                 ErrorLogger.LogError(e);
                 return -1;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 

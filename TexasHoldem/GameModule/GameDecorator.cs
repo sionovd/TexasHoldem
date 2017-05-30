@@ -22,9 +22,14 @@ namespace TexasHoldem.GameModule
             return MyGame.AddPlayer(user);
         }
 
-        public Player Play()
+        public void Start()
         {
-            return MyGame.Play();
+            MyGame.Start();
+        }
+
+        public Player EvaluateWinner()
+        {
+            return MyGame.EvaluateWinner();
         }
 
         public bool RemovePlayer(Player player)
@@ -83,7 +88,7 @@ namespace TexasHoldem.GameModule
             set { MyGame.Pref = value; }
         }
 
-        public Player[] Seats
+        public List<Player> Seats
         {
             get { return MyGame.Seats; }
         }
@@ -97,11 +102,6 @@ namespace TexasHoldem.GameModule
         {
             get { return MyGame.Pot; }
             set { MyGame.Pot = value; }
-        }
-
-        public int NumOfPlayers
-        {
-            get { return MyGame.NumOfPlayers; }
         }
 
         public int RoundNumber

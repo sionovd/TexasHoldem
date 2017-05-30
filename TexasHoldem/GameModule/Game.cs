@@ -7,7 +7,8 @@ namespace TexasHoldem.GameModule
     public interface IGame
     {
         Player AddPlayer(User user);
-        Player Play();
+        void Start();
+        Player EvaluateWinner();
         bool RemovePlayer(Player player);
         Spectator AddSpectatingPlayer(User user);
         bool RemoveSpectatingPlayer(Spectator spectator);
@@ -20,10 +21,9 @@ namespace TexasHoldem.GameModule
         Player GetPlayerById(int playerId);
 
         GamePreferences Pref { get; set; }
-        Player[] Seats { get; }
+        List<Player> Seats { get; }
         int Id { get; }
         int Pot { get; set; }
-        int NumOfPlayers { get; }
         int RoundNumber { get; }
         int BigBlind { get; }
         int CurrentStake { get; }
@@ -36,10 +36,9 @@ namespace TexasHoldem.GameModule
         private static int counter = 0;
         private List<Spectator> spectators;
         private Card[] tableCards;
-        public int NumOfPlayers { get; private set; }
         public int Id { get; }
         public GamePreferences Pref { get; set; }
-        public Player[] Seats { get; }
+        public List<Player> Seats { get; }
         public Deck Cards { get; set; }
         public int RoundNumber { get; private set; }
         public int Pot { get; set; }
@@ -49,17 +48,17 @@ namespace TexasHoldem.GameModule
         public bool IsActive { get; }
         public int StartCounter { get; set; }
         public League League { get; set; }
+        public Player PreviousPlayer { get; set; }
         public Game(GamePreferences pref)
         {
             counter++;
             Id = counter;
             Pref = pref;
-            Seats = new Player[pref.MaxPlayers];
+            Seats = new List<Player>();
             spectators = new List<Spectator>();
             tableCards = new Card[5];
             Cards = new Deck();
             Pot = 0;
-            NumOfPlayers = 0;
             BigBlind = Pref.MinBet;
             SmallBlind = BigBlind / 2;
             CurrentStake = 0;
@@ -71,98 +70,80 @@ namespace TexasHoldem.GameModule
         private void DealCards()
         {
             //add cards to players
-            for (int i = 0; i < Seats.Length; i++)
+            for (int i = 0; i < Seats.Count; i++)
             {
-                if(Seats[i] != null)
+                if (Seats[i] != null)
                     Seats[i].AddHand(Cards.GetCard(), Cards.GetCard());
             }
         }
-        private void AddCardToTable(int cardNum)
+        private void AddCardToTable()
         {
-            if (cardNum == 3)
+            if (RoundNumber == 2)
             {
                 tableCards[0] = Cards.GetCard();
                 tableCards[1] = Cards.GetCard();
                 tableCards[2] = Cards.GetCard();
             }
-            else if (cardNum >= 4)
+            else if (RoundNumber >= 3)
             {
-                tableCards[cardNum] = Cards.GetCard();
+                tableCards[RoundNumber] = Cards.GetCard();
             }
         }
-        public Player Play()
-        {
-            bool finishedRound = false;
-            int numOfCardsToShow = 3;
-            int seatIndex = 2;
-            int finishCounter = 0;
 
+        public void Start()
+        {
             DealCards(); // deal 2 cards for each player, take money from each
             PlaceSmallBlind(Seats[0]);
             PlaceBigBlind(Seats[1]);
-            for (RoundNumber = 1; RoundNumber <= 4; RoundNumber++)
-            {
-                while (!finishedRound)
-                {
-                    Player currentPlayer = Seats[seatIndex % Seats.Length];
-                    if (currentPlayer != null)
-                    {
-                        currentPlayer.PlayMove();
-                    }
-                    seatIndex++;
-                    if (seatIndex >= Seats.Length) //check if done round after bets or everybody called/folded/checked and we done round
-                    {
-                        for (int i = 0; i < Seats.Length; i++)
-                        {
-                            if (Seats[i] != null && (Seats[i].ChipBalance == 0 ||
-                                                     Seats[i].Folded))
-                            {
-                                finishCounter++;
-                            }
-                            else if (Seats[i] == null)
-                            {
-                                finishCounter++;
-                            }
-                            else
-                            {
-                                bool finished = true;
-                                for (int j = 0; j < Seats.Length && finished; j++)
-                                {
-                                    if (Seats[j] != null && Seats[i].AmountBetOnCurrentRound < Seats[j].AmountBetOnCurrentRound)
-                                    {
-                                        finished = false;
-                                    }
-                                }
-                                if (finished)
-                                    finishCounter++;
-                            }
-                        }
-                        if (finishCounter == Seats.Length)
-                        {
-                            finishedRound = true;
-                        }
-                    }
-
-                }
-                seatIndex = 0;
-                CurrentStake = 0;
-                AddCardToTable(numOfCardsToShow);
-                numOfCardsToShow++;
-                foreach (Player p in Seats)
-                    if (p != null)
-                        p.AmountBetOnCurrentRound = 0;
-            }
-
-            Player winner = EvaluateWinner();
-            return winner;
+            PreviousPlayer = Seats[1];
+            RoundNumber = 1;
         }
 
-        private Player EvaluateWinner()
+        public void UpdateState()
+        {
+            if (RoundNumber > 4) // should not happen, game must notify players when it ends......
+                return;
+            int finishRoundCounter = 0;
+            for (int i = 0; i < Seats.Count; i++)
+            {
+                if (Seats[i].ChipBalance == 0 || Seats[i].Folded)
+                {
+                    finishRoundCounter++;
+                }
+                else
+                {
+                    bool finished = true;
+                    for (int j = 0; j < Seats.Count && finished; j++)
+                    {
+                        if (Seats[j] != null && Seats[i].AmountBetOnCurrentRound < Seats[j].AmountBetOnCurrentRound)
+                        {
+                            finished = false;
+                        }
+                    }
+                    if (finished)
+                        finishRoundCounter++;
+                }
+            }
+            if (finishRoundCounter == Seats.Count)
+            {
+                RoundNumber++;
+                if (RoundNumber > 4) // should notify players that the game has ended...... and something about the winner
+                    return;
+                CurrentStake = 0;
+                AddCardToTable();
+                foreach (Player p in Seats)
+                        p.AmountBetOnCurrentRound = 0;
+                PreviousPlayer = Seats[Seats.Count-1];
+            }
+        }
+
+
+        public Player EvaluateWinner()
         {
             Player bestHand = null;
             int bestHandScore = 0;
             int currHandScore = 0;
-            for (int i = 0; i < Seats.Length; i++)
+            for (int i = 0; i < Seats.Count; i++)
             {
                 if (Seats[i] != null)
                 {
@@ -201,13 +182,12 @@ namespace TexasHoldem.GameModule
         public bool RemovePlayer(Player player)
         {
             Player p;
-            for (int i = 0; i < Seats.Length; i++)
+            for (int i = 0; i < Seats.Count; i++)
             {
                 p = Seats[i];
                 if (p != null && p.PlayerId == player.PlayerId)
                 {
-                    Seats[i] = null;
-                    player.GetUp();
+                    Seats.Remove(p);
                     return true;
                 }
             }
@@ -220,7 +200,7 @@ namespace TexasHoldem.GameModule
                 throw new LeagueMismatchException("The user " + user.Username + " is in league \"" + user.League.Name + "\" but the game is in league \"" + this.League.Name + "\".");
             if (IsActive)
                 throw new GameAlreadyStartedException("The user " + user.Username + " tried to join game #" + Id + " but the game has already started.");
-            if (NumOfPlayers == Pref.MaxPlayers)
+            if (Seats.Count == Pref.MaxPlayers)
                 throw new FullTableException();
             Player p;
             if (Pref.ChipPolicy == 0)
@@ -229,24 +209,18 @@ namespace TexasHoldem.GameModule
                     throw new notEnoughMoneyException(user.MoneyBalance.ToString(), Pref.BuyIn.ToString());
                 int m = user.DecreaseMoney(Pref.BuyIn);
                 p = new Player(m, user.Username);
-                p.TakeSeat(AddPlayerToSeat(p));
-                NumOfPlayers++;
+                AddPlayerToSeat(p);
                 return p;
             }
             p = new Player(Pref.ChipPolicy, user.Username);
-            p.TakeSeat(AddPlayerToSeat(p));
-            NumOfPlayers++;
+            AddPlayerToSeat(p);
             return p;
         }
 
         private int AddPlayerToSeat(Player player)
         {
-            for (int i = 0; i < Seats.Length; i++)
-                if (Seats[i] == null)
-                {
-                    Seats[i] = player;
-                    return i;
-                }
+            if (Seats.Count < Pref.MaxPlayers)
+                Seats.Add(player);
             return -1;
         }
 
@@ -273,15 +247,6 @@ namespace TexasHoldem.GameModule
             return false;
         }
 
-
-        public bool IsSpectatorExist(Spectator spec)
-        {
-            foreach (Spectator s in spectators)
-                if (s.Id == spec.Id)
-                    return true;
-            return false;
-        }
-
         public bool IsSpectatorExist(string name)
         {
             foreach (Spectator s in spectators)
@@ -289,15 +254,6 @@ namespace TexasHoldem.GameModule
                     return true;
             return false;
         }
-
-        public bool IsPlayerExist(Player player)
-        {
-            foreach (Player p in Seats)
-                if (p != null && p.PlayerId == player.PlayerId)
-                    return true;
-            return false;
-        }
-
 
         public bool IsPlayerExist(string name)
         {
@@ -333,6 +289,8 @@ namespace TexasHoldem.GameModule
 
         public bool Bet(Player player, int amount)
         {
+            if (!IsCurrentPlayer(player))
+                return false;
             int balance = player.ChipBalance;
             if (balance >= amount && amount >= CurrentStake || amount == balance)
             {
@@ -340,6 +298,8 @@ namespace TexasHoldem.GameModule
                 Pot += amount;
                 player.ChipBalance -= amount;
                 player.AmountBetOnCurrentRound += amount;
+                PreviousPlayer = player;
+                UpdateState();
                 return true;
             }
             return false;
@@ -347,27 +307,54 @@ namespace TexasHoldem.GameModule
 
         public bool Call(Player player)
         {
+            if (!IsCurrentPlayer(player))
+                return false;
             if (CurrentStake == 0) // no bet was made yet
                 return false;
-            if (player.ChipBalance < CurrentStake) // not enough money
+            int amount = CurrentStake - player.AmountBetOnCurrentRound;
+            if (player.ChipBalance < amount) // not enough money
                 return false;
-            Pot += CurrentStake;
-            player.ChipBalance -= CurrentStake;
-            player.AmountBetOnCurrentRound += CurrentStake;
+            
+            Pot += amount;
+            player.ChipBalance -= amount;
+            player.AmountBetOnCurrentRound += amount;
+            PreviousPlayer = player;
+            UpdateState();
             return true;
         }
         public bool Check(Player player)
         {
+            if (!IsCurrentPlayer(player))
+                return false;
             if (RoundNumber == 1)
             {
                 return Call(player);
             }
+            PreviousPlayer = player;
+            UpdateState();
             return true;
         }
 
         public bool Fold(Player player)
         {
+            if (!IsCurrentPlayer(player))
+                return false;
             player.Folded = true;
+            PreviousPlayer = player;
+            UpdateState();
+            return true;
+        }
+
+        private bool IsCurrentPlayer(Player player)
+        {
+            Player currentPlayer = Seats[(Seats.IndexOf(PreviousPlayer) + 1) % Seats.Count];
+            while (currentPlayer.Folded)
+            {
+                PreviousPlayer = currentPlayer;
+                currentPlayer = Seats[(Seats.IndexOf(PreviousPlayer) + 1) % Seats.Count];
+            }
+            if (player.PlayerId != currentPlayer.PlayerId)
+                return false;
             return true;
         }
     }

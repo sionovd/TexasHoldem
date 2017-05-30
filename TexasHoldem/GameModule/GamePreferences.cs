@@ -6,9 +6,9 @@
         public GamePreferences()
         {
             GameType = 1;
-            BuyIn = 5;
+            BuyIn = 0;
             ChipPolicy = 100;
-            MinBet = 5;
+            MinBet = 10;
             MaxPlayers = 9;
             MinPlayers = 2;
             SpectateGame = true;

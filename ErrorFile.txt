@@ -64,3 +64,10 @@ Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String usernam
    at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
 ==================================== 5/24/2017 3:44:17 AM
 
+==================================== 5/30/2017 11:41:24 AM
+Error Message: can't open room, because wallet balance 0 lower than buy in policy: 5
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 183
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 5/30/2017 11:41:24 AM
+
