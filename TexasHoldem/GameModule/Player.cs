@@ -36,11 +36,6 @@ namespace TexasHoldem.GameModule
         {
             Cards = new[] { c1, c2 };
         }
-        
-        public void PlayMove()
-        {
-            //either bet, check, call or fold
-        }
 
         public int ChipBalance { get; set; }
 
@@ -48,8 +43,9 @@ namespace TexasHoldem.GameModule
 
         public bool Folded { get; set; }
 
-        public string Username { get; set; }
+        public bool MadeMove { get; set; }
 
+        public string Username { get; set; }
 
         public int PlayerId { get; set; }
 

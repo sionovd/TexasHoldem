@@ -73,7 +73,7 @@ namespace AcceptanceTests
             Assert.IsTrue(Check(player1, game1));
             Assert.IsTrue(Check(player2, game1));
             Assert.IsTrue(Check(player3, game1));
-            Assert.IsTrue(Bet(player4, game1, 25));
+            Assert.IsTrue(Bet(player4, game1, 10));
             Assert.IsTrue(Fold(player1, game1));
             Assert.IsTrue(Fold(player2, game1));
             Assert.IsTrue(Fold(player3, game1));

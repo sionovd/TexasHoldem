@@ -106,6 +106,8 @@ namespace TexasHoldem.GameModule
             int finishRoundCounter = 0;
             for (int i = 0; i < Seats.Count; i++)
             {
+                if (!Seats[i].MadeMove && !Seats[i].Folded)
+                    return;
                 if (Seats[i].ChipBalance == 0 || Seats[i].Folded)
                 {
                     finishRoundCounter++;
@@ -115,7 +117,7 @@ namespace TexasHoldem.GameModule
                     bool finished = true;
                     for (int j = 0; j < Seats.Count && finished; j++)
                     {
-                        if (Seats[j] != null && Seats[i].AmountBetOnCurrentRound < Seats[j].AmountBetOnCurrentRound)
+                        if (Seats[i].AmountBetOnCurrentRound < Seats[j].AmountBetOnCurrentRound)
                         {
                             finished = false;
                         }
@@ -124,6 +126,7 @@ namespace TexasHoldem.GameModule
                         finishRoundCounter++;
                 }
             }
+
             if (finishRoundCounter == Seats.Count)
             {
                 RoundNumber++;
@@ -132,7 +135,10 @@ namespace TexasHoldem.GameModule
                 CurrentStake = 0;
                 AddCardToTable();
                 foreach (Player p in Seats)
-                        p.AmountBetOnCurrentRound = 0;
+                {
+                    p.MadeMove = false;
+                    p.AmountBetOnCurrentRound = 0;
+                }
                 PreviousPlayer = Seats[Seats.Count-1];
             }
         }
@@ -284,6 +290,7 @@ namespace TexasHoldem.GameModule
                 Pot += BigBlind;
                 player.ChipBalance -= BigBlind;
                 player.AmountBetOnCurrentRound += BigBlind;
+                player.MadeMove = true;
             }
         }
 
@@ -299,6 +306,7 @@ namespace TexasHoldem.GameModule
                 player.ChipBalance -= amount;
                 player.AmountBetOnCurrentRound += amount;
                 PreviousPlayer = player;
+                player.MadeMove = true;
                 UpdateState();
                 return true;
             }
@@ -319,6 +327,7 @@ namespace TexasHoldem.GameModule
             player.ChipBalance -= amount;
             player.AmountBetOnCurrentRound += amount;
             PreviousPlayer = player;
+            player.MadeMove = true;
             UpdateState();
             return true;
         }
@@ -331,6 +340,7 @@ namespace TexasHoldem.GameModule
                 return Call(player);
             }
             PreviousPlayer = player;
+            player.MadeMove = true;
             UpdateState();
             return true;
         }
@@ -341,6 +351,7 @@ namespace TexasHoldem.GameModule
                 return false;
             player.Folded = true;
             PreviousPlayer = player;
+            player.MadeMove = true;
             UpdateState();
             return true;
         }
