@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\obj\Debug\
+C:\Users\avner\git\TexasHoldem\Presentation\obj\Debug\
 Presentation
 none
 false
 DEBUG;TRACE
-C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\Presentation\App.xaml
+C:\Users\avner\git\TexasHoldem\Presentation\App.xaml
 211213618687
 
-29-524824331
-141000879902
+29-454253225
+14-926486520
 CreateGame.xaml;GameWindow.xaml;JoinGameWindow.xaml;MainMenu.xaml;MainWindow.xaml;SearchToJoinWindow.xaml;SearchToSpectateWindow.xaml;SpectateGameWindow.xaml;UserControlJoinGame.xaml;UserControlMenu.xaml;ProfileWindow.xaml;UserControlCreateGame.xaml;UserControlGame.xaml;UserControlProfile.xaml;UserControlReplay.xaml;UserControlSearchToJoin.xaml;UserControlSearchToSpectate.xaml;UserControlSpectate.xaml;UserControlSpectateGame.xaml;UserControlWatchReplayes.xaml;WatchReplayesWindow.xaml;
 
 True
