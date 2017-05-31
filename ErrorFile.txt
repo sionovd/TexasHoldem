@@ -71,3 +71,8 @@ Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String use
    at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
 ==================================== 5/30/2017 11:41:24 AM
 
+==================================== 31/05/2017 11:43:33
+Error Message: Exception of type 'TexasHoldem.DomainException' was thrown.
+Stack Trace: 
+==================================== 31/05/2017 11:43:33
+
