@@ -121,8 +121,6 @@ namespace TexasHoldem.GameCenterModule
 
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
-
-            //GamePreferences pref = new GamePreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame);
             User user = userController.GetUserByName(username);
             GamePreferences pref = new GamePreferences();
             IGame game = new Game(pref);

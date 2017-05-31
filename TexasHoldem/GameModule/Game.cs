@@ -130,8 +130,13 @@ namespace TexasHoldem.GameModule
             if (finishRoundCounter == Seats.Count)
             {
                 RoundNumber++;
-                if (RoundNumber > 4) // should notify players that the game has ended...... and something about the winner
+                if (RoundNumber > 4)
+                {
+                    Player winner = EvaluateWinner();
+                    
+                    // should notify players that the game has ended...... and something about the winner
                     return;
+                }
                 CurrentStake = 0;
                 AddCardToTable();
                 foreach (Player p in Seats)
@@ -149,9 +154,19 @@ namespace TexasHoldem.GameModule
             Player bestHand = null;
             int bestHandScore = 0;
             int currHandScore = 0;
+
+            Console.WriteLine("Table cards: " + tableCards[0].getCardId() + " " + tableCards[1].getCardId() + " " +
+                              tableCards[2].getCardId() + " " + tableCards[3].getCardId() + " " +
+                              tableCards[4].getCardId());
+            Console.WriteLine();
+            foreach (var player in Seats)
+            {
+                Console.WriteLine(player.Username + " had the following hand:  " + player.Cards[0].getCardId() + " " + player.Cards[1].getCardId());   
+            }
+            Console.WriteLine();
             for (int i = 0; i < Seats.Count; i++)
             {
-                if (Seats[i] != null)
+                if (!Seats[i].Folded)
                 {
                     currHandScore = Seats[i].GetBestHand(tableCards);
                     if (currHandScore > bestHandScore)
@@ -162,6 +177,7 @@ namespace TexasHoldem.GameModule
                 }
             }
             bestHand.ChipBalance = Pot;
+            Console.WriteLine("\nThe winner is: " + bestHand.Username);
             return bestHand;
         }
 

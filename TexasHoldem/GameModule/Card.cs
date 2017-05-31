@@ -1,4 +1,6 @@
-﻿namespace TexasHoldem.GameModule
+﻿using System;
+
+namespace TexasHoldem.GameModule
 {
     public enum Cards
     {
@@ -16,18 +18,27 @@
         HeartKing, DiamondKing, SpadesKing, ClubsKing,
         HeartAce, DiamondAce, SpadesAce, ClubsAce
     };
-    public class Card
+    public class Card : IComparable<Card>
     {
-        private Cards card = Cards.HeartTwo;
+        private Cards cards;
 
-        public Card(Cards card)
+        public Card(Cards cards)
         {
-            this.card = card;
+            this.cards = cards;
         }
 
         public Cards getCardId()
         {
-            return this.card;
+            return this.cards;
+        }
+
+        public int CompareTo(Card other)
+        {
+            if (this.getCardId() > other.getCardId())
+                return 1;
+            if (this.getCardId() == other.getCardId())
+                return 0;
+            return -1;
         }
     }
 }

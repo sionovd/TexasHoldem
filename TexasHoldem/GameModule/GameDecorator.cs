@@ -47,7 +47,7 @@ namespace TexasHoldem.GameModule
             return MyGame.RemoveSpectatingPlayer(spectator);
         }
 
-        public bool Bet(Player player, int amount)
+        public virtual bool Bet(Player player, int amount)
         {
             return MyGame.Bet(player, amount);
         }
@@ -146,6 +146,13 @@ namespace TexasHoldem.GameModule
         {
             this.MyGame.Pref.MinBet = minBet;
         }
+
+        public override bool Bet(Player player, int amount)
+        {
+            if (MyGame.Pref.MinBet <= amount)
+                return base.Bet(player, amount);
+            return false;
+        }
     }
 
     class MinPlayersDecorator : GameDecorator
@@ -154,6 +161,7 @@ namespace TexasHoldem.GameModule
         {
             this.MyGame.Pref.MinPlayers = minPlayers;
         }
+
     }
 
     class MaxPlayersDecorator : GameDecorator
@@ -187,7 +195,7 @@ namespace TexasHoldem.GameModule
             this.MyGame.Pref.GameType = 0;
         }
 
-        public new bool Bet(Player player, int amount)
+        public override bool Bet(Player player, int amount)
         {
             if (this.MyGame.RoundNumber <= 2 && amount == this.MyGame.BigBlind)
             {
@@ -208,7 +216,7 @@ namespace TexasHoldem.GameModule
             this.MyGame.Pref.GameType = 2;
         }
 
-        public new bool Bet(Player player, int amount)
+        public override bool Bet(Player player, int amount)
         {
             if (amount >= this.MyGame.CurrentStake && amount <= this.MyGame.Pot + 2 * this.MyGame.CurrentStake)
                 return base.Bet(player, amount);

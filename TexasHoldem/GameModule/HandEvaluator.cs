@@ -29,23 +29,53 @@ namespace TexasHoldem.GameModule
             if (hand.Length != 7)
                 return -1;
             if (isRoyalFlush())
+            {
+                Console.WriteLine("royal flush");
                 return getRoyalFlush();
+            }
             if (isStraightFlush())
+            {
+                Console.WriteLine("straight flush");
                 return getStraightFlush();
+            }
             if (isFourOfAKind())
+            {
+                Console.WriteLine("four of a kind");
                 return getFourOfAKind();
+            }
             if (isFullHouse())
+            {
+                Console.WriteLine("full house");
                 return getFullHouse();
+            }
             if (isFlush())
+            {
+                Console.WriteLine("flush");
                 return getFlush();
+            }
             if (isStraight())
+            {
+                Console.WriteLine("straight");
                 return getStraight();
+            }
             if (isThreeOfAKind())
+            {
+                Console.WriteLine("three of a kind");
                 return getThreeOfAKind();
+            }
+
             if (isTwoPair())
+            {
+                Console.WriteLine("two pair");
                 return getTwoPair();
+            }
+
             if (isOnePair())
+            {
+                Console.WriteLine("one pair");
                 return getOnePair();
+            }
+            Console.WriteLine("high card");
             return getHighCard();
         }
 

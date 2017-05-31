@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TexasHoldem.GameModule
 {
@@ -29,6 +30,7 @@ namespace TexasHoldem.GameModule
             unionCards[6] = this.Cards[1];
             // need to evaluate Hand
             HandEvaluator handEval = new HandEvaluator(unionCards);
+            Console.Write(this.Username + "'s best hand is: ");
             return handEval.Evaluate();
         }
 

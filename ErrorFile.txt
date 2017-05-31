@@ -71,3 +71,24 @@ Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String use
    at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
 ==================================== 5/30/2017 11:41:24 AM
 
+==================================== 5/31/2017 4:45:10 PM
+Error Message: Failed to compare two elements in the array.
+Stack Trace:    at System.Collections.Generic.ArraySortHelper`1.Sort(T[] keys, Int32 index, Int32 length, IComparer`1 comparer)
+   at System.Array.Sort[T](T[] array, Int32 index, Int32 length, IComparer`1 comparer)
+   at System.Array.Sort[T](T[] array)
+   at TexasHoldem.GameModule.HandEvaluator..ctor(Card[] hand) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\HandEvaluator.cs:line 24
+   at TexasHoldem.GameModule.Player.GetBestHand(Card[] tableCards) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Player.cs:line 31
+   at TexasHoldem.GameModule.Game.EvaluateWinner() in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Game.cs:line 161
+   at TexasHoldem.GameModule.Game.UpdateState() in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Game.cs:line 135
+   at TexasHoldem.GameModule.Game.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Game.cs:line 349
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameCenterModule.GameCenter.Check(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 288
+   at TexasHoldem.ServiceLayer.Service.Check(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 79
+   at AcceptanceTests.GameSystemTest.Check(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 212
+==================================== 5/31/2017 4:45:10 PM
+

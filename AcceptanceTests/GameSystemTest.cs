@@ -216,11 +216,7 @@ namespace AcceptanceTests
                 ErrorLogger.LogError(e);
                 return false;
             }
-            catch (Exception e)
-            {
-                ErrorLogger.LogError(e);
-                throw e;
-            }
+           
         }
 
         public bool Fold(int playerID, int gameID)
