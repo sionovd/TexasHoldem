@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		ErrorFile.txt = ErrorFile.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "..\..\Documents\Visual Studio 2013\Projects\Communication\Communication\Communication.csproj", "{0299664C-D8BA-4932-A613-559CDA7CCFF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "Communication\Communication\Communication.csproj", "{0299664C-D8BA-4932-A613-559CDA7CCFF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
