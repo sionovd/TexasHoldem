@@ -16,5 +16,5 @@ C:\Users\avner\git\TexasHoldem\Presentation\App.xaml
 14-926486520
 CreateGame.xaml;GameWindow.xaml;JoinGameWindow.xaml;MainMenu.xaml;MainWindow.xaml;SearchToJoinWindow.xaml;SearchToSpectateWindow.xaml;SpectateGameWindow.xaml;UserControlJoinGame.xaml;UserControlMenu.xaml;ProfileWindow.xaml;UserControlCreateGame.xaml;UserControlGame.xaml;UserControlProfile.xaml;UserControlReplay.xaml;UserControlSearchToJoin.xaml;UserControlSearchToSpectate.xaml;UserControlSpectate.xaml;UserControlSpectateGame.xaml;UserControlWatchReplayes.xaml;WatchReplayesWindow.xaml;
 
-True
+False
 
