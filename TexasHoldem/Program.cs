@@ -12,6 +12,7 @@ namespace TexasHoldem
         static void Main()
         {
             Console.WriteLine("hi");
+            Console.ReadKey();
             ErrorLogger.LogError(new DomainException());
 
         }

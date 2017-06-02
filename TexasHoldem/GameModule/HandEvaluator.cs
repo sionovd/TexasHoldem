@@ -2,7 +2,7 @@
 
 namespace TexasHoldem.GameModule
 {
-    class HandEvaluator
+    public class HandEvaluator
     {
         private Card[] hand;
         private Card[] onlyDealed;
@@ -343,6 +343,7 @@ namespace TexasHoldem.GameModule
                         cardScore = (int)hand[j].getCardId() / 4;
                     }
                 }
+                incrementalInd = 1;
             }
             return cardScore + STRAIGHT;
         }
@@ -976,6 +977,7 @@ namespace TexasHoldem.GameModule
                         return true;
                     }
                 }
+                incrementalInd = 1;
             }
             return false;
         }
@@ -998,6 +1000,7 @@ namespace TexasHoldem.GameModule
                         return true;
                     }
                 }
+                incrementalInd = 1;
             }
             return false;
         }

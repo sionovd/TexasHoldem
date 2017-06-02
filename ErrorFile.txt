@@ -92,3 +92,316 @@ Stack Trace:    at System.Collections.Generic.ArraySortHelper`1.Sort(T[] keys, I
    at AcceptanceTests.GameSystemTest.Check(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 212
 ==================================== 5/31/2017 4:45:10 PM
 
+==================================== 02-Jun-17 14:49:28
+Error Message: Exception of type 'TexasHoldem.DomainException' was thrown.
+Stack Trace: 
+==================================== 02-Jun-17 14:49:28
+
+==================================== 02-Jun-17 14:49:57
+Error Message: Exception of type 'TexasHoldem.DomainException' was thrown.
+Stack Trace: 
+==================================== 02-Jun-17 14:49:57
+
+==================================== 02-Jun-17 14:50:20
+Error Message: Exception of type 'TexasHoldem.DomainException' was thrown.
+Stack Trace: 
+==================================== 02-Jun-17 14:50:20
+
+==================================== 02-Jun-17 15:13:10
+Error Message: Exception of type 'TexasHoldem.DomainException' was thrown.
+Stack Trace: 
+==================================== 02-Jun-17 15:13:10
+
+==================================== 02-Jun-17 15:21:47
+Error Message: Exception of type 'TexasHoldem.DomainException' was thrown.
+Stack Trace: 
+==================================== 02-Jun-17 15:21:47
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Invalid game type: -1 , expected value between 0 and 2.
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 175
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Invalid game policy: -100 , expected not negative value.
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 133
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Invalid chip policy: -100 , expected not negative value.
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 157
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: invalid min bet: -5, expected positive value
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 139
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: can't open room, because wallet balance 0 lower than buy in policy: 100
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 181
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: can't open room, because wallet balance 0 lower than buy in policy: 100
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 181
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: can't open room, because wallet balance 0 lower than buy in policy: 100
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 181
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: invalid min bet: 0, expected positive value
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 139
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: invalid max bet: 10, expected value <= 9
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 151
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.NotAPasswordException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.User..ctor(String username, String password, String email, Boolean isAdmin) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\User.cs:line 36
+   at TexasHoldem.UserModule.UserController.EditProfile(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 69
+   at TexasHoldem.GameCenterModule.GameCenter.EditProfile(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 204
+   at TexasHoldem.ServiceLayer.Service.EditProfile(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 34
+   at AcceptanceTests.GameSystemTest.EditProfile(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 56
+   at TexasHoldem.GameCenterModule.GameCenter.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 198
+   at TexasHoldem.ServiceLayer.Service.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 29
+   at AcceptanceTests.GameSystemTest.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 38
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 56
+   at TexasHoldem.GameCenterModule.GameCenter.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 198
+   at TexasHoldem.ServiceLayer.Service.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 29
+   at AcceptanceTests.GameSystemTest.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 38
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.NoUserNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 79
+   at TexasHoldem.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 209
+   at TexasHoldem.ServiceLayer.Service.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 39
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 68
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.NoUserNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 79
+   at TexasHoldem.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 209
+   at TexasHoldem.ServiceLayer.Service.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 39
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 68
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.NoUserNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 92
+   at TexasHoldem.GameCenterModule.GameCenter.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 214
+   at TexasHoldem.ServiceLayer.Service.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 44
+   at AcceptanceTests.GameSystemTest.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 82
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.NotAPasswordException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 81
+   at TexasHoldem.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 209
+   at TexasHoldem.ServiceLayer.Service.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 39
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 68
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.NotAPasswordException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 81
+   at TexasHoldem.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 209
+   at TexasHoldem.ServiceLayer.Service.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 39
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 68
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.NoUserNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 92
+   at TexasHoldem.GameCenterModule.GameCenter.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 214
+   at TexasHoldem.ServiceLayer.Service.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 44
+   at AcceptanceTests.GameSystemTest.Logout(String username) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 82
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 192
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 56
+   at TexasHoldem.GameCenterModule.GameCenter.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 198
+   at TexasHoldem.ServiceLayer.Service.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 29
+   at AcceptanceTests.GameSystemTest.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 38
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 56
+   at TexasHoldem.GameCenterModule.GameCenter.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 198
+   at TexasHoldem.ServiceLayer.Service.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 29
+   at AcceptanceTests.GameSystemTest.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 38
+==================================== 02-Jun-17 15:22:38
+
+==================================== 02-Jun-17 15:22:38
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 56
+   at TexasHoldem.GameCenterModule.GameCenter.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 198
+   at TexasHoldem.ServiceLayer.Service.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 29
+   at AcceptanceTests.GameSystemTest.RegisterWithMoney(String username, String password, String email, Int32 money) in C:\Users\Leon\Documents\GitHub\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 38
+==================================== 02-Jun-17 15:22:38
+

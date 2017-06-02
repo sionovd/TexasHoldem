@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DeckTests.cs" />
     <Compile Include="GameUnitTest.cs" />
+    <Compile Include="HandEvaluatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTestUserController.cs" />
   </ItemGroup>
