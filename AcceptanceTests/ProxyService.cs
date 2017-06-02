@@ -79,6 +79,11 @@ namespace AcceptanceTests
             return true;
         }
 
+        public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
+        {
+            return 1;
+        }
+
         public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
             bool isSpectatable)
         {

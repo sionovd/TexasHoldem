@@ -28,7 +28,7 @@ namespace UnitTestProject1
         public void RegisterTest3()
         {
             uc.Register("Mair", "wow", "ska45@gmail.com");
-            Assert.IsFalse(uc.GetUserByName("Mair").getAdmin());
+            Assert.IsFalse(uc.GetUserByName("Mair").Admin);
         }
 
         [TestMethod]

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TexasHoldem.GameModule
 {
@@ -13,16 +14,9 @@ namespace TexasHoldem.GameModule
             ChipBalance = chipBalance;
             Username = username;
             Cards = new Card[2];
-            Position = -1;
             AmountBetOnCurrentRound = 0;
-        }
+            Folded = false;
 
-        public Player(string name)//???
-        {
-            counter++;
-            PlayerId = counter;
-            Username = name;
-            Position = -1;
         }
 
         public int GetBestHand(Card[] tableCards)
@@ -36,27 +30,13 @@ namespace TexasHoldem.GameModule
             unionCards[6] = this.Cards[1];
             // need to evaluate Hand
             HandEvaluator handEval = new HandEvaluator(unionCards);
+            Console.Write(this.Username + "'s best hand is: ");
             return handEval.Evaluate();
         }
 
-        public void AddHand(int GameId, Card c1, Card c2)
+        public void AddHand(Card c1, Card c2)
         {
             Cards = new[] { c1, c2 };
-        }
-        
-        public void PlayMove()
-        {
-            //either bet, check, call or fold
-        }
-
-        public void GetUp()
-        {
-            Position = -1;
-        }
-
-        public void TakeSeat(int pos)
-        {
-            Position = pos;
         }
 
         public int ChipBalance { get; set; }
@@ -65,9 +45,9 @@ namespace TexasHoldem.GameModule
 
         public bool Folded { get; set; }
 
-        public string Username { get; set; }
+        public bool MadeMove { get; set; }
 
-        public int Position { get; set; }
+        public string Username { get; set; }
 
         public int PlayerId { get; set; }
 

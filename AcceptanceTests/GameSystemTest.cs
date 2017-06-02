@@ -24,8 +24,9 @@ namespace AcceptanceTests
                 bridge.Register(username, password, email);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -37,8 +38,9 @@ namespace AcceptanceTests
                 bridge.RegisterWithMoney(username, password, email, money);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -50,8 +52,9 @@ namespace AcceptanceTests
                 bridge.EditProfile(username, password, email);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -65,8 +68,9 @@ namespace AcceptanceTests
                 bridge.Login(username, password);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -78,8 +82,9 @@ namespace AcceptanceTests
                 bridge.Logout(username);
                 return true;
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -106,15 +111,34 @@ namespace AcceptanceTests
             }
         }
 
+        public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
+        {
+            try
+            {
+                int gameID = bridge.CreateGame(username, preferenceList);
+                return gameID;
+            }
+            catch (DomainException e)
+            {
+                ErrorLogger.LogError(e);
+                return -1;
+            }
+        }
+
+        public bool StartGame(string username, int gameID)
+        {
+            return bridge.StartGame(username, gameID);
+        }
+
         public int JoinGame(string username, int gameID)
         {
             try
             {
                 return bridge.JoinGame(username, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
-                //if e == joingame exception return -2, or -3, or -4...
+                ErrorLogger.LogError(e);
                 return -1;
             }
         }
@@ -125,8 +149,9 @@ namespace AcceptanceTests
             {
                 return bridge.LeaveGame(playerID, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -137,8 +162,9 @@ namespace AcceptanceTests
             {
                 return bridge.LeaveGame(username, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }
@@ -147,12 +173,17 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.Bet(playerID, gameID, amount);
-                return true;
+                return bridge.Bet(playerID, gameID, amount);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -160,12 +191,17 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.Call(playerID, gameID);
-                return true;
+                return bridge.Call(playerID, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -173,25 +209,31 @@ namespace AcceptanceTests
         {
             try
             {
-                bridge.Check(playerID, gameID);
-                return true;
+                return bridge.Check(playerID, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
+           
         }
 
         public bool Fold(int playerID, int gameID)
         {
             try
             {
-                bridge.Fold(playerID, gameID);
-                return true;
+                return bridge.Fold(playerID, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -223,9 +265,15 @@ namespace AcceptanceTests
             {
                 return bridge.SpectateGame(username, gameID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return -1;
+            }
+            catch (Exception e)
+            {
+                ErrorLogger.LogError(e);
+                throw e;
             }
         }
 
@@ -235,8 +283,9 @@ namespace AcceptanceTests
             {
                 return bridge.ReplayGame(username, gameLogID);
             }
-            catch (DomainException)
+            catch (DomainException e)
             {
+                ErrorLogger.LogError(e);
                 return false;
             }
         }

@@ -108,8 +108,8 @@ namespace TexasHoldem.GameCenterModule
                 throw new illegalGapPlayersException(minPlayers.ToString(), maxPlayers.ToString());
             if (maxPlayers > 9)
                 throw new illegalMaxPlayersException(maxPlayers.ToString());
-            if (user.getmoneyBalance() < buyIn)
-                throw new notEnoughMoneyException(user.getmoneyBalance().ToString(), buyIn.ToString());
+            if (user.MoneyBalance < buyIn)
+                throw new notEnoughMoneyException(user.MoneyBalance.ToString(), buyIn.ToString());
             //GamePreferences pref = new GamePreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame);
             GamePreferences pref = new GamePreferences();
             Game game = new Game(pref);
@@ -121,20 +121,46 @@ namespace TexasHoldem.GameCenterModule
 
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
-
-            //GamePreferences pref = new GamePreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame);
             User user = userController.GetUserByName(username);
             GamePreferences pref = new GamePreferences();
             IGame game = new Game(pref);
+            
             foreach (var pair in preferenceList)
             {
                 if (pair.Key == "buyIn")
                 {
+                    if (pair.Value < 0)  //real money and has to be equal or greater than zero
+                        throw new illegalbuyInException(pair.Value.ToString());
                     game = new BuyInDecorator(game, pair.Value);
+                }
+                if (pair.Key == "minBet")
+                {
+                    if (pair.Value <= 0)
+                        throw new illegalMinBetException(pair.Value.ToString());
+                    game = new MinBetDecorator(game, pair.Value);
+                }
+                if (pair.Key == "minPlayers")
+                {
+                    if (pair.Value > game.Pref.MaxPlayers)
+                        throw new illegalGapPlayersException(pair.Value.ToString(), game.Pref.MaxPlayers.ToString());
+                    game = new MinPlayersDecorator(game, pair.Value);
                 }
                 if (pair.Key == "maxPlayers")
                 {
+                    if (pair.Value > 9)
+                        throw new illegalMaxPlayersException(pair.Value.ToString());
                     game = new MaxPlayersDecorator(game, pair.Value);
+                }
+                if (pair.Key == "chipPolicy")
+                {
+                    if (pair.Value < 0)
+                        throw new illegalChipPolicyException(pair.Value.ToString());
+                    game = new ChipPolicyDecorator(game, pair.Value);
+                }
+                if (pair.Key == "spectateGame")
+                {
+                    bool spectateGame = pair.Value == 1;
+                    game = new SpectateGameDecorator(game, spectateGame);
                 }
                 if (pair.Key == "gameType" && pair.Value == 0)
                 {
@@ -144,10 +170,17 @@ namespace TexasHoldem.GameCenterModule
                 {
                     game = new PotLimitHoldemDecorator(game);
                 }
+                if (pair.Key == "gameType" && (pair.Value < 0 || pair.Value > 2))
+                {
+                    throw new illegalGameTypeException(pair.Value.ToString());
+                }
 
-                // to be finished later....
+                // can be extended....
             }
+            if (user.MoneyBalance < game.Pref.BuyIn)
+                throw new notEnoughMoneyException(user.MoneyBalance.ToString(), game.Pref.BuyIn.ToString());
             game.AddPlayer(user);
+            game.League = user.League;
             games.Add(game.Id, game);
             db.AddGame(game);
             return game.Id;
@@ -192,16 +225,31 @@ namespace TexasHoldem.GameCenterModule
         public bool StartGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
-            if (game.NumOfPlayers >= game.Pref.MinPlayers)
+            game.StartCounter++;
+            if (game.StartCounter < game.Seats.Count)
+                return false;
+            if (game.Seats.Count >= game.Pref.MinPlayers)
             {
-                Player winner = game.Play();
-                if (game.Pref.ChipPolicy > 0)
-                    return true;
-                User user = userController.GetUserByName(winner.Username);
-                user.setmoneyBalance(winner.ChipBalance);
+                game.Start();
                 return true;
             }
-            throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.NumOfPlayers + " have joined.");
+            throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.Seats.Count + " have joined.");
+        }
+
+        public bool EvaluateEndGame(int gameID)
+        {
+            IGame game = GetGameById(gameID);
+            if (game.Pref.ChipPolicy > 0)
+                return true;
+            Player winner = game.EvaluateWinner();
+            User user = userController.GetUserByName(winner.Username);
+            user.MoneyBalance += winner.ChipBalance;
+            if (user.Rank.NumOfCalibrationsLeft > 0)
+            {
+                user.Rank.NumOfCalibrationsLeft--;
+            }
+            user.Rank.Points += 5;
+            return true;
         }
 
         public bool LeaveGame(string username, int gameID)
