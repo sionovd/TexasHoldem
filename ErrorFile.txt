@@ -1,0 +1,94 @@
+==================================== 5/24/2017 3:35:05 AM
+Error Message: Exception of type 'TexasHoldem.NotAPasswordException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.User..ctor(String username, String password, String email, Boolean isAdmin) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\User.cs:line 36
+   at TexasHoldem.UserModule.UserController.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 69
+   at TexasHoldem.GameCenterModule.GameCenter.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 206
+   at TexasHoldem.ServiceLayer.Service.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 34
+   at AcceptanceTests.GameSystemTest.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 50
+==================================== 5/24/2017 3:35:05 AM
+
+==================================== 5/24/2017 3:39:33 AM
+Error Message: Exception of type 'TexasHoldem.NotAPasswordException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.User..ctor(String username, String password, String email, Boolean isAdmin) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\User.cs:line 36
+   at TexasHoldem.UserModule.UserController.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 69
+   at TexasHoldem.GameCenterModule.GameCenter.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 206
+   at TexasHoldem.ServiceLayer.Service.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 34
+   at AcceptanceTests.GameSystemTest.EditProfile(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 50
+==================================== 5/24/2017 3:39:33 AM
+
+==================================== 5/24/2017 3:43:38 AM
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 194
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 5/24/2017 3:43:38 AM
+
+==================================== 5/24/2017 3:43:38 AM
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 194
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 5/24/2017 3:43:38 AM
+
+==================================== 5/24/2017 3:44:02 AM
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 194
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 5/24/2017 3:44:02 AM
+
+==================================== 5/24/2017 3:44:02 AM
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 194
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 5/24/2017 3:44:02 AM
+
+==================================== 5/24/2017 3:44:17 AM
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 194
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 5/24/2017 3:44:17 AM
+
+==================================== 5/24/2017 3:44:17 AM
+Error Message: Exception of type 'TexasHoldem.AlreadyHasNameException' was thrown.
+Stack Trace:    at TexasHoldem.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\UserModule\UserController.cs:line 37
+   at TexasHoldem.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 194
+   at TexasHoldem.ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 24
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 24
+==================================== 5/24/2017 3:44:17 AM
+
+==================================== 5/30/2017 11:41:24 AM
+Error Message: can't open room, because wallet balance 0 lower than buy in policy: 5
+Stack Trace:    at TexasHoldem.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 183
+   at TexasHoldem.ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 104
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 118
+==================================== 5/30/2017 11:41:24 AM
+
+==================================== 5/31/2017 4:45:10 PM
+Error Message: Failed to compare two elements in the array.
+Stack Trace:    at System.Collections.Generic.ArraySortHelper`1.Sort(T[] keys, Int32 index, Int32 length, IComparer`1 comparer)
+   at System.Array.Sort[T](T[] array, Int32 index, Int32 length, IComparer`1 comparer)
+   at System.Array.Sort[T](T[] array)
+   at TexasHoldem.GameModule.HandEvaluator..ctor(Card[] hand) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\HandEvaluator.cs:line 24
+   at TexasHoldem.GameModule.Player.GetBestHand(Card[] tableCards) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Player.cs:line 31
+   at TexasHoldem.GameModule.Game.EvaluateWinner() in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Game.cs:line 161
+   at TexasHoldem.GameModule.Game.UpdateState() in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Game.cs:line 135
+   at TexasHoldem.GameModule.Game.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\Game.cs:line 349
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameModule.GameDecorator.Check(Player player) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameModule\GameDecorator.cs:line 57
+   at TexasHoldem.GameCenterModule.GameCenter.Check(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\GameCenterModule\GameCenter.cs:line 288
+   at TexasHoldem.ServiceLayer.Service.Check(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\TexasHoldem\ServiceLayer\Service.cs:line 79
+   at AcceptanceTests.GameSystemTest.Check(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 212
+==================================== 5/31/2017 4:45:10 PM
+

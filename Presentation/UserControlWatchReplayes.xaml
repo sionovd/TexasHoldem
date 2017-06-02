@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="Presentation.UserControlWatchReplayes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="560.959" d:DesignWidth="759.932">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="images\mainBackground.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Stretch"  Margin="0,0,0,24" VerticalAlignment="Stretch"  Height="20" Click="BtnBack_Click"/>
+        <DataGrid Name="dgReplays"  Grid.ColumnSpan="12" HorizontalAlignment="Stretch"  Grid.Row="3" Grid.RowSpan="9" VerticalAlignment="Stretch" >
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+        <Label Name="lblReplays" Content="Replays" FontSize="30" Grid.Column="5" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="127" Height="94" Grid.RowSpan="2"/>
+    </Grid>
+</UserControl>
