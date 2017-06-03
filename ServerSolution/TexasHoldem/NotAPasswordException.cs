@@ -8,10 +8,8 @@ namespace TexasHoldem
     [Serializable]
     public  class NotAPasswordException : DomainException
     {
-        public NotAPasswordException (string password) 
-        {
-            Console.Error.WriteLine("Invalid password: " +password);
-         
+        public NotAPasswordException (string password) : base("Invalid password: " + password)
+        {         
         }
     }
 }

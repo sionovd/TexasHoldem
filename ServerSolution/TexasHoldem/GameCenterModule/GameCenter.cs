@@ -15,7 +15,7 @@ namespace TexasHoldem.GameCenterModule
         
         private GameCenter()
         {
-            userController = new UserController();
+            userController = UserController.GetInstance;
             List<IGame> tmp = db.getAllGames();
             if (tmp != null)
                 games = tmp.ToDictionary(g => g.Id);
@@ -212,22 +212,26 @@ namespace TexasHoldem.GameCenterModule
                 game.Start();
                 return true;
             }
-            throw new NotEnoughPlayersException("Game requires a minimum of " + game.Pref.MinPlayers + " players but only " + game.Seats.Count + " have joined.");
+            return false;
         }
 
         public bool EvaluateEndGame(int gameID)
         {
             IGame game = GetGameById(gameID);
-            if (game.Pref.ChipPolicy > 0)
-                return true;
             Player winner = game.EvaluateWinner();
-            User user = userController.GetUserByName(winner.Username);
-            user.MoneyBalance += winner.ChipBalance;
-            if (user.Rank.NumOfCalibrationsLeft > 0)
+            foreach (var player in game.Seats)
             {
-                user.Rank.NumOfCalibrationsLeft--;
+                User user = userController.GetUserByName(player.Username);
+                if (user.Rank.NumOfCalibrationsLeft > 0)
+                    user.Rank.NumOfCalibrationsLeft--;
+                if (user.Username == winner.Username)
+                {
+                    user.MoneyBalance += winner.ChipBalance;
+                    user.Rank.Points += 5;
+                }
+                else
+                    user.Rank.Points -= 1;
             }
-            user.Rank.Points += 5;
             return true;
         }
 
@@ -257,28 +261,40 @@ namespace TexasHoldem.GameCenterModule
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            return game.Bet(player, amount);
+            game.Bet(player, amount);
+            if (game.RoundNumber > 4)
+                EvaluateEndGame(gameID);
+            return true;
         }
 
         public bool Check(int playerID, int gameID)
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            return game.Check(player);
+            game.Check(player);
+            if (game.RoundNumber > 4)
+                EvaluateEndGame(gameID);
+            return true;
         }
 
         public bool Fold(int playerID, int gameID)
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            return game.Fold(player);
+            game.Fold(player);
+            if (game.RoundNumber > 4)
+                EvaluateEndGame(gameID);
+            return true;
         }
 
         public bool Call(int playerID, int gameID)
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            return game.Call(player);
+            game.Call(player);
+            if (game.RoundNumber > 4)
+                EvaluateEndGame(gameID);
+            return true;
         }
 
 

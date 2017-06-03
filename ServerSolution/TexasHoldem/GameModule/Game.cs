@@ -146,14 +146,15 @@ namespace TexasHoldem.GameModule
             if (finishRoundCounter == Seats.Count)
             {
                 RoundNumber++;
-                
                 if (RoundNumber > 4)
+                    return;
+               /* if (RoundNumber > 4)
                 {
                     winner = EvaluateWinner();
 
                     // should notify players that the game has ended...... and something about the winner
                     return;
-                }
+                }*/
                 
 
                 CurrentStake = 0;

@@ -8,7 +8,7 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTestUserController
     {
-        UserController uc = new UserController();
+        private UserController uc = UserController.GetInstance;
 
         [TestMethod]
         public void RegisterTest1()
@@ -22,13 +22,6 @@ namespace UnitTestProject1
         {
             uc.Register("Avi", "Iva", "ai847562@gmail.com");
             uc.Register("Avi", "Iva", "ai847562@gmail.com");
-        }
-
-        [TestMethod]
-        public void RegisterTest3()
-        {
-            uc.Register("Mair", "wow", "ska45@gmail.com");
-            Assert.IsFalse(uc.GetUserByName("Mair").Admin);
         }
 
         [TestMethod]

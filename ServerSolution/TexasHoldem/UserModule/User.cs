@@ -14,29 +14,25 @@
 
     public class User
     {
-        private string password;
-
-        public User(string username, string password, string email, bool isAdmin, int money)
+        public User(string username, string password, string email, int money)
         {
             Username = username;
             if (password.Equals(""))
                 throw new NotAPasswordException("");
             this.password = password;
             Email = email;
-            Admin = isAdmin;
             MoneyBalance = money;
             Rank = new UserRank();
             League = new DefaultLeague();
         }
 
-        public User (string username, string password, string email, bool isAdmin)
+        public User (string username, string password, string email)
         {
             Username = username;
             if (password.Equals(""))
                 throw new NotAPasswordException("");
             this.password = password;
             Email = email;
-            Admin = isAdmin;
             Rank = new UserRank();
             League = new DefaultLeague();
             MoneyBalance = 1000;
@@ -46,9 +42,9 @@
 
         public League League { get; set; }
 
-        public bool Admin { get; set; }
-
         public string Username { get; set; }
+
+        private string password;
 
         public string Email { get; set; }
 

@@ -4,16 +4,27 @@ namespace TexasHoldem.UserModule
 {
     public class UserController
     {
+        private static UserController userController;
         private DataBase db = new DataBase();
         private static bool init = true;
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;
         private System.Object lockThis = new System.Object();
 
-        public UserController()
+        private UserController()
         {
             loginUsers = new Dictionary<string, User>();
             registerUsers = new Dictionary<string, User>();
+        }
+
+        public static UserController GetInstance
+        {
+            get
+            {
+                if (userController == null)
+                    userController = new UserController();
+                return userController;
+            }
         }
 
         public void Initialized()
@@ -33,7 +44,7 @@ namespace TexasHoldem.UserModule
                 if (init)
                     Initialized();
                 
-                User user = new User(username, password, email, false);
+                User user = new User(username, password, email);
                 if (registerUsers.ContainsKey(username))
                     throw new AlreadyHasNameException(user.Username);
                 registerUsers.Add(username, user);
@@ -47,10 +58,9 @@ namespace TexasHoldem.UserModule
             {
                 if (init)
                     Initialized();
-                User user = new User(username, password, email, false, money);
+                User user = new User(username, password, email, money);
                 if (registerUsers == null)
                 {
-                    user.Admin = true;
                     registerUsers = new Dictionary<string, User>();
                 }
                 if (registerUsers.ContainsKey(username))
@@ -66,8 +76,7 @@ namespace TexasHoldem.UserModule
             {
                 if (!registerUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
-                bool admin = registerUsers[username].Admin;
-                registerUsers[username] =  new User(username, password, email, admin);
+                registerUsers[username] =  new User(username, password, email);
                 return true;
             }
         }

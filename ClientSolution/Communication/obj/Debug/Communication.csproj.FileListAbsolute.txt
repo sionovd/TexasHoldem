@@ -20,3 +20,11 @@ C:\Users\Doron\Downloads\Client\Client\Communication\bin\Debug\Newtonsoft.Json.d
 C:\Users\Doron\Downloads\Client\Client\Communication\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Doron\Downloads\Client\Client\Communication\obj\Debug\Communication.exe
 C:\Users\Doron\Downloads\Client\Client\Communication\obj\Debug\Communication.pdb
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\bin\Debug\Communication.exe.config
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\bin\Debug\Communication.exe
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\bin\Debug\Communication.pdb
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\obj\Debug\Communication.csprojResolveAssemblyReference.cache
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\obj\Debug\Communication.exe
+C:\Users\Doron\Desktop\TexasHoldem\ClientSolution\Communication\obj\Debug\Communication.pdb
