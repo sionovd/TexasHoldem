@@ -166,6 +166,8 @@ namespace TexasHoldem.GameCenterModule
 
         public bool Register(string username, string password, string email)
         {
+            if (password == null)
+                throw new NotAPasswordException("hello");
             User user = userController.Register(username, password, email);
             return user != null;
         }
@@ -280,5 +282,9 @@ namespace TexasHoldem.GameCenterModule
         }
 
 
+        public string GetEmail(string username)
+        {
+            return userController.GetUserByName(username).Email;
+        }
     }
 }

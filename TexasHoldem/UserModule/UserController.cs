@@ -32,6 +32,7 @@ namespace TexasHoldem.UserModule
             {
                 if (init)
                     Initialized();
+                
                 User user = new User(username, password, email, false);
                 if (registerUsers.ContainsKey(username))
                     throw new AlreadyHasNameException(user.Username);

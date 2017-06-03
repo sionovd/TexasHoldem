@@ -20,7 +20,8 @@ namespace TexasHoldem.ServiceLayer
 
         public bool Register(string username, string password, string email)
         {
-
+            if (password == null)
+                throw new NotAPasswordException("hello");
             return gameCenter.Register(username, password, email);
         }
 
@@ -29,6 +30,10 @@ namespace TexasHoldem.ServiceLayer
             return gameCenter.RegisterWithMoney(username, password, email, money);
         }
 
+        public string GetEmail(string username)
+        {
+            return gameCenter.GetEmail(username);
+        }
         public bool EditProfile(string username, string password, string email)
         {
             return gameCenter.EditProfile(username, password, email);

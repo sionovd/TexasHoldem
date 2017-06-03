@@ -20,7 +20,7 @@
         {
             Username = username;
             if (password.Equals(""))
-                throw new NotAPasswordException(password);
+                throw new NotAPasswordException("");
             this.password = password;
             Email = email;
             Admin = isAdmin;
@@ -33,7 +33,7 @@
         {
             Username = username;
             if (password.Equals(""))
-                throw new NotAPasswordException(password);
+                throw new NotAPasswordException("");
             this.password = password;
             Email = email;
             Admin = isAdmin;
@@ -48,9 +48,9 @@
 
         public bool Admin { get; set; }
 
-        public string Username { get; }
+        public string Username { get; set; }
 
-        public string Email { get; }
+        public string Email { get; set; }
 
         public int MoneyBalance { get; set; }
 

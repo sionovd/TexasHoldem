@@ -5,11 +5,13 @@ using System.Text;
 
 namespace TexasHoldem
 {
-    public class NotAPasswordException : DomainException
+    [Serializable]
+    public  class NotAPasswordException : DomainException
     {
-        public NotAPasswordException (string password) :base()
+        public NotAPasswordException (string password) 
         {
             Console.Error.WriteLine("Invalid password: " +password);
+         
         }
     }
 }

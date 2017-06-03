@@ -73,3 +73,8 @@ Stack Trace:    at TexasHoldem.GameModule.Game.Call(Player player) in C:\Users\D
    at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests\GameSystemTest.cs:line 177
 ==================================== 6/3/2017 4:13:32 AM
 
+==================================== 31/05/2017 11:43:33
+Error Message: Exception of type 'TexasHoldem.DomainException' was thrown.
+Stack Trace: 
+==================================== 31/05/2017 11:43:33
+
