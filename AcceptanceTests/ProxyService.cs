@@ -84,12 +84,6 @@ namespace AcceptanceTests
             return 1;
         }
 
-        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount, int maxPlayerCount,
-            bool isSpectatable)
-        {
-            return 1; //gameID
-        }
-
         public List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers,
             int spectateGame)
         {

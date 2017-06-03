@@ -103,6 +103,22 @@ namespace TexasHoldem.GameModule
         {
             if (RoundNumber > 4) // should not happen, game must notify players when it ends......
                 return;
+            Player winner = null;
+            int foldedCount = 0;
+            foreach (Player p in Seats)
+            {
+                if (p.Folded)
+                    foldedCount++;
+                else
+                    winner = p;
+            }
+            if (foldedCount == Seats.Count - 1 && winner != null)
+            {
+                Console.WriteLine("The winner is (because everyone folded): " + winner.Username);
+                return;
+            }
+
+
             int finishRoundCounter = 0;
             for (int i = 0; i < Seats.Count; i++)
             {
@@ -130,13 +146,16 @@ namespace TexasHoldem.GameModule
             if (finishRoundCounter == Seats.Count)
             {
                 RoundNumber++;
+                
                 if (RoundNumber > 4)
                 {
-                    Player winner = EvaluateWinner();
-                    
+                    winner = EvaluateWinner();
+
                     // should notify players that the game has ended...... and something about the winner
                     return;
                 }
+                
+
                 CurrentStake = 0;
                 AddCardToTable();
                 foreach (Player p in Seats)
@@ -144,7 +163,7 @@ namespace TexasHoldem.GameModule
                     p.MadeMove = false;
                     p.AmountBetOnCurrentRound = 0;
                 }
-                PreviousPlayer = Seats[Seats.Count-1];
+                PreviousPlayer = Seats[Seats.Count - 1];
             }
         }
 
@@ -161,7 +180,8 @@ namespace TexasHoldem.GameModule
             Console.WriteLine();
             foreach (var player in Seats)
             {
-                Console.WriteLine(player.Username + " had the following hand:  " + player.Cards[0].getCardId() + " " + player.Cards[1].getCardId());   
+                if (!player.Folded)
+                    Console.WriteLine(player.Username + " had the following hand:  " + player.Cards[0].getCardId() + " " + player.Cards[1].getCardId());
             }
             Console.WriteLine();
             for (int i = 0; i < Seats.Count; i++)
@@ -224,6 +244,8 @@ namespace TexasHoldem.GameModule
                 throw new GameAlreadyStartedException("The user " + user.Username + " tried to join game #" + Id + " but the game has already started.");
             if (Seats.Count == Pref.MaxPlayers)
                 throw new FullTableException();
+            if (IsPlayerExist(user.Username))
+                throw new AlreadyJoinedGameException("The user " + user.Username + " has already joined game #" + Id);
             Player p;
             if (Pref.ChipPolicy == 0)
             {
@@ -313,7 +335,7 @@ namespace TexasHoldem.GameModule
         public bool Bet(Player player, int amount)
         {
             if (!IsCurrentPlayer(player))
-                return false;
+                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             int balance = player.ChipBalance;
             if (balance >= amount && amount >= CurrentStake || amount == balance)
             {
@@ -326,19 +348,25 @@ namespace TexasHoldem.GameModule
                 UpdateState();
                 return true;
             }
-            return false;
+            throw new BetFailedException("Player " + player.Username + " failed to make bet of amount " + amount);
         }
 
         public bool Call(Player player)
         {
             if (!IsCurrentPlayer(player))
-                return false;
-            if (CurrentStake == 0) // no bet was made yet
-                return false;
+                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
+            if (CurrentStake == 0)
+            {
+                // no bet was made yet
+                throw new NoBetToCallException("The player " + player.Username +
+                                               " can't call because the current stake is 0.");
+            }
             int amount = CurrentStake - player.AmountBetOnCurrentRound;
             if (player.ChipBalance < amount) // not enough money
-                return false;
-            
+                throw new NotEnoughChipsException("The player " + player.Username + " can't call b/c he has " +
+                                                  player.ChipBalance + " chips, and the current stake is " +
+                                                  CurrentStake + ".");
+
             Pot += amount;
             player.ChipBalance -= amount;
             player.AmountBetOnCurrentRound += amount;
@@ -350,7 +378,7 @@ namespace TexasHoldem.GameModule
         public bool Check(Player player)
         {
             if (!IsCurrentPlayer(player))
-                return false;
+                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             if (RoundNumber == 1)
             {
                 return Call(player);
@@ -364,7 +392,7 @@ namespace TexasHoldem.GameModule
         public bool Fold(Player player)
         {
             if (!IsCurrentPlayer(player))
-                return false;
+                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             player.Folded = true;
             PreviousPlayer = player;
             player.MadeMove = true;

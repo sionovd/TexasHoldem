@@ -69,7 +69,7 @@ namespace TexasHoldem.GameCenterModule
 
         public List<int> GetActiveGamesByPlayerName(string name)
         {
-            List<IGame> gamesList = games.Values.ToList().Where(p => p.IsPlayerExist(name) == true).ToList();
+            List<IGame> gamesList = games.Values.ToList().Where(g => g.IsPlayerExist(name) == true).ToList();
             return getGameIDs(gamesList);
         }
 
@@ -90,33 +90,6 @@ namespace TexasHoldem.GameCenterModule
         {
             //TODO
             return true;
-        }
-
-        public Game CreateGame(User user, int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, bool spectateGame)
-        {
-            if (gameType < 0 || gameType > 2)
-                throw new illegalGameTypeException(gameType.ToString());
-            if (buyIn < 0)                                 //real money and has to be equal or greater than zero
-                throw new illegalbuyInException(buyIn.ToString());
-            if (chipPolicy < 0)
-                throw new illegalChipPolicyException(chipPolicy.ToString());
-            if (minBet <= 0)
-                throw new illegalMinBetException(minBet.ToString());
-            if (minPlayers < 2)
-                throw new illegalMinPlayersException(minPlayers.ToString());
-            if (minPlayers > maxPlayers)
-                throw new illegalGapPlayersException(minPlayers.ToString(), maxPlayers.ToString());
-            if (maxPlayers > 9)
-                throw new illegalMaxPlayersException(maxPlayers.ToString());
-            if (user.MoneyBalance < buyIn)
-                throw new notEnoughMoneyException(user.MoneyBalance.ToString(), buyIn.ToString());
-            //GamePreferences pref = new GamePreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame);
-            GamePreferences pref = new GamePreferences();
-            Game game = new Game(pref);
-            game.AddPlayer(user);
-            games.Add(game.Id, game);
-            db.AddGame(game);
-            return game;
         }
 
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
@@ -143,12 +116,16 @@ namespace TexasHoldem.GameCenterModule
                 {
                     if (pair.Value > game.Pref.MaxPlayers)
                         throw new illegalGapPlayersException(pair.Value.ToString(), game.Pref.MaxPlayers.ToString());
+                    if(pair.Value < 2)
+                        throw new illegalMinPlayersException(pair.Value.ToString());
                     game = new MinPlayersDecorator(game, pair.Value);
                 }
                 if (pair.Key == "maxPlayers")
                 {
                     if (pair.Value > 9)
                         throw new illegalMaxPlayersException(pair.Value.ToString());
+                    if(pair.Value < game.Pref.MinPlayers)
+                        throw new illegalGapPlayersException(game.Pref.MinPlayers.ToString(), pair.Value.ToString());
                     game = new MaxPlayersDecorator(game, pair.Value);
                 }
                 if (pair.Key == "chipPolicy")

@@ -9,7 +9,7 @@ namespace AcceptanceTests
     {
 
         [TestMethod]
-        public void TestTheGood()
+        public void CreateGameGood()
         {
             Assert.IsTrue(RegisterWithMoney("doron", "password", "doron@gmail.com", 10000));
             string username = "doron";
@@ -72,7 +72,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void CreateGameBad()
         {
             Assert.IsTrue(Register("doronBad", "password", "doron@gmail.com"));
             string username = "doronBad";
@@ -166,7 +166,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheSad()
+        public void CreateGameSad()
         {
             Assert.IsTrue(Register("yossi", "pass", "yos@gmail.com"));
             string username = "yossi";

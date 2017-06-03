@@ -28,8 +28,6 @@ namespace TexasHoldem.ServiceLayer
 
         // GameCenter
         int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList);
-        int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet,
-            int minPlayerCount, int maxPlayerCount, bool isSpectatable);
         List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet,
             int maxPlayers, int minPlayers, int spectateGame);
         List<int> SearchActiveGamesByPot(int pot);

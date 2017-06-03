@@ -39,7 +39,7 @@
             Admin = isAdmin;
             Rank = new UserRank();
             League = new DefaultLeague();
-            
+            MoneyBalance = 1000;
         }
 
         public UserRank Rank { get; set; }

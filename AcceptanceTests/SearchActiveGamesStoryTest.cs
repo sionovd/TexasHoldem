@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AcceptanceTests
@@ -22,15 +23,18 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
             Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
             Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
-            int gameTypePolicy = 1;
-            int buyInPolicy = 0;
-            int chipPolicy = 100; // played with chips
-            int minBet = 5;
-            int minPlayerCount = 2;
-            int maxPlayerCount = 5;
-            bool isSpectatable = true;
-            game1 = CreateGame("doron", gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount,
-                isSpectatable);
+
+            List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("gameType", 1),
+                new KeyValuePair<string, int>("buyIn", 0),
+                new KeyValuePair<string, int>("chipPolicy", 100),
+                new KeyValuePair<string, int>("minBet", 10),
+                new KeyValuePair<string, int>("minPlayers", 2),
+                new KeyValuePair<string, int>("maxPlayers", 5),
+            };
+            game1 = CreateGame("doron", preferenceList);
+
             Assert.IsTrue(game1 > 0);
             player2 = JoinGame("tamir", game1);
             Assert.IsTrue(player2 > 0);
@@ -40,8 +44,15 @@ namespace AcceptanceTests
             Assert.IsTrue(player4 > 0);
             player5 = JoinGame("shavit", game1);
             Assert.IsTrue(player5 > 0);
-            Assert.IsTrue(Bet(player1, game1, 25));
-            Assert.IsTrue(Call(player2, game1));
+
+            Assert.IsFalse(StartGame("doron", game1));
+            Assert.IsFalse(StartGame("tamir", game1));
+            Assert.IsFalse(StartGame("shavit", game1));
+            Assert.IsFalse(StartGame("leon", game1));
+            Assert.IsTrue(StartGame("avner", game1));
+
+            // Assert.IsTrue(Bet(player1, game1, 25));
+            //   Assert.IsTrue(Call(player2, game1));
             Assert.IsTrue(Call(player3, game1));
             Assert.IsTrue(Call(player4, game1));
             Assert.IsTrue(Fold(player5, game1));
@@ -51,10 +62,10 @@ namespace AcceptanceTests
         [TestMethod]
         public void TestSearchGood()
         {
-            Assert.IsTrue(SearchAciveGamesByPot(100));
+          //  Assert.IsTrue(SearchAciveGamesByPot(100));
             Assert.IsTrue(SearchActiveGamesByPlayerName("doron"));
             Assert.IsTrue(SearchActiveGamesByPlayerName("tamir"));
-            Assert.IsTrue(SearchActiveGamesByPreferences(1, 0, 100, 5, 2, 5, 1));
+            Assert.IsTrue(SearchActiveGamesByPreferences(1, 0, 100, 10, 2, 5, 1));
         }
 
         [TestMethod]

@@ -13,11 +13,11 @@ namespace AcceptanceTests
         [TestInitialize]
         public void SetUp()
         {
-            Assert.IsTrue(RegisterWithMoney("doron", "password1", "doron@gmail.com", 100));
-            Assert.IsTrue(RegisterWithMoney("tamir", "password2", "tamir@gmail.com", 100));
-            Assert.IsTrue(RegisterWithMoney("shavit", "password3", "shavit@gmail.com", 100));
-            Assert.IsTrue(RegisterWithMoney("leon", "password4", "leon@gmail.com", 100));
-            Assert.IsTrue(RegisterWithMoney("avner", "password5", "avner@gmail.com", 100));
+            Assert.IsTrue(Register("doron", "password1", "doron@gmail.com"));
+            Assert.IsTrue(Register("tamir", "password2", "tamir@gmail.com"));
+            Assert.IsTrue(Register("shavit", "password3", "shavit@gmail.com"));
+            Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
+            Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
             Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 5));
             string username = "doron";
             

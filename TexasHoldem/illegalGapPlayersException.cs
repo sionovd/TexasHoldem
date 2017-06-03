@@ -10,6 +10,6 @@ namespace TexasHoldem
         : base() { }
 
         public illegalGapPlayersException(string message1, string message2)
-        : base(String.Format("Invalid amount of players: maxinmum players {0} has to be greater than minimum players {1}", message1,message2)) { }
+        : base(String.Format("Invalid amount of players: minimum players {0} has to be smaller than maximum players {1}", message1,message2)) { }
     }
 }

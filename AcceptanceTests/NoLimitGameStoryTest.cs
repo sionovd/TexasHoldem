@@ -48,16 +48,17 @@ namespace AcceptanceTests
             Assert.IsTrue(player4 > 0);
             player5 = JoinGame("shavit", game1);
             Assert.IsTrue(player5 > 0);
-        }
 
-        [TestMethod]
-        public void TestFullGame()
-        {
             Assert.IsFalse(StartGame("doron", game1));
             Assert.IsFalse(StartGame("tamir", game1));
             Assert.IsFalse(StartGame("shavit", game1));
             Assert.IsFalse(StartGame("leon", game1));
             Assert.IsTrue(StartGame("avner", game1));
+        }
+
+        [TestMethod]
+        public void NoLimitFullGame()
+        {
             Assert.IsFalse(Bet(player1, game1, 25));
             Assert.IsFalse(Call(player2, game1));
             Assert.IsTrue(Call(player3, game1));
@@ -83,13 +84,8 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheGood()
+        public void NoLimitEarlyFinish()
         {
-            Assert.IsFalse(StartGame("doron", game1));
-            Assert.IsFalse(StartGame("tamir", game1));
-            Assert.IsFalse(StartGame("shavit", game1));
-            Assert.IsFalse(StartGame("leon", game1));
-            Assert.IsTrue(StartGame("avner", game1));
             Assert.IsFalse(Bet(player1, game1, 25));
             Assert.IsFalse(Call(player2, game1));
             Assert.IsTrue(Call(player3, game1));
@@ -115,14 +111,14 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void NoLimitBad()
         {
             Assert.IsFalse(Bet(player1, game1, -1));
             Assert.IsFalse(Bet(player1, game1, 101));
         }
 
         [TestMethod]
-        public void TestTheSad()
+        public void NoLimitSad()
         {
             Assert.IsFalse(Bet(player1, game1, 3));
         }

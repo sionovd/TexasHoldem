@@ -94,23 +94,6 @@ namespace AcceptanceTests
             return bridge.ViewMoneyBalanceOfUser(username);
         }
 
-        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
-            int maxPlayerCount,
-            bool isSpectatable)
-        {
-            try
-            {
-                int gameID = bridge.CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount,
-                    maxPlayerCount, isSpectatable);
-                return gameID;
-            }
-            catch (DomainException e)
-            {
-                Console.WriteLine(e.ToString());
-                return -1;
-            }
-        }
-
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
             try

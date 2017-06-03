@@ -89,16 +89,6 @@ namespace TexasHoldem.ServiceLayer
             return gameCenter.Call(playerID, gameID);
         }
 
-        public int CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet, int minPlayerCount,
-            int maxPlayerCount, bool isSpectatable)
-        {
-
-            User user = null; //userController.GetUserByName(username);
-            Game game = gameCenter.CreateGame(user, gameTypePolicy, buyInPolicy, chipPolicy, minBet, maxPlayerCount, minPlayerCount,
-                isSpectatable);
-            return game.Id;
-        }
-
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
             return gameCenter.CreateGame(username, preferenceList);
