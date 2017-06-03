@@ -96,6 +96,7 @@ namespace TexasHoldem.GameModule
         public int Id
         {
             get { return MyGame.Id; }
+            set { MyGame.Id = value; }
         }
 
         public int Pot
@@ -107,16 +108,19 @@ namespace TexasHoldem.GameModule
         public int RoundNumber
         {
             get { return MyGame.RoundNumber; }
+            set { MyGame.RoundNumber = value; }
         }
 
         public int BigBlind
         {
             get { return MyGame.BigBlind; }
+            set { MyGame.BigBlind = value; }
         }
 
         public int CurrentStake
         {
             get { return MyGame.CurrentStake; }
+            set { MyGame.CurrentStake = value; }
         }
 
         public int StartCounter

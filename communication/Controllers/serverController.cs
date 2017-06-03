@@ -16,17 +16,21 @@ namespace communication.Controllers
         private Service service = new Service();
 
         [HttpPost]
-        public string Register(string username, string password, string email)
+        public Reply Register(string username, string password, string email)
         {
             try
             {
                 if (service.Register(username, password, email))
-                    return JsonConvert.SerializeObject(new Reply("true", true, null, -1));
-                return JsonConvert.SerializeObject(new Reply("unknow error", false, null, -1));
+                    return new Reply("true", true, null, -1);
+                return new Reply("unknow error", false, null, -1);
             }
             catch (DomainException a)
             {
-                return JsonConvert.SerializeObject(new Reply(a.Message, false, null, -1));
+                return new Reply(a.Message, false, null, -1);
+            }
+            catch (NullReferenceException e)
+            {
+                return new Reply(e.Message, false, null, -1);
             }
         }
 
@@ -51,7 +55,7 @@ namespace communication.Controllers
             try
             {
                 if (service.Login(username, password))
-                    return new Reply("true", true, null, -1);
+                    return new Reply(service.GetEmail(username), true, null, -1);
                 return new Reply("unknow error", false, null, -1);
             }
             catch (DomainException a)

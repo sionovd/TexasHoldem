@@ -22,11 +22,11 @@ namespace TexasHoldem.GameModule
 
         GamePreferences Pref { get; set; }
         List<Player> Seats { get; }
-        int Id { get; }
+        int Id { get; set; }
         int Pot { get; set; }
-        int RoundNumber { get; }
-        int BigBlind { get; }
-        int CurrentStake { get; }
+        int RoundNumber { get; set; }
+        int BigBlind { get; set; }
+        int CurrentStake { get; set; }
         int StartCounter { get; set; }
         League League { get; set; }
     }
@@ -36,16 +36,16 @@ namespace TexasHoldem.GameModule
         private static int counter = 0;
         private List<Spectator> spectators;
         private Card[] tableCards;
-        public int Id { get; }
+        public int Id { get; set; }
         public GamePreferences Pref { get; set; }
-        public List<Player> Seats { get; }
+        public List<Player> Seats { get; set; }
         public Deck Cards { get; set; }
-        public int RoundNumber { get; private set; }
+        public int RoundNumber { get;  set; }
         public int Pot { get; set; }
-        public int CurrentStake { get; private set; }
-        public int SmallBlind { get; }
-        public int BigBlind { get; }
-        public bool IsActive { get; }
+        public int CurrentStake { get;  set; }
+        public int SmallBlind { get; set; }
+        public int BigBlind { get; set; }
+        public bool IsActive { get; set; }
         public int StartCounter { get; set; }
         public League League { get; set; }
         public Player PreviousPlayer { get; set; }
