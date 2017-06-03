@@ -18,3 +18,7 @@ C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\UnitTestProject
 C:\Users\avner\git\TexasHoldem\UnitTestProject1\obj\Debug\UnitTestProject1.csprojResolveAssemblyReference.cache
 C:\Users\avner\git\TexasHoldem\UnitTestProject1\obj\Debug\UnitTestProject1.dll
 C:\Users\avner\git\TexasHoldem\UnitTestProject1\obj\Debug\UnitTestProject1.pdb
+C:\Users\avner\git\TexasHoldem\UnitTestProject1\bin\Debug\UnitTestProject1.dll
+C:\Users\avner\git\TexasHoldem\UnitTestProject1\bin\Debug\UnitTestProject1.pdb
+C:\Users\avner\git\TexasHoldem\UnitTestProject1\bin\Debug\TexasHoldem.exe
+C:\Users\avner\git\TexasHoldem\UnitTestProject1\bin\Debug\TexasHoldem.pdb

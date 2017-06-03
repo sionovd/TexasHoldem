@@ -31,3 +31,14 @@ C:\Users\Doron\Documents\Visual Studio 2017\Projects\TexasHoldem\AcceptanceTests
 C:\Users\avner\git\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.csprojResolveAssemblyReference.cache
 C:\Users\avner\git\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.dll
 C:\Users\avner\git\TexasHoldem\AcceptanceTests\obj\Debug\AcceptanceTests.pdb
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\AcceptanceTests.dll
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\AcceptanceTests.pdb
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\TexasHoldem.exe
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\TexasHoldem.pdb
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\avner\git\TexasHoldem\AcceptanceTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
