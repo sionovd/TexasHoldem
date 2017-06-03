@@ -8,7 +8,6 @@ namespace AcceptanceTests
     public class SearchActiveGamesStoryTest : GameSystemTest
     {
         private int game1;
-        private int player1;
         private int player2;
         private int player3;
         private int player4;

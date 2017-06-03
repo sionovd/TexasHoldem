@@ -270,20 +270,6 @@ namespace communication.Controllers
             }
         }
 
-        [HttpPost]
-        public Reply CreateGame(string username, int gameTypePolicy, int buyInPolicy, int chipPolicy, int minBet,
-            int minPlayerCount, int maxPlayerCount, bool isSpectatable)
-        {
-            try
-            {
-                return new Reply("true", true, null, service.CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount, isSpectatable));
-            }
-            catch (DomainException a)
-            {
-                return new Reply(a.Message, false, null, -1);
-            }
-        }
-
         [HttpGet]
         public Reply SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet,
             int maxPlayers, int minPlayers, int spectateGame)

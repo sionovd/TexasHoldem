@@ -10,8 +10,6 @@ namespace AcceptanceTests
 
         private int game1;
         private int game2;
-        private string username;
-        private int player1;
         private int player2;
         private int player3;
         private int player4;
