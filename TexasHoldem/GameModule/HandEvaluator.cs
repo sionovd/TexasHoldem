@@ -696,6 +696,7 @@ namespace TexasHoldem.GameModule
             }
             if (royalCounter == 5)
                 return true;
+            royalCounter = 0;
             for (int i = 0; i < 7; i++)
             {
                 if (hand[i].getCardId() == Cards.SpadesAce ||
@@ -709,6 +710,7 @@ namespace TexasHoldem.GameModule
             }
             if (royalCounter == 5)
                 return true;
+            royalCounter = 0;
             for (int i = 0; i < 7; i++)
             {
                 if (hand[i].getCardId() == Cards.ClubsAce ||

@@ -213,5 +213,21 @@ namespace UnitTestProject1
             Console.WriteLine(eval.Evaluate());
             Assert.IsTrue(eval.Evaluate() == HIGHEST_CARD + 12);
         }
+
+        [TestMethod]
+        public void TestRoyalBug()
+        {
+            List<Card> royalFlushBug = new List<Card>{new Card(Cards.SpadesAce),
+                                        new Card(Cards.ClubsJack),
+                                        new Card(Cards.DiamondTen),
+                                        new Card(Cards.ClubsSeven),
+                                        new Card(Cards.DiamondQueen),
+                                        new Card(Cards.ClubsKing),
+                                        new Card(Cards.HeartJack)
+            };
+            eval = new HandEvaluator(royalFlushBug.ToArray());
+            Console.WriteLine(eval.Evaluate());
+            Assert.IsTrue(eval.Evaluate() == ROYAL_FLUSH);
+        }
     }
 }
