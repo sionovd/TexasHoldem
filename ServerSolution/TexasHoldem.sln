@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TexasHoldem", "TexasHoldem\TexasHoldem.csproj", "{A814D20E-B88F-43E2-AA71-412FBF291185}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "TexasHoldem\Domain.csproj", "{A814D20E-B88F-43E2-AA71-412FBF291185}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{76B5B2C3-4903-48BB-B0F5-CAE277A29EEB}"
 EndProject

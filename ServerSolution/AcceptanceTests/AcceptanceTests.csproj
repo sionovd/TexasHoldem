@@ -67,9 +67,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TexasHoldem\TexasHoldem.csproj">
+    <ProjectReference Include="..\TexasHoldem\Domain.csproj">
       <Project>{A814D20E-B88F-43E2-AA71-412FBF291185}</Project>
-      <Name>TexasHoldem</Name>
+      <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
