@@ -1,4 +1,4 @@
-﻿namespace TexasHoldem.UserModule
+﻿namespace Domain.UserModule
 {
     public class UserRank
     {

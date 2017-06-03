@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace TexasHoldem
+namespace Domain
 {
     public class illegalGameTypeException : DomainException
     {

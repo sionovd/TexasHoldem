@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TexasHoldem.GameModule
+namespace Domain.GameModule
 {
     public class Deck
     {

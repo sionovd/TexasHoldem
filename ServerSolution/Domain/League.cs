@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TexasHoldem.UserModule;
+using Domain.UserModule;
 
-namespace TexasHoldem
+namespace Domain
 {
     public abstract class League
     {

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TexasHoldem;
-using TexasHoldem.ServiceLayer;
+using Domain;
+using Domain.ServiceLayer;
 
 namespace AcceptanceTests
 {

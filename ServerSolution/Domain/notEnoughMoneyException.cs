@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace TexasHoldem
+namespace Domain
 {
     [Serializable]
     public class notEnoughMoneyException : DomainException

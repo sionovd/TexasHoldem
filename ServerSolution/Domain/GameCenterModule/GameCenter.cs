@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using TexasHoldem.GameModule;
-using TexasHoldem.UserModule;
+using Domain.GameModule;
+using Domain.UserModule;
 
-namespace TexasHoldem.GameCenterModule
+namespace Domain.GameCenterModule
 {
     public class GameCenter
     {

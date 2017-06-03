@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TexasHoldem.GameModule
+namespace Domain.GameModule
 {
     public enum Cards
     {

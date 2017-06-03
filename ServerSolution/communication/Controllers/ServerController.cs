@@ -6,8 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using communication.Models;
 using Newtonsoft.Json;
-using TexasHoldem;
-using TexasHoldem.ServiceLayer;
+using Domain;
+using Domain.ServiceLayer;
 
 namespace communication.Controllers
 {

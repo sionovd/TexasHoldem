@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TexasHoldem.GameCenterModule;
-using TexasHoldem.GameModule;
-using TexasHoldem.UserModule;
+using Domain.GameCenterModule;
+using Domain.GameModule;
+using Domain.UserModule;
 
-namespace TexasHoldem.ServiceLayer
+namespace Domain.ServiceLayer
 {
     public class Service : IService
     {

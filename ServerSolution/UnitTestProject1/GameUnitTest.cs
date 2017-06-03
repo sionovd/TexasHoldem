@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TexasHoldem;
-using TexasHoldem.GameModule;
-using TexasHoldem.UserModule;
+using Domain;
+using Domain.GameModule;
+using Domain.UserModule;
 
 namespace UnitTestProject1
 {

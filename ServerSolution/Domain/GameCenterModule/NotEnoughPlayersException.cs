@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TexasHoldem.GameCenterModule
+namespace Domain.GameCenterModule
 {
     [Serializable]
     public class NotEnoughPlayersException : DomainException

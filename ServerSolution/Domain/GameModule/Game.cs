@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using TexasHoldem.UserModule;
+using Domain.UserModule;
 
-namespace TexasHoldem.GameModule
+namespace Domain.GameModule
 {
     public interface IGame
     {

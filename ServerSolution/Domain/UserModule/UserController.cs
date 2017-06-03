@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TexasHoldem.UserModule
+namespace Domain.UserModule
 {
     public class UserController
     {

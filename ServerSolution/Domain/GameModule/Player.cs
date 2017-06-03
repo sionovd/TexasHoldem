@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TexasHoldem.GameModule
+namespace Domain.GameModule
 {
     public class Player
     {

@@ -1,4 +1,4 @@
-﻿namespace TexasHoldem.GameModule
+﻿namespace Domain.GameModule
 {
     public class Spectator
     {

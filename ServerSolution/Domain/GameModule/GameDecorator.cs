@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TexasHoldem.UserModule;
+using Domain.UserModule;
 
-namespace TexasHoldem.GameModule
+namespace Domain.GameModule
 {
 
     abstract public class GameDecorator : IGame

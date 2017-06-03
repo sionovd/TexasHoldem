@@ -57,7 +57,7 @@
     <Compile Include="UnitTestUserController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TexasHoldem\Domain.csproj">
+    <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{a814d20e-b88f-43e2-aa71-412fbf291185}</Project>
       <Name>Domain</Name>
     </ProjectReference>

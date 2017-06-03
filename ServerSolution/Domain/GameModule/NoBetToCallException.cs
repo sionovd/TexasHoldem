@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace TexasHoldem.GameModule
+namespace Domain.GameModule
 {
     [Serializable]
     internal class NoBetToCallException : DomainException
