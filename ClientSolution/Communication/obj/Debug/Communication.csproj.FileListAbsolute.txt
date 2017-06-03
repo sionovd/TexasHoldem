@@ -1,0 +1,22 @@
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\Client\Communication\bin\Debug\Communication.exe.config
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\Client\Communication\bin\Debug\Communication.exe
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\Client\Communication\bin\Debug\Communication.pdb
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\Client\Communication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\Client\Communication\bin\Debug\Newtonsoft.Json.xml
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\Client\Communication\obj\Debug\Communication.exe
+C:\Users\TAMIR\Documents\Visual Studio 2017\Projects\Client\Communication\obj\Debug\Communication.pdb
+C:\Users\avner\Downloads\Client\Communication\obj\Debug\Communication.csprojResolveAssemblyReference.cache
+C:\Users\avner\Downloads\Client\Communication\obj\Debug\Communication.exe
+C:\Users\avner\Downloads\Client\Communication\bin\Debug\Communication.exe.config
+C:\Users\avner\Downloads\Client\Communication\bin\Debug\Communication.exe
+C:\Users\avner\Downloads\Client\Communication\bin\Debug\Communication.pdb
+C:\Users\avner\Downloads\Client\Communication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\avner\Downloads\Client\Communication\bin\Debug\Newtonsoft.Json.xml
+C:\Users\avner\Downloads\Client\Communication\obj\Debug\Communication.pdb
+C:\Users\Doron\Downloads\Client\Client\Communication\bin\Debug\Communication.exe.config
+C:\Users\Doron\Downloads\Client\Client\Communication\bin\Debug\Communication.exe
+C:\Users\Doron\Downloads\Client\Client\Communication\bin\Debug\Communication.pdb
+C:\Users\Doron\Downloads\Client\Client\Communication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Doron\Downloads\Client\Client\Communication\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Doron\Downloads\Client\Client\Communication\obj\Debug\Communication.exe
+C:\Users\Doron\Downloads\Client\Client\Communication\obj\Debug\Communication.pdb

@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="Presentation.UserControlGame"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="560.959" d:DesignWidth="759.932">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="images\table1.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Image Name="com3" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="16" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,0,0,0"/>
+        <Image Name="com4" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="18" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,1,0,0"/>
+        <Image Name="com2" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="14" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="41" Margin="14,0,0,0"/>
+        <Image Name="com5" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="20" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,1,0,0"/>
+        <Image Name="com1" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="12" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="41" Margin="13,0,0,0"/>
+        <Image Name="hole2" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="17" HorizontalAlignment="Left" Height="59" Grid.Row="21" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="7,0,0,0"/>
+        <Image Name="hole1" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="15" HorizontalAlignment="Left" Height="59" Grid.Row="21" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="7,0,0,0"/>
+        <Button x:Name="btnLeaveTable" Content="Leave Table" HorizontalAlignment="Stretch"  Margin="0,0,10,9" VerticalAlignment="Bottom" Height="20" Click="BtnLeaveTable_Click" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
+        <RadioButton x:Name="rdbtnBet" Content="Bet" IsEnabled="False" HorizontalAlignment="Stretch"   Grid.Row="31" VerticalAlignment="Stretch" Foreground="White" Grid.ColumnSpan="3" Checked="RadioButton_Checked" />
+        <RadioButton x:Name="rdbtnCall" Content="Call" IsEnabled="False" HorizontalAlignment="Stretch"   Grid.Row="32" VerticalAlignment="Stretch" Foreground="White" Grid.ColumnSpan="3" Checked="RadioButton_Checked" />
+        <RadioButton x:Name="rdbtnCheck" Content="Check" IsEnabled="False" HorizontalAlignment="Stretch"   Grid.Row="33" VerticalAlignment="Stretch" Foreground="White" Grid.ColumnSpan="3" Checked="RadioButton_Checked"/>
+        <RadioButton x:Name="rdbtFold" Content="Fold" IsEnabled="False" HorizontalAlignment="Stretch"   Grid.Row="34" VerticalAlignment="Stretch" Foreground="White" Grid.ColumnSpan="3"  Checked="RadioButton_Checked"/>
+        <TextBox x:Name="txtBetSize" Grid.ColumnSpan="4" Grid.Column="4" Visibility="Hidden" HorizontalAlignment="Stretch" Height="23" Grid.Row="31" Grid.RowSpan="2" IsEnabled="false" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" TextChanged="TextBox_TextChanged"/>
+        <Button x:Name="btnConfirm" Grid.ColumnSpan="3" Content="Confirm" Grid.Column="5" HorizontalAlignment="Stretch" IsEnabled="False" Visibility="Hidden" Grid.Row="33" Grid.RowSpan="2" VerticalAlignment="Stretch" Click="BtnConfirm_Click" />
+        <DataGrid Name="stateGameBoard" Grid.ColumnSpan="16" Grid.Column="20" HorizontalAlignment="Stretch" Grid.RowSpan="13" VerticalAlignment="Stretch" />
+        <TextBlock Name="txtPotSize" Background="White" Grid.ColumnSpan="6" FontSize="16" Grid.Column="30" HorizontalAlignment="Stretch" TextAlignment="Center"  Grid.Row="34" Grid.RowSpan="2" TextWrapping="Wrap" Text="0" VerticalAlignment="Stretch" />
+        <Label Name="lblPotSize" Content="Pot Size:" Foreground="White" FontSize="16" Grid.Column="26" HorizontalAlignment="Stretch" Grid.Row="34" Grid.RowSpan="2" VerticalAlignment="Stretch" Grid.ColumnSpan="4" />
+        <Button Name="btnStartGame" Grid.ColumnSpan="4" Content="Start Game" Grid.Column="16" HorizontalAlignment="Stretch" Grid.Row="34" VerticalAlignment="Stretch"  Grid.RowSpan="2" Click="BtnStartGame_Click" />
+
+    </Grid>
+</UserControl>
