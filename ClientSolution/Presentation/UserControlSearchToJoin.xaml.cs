@@ -44,6 +44,7 @@ namespace Presentation
             lblChipPolicy.Visibility = Visibility.Hidden;
             txtPlayerName.Visibility = Visibility.Hidden;
             txtPotSize.Visibility = Visibility.Hidden;
+            lblChbx.Visibility = Visibility.Hidden;
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)
@@ -164,7 +165,7 @@ namespace Presentation
             this.Content = joinGame;
 
         }
-     
+
         private void txtPotSize_TextChanged(object sender, TextChangedEventArgs e)
         {
             int value = 0;
@@ -208,6 +209,7 @@ namespace Presentation
             cmdUp2.Visibility = Visibility.Hidden;
             lblBuyIn.Visibility = Visibility.Hidden;
             lblChipPolicy.Visibility = Visibility.Hidden;
+            lblChbx.Visibility = Visibility.Hidden;
         }
 
         private void rdBtnSearchbyPlayerName_Click(object sender, RoutedEventArgs e)
@@ -233,6 +235,7 @@ namespace Presentation
             cmdUp2.Visibility = Visibility.Hidden;
             lblBuyIn.Visibility = Visibility.Hidden;
             lblChipPolicy.Visibility = Visibility.Hidden;
+            lblChbx.Visibility = Visibility.Hidden;
         }
 
         private void rdBtnSearchbyPreferences_Click(object sender, RoutedEventArgs e)
@@ -256,6 +259,7 @@ namespace Presentation
             cmdUp2.Visibility = Visibility.Visible;
             lblBuyIn.Visibility = Visibility.Visible;
             lblChipPolicy.Visibility = Visibility.Visible;
+            lblChbx.Visibility = Visibility.Visible;
             txtPlayerName.Visibility = Visibility.Hidden;
             txtPotSize.Visibility = Visibility.Hidden;
         }

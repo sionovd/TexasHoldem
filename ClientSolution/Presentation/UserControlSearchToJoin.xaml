@@ -45,28 +45,69 @@
         <Slider Minimum="2" Maximum="9" Value="2" Thumb.DragCompleted="slMinPlayers_DragCompleted" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slMinPlayers" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <TextBox Name="txtMaxPlayers" Text="{Binding Value, ElementName=slMaxPlayers,  UpdateSourceTrigger=PropertyChanged}"   TextAlignment="Center" TextChanged="txtMaxPlayers_TextChanged" Grid.Column="4" Margin="0,0,0,10" Grid.Row="6" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="35" />
         <Slider Minimum="2" Maximum="9" Value="9" Thumb.DragCompleted="slMaxPlayers_DragCompleted" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" x:Name="slMaxPlayers" Grid.Column="3" Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="45" />
-        <Label Name="lblMinPlayers" Content="Min Players:" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Foreground="Black" FontSize="20" Grid.ColumnSpan="2"  Margin="0,41,0,43" Grid.RowSpan="3"/>
-        <Label Name="lblMxPlayers" Content="Max Players:" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Foreground="Black" FontSize="20" Grid.ColumnSpan="2"  Margin="0,41,0,43" Grid.RowSpan="3"/>
-        <Label Name="lblGameType"  Content="Game Type:" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" FontSize="20" Grid.ColumnSpan="2" />
+        <Label Name="lblMinPlayers" Content="Min Players:" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Foreground="Black" FontSize="20" Grid.ColumnSpan="2">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+        </Label>
+        <Label Name="lblMxPlayers" Content="Max Players:" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Stretch" Foreground="Black" FontSize="20" Grid.ColumnSpan="2" >
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+        </Label>
+        <Label Name="lblGameType"  Content="Game Type:" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" FontSize="20" Grid.ColumnSpan="2" >
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+        </Label>
         <RadioButton Name="rdbtnLimit" GroupName="gameType" Content="Limit Hold'em" IsChecked="True" FontSize="16px"  Grid.Column="3" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,10,0,0" Background="#FFF0E1E1"/>
         <RadioButton Name="rdbtnNoLimit" GroupName="gameType"  Content="No Limit Hold'em" FontSize="16px"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Margin="11,10,0,0" Width="152"/>
         <RadioButton Name="rdbtnPotLimit" GroupName="gameType"  Content="Pot Limit Hold'em" FontSize="16px" Grid.Column="7" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="4" Margin="48,10,43,0"/>
-        <CheckBox Name="chbxCanSpectate" Content="spectatable game" IsChecked="True"  FontSize="20px" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch"  Grid.ColumnSpan="3" />
         <TextBox x:Name="txtBuyIn"  TextAlignment="Center" x:FieldModifier="private" Text="0" TextChanged="txtNum_TextChanged1" Grid.Column="8" Grid.Row="5" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Button x:Name="cmdUp1" x:FieldModifier="private"  Content="˄"  Click="cmdUp_Click1" Grid.Column="9" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Height="22"/>
         <Button x:Name="cmdDown1" x:FieldModifier="private"  Content="˅"  Click="cmdDown_Click1" Grid.Column="9" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="22"/>
-        <Label Name="lblBuyIn" Content="Buy-in:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" FontSize="20" FontFamily="Buy-in"  Grid.ColumnSpan="3" Margin="14,1,50,45" Grid.RowSpan="2" />
+        <Label Name="lblBuyIn" Content="Buy-in:" Grid.Column="6" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" FontSize="20" FontFamily="Buy-in"  Grid.ColumnSpan="2" >
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+        </Label>
         <TextBox x:Name="txtChipPolicy"  TextAlignment="Center" x:FieldModifier="private" Text="0" TextChanged="txtNum_TextChanged2" Grid.Column="8" Grid.Row="6" FontSize="16"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Button x:Name="cmdUp2" x:FieldModifier="private" Content="˄"  Click="cmdUp_Click2" Grid.Column="9" Grid.Row="6" HorizontalAlignment="Left"   VerticalAlignment="Top" Width="20" Height="22"   />
         <Button x:Name="cmdDown2" x:FieldModifier="private"  Content="˅"   Click="cmdDown_Click2" Grid.Column="9" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="22"  />
-        <Label Name="lblChipPolicy" Content="Chip policy:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Stretch" FontSize="20" FontFamily="Buy-in"  Grid.ColumnSpan="3" Margin="14,1,50,46" Grid.RowSpan="2" />
+        <Label Name="lblChipPolicy" Content="Chip policy:" Grid.Column="6" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Stretch" FontSize="20" FontFamily="Buy-in"  Grid.ColumnSpan="2" >
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+        </Label>
         <Button x:Name="btnSearch" Grid.ColumnSpan="2" Content="Search" Grid.Column="9" HorizontalAlignment="Stretch" Grid.Row="10" VerticalAlignment="Stretch" Click="btnSearch_Click" />
-        <Label Content="Search Games" FontSize="40" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="5"  Grid.RowSpan="2" Grid.Row="1"/>
-        <RadioButton Name="rdBtnSearchbyPreferences" GroupName="searchType"  Checked="rdBtnSearchbyPreferences_Click" Content="Search by preferences" FontSize="20" Grid.Column="1" HorizontalAlignment="Left" Margin="0,15,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="253" Height="32"/>
-        <RadioButton Name="rdBtnSearchbyPlayerName" GroupName="searchType" Checked =" rdBtnSearchbyPlayerName_Click" Content="Search by player name" FontSize="20" Grid.Column="1" HorizontalAlignment="Left" Margin="0,17,0,0" Grid.Row="7" VerticalAlignment="Top" Height="30" Grid.ColumnSpan="4" Width="253"/>
-        <TextBox Name="txtPlayerName" Grid.ColumnSpan="3" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="7" TextWrapping="Wrap" Text="Player name" VerticalAlignment="Bottom" Height="25"  />
-        <RadioButton Name="rdBtnSearchbyPotSize" GroupName="searchType" Checked = "rdBtnSearchbyPotSize_Click" Content="Search by pot size" FontSize="20" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="189" Height="47"/>
-        <TextBox Name="txtPotSize"  Grid.ColumnSpan="3" Grid.Column="5" HorizontalAlignment="Stretch" Height="25" Grid.Row="9" TextWrapping="Wrap" Text="Pot size" VerticalAlignment="Top" TextChanged="txtPotSize_TextChanged"/>
+        <Label Content="Search Games" FontSize="40" Grid.Column="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="5"  Grid.RowSpan="3" Margin="0,21,0,0"/>
+        <TextBox Name="txtPlayerName" Grid.ColumnSpan="3" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="7" Text="Player name" VerticalAlignment="Bottom" Height="25"  />
+        <TextBox Name="txtPotSize"  Grid.ColumnSpan="3" Grid.Column="5" HorizontalAlignment="Stretch"  Grid.Row="9"  Text="Pot size" VerticalAlignment="Bottom" TextChanged="txtPotSize_TextChanged" Height="25"/>
+        <Label HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Grid.ColumnSpan="4"  Grid.Column="1" Margin="0,10,0,0">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+            <RadioButton x:Name="rdBtnSearchbyPreferences" GroupName="searchType"  Checked="rdBtnSearchbyPreferences_Click" Content="Search by preferences" FontSize="20"  />
+        </Label>
+        <Label HorizontalAlignment="Stretch" Name="lblChbx" Grid.Row="4" VerticalAlignment="Stretch" Grid.ColumnSpan="4" Grid.Column="1">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+            <CheckBox x:Name="chbxCanSpectate" Content="spectatable game" IsChecked="True"  FontSize="20px" >
+            </CheckBox>
+        </Label>
+        <Label Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,10,0,0" Grid.Row="7" VerticalAlignment="Stretch" Grid.ColumnSpan="4">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+            <RadioButton x:Name="rdBtnSearchbyPlayerName" GroupName="searchType" Checked =" rdBtnSearchbyPlayerName_Click" Content="Search by player name" FontSize="20" />
+        </Label>
+        <Label Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="9" VerticalAlignment="Stretch" Grid.ColumnSpan="4"  Margin="0,10,0,0">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+            <RadioButton x:Name="rdBtnSearchbyPotSize" GroupName="searchType" Checked = "rdBtnSearchbyPotSize_Click" Content="Search by pot size" FontSize="20"/>
+        </Label>
 
     </Grid>
 </UserControl>

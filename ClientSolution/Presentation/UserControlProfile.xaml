@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Presentation"
              mc:Ignorable="d" 
-           d:DesignHeight="560.959" d:DesignWidth="759.932">
+             d:DesignHeight="560.959" d:DesignWidth="759.932">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="images\mainBackground.jpg" Stretch="UniformToFill"/>
@@ -51,9 +51,21 @@
         <TextBox x:Name="txbxMail" IsEnabled="False" Grid.ColumnSpan="4" Grid.Column="6" HorizontalAlignment="Stretch" Grid.Row="4" Height="34" TextWrapping="Wrap" Text="Mail" VerticalAlignment="Top" />
         <Button Content="Load Profile Picture" HorizontalAlignment="Stretch" Name="btnLoad" VerticalAlignment="Stretch" Grid.Row="6" Click="btnLoad_Click" Grid.ColumnSpan="4" Margin="1,0,0,0"/>
         <TextBox x:Name="txbxMoney" IsEnabled="False" Grid.ColumnSpan="4" Grid.Column="6" HorizontalAlignment="Stretch" Height="34" Grid.Row="6" TextWrapping="Wrap" Text="Money  Balance" VerticalAlignment="Top"  TextChanged="TextBox_TextChanged"/>
-        <Label x:Name="labelMail" Content="Mail:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Top"  Height="34"/>
-        <Label x:Name="labelMoney" Content="Money:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Top"  Height="34"/>
-        <Label x:Name="labelPassword" Content="Password:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Top"  Height="34"/>
+        <Label x:Name="labelMail" Content="Mail:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Top"  Height="34">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Label.Background>
+        </Label>
+        <Label x:Name="labelMoney" Content="Money:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Top"  Height="34">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Label.Background>
+        </Label>
+        <Label x:Name="labelPassword" Content="Password:" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Top"  Height="34">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.5"/>
+            </Label.Background>
+        </Label>
         <TextBox x:Name="txbxPassword" IsEnabled="False" Grid.ColumnSpan="4" Grid.Column="6" HorizontalAlignment="Stretch" Height="34" Grid.Row="5" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"  TextChanged="TextBox_TextChanged"/>
         <Button x:Name="btnEditMail" Content="Edit mail" Grid.Column="10" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.Row="4" VerticalAlignment="Top" Width="101" Grid.ColumnSpan="2" Height="34" Click="btnEditMail_Click"/>
         <Button x:Name="btnChangePassword" Content="Change password" Grid.Column="10" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.Row="5" VerticalAlignment="Top" Width="101" Grid.ColumnSpan="2" Height="34" Click="btnChangePassword_Click"/>

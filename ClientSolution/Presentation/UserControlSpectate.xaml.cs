@@ -27,17 +27,17 @@ namespace Presentation
 
         private void BtnLeaveTable_Click(object sender, RoutedEventArgs e)
         {
-            if (GameWindow.gameWindow.tabControl.Items.Count <= 2)
+            if (UserControlTabs.userControlTabs.tabControl.Items.Count <= 2)
             {
-                GameWindow.firstInitiate = true;
+                UserControlTabs.firstInitiate = true;
                 Menu menu = new Menu();
-                GameWindow.gameWindow.Content = menu;
+                UserControlTabs.userControlTabs.Content = menu;
 
             }
             else
             {
 
-                GameWindow.gameWindow.tabControl.Items.Remove(GameWindow.gameWindow.tabControl.SelectedItem);
+                UserControlTabs.userControlTabs.tabControl.Items.Remove(UserControlTabs.userControlTabs.tabControl.SelectedItem);
             }
 
         }

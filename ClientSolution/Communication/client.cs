@@ -205,14 +205,7 @@ namespace Communication
             Reply ans = await Post(newUrl);
             return ans;
         }
-        public static async Task<Reply> SaveTurns(string username, int gameID, string turnData)
-        {
-            string newUrl = url + "SaveTurns?username=" + username;
-            newUrl = newUrl + "&gameID=" + gameID;
-            newUrl = newUrl + "&turnData=" + turnData;
-            Reply ans = await Post(newUrl);
-            return ans;
-        }
+
         public static async Task<Reply> SpectateGame(string username, int gameID)
         {
             string newUrl = url + "SpectateGame?username=" + username;

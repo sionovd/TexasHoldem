@@ -10,33 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Presentation
 {
     /// <summary>
-    /// Interaction logic for GameWindow.xaml
+    /// Interaction logic for UserControlTabs.xaml
     /// </summary>
-    public partial class GameWindow : Window
+    public partial class UserControlTabs : UserControl
     {
-        public static GameWindow gameWindow;
+
+        public static UserControlTabs userControlTabs;
         public static bool firstInitiate = true;
-        public GameWindow()
+
+        public UserControlTabs()
         {
             InitializeComponent();
             Menu menu = new Menu();
             menuTab.Content = menu;
         }
-
-       
-        public static void SetFirstTab(TabItem tab)
-        {
-            gameWindow.firstTab = tab;
-        }
-
-        
-        
-
-       
     }
 }

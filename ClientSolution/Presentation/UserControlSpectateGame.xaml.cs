@@ -36,30 +36,28 @@ namespace Presentation
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-            if (!GameWindow.firstInitiate)
+            if (!UserControlTabs.firstInitiate)
             {
 
-                (GameWindow.gameWindow.tabControl.SelectedItem as TabItem).Header = "Spectation";
+                (UserControlTabs.userControlTabs.tabControl.SelectedItem as TabItem).Header = "Spectation";
                 TabItem newTabItem = new TabItem();
                 newTabItem.Header = "Menu";
                 Menu newMenu = new Menu();
                 newMenu.btnLogout.Visibility = Visibility.Hidden;
                 newTabItem.Content = newMenu;
-                GameWindow.gameWindow.tabControl.Items.Add(newTabItem);
+                UserControlTabs.userControlTabs.tabControl.Items.Add(newTabItem);
                 UserControlSpectate spectate = new UserControlSpectate();
                 this.Content = spectate;
             }
             else
             {
-                GameWindow.firstInitiate = false;
-                GameWindow.gameWindow = new GameWindow();
-                GameWindow.gameWindow.firstTab.Content = new UserControlSpectate();
-                GameWindow.gameWindow.firstTab.Header = "Spectation";
-                GameWindow.gameWindow.Show();
-                Window.GetWindow(this).Close();
+                UserControlTabs.firstInitiate = false;
+                UserControlTabs.userControlTabs = new UserControlTabs();
+                UserControlTabs.userControlTabs.firstTab.Content = new UserControlSpectate();
+                UserControlTabs.userControlTabs.firstTab.Header = "Spectation";
+                this.Content = UserControlTabs.userControlTabs;
 
             }
-
         }
     }
 }

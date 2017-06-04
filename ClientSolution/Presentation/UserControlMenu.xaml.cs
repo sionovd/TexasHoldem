@@ -25,7 +25,7 @@ namespace Presentation
         public Menu()
         {
             InitializeComponent();
-            if (GameWindow.firstInitiate == false)
+            if (UserControlTabs.firstInitiate == false)
                 btnLogout.Visibility = Visibility.Hidden;
         }
 
@@ -33,7 +33,7 @@ namespace Presentation
         {
             UserControlProfile profile = new UserControlProfile();
             this.Content = profile;
-          
+
         }
 
         private void Button_Click_CreateGame(object sender, RoutedEventArgs e)
@@ -67,16 +67,16 @@ namespace Presentation
                 UserControlLogin login = new UserControlLogin();
                 this.Content = login;
             }
-           
+
         }
 
         private void btnJoinActiveGame_Click(object sender, RoutedEventArgs e)
         {
             UserControlSearchToJoin searchTojoin = new UserControlSearchToJoin();
-            this.Content= searchTojoin;
-            
+            this.Content = searchTojoin;
+
         }
-        
+
         private void btnSpectateGame_Click(object sender, RoutedEventArgs e)
         {
             UserControlSpectateGame spectate = new UserControlSpectateGame();

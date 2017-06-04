@@ -33,7 +33,6 @@ namespace Communication.Service
 
         // GameLog
         bool ReplayGame(string username, int gameLogID);
-        bool SaveTurns(string username, int gameID, string turnData);
         int SpectateGame(string username, int gameID);
     }
 }

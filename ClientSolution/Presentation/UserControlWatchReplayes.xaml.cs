@@ -34,27 +34,27 @@ namespace Presentation
 
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (!GameWindow.firstInitiate)
+
+            if (!UserControlTabs.firstInitiate)
             {
 
-                (GameWindow.gameWindow.tabControl.SelectedItem as TabItem).Header = "Replay";
+                (UserControlTabs.userControlTabs.tabControl.SelectedItem as TabItem).Header = "Replay";
                 TabItem newTabItem = new TabItem();
                 newTabItem.Header = "Menu";
                 Menu newMenu = new Menu();
                 newMenu.btnLogout.Visibility = Visibility.Hidden;
                 newTabItem.Content = newMenu;
-                GameWindow.gameWindow.tabControl.Items.Add(newTabItem);
+                UserControlTabs.userControlTabs.tabControl.Items.Add(newTabItem);
                 UserControlReplay replay = new UserControlReplay();
                 this.Content = replay;
             }
             else
             {
-                GameWindow.firstInitiate = false;
-                GameWindow.gameWindow = new GameWindow();
-                GameWindow.gameWindow.firstTab.Content = new UserControlReplay();
-                GameWindow.gameWindow.firstTab.Header = "Replay";
-                GameWindow.gameWindow.Show();
-                Window.GetWindow(this).Close();
+                UserControlTabs.firstInitiate = false;
+                UserControlTabs.userControlTabs = new UserControlTabs();
+                UserControlTabs.userControlTabs.firstTab.Content = new UserControlReplay();
+                UserControlTabs.userControlTabs.firstTab.Header = "Replay";
+                this.Content = UserControlTabs.userControlTabs;
 
             }
         }
