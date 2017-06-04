@@ -155,7 +155,7 @@ namespace Domain.GameModule
         {
             if (MyGame.Pref.MinBet <= amount)
                 return base.Bet(player, amount);
-            return false;
+            throw new DomainException(player.Username + " tried to bet " + amount + " but the min bet is " + MyGame.Pref.MinBet);
         }
     }
 
@@ -209,7 +209,9 @@ namespace Domain.GameModule
             {
                 return base.Bet(player, amount);
             }
-            return false;
+            throw new DomainException(player.Username + " tried to bet " + amount +
+                                      " during round " + MyGame.RoundNumber + " which is illegal");
+
         }
     }
 
@@ -224,7 +226,7 @@ namespace Domain.GameModule
         {
             if (amount >= this.MyGame.CurrentStake && amount <= this.MyGame.Pot + 2 * this.MyGame.CurrentStake)
                 return base.Bet(player, amount);
-            return false;
+            throw new DomainException("the bet amount: " + amount + " is not legal according to PotLimit rules");
         }
     }
 }
