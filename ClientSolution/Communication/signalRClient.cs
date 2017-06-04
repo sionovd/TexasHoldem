@@ -23,50 +23,43 @@ namespace Communication
 
         // this method include all the methods the client expose to the server
         private static void apiConfigure(IHubProxy myHub)
-        {
-            myHub.On<string>("chatMessage", message => Console.WriteLine(message));
-
+        {   // at future will send to method that print message at the suitable table
+            myHub.On<string,int>("chatMessage", (message,tableNumber) => Console.WriteLine(message));
+            // at future will pop-up message
+            myHub.On<string>("particularMessage", message => Console.WriteLine(message));
+           
             /*
                 MORE METHODS...
             */
         }
 
-        public static async void sendMessage(IHubProxy h, string message)
+        public static async void sendMessage(IHubProxy h, string message, int tableId)
         {
-            await h.Invoke("chat", message);
+            await h.Invoke("chat", message, tableId);
         }
 
-        public static void connection()
+        public static HubConnection connection()
         {
             var context = SynchronizationContext.Current;
             var querystringData = new Dictionary<string, string>();
-            queryStringByUserName(querystringData);
-            var connection = new HubConnection("http://localhost:29939/signalr", querystringData);  // the address we want to connect
-            IHubProxy myHub = connection.CreateHubProxy("myHub");    // the name of the hub we want to
+            querystringData.Add("id", "anik");
+            var connection = new HubConnection("http://localhost:53133/signalr", querystringData);  // the address we eant to connect
+            IHubProxy myHub = connection.CreateHubProxy("ServerHub");    // the name of the hub we want to
             apiConfigure(myHub);
-            connection.Start().Wait(); // not sure if you need this if you are simply posting to the hub
-            
-            /*
-                from this point the connection established and the client ready to get and send messages
-            */
+            connection.Start();
+            return connection;
         }
 
-
-
-
-        /*  await myHub.Invoke("Announce", "pizza");*/// invoke the hub we want to
-
-
-
-
-
-
-
-
-        /*   static void Main(string[] args)
-           {
-               ex();
-               Console.ReadLine();
-           }*/
+        /*
+            FOR DEBUGGING
+        
+        static void Main(string[] args)
+        {
+            HubConnection con;
+            con=connection();
+            Console.ReadLine();
+            disconnect(con);
+        }
+        */
     }
 }
