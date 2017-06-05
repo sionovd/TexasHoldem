@@ -62,6 +62,7 @@
     <Compile Include="Reply.cs" />
     <Compile Include="Service\IService.cs" />
     <Compile Include="signalRClient.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
