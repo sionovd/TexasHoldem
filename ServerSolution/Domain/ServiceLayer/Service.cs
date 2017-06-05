@@ -25,11 +25,6 @@ namespace Domain.ServiceLayer
             return gameCenter.Register(username, password, email);
         }
 
-        public bool RegisterWithMoney(string username, string password, string email, int money)
-        {
-            return gameCenter.RegisterWithMoney(username, password, email, money);
-        }
-
         public string GetEmail(string username)
         {
             return gameCenter.GetEmail(username);
@@ -123,11 +118,6 @@ namespace Domain.ServiceLayer
         }
 
         public bool ReplayGame(string username, int gameLogID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool SaveTurns(string username, int gameID, string turnData)
         {
             throw new NotImplementedException();
         }

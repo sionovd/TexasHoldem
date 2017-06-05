@@ -29,9 +29,7 @@ namespace Domain.UserModule
 
         public void Initialized()
         {
-            init = false;
-            List<User> tmp = db.getRegisterUsers();
-            
+            init = false;            
         }
         public User GetUserByName(string name)
         {
@@ -45,24 +43,6 @@ namespace Domain.UserModule
                     Initialized();
                 
                 User user = new User(username, password, email);
-                if (registerUsers.ContainsKey(username))
-                    throw new AlreadyHasNameException(user.Username);
-                registerUsers.Add(username, user);
-                return user;
-            }
-        }
-
-        public User RegisterWithMoney(string username, string password, string email, int money)
-        {
-            lock (lockThis)
-            {
-                if (init)
-                    Initialized();
-                User user = new User(username, password, email, money);
-                if (registerUsers == null)
-                {
-                    registerUsers = new Dictionary<string, User>();
-                }
                 if (registerUsers.ContainsKey(username))
                     throw new AlreadyHasNameException(user.Username);
                 registerUsers.Add(username, user);

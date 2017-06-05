@@ -8,7 +8,7 @@ namespace AcceptanceTests
     {
        
         [TestMethod]
-        public void TestTheGood()
+        public void RegisterGood()
         {
             Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
             Assert.IsTrue(Register("Yossi", "password", "yossi@post.bgu.ac.il"));
@@ -19,7 +19,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void RegisterBad()
         {
             Assert.IsFalse(Register("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
@@ -35,7 +35,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheSad()
+        public void RegisterSad()
         {
             Assert.IsFalse(Register("user,name", "password", "user@gmail.com"));
             Assert.IsFalse(Register("user name", "password", "user@gmail.com"));

@@ -11,7 +11,7 @@ namespace AcceptanceTests
         [TestMethod]
         public void CreateGameGood()
         {
-            Assert.IsTrue(RegisterWithMoney("doron", "password", "doron@gmail.com", 10000));
+            Assert.IsTrue(Register("doron", "password", "doron@gmail.com"));
             string username = "doron";
 
             List<KeyValuePair<string, int>> preferenceList1 = new List<KeyValuePair<string, int>>();

@@ -17,7 +17,7 @@ namespace Communication
         private static int _playerId;
         public static void Main(string[] args)
         { }
-
+        
         public static async Task<Reply> RegisterWithMoney(string username, string password, string email, int money)
         {
             if (!username.Equals("") & !password.Equals("") & !email.Equals(""))

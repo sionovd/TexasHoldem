@@ -59,7 +59,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestSearchGood()
+        public void SearchGood()
         {
           //  Assert.IsTrue(SearchAciveGamesByPot(100));
             Assert.IsTrue(SearchActiveGamesByPlayerName("doron"));
@@ -68,14 +68,14 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestSearchBad()
+        public void SearchBad()
         {
             Assert.IsFalse(SearchAciveGamesByPot(-500));
             Assert.IsFalse(SearchActiveGamesByPreferences(10, 10, 10, 10, 10, 10, 10));
         }
 
         [TestMethod]
-        public void TestSearchSad()
+        public void SearchSad()
         {
             Assert.IsFalse(SearchAciveGamesByPot(200));
             Assert.IsFalse(SearchActiveGamesByPlayerName("nobody"));

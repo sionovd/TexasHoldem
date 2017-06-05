@@ -18,7 +18,7 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("shavit", "password3", "shavit@gmail.com"));
             Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
             Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
-            Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 5));
+            Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
             string username = "doron";
             
             List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
@@ -38,7 +38,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheGood()
+        public void JoinGameGood()
         {
             
             int player2 = JoinGame("tamir", game1);
@@ -76,7 +76,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheSad()
+        public void JoinGameSad()
         {
             int player1 = JoinGame("someone", game1);
             Assert.IsFalse(player1 > 0);

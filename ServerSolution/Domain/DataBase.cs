@@ -10,21 +10,41 @@ namespace Domain
 {
     class DataBase : IDataBase
     {
-        public void AddGame(IGame game)
+
+        public List<User> GetRegisteredUsers()
         {
-          //  throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public List<IGame> getAllGames()
+        public User GetUser(string username)
         {
-            return new List<IGame>();
-          //  throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public List<User> getRegisterUsers()
+        public bool AddUser(string username, string password, string email, int money, int leagueID)
         {
-            return new List<User>();
-            //  throw new NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteUser(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool EditUser(string username, string password, string email, int money)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateUserLeague(string username, int newLeagueID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateUserStats(string username, int points, int numOfGames, int totalGrossProfit, int highestCashGain,
+            int avgGrossProfit, int avgCashGain)
+        {
+            throw new NotImplementedException();
         }
     }
 }
