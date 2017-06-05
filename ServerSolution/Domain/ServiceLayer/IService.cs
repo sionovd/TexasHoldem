@@ -10,7 +10,6 @@ namespace Domain.ServiceLayer
     {
         // UserController 
         bool Register(string username, string password, string email);
-        bool RegisterWithMoney(string username, string password, string email, int money);
         bool EditProfile(string username, string password, string email);
         bool Login(string username, string password);
         bool Logout(string username);
@@ -37,7 +36,6 @@ namespace Domain.ServiceLayer
 
         // GameLog
         bool ReplayGame(string username, int gameLogID);
-        bool SaveTurns(string username, int gameID, string turnData);
         int SpectateGame(string username, int gameID);
 
 

@@ -118,11 +118,6 @@ namespace AcceptanceTests
             throw new NotImplementedException();
         }
 
-        public bool SaveTurns(string username, int gameID, string turnData)
-        {
-            throw new NotImplementedException();
-        }
-
         public int SpectateGame(string username, int gameID)
         {
             throw new NotImplementedException();

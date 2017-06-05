@@ -23,7 +23,7 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("shavit", "password3", "shavit@gmail.com"));
             Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
             Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
-            Assert.IsTrue(RegisterWithMoney("someone", "password6", "someone@gmail.com", 5));
+            Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
             string username = "doron";
 
             List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
@@ -61,7 +61,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheGood()
+        public void SpectateGood()
         {
             Assert.IsTrue(ViewSpectatableGames());
             Assert.IsTrue(SpectateGame("someone", game1) > 0); 
@@ -69,7 +69,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void SpectateBad()
         {
             Assert.IsTrue(ViewSpectatableGames());
             //int game = CreateGame("doron", 1, 50, 100, 5, 2, 5,
@@ -79,7 +79,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheSad()
+        public void SpectateSad()
         {
             //end game1 and game2
            // int game = CreateGame("doron", 1, 50, 100, 5, 2, 5,

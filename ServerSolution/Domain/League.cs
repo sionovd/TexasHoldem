@@ -16,7 +16,7 @@ namespace Domain
 
         public bool AddUserLegally(User user)
         {
-            if (user.Rank.Points >= lowerBound && user.Rank.Points <= upperBound)
+            if (user.Stats.Points >= lowerBound && user.Stats.Points <= upperBound)
             {
                 user.League = this;
                 return true;

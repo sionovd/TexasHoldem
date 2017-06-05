@@ -31,20 +31,6 @@ namespace AcceptanceTests
             }
         }
 
-        public bool RegisterWithMoney(string username, string password, string email, int money)
-        {
-            try
-            {
-                bridge.RegisterWithMoney(username, password, email, money);
-                return true;
-            }
-            catch (DomainException e)
-            {
-                ErrorLogger.LogError(e);
-                return false;
-            }
-        }
-
         public bool EditProfile(string username, string password, string email)
         {
             try

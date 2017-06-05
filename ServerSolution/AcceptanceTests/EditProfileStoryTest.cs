@@ -7,7 +7,7 @@ namespace AcceptanceTests
     public class EditProfileStoryTest : GameSystemTest
     {
         [TestMethod]
-        public void TestTheGood()
+        public void EditProfileGood()
         {
             Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
             Assert.IsTrue(EditProfile("Doron123", "password", "yossi@post.bgu.ac.il"));
@@ -18,7 +18,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void EditProfileBad()
         {
             Assert.IsTrue(Register("user", "pass", "user@gmail.com"));
             Assert.IsFalse(EditProfile("user", "", "name@gmail.com"));
@@ -28,7 +28,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheSad()
+        public void EditProfileSad()
         {
             Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
             Assert.IsFalse(EditProfile("Doron", "pass", "user@gmail.com"));

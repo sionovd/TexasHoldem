@@ -7,7 +7,7 @@ namespace AcceptanceTests
     public class ReplayGameStoryTest : GameSystemTest
     {
         [TestMethod]
-        public void TestTheGood()
+        public void ReplayGood()
         {
             Assert.IsTrue(ReplayGame("doron", 1));
             Assert.IsTrue(ReplayGame("doron", 2));
@@ -16,7 +16,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void ReplayBad()
         {
             Assert.IsTrue(ReplayGame("doron", -1));
             Assert.IsTrue(ReplayGame("fakeuser", 1));
