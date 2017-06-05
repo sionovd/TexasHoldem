@@ -30,9 +30,11 @@ namespace Presentation
 
         private async void Button_Click_Register (object sender, RoutedEventArgs e)
         {
-            Reply accept; 
-               
-            accept  = await Client.Register(txbxUsername.Text, txbxPassword.Password, txbxEmail.Text);
+            Reply accept;
+
+            try
+            {
+                accept = await Client.Register(txbxUsername.Text, txbxPassword.Password, txbxEmail.Text);
 
                 if (!accept.Sucsses)
                 {
@@ -40,13 +42,24 @@ namespace Presentation
                 }
                 else
                 {
+                    User.GetUser().SetUserName(txbxUsername.Text);
+                    User.GetUser().SetPassword(txbxPassword.Password);
+                    User.GetUser().SetEmail(txbxEmail.Text);
                     Menu menu = new Menu();
                     menu.btnLogout.Visibility = Visibility.Visible;
                     this.Content = menu;
 
                 }
-            
-    
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+                Menu menu = new Menu();
+                menu.btnLogout.Visibility = Visibility.Visible;
+                this.Content = menu;
+            }
+
+
         }
 
         private void Button_Click_Back(object sender, RoutedEventArgs e)

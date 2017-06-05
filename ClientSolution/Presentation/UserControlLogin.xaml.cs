@@ -41,6 +41,8 @@ namespace Presentation
                 }
                 else
                 {
+                    User.GetUser().SetUserName(txbxUsername.Text);
+                    User.GetUser().SetPassword(txbxPassword.Password);
                     Menu menu = new Menu();
                     menu.btnLogout.Visibility = Visibility.Visible;
                     this.Content = menu;

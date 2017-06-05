@@ -26,7 +26,17 @@ namespace Presentation
         public UserControlProfile()
         {
             InitializeComponent();
+            LabelUsername.Content = User.GetUser().GetUsername();
+            txbxMail.Text = User.GetUser().GetEmail();
+            txbxPassword.Text = User.GetUser().GetPassword();
+            if (User.GetUser().GetMoneyBalance() < 0)
+                txbxMoney.Text = "no information";
+            else
+                txbxMoney.Text = User.GetUser().GetMoneyBalance().ToString();
+
         }
+
+        
 
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)

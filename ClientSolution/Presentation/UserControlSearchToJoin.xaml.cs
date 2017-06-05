@@ -20,6 +20,11 @@ namespace Presentation
     /// </summary>
     public partial class UserControlSearchToJoin : UserControl
     {
+
+        private bool searchbyPreferences_isChecked = false;
+        private bool searchbyUsername_isChecked = false;
+        private bool searchbyPotSize_isChecked = false;
+
         public UserControlSearchToJoin()
         {
             InitializeComponent();
@@ -54,18 +59,21 @@ namespace Presentation
 
         }
 
-        private void slMaxPlayers_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        private void slMaxPlayers_DragCompleted(object sender,
+            System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             if (slMaxPlayers.Value < slMinPlayers.Value)
                 slMinPlayers.Value = slMaxPlayers.Value;
         }
+
         private void txtMaxPlayers_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (slMaxPlayers.Value < slMinPlayers.Value)
                 slMinPlayers.Value = slMaxPlayers.Value;
         }
 
-        private void slMinPlayers_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        private void slMinPlayers_DragCompleted(object sender,
+            System.Windows.Controls.Primitives.DragCompletedEventArgs e)
         {
             if (slMinPlayers.Value > slMaxPlayers.Value)
                 slMaxPlayers.Value = slMinPlayers.Value;
@@ -188,80 +196,140 @@ namespace Presentation
         private void rdBtnSearchbyPotSize_Click(object sender, RoutedEventArgs e)
 
         {
-            txtPotSize.Visibility = Visibility.Visible;
-            txtPlayerName.Visibility = Visibility.Hidden;
-            lblGameType.Visibility = Visibility.Hidden;
-            rdbtnLimit.Visibility = Visibility.Hidden;
-            rdbtnNoLimit.Visibility = Visibility.Hidden;
-            rdbtnPotLimit.Visibility = Visibility.Hidden;
-            chbxCanSpectate.Visibility = Visibility.Hidden;
-            lblMinPlayers.Visibility = Visibility.Hidden;
-            lblMxPlayers.Visibility = Visibility.Hidden;
-            slMaxPlayers.Visibility = Visibility.Hidden;
-            slMinPlayers.Visibility = Visibility.Hidden;
-            txtMaxPlayers.Visibility = Visibility.Hidden;
-            txtMinPlayers.Visibility = Visibility.Hidden;
-            txtBuyIn.Visibility = Visibility.Hidden;
-            txtChipPolicy.Visibility = Visibility.Hidden;
-            cmdDown1.Visibility = Visibility.Hidden;
-            cmdDown2.Visibility = Visibility.Hidden;
-            cmdUp1.Visibility = Visibility.Hidden;
-            cmdUp2.Visibility = Visibility.Hidden;
-            lblBuyIn.Visibility = Visibility.Hidden;
-            lblChipPolicy.Visibility = Visibility.Hidden;
-            lblChbx.Visibility = Visibility.Hidden;
+            if (!searchbyPotSize_isChecked)
+            {
+                txtPotSize.Visibility = Visibility.Visible;
+                txtPlayerName.Visibility = Visibility.Hidden;
+                lblGameType.Visibility = Visibility.Hidden;
+                rdbtnLimit.Visibility = Visibility.Hidden;
+                rdbtnNoLimit.Visibility = Visibility.Hidden;
+                rdbtnPotLimit.Visibility = Visibility.Hidden;
+                chbxCanSpectate.Visibility = Visibility.Hidden;
+                lblMinPlayers.Visibility = Visibility.Hidden;
+                lblMxPlayers.Visibility = Visibility.Hidden;
+                slMaxPlayers.Visibility = Visibility.Hidden;
+                slMinPlayers.Visibility = Visibility.Hidden;
+                txtMaxPlayers.Visibility = Visibility.Hidden;
+                txtMinPlayers.Visibility = Visibility.Hidden;
+                txtBuyIn.Visibility = Visibility.Hidden;
+                txtChipPolicy.Visibility = Visibility.Hidden;
+                cmdDown1.Visibility = Visibility.Hidden;
+                cmdDown2.Visibility = Visibility.Hidden;
+                cmdUp1.Visibility = Visibility.Hidden;
+                cmdUp2.Visibility = Visibility.Hidden;
+                lblBuyIn.Visibility = Visibility.Hidden;
+                lblChipPolicy.Visibility = Visibility.Hidden;
+                lblChbx.Visibility = Visibility.Hidden;
+                searchbyPotSize_isChecked = true;
+                searchbyPreferences_isChecked = false;
+                searchbyUsername_isChecked = false;
+            }
+            else
+            {
+                txtPotSize.Visibility = Visibility.Hidden;
+                searchbyPotSize_isChecked = false;
+                rdBtnSearchbyPotSize.IsChecked = false;
+            }
         }
 
         private void rdBtnSearchbyPlayerName_Click(object sender, RoutedEventArgs e)
         {
-            txtPlayerName.Visibility = Visibility.Visible;
-            txtPotSize.Visibility = Visibility.Hidden;
-            lblGameType.Visibility = Visibility.Hidden;
-            rdbtnLimit.Visibility = Visibility.Hidden;
-            rdbtnNoLimit.Visibility = Visibility.Hidden;
-            rdbtnPotLimit.Visibility = Visibility.Hidden;
-            chbxCanSpectate.Visibility = Visibility.Hidden;
-            lblMinPlayers.Visibility = Visibility.Hidden;
-            lblMxPlayers.Visibility = Visibility.Hidden;
-            slMaxPlayers.Visibility = Visibility.Hidden;
-            slMinPlayers.Visibility = Visibility.Hidden;
-            txtMaxPlayers.Visibility = Visibility.Hidden;
-            txtMinPlayers.Visibility = Visibility.Hidden;
-            txtBuyIn.Visibility = Visibility.Hidden;
-            txtChipPolicy.Visibility = Visibility.Hidden;
-            cmdDown1.Visibility = Visibility.Hidden;
-            cmdDown2.Visibility = Visibility.Hidden;
-            cmdUp1.Visibility = Visibility.Hidden;
-            cmdUp2.Visibility = Visibility.Hidden;
-            lblBuyIn.Visibility = Visibility.Hidden;
-            lblChipPolicy.Visibility = Visibility.Hidden;
-            lblChbx.Visibility = Visibility.Hidden;
+            if (!searchbyUsername_isChecked)
+            {
+                txtPlayerName.Visibility = Visibility.Visible;
+                txtPotSize.Visibility = Visibility.Hidden;
+                lblGameType.Visibility = Visibility.Hidden;
+                rdbtnLimit.Visibility = Visibility.Hidden;
+                rdbtnNoLimit.Visibility = Visibility.Hidden;
+                rdbtnPotLimit.Visibility = Visibility.Hidden;
+                chbxCanSpectate.Visibility = Visibility.Hidden;
+                lblMinPlayers.Visibility = Visibility.Hidden;
+                lblMxPlayers.Visibility = Visibility.Hidden;
+                slMaxPlayers.Visibility = Visibility.Hidden;
+                slMinPlayers.Visibility = Visibility.Hidden;
+                txtMaxPlayers.Visibility = Visibility.Hidden;
+                txtMinPlayers.Visibility = Visibility.Hidden;
+                txtBuyIn.Visibility = Visibility.Hidden;
+                txtChipPolicy.Visibility = Visibility.Hidden;
+                cmdDown1.Visibility = Visibility.Hidden;
+                cmdDown2.Visibility = Visibility.Hidden;
+                cmdUp1.Visibility = Visibility.Hidden;
+                cmdUp2.Visibility = Visibility.Hidden;
+                lblBuyIn.Visibility = Visibility.Hidden;
+                lblChipPolicy.Visibility = Visibility.Hidden;
+                lblChbx.Visibility = Visibility.Hidden;
+                searchbyUsername_isChecked = true;
+                searchbyPreferences_isChecked = false;
+                searchbyPotSize_isChecked = false;
+            }
+            else
+            {
+                txtPlayerName.Visibility = Visibility.Hidden;
+                searchbyUsername_isChecked = false;
+                rdBtnSearchbyPlayerName.IsChecked = false;
+            }
         }
 
-        private void rdBtnSearchbyPreferences_Click(object sender, RoutedEventArgs e)
+
+
+        private void rdBtnSearchbyPreferences_Checked(object sender, RoutedEventArgs e)
         {
-            lblGameType.Visibility = Visibility.Visible;
-            rdbtnLimit.Visibility = Visibility.Visible;
-            rdbtnNoLimit.Visibility = Visibility.Visible;
-            rdbtnPotLimit.Visibility = Visibility.Visible;
-            chbxCanSpectate.Visibility = Visibility.Visible;
-            lblMinPlayers.Visibility = Visibility.Visible;
-            lblMxPlayers.Visibility = Visibility.Visible;
-            slMaxPlayers.Visibility = Visibility.Visible;
-            slMinPlayers.Visibility = Visibility.Visible;
-            txtMaxPlayers.Visibility = Visibility.Visible;
-            txtMinPlayers.Visibility = Visibility.Visible;
-            txtBuyIn.Visibility = Visibility.Visible;
-            txtChipPolicy.Visibility = Visibility.Visible;
-            cmdDown1.Visibility = Visibility.Visible;
-            cmdDown2.Visibility = Visibility.Visible;
-            cmdUp1.Visibility = Visibility.Visible;
-            cmdUp2.Visibility = Visibility.Visible;
-            lblBuyIn.Visibility = Visibility.Visible;
-            lblChipPolicy.Visibility = Visibility.Visible;
-            lblChbx.Visibility = Visibility.Visible;
-            txtPlayerName.Visibility = Visibility.Hidden;
-            txtPotSize.Visibility = Visibility.Hidden;
+            if (!searchbyPreferences_isChecked)
+            {
+                lblGameType.Visibility = Visibility.Visible;
+                rdbtnLimit.Visibility = Visibility.Visible;
+                rdbtnNoLimit.Visibility = Visibility.Visible;
+                rdbtnPotLimit.Visibility = Visibility.Visible;
+                chbxCanSpectate.Visibility = Visibility.Visible;
+                lblMinPlayers.Visibility = Visibility.Visible;
+                lblMxPlayers.Visibility = Visibility.Visible;
+                slMaxPlayers.Visibility = Visibility.Visible;
+                slMinPlayers.Visibility = Visibility.Visible;
+                txtMaxPlayers.Visibility = Visibility.Visible;
+                txtMinPlayers.Visibility = Visibility.Visible;
+                txtBuyIn.Visibility = Visibility.Visible;
+                txtChipPolicy.Visibility = Visibility.Visible;
+                cmdDown1.Visibility = Visibility.Visible;
+                cmdDown2.Visibility = Visibility.Visible;
+                cmdUp1.Visibility = Visibility.Visible;
+                cmdUp2.Visibility = Visibility.Visible;
+                lblBuyIn.Visibility = Visibility.Visible;
+                lblChipPolicy.Visibility = Visibility.Visible;
+                lblChbx.Visibility = Visibility.Visible;
+                txtPlayerName.Visibility = Visibility.Hidden;
+                txtPotSize.Visibility = Visibility.Hidden;
+                searchbyPreferences_isChecked = true;
+                searchbyPotSize_isChecked = false;
+                searchbyUsername_isChecked = false;
+            }
+
+            else
+            {
+                lblGameType.Visibility = Visibility.Hidden;
+                rdbtnLimit.Visibility = Visibility.Hidden;
+                rdbtnNoLimit.Visibility = Visibility.Hidden;
+                rdbtnPotLimit.Visibility = Visibility.Hidden;
+                chbxCanSpectate.Visibility = Visibility.Hidden;
+                lblMinPlayers.Visibility = Visibility.Hidden;
+                lblMxPlayers.Visibility = Visibility.Hidden;
+                slMaxPlayers.Visibility = Visibility.Hidden;
+                slMinPlayers.Visibility = Visibility.Hidden;
+                txtMaxPlayers.Visibility = Visibility.Hidden;
+                txtMinPlayers.Visibility = Visibility.Hidden;
+                txtBuyIn.Visibility = Visibility.Hidden;
+                txtChipPolicy.Visibility = Visibility.Hidden;
+                cmdDown1.Visibility = Visibility.Hidden;
+                cmdDown2.Visibility = Visibility.Hidden;
+                cmdUp1.Visibility = Visibility.Hidden;
+                cmdUp2.Visibility = Visibility.Hidden;
+                lblBuyIn.Visibility = Visibility.Hidden;
+                lblChipPolicy.Visibility = Visibility.Hidden;
+                lblChbx.Visibility = Visibility.Hidden;
+                searchbyPreferences_isChecked = false;
+                rdBtnSearchbyPreferences.IsChecked = false;
+
+            }
+
         }
     }
 }

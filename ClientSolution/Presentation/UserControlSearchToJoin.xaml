@@ -87,7 +87,7 @@
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.3"/>
             </Label.Background>
-            <RadioButton x:Name="rdBtnSearchbyPreferences" GroupName="searchType"  Checked="rdBtnSearchbyPreferences_Click" Content="Search by preferences" FontSize="20"  />
+            <RadioButton x:Name="rdBtnSearchbyPreferences" GroupName="searchType"  Click="rdBtnSearchbyPreferences_Checked" Content="Search by preferences" FontSize="20"  />
         </Label>
         <Label HorizontalAlignment="Stretch" Name="lblChbx" Grid.Row="4" VerticalAlignment="Stretch" Grid.ColumnSpan="4" Grid.Column="1">
             <Label.Background>
@@ -100,13 +100,13 @@
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.3"/>
             </Label.Background>
-            <RadioButton x:Name="rdBtnSearchbyPlayerName" GroupName="searchType" Checked =" rdBtnSearchbyPlayerName_Click" Content="Search by player name" FontSize="20" />
+            <RadioButton x:Name="rdBtnSearchbyPlayerName" GroupName="searchType" Click =" rdBtnSearchbyPlayerName_Click" Content="Search by player name" FontSize="20" />
         </Label>
         <Label Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="9" VerticalAlignment="Stretch" Grid.ColumnSpan="4"  Margin="0,10,0,0">
             <Label.Background>
                 <SolidColorBrush Color="White" Opacity="0.3"/>
             </Label.Background>
-            <RadioButton x:Name="rdBtnSearchbyPotSize" GroupName="searchType" Checked = "rdBtnSearchbyPotSize_Click" Content="Search by pot size" FontSize="20"/>
+            <RadioButton x:Name="rdBtnSearchbyPotSize" GroupName="searchType" Click = "rdBtnSearchbyPotSize_Click" Content="Search by pot size" FontSize="20"/>
         </Label>
 
     </Grid>

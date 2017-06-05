@@ -14,9 +14,6 @@ namespace Communication
     public class Client
     {
         private static string url = "http://localhost:53133/api/server/";
-        private static string _username;
-        private static string _email;
-        private static string _password;
         private static int _playerId;
         public static void Main(string[] args)
         { }
@@ -38,8 +35,8 @@ namespace Communication
         {
             if (!password.Equals(""))
             {
-                string newUrl = url + "EditProfile?username=" + _username;
-                newUrl = newUrl + "&password=" + password + "&email=" + _email;
+                string newUrl = url + "EditProfile?username=" + User.GetUser().GetUsername();
+                newUrl = newUrl + "&password=" + password + "&email=" + User.GetUser().GetEmail();
                 Reply ans = await Post(newUrl);
                 return ans;
             }
@@ -50,8 +47,8 @@ namespace Communication
         {
             if (!email.Equals(""))
             {
-                string newUrl = url + "EditProfile?username=" + _username;
-                newUrl = newUrl + "&password=" + _password + "&email=" + email;
+                string newUrl = url + "EditProfile?username=" + User.GetUser().GetUsername();
+                newUrl = newUrl + "&password=" + User.GetUser().GetPassword() + "&email=" + email;
                 Reply ans = await Post(newUrl);
                 return ans;
             }
@@ -83,9 +80,9 @@ namespace Communication
                 Reply ans = await Post(newUrl);
                 if (ans.Sucsses)
                 {
-                    _username = username;
-                    _password = password;
-                    _email = ans.StringContext;
+                    User.GetUser().SetUserName(username);
+                    User.GetUser().SetPassword(password);
+                    User.GetUser().SetEmail(ans.StringContext);
                 }
                 return ans;
             }
@@ -94,14 +91,14 @@ namespace Communication
 
         public static async Task<Reply> Logout()
         {
-            string newUrl = url + "Logout?username=" + _username;
+            string newUrl = url + "Logout?username=" + User.GetUser().GetUsername();
             Reply ans = await Post(newUrl);
             return ans;
         }
 
         public static async Task<Reply> JoinGame(int gameID)
         {
-            string newUrl = url + "JoinGame?username=" + _username;
+            string newUrl = url + "JoinGame?username=" + User.GetUser().GetUsername(); ;
             newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await Post(newUrl);
             if (ans.Sucsses)
@@ -121,7 +118,7 @@ namespace Communication
 
         public static async Task<Reply> LeaveGame(int gameID)
         {
-            string newUrl = url + "LeaveGame?username=" + _username;
+            string newUrl = url + "LeaveGame?username=" + User.GetUser().GetUsername(); 
             newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await Post(newUrl);
             return ans;
