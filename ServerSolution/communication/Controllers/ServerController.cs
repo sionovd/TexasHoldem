@@ -80,21 +80,6 @@ namespace communication.Controllers
         }
 
         [HttpPost]
-        public Reply RegisterWithMoney(string username, string password, string email, int money)
-        {
-            try
-            {
-                if (service.RegisterWithMoney(username, password, email, money))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
-            }
-            catch (DomainException a)
-            {
-                return new Reply(a.Message, false, null, -1);
-            }
-        }
-
-        [HttpPost]
         public Reply JoinGame(string username, int gameId)
         {
             try
@@ -220,21 +205,6 @@ namespace communication.Controllers
             try
             {
                 if (service.ReplayGame(username, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
-            }
-            catch (DomainException a)
-            {
-                return new Reply(a.Message, false, null, -1);
-            }
-        }
-
-        [HttpPost]
-        public Reply SaveTurns(string username, int gameID, string turnData)
-        {
-            try
-            {
-                if (service.SaveTurns(username, gameID, turnData))
                     return new Reply("true", true, null, -1);
                 return new Reply("unknow error", false, null, -1);
             }

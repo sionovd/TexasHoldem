@@ -24,6 +24,7 @@ namespace Domain.GameModule
             Array.Sort(onlyDealed);
             Array.Sort(this.hand);
         }
+
         public int Evaluate()
         {
             if (hand.Length != 7)

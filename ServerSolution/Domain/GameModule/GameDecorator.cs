@@ -134,6 +134,8 @@ namespace Domain.GameModule
             get { return MyGame.League; }
             set { MyGame.League = value; }
         }
+
+        public GameLog Logger { get; set; }
     }
 
     class BuyInDecorator : GameDecorator

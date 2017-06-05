@@ -1,15 +1,23 @@
 ﻿namespace Domain.UserModule
 {
-    public class UserRank
+    public class Statistics
     {
-        public UserRank()
+        public int Points { get; set; }
+        public int NumOfGames { get; set; }
+        public int TotalGrossProfit { get; set; }
+        public int HighestCashGain { get; set; }
+        public int AvgGrossProfit { get; set; }
+        public int AvgCashGain { get; set; }
+
+        public Statistics()
         {
             Points = 0;
-            NumOfCalibrationsLeft = 10;
+            NumOfGames = 0;
+            TotalGrossProfit = 0;
+            HighestCashGain = 0;
+            AvgGrossProfit = 0;
+            AvgCashGain = 0;
         }
-
-        public int Points { get; set; }
-        public int NumOfCalibrationsLeft { get; set; }
     }
 
     public class User
@@ -22,7 +30,7 @@
             this.password = password;
             Email = email;
             MoneyBalance = money;
-            Rank = new UserRank();
+            Stats = new Statistics();
             League = new DefaultLeague();
         }
 
@@ -33,12 +41,12 @@
                 throw new NotAPasswordException("");
             this.password = password;
             Email = email;
-            Rank = new UserRank();
+            Stats = new Statistics();
             League = new DefaultLeague();
             MoneyBalance = 1000;
         }
 
-        public UserRank Rank { get; set; }
+        public Statistics Stats { get; set; }
 
         public League League { get; set; }
 
@@ -49,6 +57,12 @@
         public string Email { get; set; }
 
         public int MoneyBalance { get; set; }
+
+        public int IncreaseMoney(int money)
+        {
+            MoneyBalance = MoneyBalance + money;
+            return MoneyBalance;
+        }
 
         public int DecreaseMoney(int money)
         {

@@ -29,6 +29,7 @@ namespace Domain.GameModule
         int CurrentStake { get; set; }
         int StartCounter { get; set; }
         League League { get; set; }
+        GameLog Logger { get; set; }
     }
 
     public class Game : IGame
@@ -48,11 +49,13 @@ namespace Domain.GameModule
         public bool IsActive { get; set; }
         public int StartCounter { get; set; }
         public League League { get; set; }
+        public GameLog Logger { get; set; }
         public Player PreviousPlayer { get; set; }
         public Game(GamePreferences pref)
         {
             counter++;
             Id = counter;
+            Logger = new GameLog(Id);
             Pref = pref;
             Seats = new List<Player>();
             spectators = new List<Spectator>();
@@ -73,7 +76,12 @@ namespace Domain.GameModule
             for (int i = 0; i < Seats.Count; i++)
             {
                 if (Seats[i] != null)
+                {
                     Seats[i].AddHand(Cards.GetCard(), Cards.GetCard());
+                    Logger.LogTurn(null,
+                        "Deal: " + Seats[i].PlayerId + " , Hand: " + Seats[i].Cards[0].getCardId() + " " +
+                        Seats[i].Cards[1].getCardId());
+                }
             }
         }
         private void AddCardToTable()
@@ -83,10 +91,12 @@ namespace Domain.GameModule
                 tableCards[0] = Cards.GetCard();
                 tableCards[1] = Cards.GetCard();
                 tableCards[2] = Cards.GetCard();
+                Logger.LogTurn(null, "Table: " + tableCards[0].getCardId() + " " + tableCards[1].getCardId() + " " + tableCards[2].getCardId());
             }
             else if (RoundNumber >= 3)
             {
                 tableCards[RoundNumber] = Cards.GetCard();
+                Logger.LogTurn(null, "Add Table: " + tableCards[RoundNumber].getCardId());
             }
         }
 
@@ -148,14 +158,6 @@ namespace Domain.GameModule
                 RoundNumber++;
                 if (RoundNumber > 4)
                     return;
-               /* if (RoundNumber > 4)
-                {
-                    winner = EvaluateWinner();
-
-                    // should notify players that the game has ended...... and something about the winner
-                    return;
-                }*/
-                
 
                 CurrentStake = 0;
                 AddCardToTable();
@@ -199,6 +201,7 @@ namespace Domain.GameModule
             }
             bestHand.ChipBalance = Pot;
             Console.WriteLine("\nThe winner is: " + bestHand.Username);
+            Logger.LogTurn(null, "Winner: " + bestHand.PlayerId);
             return bestHand;
         }
 
@@ -239,7 +242,7 @@ namespace Domain.GameModule
 
         public Player AddPlayer(User user)
         {
-            if (user.Rank.NumOfCalibrationsLeft == 0 && user.League.Id != this.League.Id)
+            if (user.Stats.NumOfGames > 10 && user.League.Id != this.League.Id)
                 throw new LeagueMismatchException("The user " + user.Username + " is in league \"" + user.League.Name + "\" but the game is in league \"" + this.League.Name + "\".");
             if (IsActive)
                 throw new GameAlreadyStartedException("The user " + user.Username + " tried to join game #" + Id + " but the game has already started.");
@@ -317,6 +320,7 @@ namespace Domain.GameModule
                 Pot += SmallBlind;
                 player.ChipBalance -= SmallBlind;
                 player.AmountBetOnCurrentRound += SmallBlind;
+                Logger.LogTurn(player, "Smallblind: " + SmallBlind);
             }
         }
 
@@ -330,6 +334,7 @@ namespace Domain.GameModule
                 player.ChipBalance -= BigBlind;
                 player.AmountBetOnCurrentRound += BigBlind;
                 player.MadeMove = true;
+                Logger.LogTurn(player, "Bigblind: " + BigBlind);
             }
         }
 
@@ -347,6 +352,7 @@ namespace Domain.GameModule
                 PreviousPlayer = player;
                 player.MadeMove = true;
                 UpdateState();
+                Logger.LogTurn(player, "Bet: " + amount);
                 return true;
             }
             throw new BetFailedException("Player " + player.Username + " failed to make bet of amount " + amount);
@@ -374,6 +380,7 @@ namespace Domain.GameModule
             PreviousPlayer = player;
             player.MadeMove = true;
             UpdateState();
+            Logger.LogTurn(player, "Call: " + CurrentStake);
             return true;
         }
         public bool Check(Player player)
@@ -387,6 +394,7 @@ namespace Domain.GameModule
             PreviousPlayer = player;
             player.MadeMove = true;
             UpdateState();
+            Logger.LogTurn(player, "Check: ");
             return true;
         }
 
@@ -398,6 +406,7 @@ namespace Domain.GameModule
             PreviousPlayer = player;
             player.MadeMove = true;
             UpdateState();
+            Logger.LogTurn(player, "Fold: ");
             return true;
         }
 

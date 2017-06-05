@@ -16,11 +16,7 @@ namespace Domain.GameCenterModule
         private GameCenter()
         {
             userController = UserController.GetInstance;
-            List<IGame> tmp = db.getAllGames();
-            if (tmp != null)
-                games = tmp.ToDictionary(g => g.Id);
-            else
-                games = new Dictionary<int, IGame>();
+            games = new Dictionary<int, IGame>();
         }
 
         public static GameCenter GetInstance
@@ -159,7 +155,6 @@ namespace Domain.GameCenterModule
             game.AddPlayer(user);
             game.League = user.League;
             games.Add(game.Id, game);
-            db.AddGame(game);
             return game.Id;
 
         }
@@ -169,12 +164,6 @@ namespace Domain.GameCenterModule
             if (password == null)
                 throw new NotAPasswordException("hello");
             User user = userController.Register(username, password, email);
-            return user != null;
-        }
-
-        public bool RegisterWithMoney(string username, string password, string email, int money)
-        {
-            User user = userController.RegisterWithMoney(username, password, email, money);
             return user != null;
         }
 
@@ -222,15 +211,14 @@ namespace Domain.GameCenterModule
             foreach (var player in game.Seats)
             {
                 User user = userController.GetUserByName(player.Username);
-                if (user.Rank.NumOfCalibrationsLeft > 0)
-                    user.Rank.NumOfCalibrationsLeft--;
+                user.Stats.NumOfGames++;
                 if (user.Username == winner.Username)
                 {
-                    user.MoneyBalance += winner.ChipBalance;
-                    user.Rank.Points += 5;
+                    user.IncreaseMoney(winner.ChipBalance);
+                    user.Stats.Points += 5;
                 }
                 else
-                    user.Rank.Points -= 1;
+                    user.Stats.Points -= 1;
             }
             return true;
         }

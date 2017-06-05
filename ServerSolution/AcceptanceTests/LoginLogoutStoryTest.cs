@@ -7,7 +7,7 @@ namespace AcceptanceTests
     public class LoginLogoutStoryTest : GameSystemTest
     {
         [TestMethod]
-        public void TestTheGood()
+        public void LoginLogoutGood()
         {
             Assert.IsTrue(Register("doron", "password", "doron@email.com"));
             Assert.IsTrue(Login("doron", "password"));
@@ -20,7 +20,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheBad()
+        public void LoginLogoutBad()
         {
             Assert.IsFalse(Login("nonexistinguser", "password"));
             Assert.IsFalse(Login("innocentuser", "wrongpassword"));
@@ -28,7 +28,7 @@ namespace AcceptanceTests
         }
 
         [TestMethod]
-        public void TestTheSad()
+        public void LoginLogoutSad()
         {
             Assert.IsTrue(Register("doron1", "password", "doron@gmail.com"));
             Assert.IsFalse(Login("doron1", "wrongpassword"));
