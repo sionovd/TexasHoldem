@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Communication;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -20,8 +24,11 @@ namespace Presentation
     /// </summary>
     public partial class UserControlSpectateGame : UserControl
     {
-        public UserControlSpectateGame()
+        private List<Game> results;
+        public UserControlSpectateGame(List<Game> results)
         {
+            this.results = results;
+            dgSpectateGame.ItemsSource = this.results;
             InitializeComponent();
             dgSpectateGame.Items.Add(new object());
         }
@@ -33,30 +40,49 @@ namespace Presentation
             this.Content = menu;
         }
 
-        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-            if (!UserControlTabs.firstInitiate)
+        private async void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {   DataGridRow row = sender as DataGridRow;
+            int index = row.GetIndex();
+            int gameID = results[index].GameID;
+            Reply accept;
+            try
             {
+               accept =  await Client.SpectateGame(User.GetUser().GetUsername(), gameID);
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                }
+                else
+                {
+                    int spectatorID = ((DataInt)accept.Content).Content;
 
-                (UserControlTabs.userControlTabs.tabControl.SelectedItem as TabItem).Header = "Spectation";
-                TabItem newTabItem = new TabItem();
-                newTabItem.Header = "Menu";
-                Menu newMenu = new Menu();
-                newMenu.btnLogout.Visibility = Visibility.Hidden;
-                newTabItem.Content = newMenu;
-                UserControlTabs.userControlTabs.tabControl.Items.Add(newTabItem);
-                UserControlSpectate spectate = new UserControlSpectate();
-                this.Content = spectate;
+                    if (!UserControlTabs.firstInitiate)
+                    {
+
+                        (UserControlTabs.userControlTabs.tabControl.SelectedItem as TabItem).Header = "Spectation";
+                        TabItem newTabItem = new TabItem();
+                        newTabItem.Header = "Menu";
+                        Menu newMenu = new Menu();
+                        newMenu.btnLogout.Visibility = Visibility.Hidden;
+                        newTabItem.Content = newMenu;
+                        UserControlTabs.userControlTabs.tabControl.Items.Add(newTabItem);
+                        UserControlSpectate spectate = new UserControlSpectate(gameID,spectatorID);
+                        this.Content = spectate;
+                    }
+                    else
+                    {
+                        UserControlTabs.firstInitiate = false;
+                        UserControlTabs.userControlTabs = new UserControlTabs();
+                        UserControlTabs.userControlTabs.firstTab.Content = new UserControlSpectate(gameID, spectatorID);
+                        UserControlTabs.userControlTabs.firstTab.Header = "Spectation";
+                        this.Content = UserControlTabs.userControlTabs;
+
+                    }
+                }
             }
-            else
+            catch (HttpRequestException exception)
             {
-                UserControlTabs.firstInitiate = false;
-                UserControlTabs.userControlTabs = new UserControlTabs();
-                UserControlTabs.userControlTabs.firstTab.Content = new UserControlSpectate();
-                UserControlTabs.userControlTabs.firstTab.Header = "Spectation";
-                this.Content = UserControlTabs.userControlTabs;
-
+                MessageBox.Show(exception.Message, "Warning");
             }
         }
     }

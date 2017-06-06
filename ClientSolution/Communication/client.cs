@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Communication.Replies;
 using Communication.Service;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,7 +15,6 @@ namespace Communication
     public class Client
     {
         private static string url = "http://localhost:53133/api/server/";
-        private static int _playerId;
         public static void Main(string[] args)
         { }
         
@@ -27,7 +27,7 @@ namespace Communication
                 Reply ans = await Post(newUrl);
                 return ans;
             }
-            return new Reply("Invalid input!", false, null, -1);
+            return new Reply(false, new DataString("Invalid input!"));
 
         }
 
@@ -40,7 +40,7 @@ namespace Communication
                 Reply ans = await Post(newUrl);
                 return ans;
             }
-            return new Reply("Invalid input!", false, null, -1);
+            return new Reply(false, new DataString("Invalid input!"));
         }
 
         public static async Task<Reply> EditProfileEmail(string email)
@@ -52,7 +52,7 @@ namespace Communication
                 Reply ans = await Post(newUrl);
                 return ans;
             }
-            return new Reply("Invalid input!", false, null, -1);
+           return new Reply(false, new DataString("Invalid input!"));
         }
 
         public static async Task<Reply> Register(string username, string password, string email)
@@ -64,11 +64,11 @@ namespace Communication
                 Reply ans = await Post(newUrl);
                 if (ans.Sucsses)
                 {
-                    Login(username, password);
+                    await Login(username, password);
                 }
                 return ans;
             }
-            return new Reply("Invalid input!", false, null, -1);
+            return new Reply(false, new DataString("Invalid input!"));
         }
 
         public static async Task<Reply> Login(string username, string password)
@@ -82,11 +82,11 @@ namespace Communication
                 {
                     User.GetUser().SetUserName(username);
                     User.GetUser().SetPassword(password);
-                    User.GetUser().SetEmail(ans.StringContext);
+                    User.GetUser().SetEmail(((DataString)ans.Content).Content);
                 }
                 return ans;
             }
-            return new Reply("Invalid input!", false, null, -1);
+            return new Reply(false, new DataString("Invalid input!"));
         }
 
         public static async Task<Reply> Logout()
@@ -101,10 +101,6 @@ namespace Communication
             string newUrl = url + "JoinGame?username=" + User.GetUser().GetUsername(); ;
             newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await Post(newUrl);
-            if (ans.Sucsses)
-            {
-                _playerId = ans.IntContext;
-            }
             return ans;
         }
 
@@ -124,32 +120,32 @@ namespace Communication
             return ans;
         }
 
-        public static async Task<Reply> Bet( int gameID, int amount)
+        public static async Task<Reply> Bet(int playerID, int gameID, int amount)
         {
-            string newUrl = url + "Bet?playerID=" + _playerId;
+            string newUrl = url + "Bet?playerID=" + playerID;
             newUrl = newUrl + "&gameID=" + gameID;
             newUrl = newUrl + "&amount=" + amount;
             Reply ans = await Post(newUrl);
             return ans;
         }
 
-        public static async Task<Reply> Check(int gameID)
+        public static async Task<Reply> Check(int playerID , int gameID)
         {
-            string newUrl = url + "Check?playerID=" + _playerId;
+            string newUrl = url + "Check?playerID=" + playerID;
             newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await Post(newUrl);
             return ans;
         }
-        public static async Task<Reply> Fold( int gameID)
+        public static async Task<Reply> Fold(int playerID , int gameID)
         {
-            string newUrl = url + "Fold?playerID=" + _playerId;
+            string newUrl = url + "Fold?playerID=" + playerID;
             newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await Post(newUrl);
             return ans;
         }
-        public static async Task<Reply> Call(int gameID)
+        public static async Task<Reply> Call(int playerID, int gameID)
         {
-            string newUrl = url + "Call?playerID=" + _playerId;
+            string newUrl = url + "Call?playerID=" + playerID;
             newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await Post(newUrl);
             return ans;

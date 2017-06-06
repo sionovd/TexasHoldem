@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -44,30 +45,34 @@ namespace Presentation
 
         private async void Button_Click_Logout(object sender, RoutedEventArgs e)
         {
-
-            Reply accept;
-            try
+            if (MainWindow.debug)
             {
-                accept = await Client.Logout();
-
-                if (!accept.Sucsses)
-                {
-                    MessageBox.Show(accept.StringContext, "Warning");
-                }
-                else
-                {
-                    UserControlLogin login = new UserControlLogin();
-                    this.Content = login;
-
-                }
-            }
-            catch (HttpRequestException exception)
-            {
-                MessageBox.Show(exception.Message, "Warning");
                 UserControlLogin login = new UserControlLogin();
                 this.Content = login;
             }
+            else
+            {
+                Reply accept;
+                try
+                {
+                    accept = await Client.Logout();
 
+                    if (!accept.Sucsses)
+                    {
+                        MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    }
+                    else
+                    {
+                        UserControlLogin login = new UserControlLogin();
+                        this.Content = login;
+
+                    }
+                }
+                catch (HttpRequestException exception)
+                {
+                    MessageBox.Show(exception.Message, "Warning");
+                }
+            }
         }
 
         private void btnJoinActiveGame_Click(object sender, RoutedEventArgs e)
@@ -77,10 +82,34 @@ namespace Presentation
 
         }
 
-        private void btnSpectateGame_Click(object sender, RoutedEventArgs e)
+        private async void btnSpectateGame_Click(object sender, RoutedEventArgs e)
         {
-            UserControlSpectateGame spectate = new UserControlSpectateGame();
-            this.Content = spectate;
+            Reply accept;
+            try
+            {
+                accept = await Client.ViewSpectatableGames();
+
+
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                }
+                else
+                {
+                    List<Game> games = new List<Game>();
+                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    {
+                        games.Add(new Game(gameID));
+                    }
+
+                    UserControlSpectateGame spectate = new UserControlSpectateGame(games);
+                    this.Content = spectate;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+            }
         }
 
         private void btnWatchReplayes_Click(object sender, RoutedEventArgs e)

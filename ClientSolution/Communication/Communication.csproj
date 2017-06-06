@@ -59,8 +59,13 @@
   <ItemGroup>
     <Compile Include="client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reply.cs" />
+    <Compile Include="Replies\Data.cs" />
+    <Compile Include="Replies\DataInt.cs" />
+    <Compile Include="Replies\DataListInt.cs" />
+    <Compile Include="Replies\DataString.cs" />
+    <Compile Include="Replies\Reply.cs" />
     <Compile Include="Service\IService.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="signalRClient.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

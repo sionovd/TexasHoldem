@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Net.Http;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Communication;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -20,13 +23,14 @@ namespace Presentation
     /// </summary>
     public partial class UserControlSearchToJoin : UserControl
     {
-
+        private List<Game> results;
         private bool searchbyPreferences_isChecked = false;
         private bool searchbyUsername_isChecked = false;
         private bool searchbyPotSize_isChecked = false;
 
         public UserControlSearchToJoin()
         {
+            results = new List<Game>();
             InitializeComponent();
             lblGameType.Visibility = Visibility.Hidden;
             rdbtnLimit.Visibility = Visibility.Hidden;
@@ -41,6 +45,10 @@ namespace Presentation
             txtMinPlayers.Visibility = Visibility.Hidden;
             txtBuyIn.Visibility = Visibility.Hidden;
             txtChipPolicy.Visibility = Visibility.Hidden;
+            txtMinBet.Visibility = Visibility.Hidden;
+            lblMinBet.Visibility = Visibility.Hidden;
+            cmdDown3.Visibility = Visibility.Hidden;
+            cmdUp3.Visibility = Visibility.Hidden;
             cmdDown1.Visibility = Visibility.Hidden;
             cmdDown2.Visibility = Visibility.Hidden;
             cmdUp1.Visibility = Visibility.Hidden;
@@ -88,6 +96,7 @@ namespace Presentation
 
         private int _numValue1 = 0;
         private int _numValue2 = 0;
+        private int _numValue3 = 0;
 
         public int NumValue1
         {
@@ -167,12 +176,175 @@ namespace Presentation
             }
         }
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        public int NumValue3
         {
-            UserControlJoinGame joinGame = new UserControlJoinGame();
-            this.Content = joinGame;
+            get { return _numValue3; }
+            set
+            {
+                _numValue3 = value;
+                txtMinBet.Text = value.ToString();
+            }
+        }
+
+
+
+        private void cmdUp_Click3(object sender, RoutedEventArgs e)
+        {
+            NumValue3++;
+        }
+
+        private void cmdDown_Click3(object sender, RoutedEventArgs e)
+        {
+            if (NumValue3 > 0)
+                NumValue3--;
+        }
+
+        private void txtNum_TextChanged3(object sender, TextChangedEventArgs e)
+        {
+            if (txtMinBet == null)
+            {
+                return;
+            }
+
+            if (!int.TryParse(txtMinBet.Text, out _numValue3))
+                txtMinBet.Text = _numValue3.ToString();
+            else
+            {
+                if (_numValue3 < 10)
+                    txtMinBet.Text = "10";
+            }
+        }
+
+        private async void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            bool success;
+           if(rdBtnSearchbyPreferences.IsChecked == true)
+               success = await SearchbyPreferences(GetGameType(), GetBuyIn(), GetChipPolicy(), GetMinBet(), GetMaxPlayers(), GetMinPlayers(), GetSpectateGame());
+           else if (rdBtnSearchbyPlayerName.IsChecked == true)
+               success = await SearchbyPlayerName(txtPlayerName.Text);
+           else if (rdBtnSearchbyPotSize.IsChecked == true)
+               success = await SearchbyPotSize(Int32.Parse(txtPotSize.Text));
+            else
+           {
+               int all = -1;
+               success = await SearchbyPreferences(all, all, all, all, all, all, all);
+           }
+           
+            if (success)
+            {
+                UserControlJoinGame joinGame = new UserControlJoinGame(results);
+                this.Content = joinGame;
+            }
+        }
+
+        private async Task<bool> SearchbyPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayer, int minPlayer, int spectateGame )
+        {
+            Reply accept;
+            try
+            {
+                accept = await Client.SearchActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet,  maxPlayer,  minPlayer,  spectateGame);
+
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    results.Clear();
+                    return false;
+                }
+                else
+                {
+
+                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    {
+                        results.Add(new Game(gameID));
+                    }
+
+                    return true;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+                results.Clear();
+                return false;
+
+            }
+        }
+
+        private async Task<bool> SearchbyPlayerName(String playerName)
+        {
+            Reply accept;
+            try
+            {
+                accept = await Client.SearchActiveGamesByPlayerName(playerName);
+
+                if (!accept.Sucsses)
+                {
+                    results.Clear();
+                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    return false;
+
+                }
+                else
+                {
+
+                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    {
+                        results.Add(new Game(gameID));
+                    }
+
+                    return true;
+
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                results.Clear();
+                MessageBox.Show(exception.Message, "Warning");
+                return false;
+
+            }
 
         }
+
+
+
+        private async Task<bool> SearchbyPotSize(int potSize)
+        {
+            Reply accept;
+            try
+            {
+                accept = await Client.SearchActiveGamesByPot(potSize);
+
+                if (!accept.Sucsses)
+                {
+                    results.Clear();
+                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    return false;
+
+                }
+                else
+                {
+
+                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    {
+                        results.Add(new Game(gameID));
+                    }
+
+                    return true;
+
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                results.Clear();
+                MessageBox.Show(exception.Message, "Warning");
+                return false;
+
+            }
+
+        }
+
+
 
         private void txtPotSize_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -213,6 +385,10 @@ namespace Presentation
                 txtMinPlayers.Visibility = Visibility.Hidden;
                 txtBuyIn.Visibility = Visibility.Hidden;
                 txtChipPolicy.Visibility = Visibility.Hidden;
+                txtMinBet.Visibility = Visibility.Hidden;
+                lblMinBet.Visibility = Visibility.Hidden;
+                cmdDown3.Visibility = Visibility.Hidden;
+                cmdUp3.Visibility = Visibility.Hidden;
                 cmdDown1.Visibility = Visibility.Hidden;
                 cmdDown2.Visibility = Visibility.Hidden;
                 cmdUp1.Visibility = Visibility.Hidden;
@@ -251,6 +427,10 @@ namespace Presentation
                 txtMinPlayers.Visibility = Visibility.Hidden;
                 txtBuyIn.Visibility = Visibility.Hidden;
                 txtChipPolicy.Visibility = Visibility.Hidden;
+                txtMinBet.Visibility = Visibility.Hidden;
+                lblMinBet.Visibility = Visibility.Hidden;
+                cmdDown3.Visibility = Visibility.Hidden;
+                cmdUp3.Visibility = Visibility.Hidden;
                 cmdDown1.Visibility = Visibility.Hidden;
                 cmdDown2.Visibility = Visibility.Hidden;
                 cmdUp1.Visibility = Visibility.Hidden;
@@ -289,6 +469,10 @@ namespace Presentation
                 txtMinPlayers.Visibility = Visibility.Visible;
                 txtBuyIn.Visibility = Visibility.Visible;
                 txtChipPolicy.Visibility = Visibility.Visible;
+                txtMinBet.Visibility = Visibility.Visible;
+                lblMinBet.Visibility = Visibility.Visible;
+                cmdDown3.Visibility = Visibility.Visible;
+                cmdUp3.Visibility = Visibility.Visible;
                 cmdDown1.Visibility = Visibility.Visible;
                 cmdDown2.Visibility = Visibility.Visible;
                 cmdUp1.Visibility = Visibility.Visible;
@@ -318,6 +502,10 @@ namespace Presentation
                 txtMinPlayers.Visibility = Visibility.Hidden;
                 txtBuyIn.Visibility = Visibility.Hidden;
                 txtChipPolicy.Visibility = Visibility.Hidden;
+                txtMinBet.Visibility = Visibility.Hidden;
+                lblMinBet.Visibility = Visibility.Hidden;
+                cmdDown3.Visibility = Visibility.Hidden;
+                cmdUp3.Visibility = Visibility.Hidden;
                 cmdDown1.Visibility = Visibility.Hidden;
                 cmdDown2.Visibility = Visibility.Hidden;
                 cmdUp1.Visibility = Visibility.Hidden;
@@ -330,6 +518,48 @@ namespace Presentation
 
             }
 
+        }
+
+
+        private int GetGameType()
+        {
+            if (rdbtnLimit.IsChecked == true)
+                return 0;
+            if (rdbtnNoLimit.IsChecked == true)
+                return 1;
+            return 2;
+        }
+
+        private int GetMinPlayers()
+        {
+            return (int)slMinPlayers.Value;
+        }
+
+        private int GetMaxPlayers()
+        {
+            return (int)slMaxPlayers.Value;
+        }
+
+        private int GetChipPolicy()
+        {
+            return Int32.Parse(txtChipPolicy.Text);
+        }
+
+        private int GetSpectateGame()
+        {
+            if (chbxCanSpectate.IsChecked == true)
+                return 1;
+            return 0;
+        }
+
+        private int GetBuyIn()
+        {
+            return Int32.Parse(txtBuyIn.Text);
+        }
+
+        private int GetMinBet()
+        {
+            return Int32.Parse(txtMinBet.Text);
         }
     }
 }

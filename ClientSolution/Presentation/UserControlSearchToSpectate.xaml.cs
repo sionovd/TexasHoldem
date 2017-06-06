@@ -160,8 +160,7 @@ namespace Presentation
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            UserControlSpectateGame spectateGame = new UserControlSpectateGame();
-            this.Content = spectateGame;
+            
 
         }
 

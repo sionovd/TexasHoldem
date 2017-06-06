@@ -45,7 +45,6 @@
                     <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
                 </Style>
             </DataGrid.Resources>
-          
         </DataGrid>
             <Label Name="lblJoinGame" Content="Join Game" FontSize="30" Grid.Column="4" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="191" Margin="40,0,0,0"/>
     </Grid>

@@ -23,7 +23,7 @@ namespace Presentation
         public UserControlWatchReplayes()
         {
             InitializeComponent();
-            dgReplays.Items.Add(new object());
+            
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

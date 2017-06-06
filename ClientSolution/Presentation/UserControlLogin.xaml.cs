@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Communication;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -30,31 +31,39 @@ namespace Presentation
 
         private async void  Button_Click_Login(object sender, RoutedEventArgs e)
         {
-            Reply accept;
-            try
+            if (MainWindow.debug)
             {
-                accept = await Client.Login(txbxUsername.Text, txbxPassword.Password);
-
-                if (!accept.Sucsses)
-                {
-                    MessageBox.Show(accept.StringContext, "Warning");
-                }
-                else
-                {
-                    User.GetUser().SetUserName(txbxUsername.Text);
-                    User.GetUser().SetPassword(txbxPassword.Password);
-                    Menu menu = new Menu();
-                    menu.btnLogout.Visibility = Visibility.Visible;
-                    this.Content = menu;
-
-                }
-            }
-            catch (HttpRequestException exception)
-            {
-                MessageBox.Show(exception.Message, "Warning");
+                User.GetUser().SetUserName(txbxUsername.Text);
+                User.GetUser().SetPassword(txbxPassword.Password);
                 Menu menu = new Menu();
                 menu.btnLogout.Visibility = Visibility.Visible;
                 this.Content = menu;
+            }
+            else
+            {
+                Reply accept;
+                try
+                {
+                    accept = await Client.Login(txbxUsername.Text, txbxPassword.Password);
+
+                    if (!accept.Sucsses)
+                    {
+                        MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    }
+                    else
+                    {
+                        User.GetUser().SetUserName(txbxUsername.Text);
+                        User.GetUser().SetPassword(txbxPassword.Password);
+                        Menu menu = new Menu();
+                        menu.btnLogout.Visibility = Visibility.Visible;
+                        this.Content = menu;
+
+                    }
+                }
+                catch (HttpRequestException exception)
+                {
+                    MessageBox.Show(exception.Message, "Warning");
+                }
             }
         }
 
