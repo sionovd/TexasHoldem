@@ -1,18 +1,17 @@
 ﻿using Newtonsoft.Json;
-
-namespace communication.Models
+namespace Communication.Replies
 {
     public class Reply
     {
         [JsonProperty("Sucsses")]
         public bool Sucsses { get; set; }
-        [JsonProperty("Content")]
-        public Data Content { get; set; }
-        public Reply( bool sucsess ,Data content)
+        [JsonProperty("ErrorMessage")]
+        public string ErrorMessage { get; set; }
+
+        public Reply(bool sucsess , string content)
         {
             Sucsses = sucsess;
-            Content = content;
+            ErrorMessage = content;
         }
-        
     }
 }
