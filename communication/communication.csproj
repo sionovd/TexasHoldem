@@ -81,6 +81,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data.cs" />
+    <Compile Include="Models\DataInt.cs" />
+    <Compile Include="Models\DataListInt.cs" />
+    <Compile Include="Models\DataString.cs" />
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

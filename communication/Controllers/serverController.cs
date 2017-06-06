@@ -14,23 +14,22 @@ namespace communication.Controllers
     public class ServerController : ApiController
     {
         private Service service = new Service();
-
         [HttpPost]
         public Reply Register(string username, string password, string email)
         {
             try
             {
                 if (service.Register(username, password, email))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
             catch (NullReferenceException e)
             {
-                return new Reply(e.Message, false, null, -1);
+                return new Reply(false, new DataString(e.Message));
             }
         }
 
@@ -40,12 +39,12 @@ namespace communication.Controllers
             try
             {
                 if (service.EditProfile(username, password, email))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -55,12 +54,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Login(username, password))
-                    return new Reply(service.GetEmail(username), true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -70,12 +69,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Logout(username))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -85,12 +84,12 @@ namespace communication.Controllers
             try
             {
                 if (service.RegisterWithMoney(username, password, email, money))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -99,11 +98,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("", true, null, service.JoinGame(username, gameId));
+                return new Reply( true, new DataInt(service.JoinGame(username, gameId)));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
 
         }
@@ -114,12 +113,12 @@ namespace communication.Controllers
             try
             {
                 if (service.StartGame(username, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
 
         }
@@ -130,12 +129,12 @@ namespace communication.Controllers
             try
             {
                 if (service.LeaveGame(username, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -145,12 +144,12 @@ namespace communication.Controllers
             try
             {
                 if (service.LeaveGame(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -160,12 +159,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Bet(playerID, gameID, amount))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -175,12 +174,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Check(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -190,12 +189,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Fold(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -205,12 +204,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Call(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -220,12 +219,12 @@ namespace communication.Controllers
             try
             {
                 if (service.ReplayGame(username, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false, new DataString("unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -235,12 +234,12 @@ namespace communication.Controllers
             try
             {
                 if (service.SaveTurns(username, gameID, turnData))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, new DataString("true"));
+                return new Reply(false,new DataString( "unknow error"));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -249,11 +248,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, null, service.SpectateGame(username, gameID));
+                return new Reply( true, new DataInt(service.SpectateGame(username, gameID)));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -262,11 +261,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, null, service.CreateGame(username, preferenceList));
+                return new Reply(true,new DataInt(service.CreateGame(username, preferenceList)));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -276,11 +275,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, null, service.CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount, isSpectatable));
+                return new Reply(true, new DataInt(service.CreateGame(username, gameTypePolicy, buyInPolicy, chipPolicy, minBet, minPlayerCount, maxPlayerCount, isSpectatable)));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -290,11 +289,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, service.SearchActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame), -1);
+                return new Reply(true, new DataListInt(service.SearchActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame)));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -303,11 +302,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, service.SearchActiveGamesByPot(pot), -1);
+                return new Reply(true, new DataListInt(service.SearchActiveGamesByPot(pot)));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -316,11 +315,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, service.SearchActiveGamesByPlayerName(username), -1);
+                return new Reply(true, new DataListInt(service.SearchActiveGamesByPlayerName(username)));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
 
@@ -329,11 +328,11 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, service.ViewSpectatableGames(), -1);
+                return new Reply(true, new DataListInt(service.ViewSpectatableGames()));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, new DataString(a.Message));
             }
         }
     }

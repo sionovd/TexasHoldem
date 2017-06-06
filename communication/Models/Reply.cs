@@ -1,30 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Newtonsoft.Json;
-
+﻿using Newtonsoft.Json;
 
 namespace communication.Models
 {
     public class Reply
     {
-        [JsonProperty("StringContext")]
-        public string StringContext { get; set; }
-        [JsonProperty("IntContext")]
-        public int IntContext { get; set; }
         [JsonProperty("Sucsses")]
         public bool Sucsses { get; set; }
-        [JsonProperty("ExtraData")]
-        public List<int> ExtraData { get; set; }
-
-        public Reply(string context, bool sucsess, List<int> data, int intContent)
+        [JsonProperty("Content")]
+        public Data Content { get; set; }
+        public Reply( bool sucsess ,Data content)
         {
             Sucsses = sucsess;
-            StringContext = context;
-            ExtraData = data;
-            IntContext = intContent;
-
+            Content = content;
         }
+        
     }
 }
