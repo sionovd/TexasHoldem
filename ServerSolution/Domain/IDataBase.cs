@@ -34,5 +34,13 @@ namespace Domain
 
         bool UpdateUserStats(string username, int points, int numOfGames, int totalGrossProfit, int highestCashGain, int avgGrossProfit, int avgCashGain);
 
+        
+        // I don't know how to do the GameLog table, so I didn't define the parameters...
+
+        bool AddGameLog(); 
+
+        GameLog GetGameLog();
+
+        List<GameLog> GetListOfGameLogs(); 
     }
 }
