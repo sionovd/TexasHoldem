@@ -98,8 +98,7 @@ namespace communication.Controllers
             {
                 int playerID = service.JoinGame(username, gameId);
                 Hub.addPlayerToTableCom(username, gameId);
-                return new Reply("", true, null, playerID);
-                return new ReplyInt(true,"", service.JoinGame(username, gameId));
+                return new ReplyInt(true,"",playerID);
             }
             catch (DomainException a)
             {
@@ -130,13 +129,11 @@ namespace communication.Controllers
             try
             {
                 if (service.LeaveGame(username, gameID))
-                    return new Reply(true, "");
-                return new Reply(false, "unknow error");
                 {
                     Hub.removePlayerFromTableCom(username, gameID);
-                    return new Reply("true", true, null, -1);
+                    return new Reply(true, "");
                 }
-                return new Reply("unknow error", false, null, -1);
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
@@ -268,7 +265,9 @@ namespace communication.Controllers
             List<KeyValuePair<string, int>> preferenceList = convertToInt(pl);
             try
             {
-                return new ReplyInt(true, "",service.CreateGame(username, preferenceList));
+                int gameId = service.CreateGame(username, preferenceList);
+                Hub.addPlayerToTableCom(username, gameId);
+                return new ReplyInt(true, "",gameId);
             }
             catch (DomainException a)
             {
@@ -287,22 +286,6 @@ namespace communication.Controllers
                 return ans;
             }
             return null;
-        }
-
-       [HttpPost]
-        public ReplyInt CreateGame(string username, int gameType, int minPlayers, int maxPlayers, int minBet,
-            int chipPolicy, int spectateGame, int buyIn)
-        {
-            try
-            {
-                int gameId = service.CreateGame(username, preferenceList);
-                Hub.addPlayerToTableCom(username, gameId);
-                return new Reply("true", true, null, gameId);
-            }
-            catch (DomainException a)
-            {
-                return new ReplyInt(false, a.Message,-1);
-            }
         }
 
         [HttpGet]
