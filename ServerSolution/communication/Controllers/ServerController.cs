@@ -276,6 +276,30 @@ namespace communication.Controllers
             }
         }
 
+        [HttpPost]
+        public ReplyInt CreateGame(string username, int gameType, int minPlayers, int maxPlayers, int minBet,
+            int chipPolicy, int spectateGame, int buyIn)
+        {
+            try
+            {
+                List<KeyValuePair<string, int>> toSand = new List<KeyValuePair<string, int>>();
+                toSand.Add(new KeyValuePair<string, int>("gameType", gameType));
+                toSand.Add(new KeyValuePair<string, int>("minPlayers", minPlayers));
+                toSand.Add(new KeyValuePair<string, int>("maxPlayers", maxPlayers));
+                toSand.Add(new KeyValuePair<string, int>("minBet", minBet));
+                toSand.Add(new KeyValuePair<string, int>("chipPolicy", chipPolicy));
+                toSand.Add(new KeyValuePair<string, int>("spectateGame", spectateGame));
+                toSand.Add(new KeyValuePair<string, int>("buyIn", buyIn));
+                int gameId = service.CreateGame(username, toSand);
+                Hub.addPlayerToTableCom(username, gameId);
+                return new ReplyInt(true, "", gameId);
+            }
+            catch (DomainException a)
+            {
+                return new ReplyInt(false, a.Message, -1);
+            }
+        }
+
         private List<KeyValuePair<string, int>> convertToInt(List<KeyValuePair<string, string>> pl)
         {
             if (pl != null)

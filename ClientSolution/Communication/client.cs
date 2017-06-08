@@ -7,7 +7,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
 using Communication.Replies;
-using Communication.Service;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -17,12 +16,7 @@ namespace Communication
     {
         private static string url = "http://localhost:53133/api/server/";
 
-        public static void Main(string[] args)
-
-        {
-
-
-        }
+      
 
         public static async Task<Reply> RegisterWithMoney(string username, string password, string email, int money)
         {
@@ -74,7 +68,7 @@ namespace Communication
                 if (ans.Sucsses)
                 {
                     
-                    Login(username, password);
+                    await Login(username, password);
                 }
                 return ans;
             }
@@ -90,6 +84,7 @@ namespace Communication
                 Reply ans = await PostBool(newUrl);
                 if (ans.Sucsses)
                 {
+                    signalRClient.connection();
                     UserInfo.GetUser().SetUserName(username);
                     UserInfo.GetUser().SetPassword(password);
                     UserInfo.GetUser().SetEmail(ans.ErrorMessage);
