@@ -244,18 +244,18 @@ namespace Presentation
             preferenceList.Add(spectateGame);
             preferenceList.Add(buyIn);
 
-            Reply accept;
+            ReplyInt accept;
             try
             {
-                accept = await Client.CreateGame(User.GetUser().GetUsername(), preferenceList);
+                accept = await Client.CreateGame(preferenceList);
 
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                 }
                 else
                 {
-                    int gameID = ((DataInt) accept.Content).Content;
+                    int gameID = accept.IntContent;
                     int playerID = 1;
                     if (!UserControlTabs.firstInitiate)
                     {

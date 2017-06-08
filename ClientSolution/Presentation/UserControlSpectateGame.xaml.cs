@@ -27,10 +27,11 @@ namespace Presentation
         private List<Game> results;
         public UserControlSpectateGame(List<Game> results)
         {
-            this.results = results;
-            dgSpectateGame.ItemsSource = this.results;
             InitializeComponent();
-            dgSpectateGame.Items.Add(new object());
+            this.results = results;
+            dgSpectateGame.ItemsSource = results;
+           
+          
         }
 
 
@@ -44,17 +45,17 @@ namespace Presentation
         {   DataGridRow row = sender as DataGridRow;
             int index = row.GetIndex();
             int gameID = results[index].GameID;
-            Reply accept;
+            ReplyInt accept;
             try
             {
-               accept =  await Client.SpectateGame(User.GetUser().GetUsername(), gameID);
+               accept =  await Client.SpectateGame(gameID);
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                 }
                 else
                 {
-                    int spectatorID = ((DataInt)accept.Content).Content;
+                    int spectatorID = accept.IntContent;
 
                     if (!UserControlTabs.firstInitiate)
                     {

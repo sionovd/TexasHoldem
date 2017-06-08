@@ -112,6 +112,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Reply.cs" />
+    <Compile Include="Models\ReplyInt.cs" />
+    <Compile Include="Models\ReplyListInt.cs" />
+    <Compile Include="Models\ReplyString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerHub.cs" />
     <Compile Include="Startup.cs" />

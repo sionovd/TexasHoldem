@@ -239,21 +239,21 @@ namespace Presentation
 
         private async Task<bool> SearchbyPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayer, int minPlayer, int spectateGame )
         {
-            Reply accept;
+            ReplyListInt accept;
             try
             {
                 accept = await Client.SearchActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet,  maxPlayer,  minPlayer,  spectateGame);
 
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                     results.Clear();
                     return false;
                 }
                 else
                 {
 
-                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    foreach (int gameID in (accept.ListIntContent))
                     {
                         results.Add(new Game(gameID));
                     }
@@ -272,7 +272,7 @@ namespace Presentation
 
         private async Task<bool> SearchbyPlayerName(String playerName)
         {
-            Reply accept;
+            ReplyListInt accept;
             try
             {
                 accept = await Client.SearchActiveGamesByPlayerName(playerName);
@@ -280,14 +280,14 @@ namespace Presentation
                 if (!accept.Sucsses)
                 {
                     results.Clear();
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                     return false;
 
                 }
                 else
                 {
 
-                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    foreach (int gameID in accept.ListIntContent)
                     {
                         results.Add(new Game(gameID));
                     }
@@ -310,7 +310,7 @@ namespace Presentation
 
         private async Task<bool> SearchbyPotSize(int potSize)
         {
-            Reply accept;
+            ReplyListInt accept;
             try
             {
                 accept = await Client.SearchActiveGamesByPot(potSize);
@@ -318,14 +318,14 @@ namespace Presentation
                 if (!accept.Sucsses)
                 {
                     results.Clear();
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                     return false;
 
                 }
                 else
                 {
 
-                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    foreach (int gameID in accept.ListIntContent)
                     {
                         results.Add(new Game(gameID));
                     }

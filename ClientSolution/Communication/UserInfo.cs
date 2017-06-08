@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace Communication
 {
-    public class User
-    { private static readonly User USER = new User();
+    public class UserInfo
+    { private static readonly UserInfo USER = new UserInfo();
       private string username;
       private string email;
       private string password;
       private int moneyBalance;
 
-        private User()
+        private UserInfo()
         {
            username = "";
            email = "";
@@ -24,7 +24,7 @@ namespace Communication
            moneyBalance = -1;
 
         }
-        public static User GetUser()
+        public static UserInfo GetUser()
         {
             return USER;
         }

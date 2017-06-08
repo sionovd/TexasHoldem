@@ -44,18 +44,18 @@ namespace Presentation
             int i = row.GetIndex();
             int gameID = results[i].GameID;
             int playerID;
-            Reply accept;
+            ReplyInt accept;
             try
             {
                 accept = await Client.JoinGame(gameID);
 
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                 }
                 else
                 {
-                    playerID = ((DataInt)accept.Content).Content;
+                    playerID = accept.IntContent;
                     if (!UserControlTabs.firstInitiate)
                     {
 

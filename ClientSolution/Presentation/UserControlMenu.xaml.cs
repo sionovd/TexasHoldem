@@ -59,7 +59,7 @@ namespace Presentation
 
                     if (!accept.Sucsses)
                     {
-                        MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                        MessageBox.Show(accept.ErrorMessage, "Warning");
                     }
                     else
                     {
@@ -84,7 +84,7 @@ namespace Presentation
 
         private async void btnSpectateGame_Click(object sender, RoutedEventArgs e)
         {
-            Reply accept;
+            ReplyListInt accept;
             try
             {
                 accept = await Client.ViewSpectatableGames();
@@ -92,16 +92,16 @@ namespace Presentation
 
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                 }
                 else
                 {
                     List<Game> games = new List<Game>();
-                    foreach (int gameID in ((DataListInt)accept.Content).Content)
+                    foreach (int gameID in (accept.ListIntContent))
                     {
                         games.Add(new Game(gameID));
                     }
-
+                   
                     UserControlSpectateGame spectate = new UserControlSpectateGame(games);
                     this.Content = spectate;
                 }

@@ -41,7 +41,7 @@ namespace Presentation
 
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                 }
                 else
                 {

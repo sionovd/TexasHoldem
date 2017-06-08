@@ -33,8 +33,7 @@ namespace Presentation
         {
             if (MainWindow.debug)
             {
-                User.GetUser().SetUserName(txbxUsername.Text);
-                User.GetUser().SetPassword(txbxPassword.Password);
+
                 Menu menu = new Menu();
                 menu.btnLogout.Visibility = Visibility.Visible;
                 this.Content = menu;
@@ -48,12 +47,10 @@ namespace Presentation
 
                     if (!accept.Sucsses)
                     {
-                        MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                        MessageBox.Show(accept.ErrorMessage, "Warning");
                     }
                     else
                     {
-                        User.GetUser().SetUserName(txbxUsername.Text);
-                        User.GetUser().SetPassword(txbxPassword.Password);
                         Menu menu = new Menu();
                         menu.btnLogout.Visibility = Visibility.Visible;
                         this.Content = menu;

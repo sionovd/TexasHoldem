@@ -59,7 +59,7 @@ namespace Presentation
             
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                 }
                 else
                 {
@@ -157,7 +157,7 @@ namespace Presentation
                accept = await Client.Fold(playerID, gameID);
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                     return false;
 
                 }
@@ -182,7 +182,7 @@ namespace Presentation
                 accept = await Client.Call(playerID , gameID);
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                     return false;
 
                 }
@@ -207,7 +207,7 @@ namespace Presentation
                 accept = await Client.Check(playerID, gameID);
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                     return false;
 
                 }
@@ -232,7 +232,7 @@ namespace Presentation
                 accept = await Client.Bet(playerID, gameID, amount);
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                     return false;
 
                 }
@@ -254,11 +254,11 @@ namespace Presentation
             Reply accept;
             try
             {
-                accept = await Client.StartGame(User.GetUser().GetUsername(), gameID);
+                accept = await Client.StartGame(gameID);
 
                 if (!accept.Sucsses)
                 {
-                    MessageBox.Show(((DataString)accept.Content).Content, "Warning");
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
                 }
                 else
                 {
