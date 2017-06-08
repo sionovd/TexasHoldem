@@ -9,8 +9,23 @@ namespace communication
 {
     public class ServerHub : Hub
     {
+        private static ServerHub serverHub;
+
+        private ServerHub(){}
+
+        public static ServerHub GetInstance
+        {
+            get
+            {
+                if (serverHub == null)
+                    serverHub = new ServerHub();
+                return serverHub;
+            }
+        }
+
         //uList is a list of UserConnection, each userConnection has userName(unique) and ConnectionId
         static List<UserConnection> uList = new List<UserConnection>();
+        static List<ClientObserver> allObservers = new List<ClientObserver>();
 
         /*
         THIS METHODS OVERRIDE FROM Hub
@@ -58,19 +73,25 @@ namespace communication
         /*
         THIS METHODS CALLS FROM SERVER TO MANAGE THE HUB
         */
-        protected void addPlayerToTableCom(string username,int tableId)
+        internal void addPlayerToTableCom(string username,int tableId)
         {
             int index=uList.FindIndex(user => user.UserName == username);
             Groups.Add(uList[index].ConnectionID, tableId.ToString());
+            allObservers.Add(new ClientObserver(username, tableId));
         }
 
-        protected void removePlayerFromTableCom(string username, int tableId)
+        internal void removePlayerFromTableCom(string username, int tableId)
         {
             int index = uList.FindIndex(user => user.UserName == username);
             Groups.Remove(uList[index].ConnectionID, tableId.ToString());
+            foreach (var o in allObservers)
+            {
+                if (o.Username == username)
+                    o.Unsubscribe();
+            }
         }
 
-        protected void sendMessageToUser(string username,string message)
+        internal void sendMessageToUser(string username,string message)
         {
             var user = uList.Where(u => u.UserName == username);
             if(user.Any())

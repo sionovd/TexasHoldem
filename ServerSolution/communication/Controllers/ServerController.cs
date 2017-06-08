@@ -6,7 +6,6 @@ using System.Net.Http;
 using System.Web.Http;
 using communication.Models;
 using Newtonsoft.Json;
-using Domain;
 using Domain.ServiceLayer;
 
 namespace communication.Controllers
@@ -14,6 +13,8 @@ namespace communication.Controllers
     public class ServerController : ApiController
     {
         private Service service = new Service();
+        private ServerHub Hub = ServerHub.GetInstance;
+
 
         [HttpPost]
         public Reply Register(string username, string password, string email)
@@ -84,7 +85,9 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("", true, null, service.JoinGame(username, gameId));
+                int playerID = service.JoinGame(username, gameId);
+                Hub.addPlayerToTableCom(username, gameId);
+                return new Reply("", true, null, playerID);
             }
             catch (DomainException a)
             {
@@ -115,7 +118,10 @@ namespace communication.Controllers
             try
             {
                 if (service.LeaveGame(username, gameID))
+                {
+                    Hub.removePlayerFromTableCom(username, gameID);
                     return new Reply("true", true, null, -1);
+                }
                 return new Reply("unknow error", false, null, -1);
             }
             catch (DomainException a)
@@ -232,7 +238,9 @@ namespace communication.Controllers
         {
             try
             {
-                return new Reply("true", true, null, service.CreateGame(username, preferenceList));
+                int gameId = service.CreateGame(username, preferenceList);
+                Hub.addPlayerToTableCom(username, gameId);
+                return new Reply("true", true, null, gameId);
             }
             catch (DomainException a)
             {

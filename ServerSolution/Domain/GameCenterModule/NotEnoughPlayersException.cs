@@ -1,4 +1,5 @@
 ﻿using System;
+using Domain.ServiceLayer;
 
 namespace Domain.GameCenterModule
 {

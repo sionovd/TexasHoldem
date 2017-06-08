@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Domain.ObserverFramework;
+using Domain.ServiceLayer;
 using Domain.UserModule;
 
 namespace Domain.GameModule
@@ -23,80 +25,94 @@ namespace Domain.GameModule
         GamePreferences Pref { get; set; }
         List<Player> Seats { get; }
         int Id { get; set; }
-        int Pot { get; set; }
-        int RoundNumber { get; set; }
+        GameState State { get; set; }
         int BigBlind { get; set; }
-        int CurrentStake { get; set; }
         int StartCounter { get; set; }
         League League { get; set; }
         GameLog Logger { get; set; }
+        Subject Subject { get; set; }
+    }
+
+    public class GameState
+    {
+        public Card[] TableCards { get; }
+        public int RoundNumber { get; set; }
+        public int Pot { get; set; }
+        public int CurrentStake { get; set; }
+
+        public GameState()
+        {
+            TableCards = new Card[5];
+            RoundNumber = 1;
+            Pot = 0;
+            CurrentStake = 0;
+        }
     }
 
     public class Game : IGame
     {
-        private static int counter = 0;
+        private static int _counter;
         private List<Spectator> spectators;
-        private Card[] tableCards;
+        
         public int Id { get; set; }
         public GamePreferences Pref { get; set; }
         public List<Player> Seats { get; set; }
         public Deck Cards { get; set; }
-        public int RoundNumber { get;  set; }
-        public int Pot { get; set; }
-        public int CurrentStake { get;  set; }
+        public GameState State { get; set; }
         public int SmallBlind { get; set; }
         public int BigBlind { get; set; }
         public bool IsActive { get; set; }
         public int StartCounter { get; set; }
         public League League { get; set; }
         public GameLog Logger { get; set; }
+        public Subject Subject { get; set; }
         public Player PreviousPlayer { get; set; }
         public Game(GamePreferences pref)
         {
-            counter++;
-            Id = counter;
-            Logger = new GameLog(Id);
+            _counter++;
+            Id = _counter;
+            //subjectID = Id;
+            Logger = new GameLog(this);
             Pref = pref;
             Seats = new List<Player>();
+            Player.counter = 0;
             spectators = new List<Spectator>();
-            tableCards = new Card[5];
             Cards = new Deck();
-            Pot = 0;
             BigBlind = Pref.MinBet;
             SmallBlind = BigBlind / 2;
-            CurrentStake = 0;
-            RoundNumber = 0;
+            State = new GameState();
             StartCounter = 0;
             IsActive = false;
+            Subject = new Subject();
         }
 
         private void DealCards()
         {
             //add cards to players
-            for (int i = 0; i < Seats.Count; i++)
+            foreach (Player player in Seats)
             {
-                if (Seats[i] != null)
+                if (player != null)
                 {
-                    Seats[i].AddHand(Cards.GetCard(), Cards.GetCard());
+                    player.AddHand(Cards.GetCard(), Cards.GetCard());
                     Logger.LogTurn(null,
-                        "Deal: " + Seats[i].PlayerId + " , Hand: " + Seats[i].Cards[0].getCardId() + " " +
-                        Seats[i].Cards[1].getCardId());
+                        "Deal: " + player.PlayerId + " , Hand: " + player.Cards[0].getCardId() + " " +
+                        player.Cards[1].getCardId());
                 }
             }
         }
         private void AddCardToTable()
         {
-            if (RoundNumber == 2)
+            if (State.RoundNumber == 2)
             {
-                tableCards[0] = Cards.GetCard();
-                tableCards[1] = Cards.GetCard();
-                tableCards[2] = Cards.GetCard();
-                Logger.LogTurn(null, "Table: " + tableCards[0].getCardId() + " " + tableCards[1].getCardId() + " " + tableCards[2].getCardId());
+                State.TableCards[0] = Cards.GetCard();
+                State.TableCards[1] = Cards.GetCard();
+                State.TableCards[2] = Cards.GetCard();
+                Logger.LogTurn(null, "Table: " + State.TableCards[0].getCardId() + " " + State.TableCards[1].getCardId() + " " + State.TableCards[2].getCardId());
             }
-            else if (RoundNumber >= 3)
+            else if (State.RoundNumber >= 3)
             {
-                tableCards[RoundNumber] = Cards.GetCard();
-                Logger.LogTurn(null, "Add Table: " + tableCards[RoundNumber].getCardId());
+                State.TableCards[State.RoundNumber] = Cards.GetCard();
+                Logger.LogTurn(null, "Add Table: " + State.TableCards[State.RoundNumber].getCardId());
             }
         }
 
@@ -106,12 +122,13 @@ namespace Domain.GameModule
             PlaceSmallBlind(Seats[0]);
             PlaceBigBlind(Seats[1]);
             PreviousPlayer = Seats[1];
-            RoundNumber = 1;
+            State.RoundNumber = 1;
+            IsActive = true;
         }
 
         public void UpdateState()
         {
-            if (RoundNumber > 4) // should not happen, game must notify players when it ends......
+            if (State.RoundNumber > 4) // should not happen, game must notify players when it ends......
                 return;
             Player winner = null;
             int foldedCount = 0;
@@ -155,11 +172,11 @@ namespace Domain.GameModule
 
             if (finishRoundCounter == Seats.Count)
             {
-                RoundNumber++;
-                if (RoundNumber > 4)
+                State.RoundNumber++;
+                if (State.RoundNumber > 4)
                     return;
 
-                CurrentStake = 0;
+                State.CurrentStake = 0;
                 AddCardToTable();
                 foreach (Player p in Seats)
                 {
@@ -175,11 +192,10 @@ namespace Domain.GameModule
         {
             Player bestHand = null;
             int bestHandScore = 0;
-            int currHandScore = 0;
 
-            Console.WriteLine("Table cards: " + tableCards[0].getCardId() + " " + tableCards[1].getCardId() + " " +
-                              tableCards[2].getCardId() + " " + tableCards[3].getCardId() + " " +
-                              tableCards[4].getCardId());
+            Console.WriteLine("Table cards: " + State.TableCards[0].getCardId() + " " + State.TableCards[1].getCardId() + " " +
+                              State.TableCards[2].getCardId() + " " + State.TableCards[3].getCardId() + " " +
+                              State.TableCards[4].getCardId());
             Console.WriteLine();
             foreach (var player in Seats)
             {
@@ -191,7 +207,7 @@ namespace Domain.GameModule
             {
                 if (!Seats[i].Folded)
                 {
-                    currHandScore = Seats[i].GetBestHand(tableCards);
+                    int currHandScore = Seats[i].GetBestHand(State.TableCards);
                     if (currHandScore > bestHandScore)
                     {
                         bestHandScore = currHandScore;
@@ -199,7 +215,7 @@ namespace Domain.GameModule
                     }
                 }
             }
-            bestHand.ChipBalance = Pot;
+            bestHand.ChipBalance = State.Pot;
             Console.WriteLine("\nThe winner is: " + bestHand.Username);
             Logger.LogTurn(null, "Winner: " + bestHand.PlayerId);
             return bestHand;
@@ -242,8 +258,8 @@ namespace Domain.GameModule
 
         public Player AddPlayer(User user)
         {
-            if (user.Stats.NumOfGames > 10 && user.League.Id != this.League.Id)
-                throw new LeagueMismatchException("The user " + user.Username + " is in league \"" + user.League.Name + "\" but the game is in league \"" + this.League.Name + "\".");
+            if (user.Stats.NumOfGames > 10 && user.League.Id != League.Id)
+                throw new LeagueMismatchException("The user " + user.Username + " is in league \"" + user.League.Name + "\" but the game is in league \"" + League.Name + "\".");
             if (IsActive)
                 throw new GameAlreadyStartedException("The user " + user.Username + " tried to join game #" + Id + " but the game has already started.");
             if (Seats.Count == Pref.MaxPlayers)
@@ -265,11 +281,10 @@ namespace Domain.GameModule
             return p;
         }
 
-        private int AddPlayerToSeat(Player player)
+        private void AddPlayerToSeat(Player player)
         {
             if (Seats.Count < Pref.MaxPlayers)
                 Seats.Add(player);
-            return -1;
         }
 
         public Spectator AddSpectatingPlayer(User user)
@@ -314,10 +329,10 @@ namespace Domain.GameModule
         public void PlaceSmallBlind(Player player)
         {
             int balance = player.ChipBalance;
-            if (balance >= SmallBlind && SmallBlind >= CurrentStake || SmallBlind == balance)
+            if (balance >= SmallBlind && SmallBlind >= State.CurrentStake || SmallBlind == balance)
             {
-                CurrentStake = SmallBlind;
-                Pot += SmallBlind;
+                State.CurrentStake = SmallBlind;
+                State.Pot += SmallBlind;
                 player.ChipBalance -= SmallBlind;
                 player.AmountBetOnCurrentRound += SmallBlind;
                 Logger.LogTurn(player, "Smallblind: " + SmallBlind);
@@ -327,10 +342,10 @@ namespace Domain.GameModule
         public void PlaceBigBlind(Player player)
         {
             int balance = player.ChipBalance;
-            if (balance >= BigBlind && BigBlind >= CurrentStake || BigBlind == balance)
+            if (balance >= BigBlind && BigBlind >= State.CurrentStake || BigBlind == balance)
             {
-                CurrentStake = BigBlind;
-                Pot += BigBlind;
+                State.CurrentStake = BigBlind;
+                State.Pot += BigBlind;
                 player.ChipBalance -= BigBlind;
                 player.AmountBetOnCurrentRound += BigBlind;
                 player.MadeMove = true;
@@ -343,10 +358,10 @@ namespace Domain.GameModule
             if (!IsCurrentPlayer(player))
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             int balance = player.ChipBalance;
-            if (balance >= amount && amount >= CurrentStake || amount == balance)
+            if (balance >= amount && amount >= State.CurrentStake || amount == balance)
             {
-                CurrentStake = amount;
-                Pot += amount;
+                State.CurrentStake = amount;
+                State.Pot += amount;
                 player.ChipBalance -= amount;
                 player.AmountBetOnCurrentRound += amount;
                 PreviousPlayer = player;
@@ -362,32 +377,32 @@ namespace Domain.GameModule
         {
             if (!IsCurrentPlayer(player))
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
-            if (CurrentStake == 0)
+            if (State.CurrentStake == 0)
             {
                 // no bet was made yet
                 throw new NoBetToCallException("The player " + player.Username +
                                                " can't call because the current stake is 0.");
             }
-            int amount = CurrentStake - player.AmountBetOnCurrentRound;
+            int amount = State.CurrentStake - player.AmountBetOnCurrentRound;
             if (player.ChipBalance < amount) // not enough money
                 throw new NotEnoughChipsException("The player " + player.Username + " can't call b/c he has " +
                                                   player.ChipBalance + " chips, and the current stake is " +
-                                                  CurrentStake + ".");
+                                                  State.CurrentStake + ".");
 
-            Pot += amount;
+            State.Pot += amount;
             player.ChipBalance -= amount;
             player.AmountBetOnCurrentRound += amount;
             PreviousPlayer = player;
             player.MadeMove = true;
             UpdateState();
-            Logger.LogTurn(player, "Call: " + CurrentStake);
+            Logger.LogTurn(player, "Call: " + State.CurrentStake);
             return true;
         }
         public bool Check(Player player)
         {
             if (!IsCurrentPlayer(player))
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
-            if (RoundNumber == 1)
+            if (State.RoundNumber == 1)
             {
                 return Call(player);
             }

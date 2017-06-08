@@ -5,7 +5,7 @@ namespace Domain.GameModule
 {
     public class Player
     {
-        private static int counter = 0;
+        internal static int counter = 0;
 
         public Player(int chipBalance, string username)
         {

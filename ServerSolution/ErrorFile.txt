@@ -440,3 +440,271 @@ Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\
    at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 163
 ==================================== 6/5/2017 5:14:41 PM
 
+==================================== 6/5/2017 7:27:08 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 345
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 159
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/5/2017 7:27:08 PM
+
+==================================== 6/5/2017 7:27:08 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 365
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 163
+==================================== 6/5/2017 7:27:08 PM
+
+==================================== 6/5/2017 11:18:53 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 361
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 143
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/5/2017 11:18:53 PM
+
+==================================== 6/5/2017 11:18:53 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 381
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 163
+==================================== 6/5/2017 11:18:53 PM
+
+==================================== 6/5/2017 11:18:53 PM
+Error Message: Object reference not set to an instance of an object.
+Stack Trace:    at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 283
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 163
+==================================== 6/5/2017 11:18:53 PM
+
+==================================== 6/5/2017 11:20:07 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 361
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 143
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/5/2017 11:20:07 PM
+
+==================================== 6/5/2017 11:20:07 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 381
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 159
+==================================== 6/5/2017 11:20:07 PM
+
+==================================== 6/5/2017 11:21:10 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 361
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 143
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/5/2017 11:21:10 PM
+
+==================================== 6/5/2017 11:21:10 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 381
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 159
+==================================== 6/5/2017 11:21:10 PM
+
+==================================== 6/5/2017 11:21:38 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 361
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 143
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/5/2017 11:21:38 PM
+
+==================================== 6/5/2017 11:21:38 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 381
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 159
+==================================== 6/5/2017 11:21:38 PM
+
+==================================== 6/5/2017 11:29:11 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 361
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 147
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/5/2017 11:29:11 PM
+
+==================================== 6/5/2017 11:29:11 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 381
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 159
+==================================== 6/5/2017 11:29:11 PM
+
+==================================== 6/5/2017 11:30:09 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 361
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 151
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 52
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/5/2017 11:30:09 PM
+
+==================================== 6/5/2017 11:30:09 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 381
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 67
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 159
+==================================== 6/5/2017 11:30:09 PM
+
+==================================== 6/6/2017 8:14:24 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 356
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 53
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 53
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 53
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 152
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 53
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 53
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 53
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/6/2017 8:14:24 PM
+
+==================================== 6/6/2017 8:14:24 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 376
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 68
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 68
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 68
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 68
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 68
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 68
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 159
+==================================== 6/6/2017 8:14:24 PM
+
+==================================== 6/6/2017 8:39:30 PM
+Error Message: It is not doron's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 359
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 54
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 54
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 54
+   at Domain.GameModule.MinBetDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 158
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 54
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 54
+   at Domain.GameModule.GameDecorator.Bet(Player player, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 54
+   at Domain.GameCenterModule.GameCenter.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 252
+   at Domain.ServiceLayer.Service.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 74
+   at AcceptanceTests.GameSystemTest.Bet(Int32 playerID, Int32 gameID, Int32 amount) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 145
+==================================== 6/6/2017 8:39:30 PM
+
+==================================== 6/6/2017 8:39:30 PM
+Error Message: It is not tamir's turn yet.
+Stack Trace:    at Domain.GameModule.Game.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 379
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 69
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 69
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 69
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 69
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 69
+   at Domain.GameModule.GameDecorator.Call(Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 69
+   at Domain.GameCenterModule.GameCenter.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 282
+   at Domain.ServiceLayer.Service.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\ServiceLayer\Service.cs:line 89
+   at AcceptanceTests.GameSystemTest.Call(Int32 playerID, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 159
+==================================== 6/6/2017 8:39:30 PM
+

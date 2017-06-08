@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.ObserverFramework;
+using Domain.ServiceLayer;
 using Domain.UserModule;
 
 namespace Domain.GameModule
 {
 
-    abstract public class GameDecorator : IGame
+    public abstract class GameDecorator : IGame
     {
         protected IGame MyGame;
 
@@ -99,28 +101,16 @@ namespace Domain.GameModule
             set { MyGame.Id = value; }
         }
 
-        public int Pot
+        public GameState State
         {
-            get { return MyGame.Pot; }
-            set { MyGame.Pot = value; }
-        }
-
-        public int RoundNumber
-        {
-            get { return MyGame.RoundNumber; }
-            set { MyGame.RoundNumber = value; }
+            get { return MyGame.State; }
+            set { MyGame.State = value; }
         }
 
         public int BigBlind
         {
             get { return MyGame.BigBlind; }
             set { MyGame.BigBlind = value; }
-        }
-
-        public int CurrentStake
-        {
-            get { return MyGame.CurrentStake; }
-            set { MyGame.CurrentStake = value; }
         }
 
         public int StartCounter
@@ -135,7 +125,16 @@ namespace Domain.GameModule
             set { MyGame.League = value; }
         }
 
-        public GameLog Logger { get; set; }
+        public GameLog Logger
+        {
+            get { return MyGame.Logger; }
+            set { MyGame.Logger = value; }
+        }
+
+        public Subject Subject {
+            get { return MyGame.Subject; }
+            set { MyGame.Subject = value; }
+        }
     }
 
     class BuyInDecorator : GameDecorator
@@ -203,16 +202,16 @@ namespace Domain.GameModule
 
         public override bool Bet(Player player, int amount)
         {
-            if (this.MyGame.RoundNumber <= 2 && amount == this.MyGame.BigBlind)
+            if (this.MyGame.State.RoundNumber <= 2 && amount == this.MyGame.BigBlind)
             {
                 return base.Bet(player, amount);
             }
-            if (this.MyGame.RoundNumber > 2 && amount == 2 * this.MyGame.BigBlind)
+            if (this.MyGame.State.RoundNumber > 2 && amount == 2 * this.MyGame.BigBlind)
             {
                 return base.Bet(player, amount);
             }
             throw new DomainException(player.Username + " tried to bet " + amount +
-                                      " during round " + MyGame.RoundNumber + " which is illegal");
+                                      " during round " + MyGame.State.RoundNumber + " which is illegal");
 
         }
     }
@@ -226,7 +225,7 @@ namespace Domain.GameModule
 
         public override bool Bet(Player player, int amount)
         {
-            if (amount >= this.MyGame.CurrentStake && amount <= this.MyGame.Pot + 2 * this.MyGame.CurrentStake)
+            if (amount >= this.MyGame.State.CurrentStake && amount <= this.MyGame.State.Pot + 2 * this.MyGame.State.CurrentStake)
                 return base.Bet(player, amount);
             throw new DomainException("the bet amount: " + amount + " is not legal according to PotLimit rules");
         }

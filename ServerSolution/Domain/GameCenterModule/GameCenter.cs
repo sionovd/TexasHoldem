@@ -59,7 +59,7 @@ namespace Domain.GameCenterModule
 
         public List<int> GetActiveGamesByPot(int pot)
         {
-            List<IGame> gamesList = games.Values.ToList<IGame>().Where(p => p.Pot == pot).ToList<IGame>();
+            List<IGame> gamesList = games.Values.ToList<IGame>().Where(p => p.State.Pot == pot).ToList<IGame>();
             return getGameIDs(gamesList);
         }
 
@@ -250,7 +250,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Bet(player, amount);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -260,7 +260,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Check(player);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -270,7 +270,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Fold(player);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -280,7 +280,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Call(player);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }
