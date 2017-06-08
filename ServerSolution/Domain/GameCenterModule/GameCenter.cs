@@ -11,7 +11,6 @@ namespace Domain.GameCenterModule
     {
         private static GameCenter gameCenter;
         private Dictionary<int, IGame> games;   // int-Game id
-        private IDataBase db = new DataBase();
         private UserController userController;
         
         private GameCenter()
