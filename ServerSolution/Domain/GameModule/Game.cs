@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.ObserverFramework;
-using Domain.ServiceLayer;
 using Domain.UserModule;
 
 namespace Domain.GameModule
@@ -27,7 +26,6 @@ namespace Domain.GameModule
         int Id { get; set; }
         GameState State { get; set; }
         int BigBlind { get; set; }
-        int StartCounter { get; set; }
         League League { get; set; }
         GameLog Logger { get; set; }
         Subject Subject { get; set; }
@@ -358,7 +356,7 @@ namespace Domain.GameModule
             if (!IsCurrentPlayer(player))
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             int balance = player.ChipBalance;
-            if (balance >= amount && amount >= State.CurrentStake || amount == balance)
+            if (balance >= amount && amount >= State.CurrentStake)
             {
                 State.CurrentStake = amount;
                 State.Pot += amount;

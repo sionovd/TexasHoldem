@@ -193,9 +193,13 @@ namespace Domain.GameCenterModule
         public bool StartGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
-            game.StartCounter++;
-            if (game.StartCounter < game.Seats.Count)
-                return true;
+            Player player = game.GetPlayerByUsername(username);
+            player.ReadyToStart = true;
+            foreach (var p in game.Seats)
+            {
+                if (!p.ReadyToStart)
+                    return true;
+            }
             if (game.Seats.Count >= game.Pref.MinPlayers)
             {
                 game.Start();

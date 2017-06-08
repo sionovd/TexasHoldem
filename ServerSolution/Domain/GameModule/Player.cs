@@ -39,6 +39,8 @@ namespace Domain.GameModule
             Cards = new[] { c1, c2 };
         }
 
+        public bool ReadyToStart { get; set; }
+
         public int ChipBalance { get; set; }
 
         public int AmountBetOnCurrentRound { get; set; }

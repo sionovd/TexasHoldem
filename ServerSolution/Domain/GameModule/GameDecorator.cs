@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.ObserverFramework;
-using Domain.ServiceLayer;
 using Domain.UserModule;
 
 namespace Domain.GameModule
@@ -111,12 +110,6 @@ namespace Domain.GameModule
         {
             get { return MyGame.BigBlind; }
             set { MyGame.BigBlind = value; }
-        }
-
-        public int StartCounter
-        {
-            get { return MyGame.StartCounter; }
-            set { MyGame.StartCounter = value; }
         }
 
         public League League

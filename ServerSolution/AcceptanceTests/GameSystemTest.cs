@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
-using Domain.ServiceLayer;
+using ServiceLayer;
 
 namespace AcceptanceTests
 {

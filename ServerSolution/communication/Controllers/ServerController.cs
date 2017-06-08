@@ -4,8 +4,8 @@ using System.Web.Http;
 using System.Web.UI.WebControls;
 using Communication.Replies;
 using Domain;
-using Domain.ServiceLayer;
 using Domain.UserModule;
+using ServiceLayer;
 
 
 namespace communication.Controllers

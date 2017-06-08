@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="ObserverFramework\Observer.cs" />
     <Compile Include="ObserverFramework\Subject.cs" />
-    <Compile Include="ServiceLayer\DomainException.cs" />
+    <Compile Include="DomainException.cs" />
     <Compile Include="AlreadyHasNameException.cs" />
     <Compile Include="ErrorLogger.cs" />
     <Compile Include="GameCenterModule\NotEnoughPlayersException.cs" />
@@ -82,8 +82,6 @@
     <Compile Include="GameModule\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceLayer\IService.cs" />
-    <Compile Include="ServiceLayer\Service.cs" />
     <Compile Include="GameModule\Spectator.cs" />
     <Compile Include="UserModule\User.cs" />
     <Compile Include="UserModule\UserController.cs" />
@@ -92,6 +90,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
