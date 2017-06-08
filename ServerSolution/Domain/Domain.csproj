@@ -48,7 +48,7 @@
     <Compile Include="ObserverFramework\Observer.cs" />
     <Compile Include="ObserverFramework\Subject.cs" />
     <Compile Include="DomainLayerExceptions\DomainException.cs" />
-    <Compile Include="AlreadyHasNameException.cs" />
+    <Compile Include="DomainLayerExceptions\AlreadyHasNameException.cs" />
     <Compile Include="ErrorLogger.cs" />
     <Compile Include="DomainLayerExceptions\NotEnoughPlayersException.cs" />
     <Compile Include="DomainLayerExceptions\AlreadyJoinedGameException.cs" />

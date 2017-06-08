@@ -22,10 +22,6 @@ namespace ServiceLayer
             return gameCenter.Register(username, password, email);
         }
 
-        public string GetEmail(string username)
-        {
-            return gameCenter.GetEmail(username);
-        }
         public bool EditProfile(string username, string password, string email)
         {
             return gameCenter.EditProfile(username, password, email);

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Domain.DomainLayerExceptions;
 
-namespace Domain
+namespace Domain.DomainLayerExceptions
 {
     public class AlreadyHasNameException : DomainException
     {
