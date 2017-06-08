@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.DomainLayerExceptions;
 using Domain.ObserverFramework;
 using Domain.UserModule;
 
@@ -71,6 +72,11 @@ namespace Domain.GameModule
         public bool IsPlayerExist(string name)
         {
             return MyGame.IsPlayerExist(name);
+        }
+
+        public bool IsSpectatorExist(string name)
+        {
+            return MyGame.IsSpectatorExist(name);
         }
 
         public Player GetPlayerByUsername(string username)

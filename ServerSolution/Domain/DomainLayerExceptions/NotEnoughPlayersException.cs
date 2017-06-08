@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.GameCenterModule
+namespace Domain.DomainLayerExceptions
 {
     [Serializable]
     public class NotEnoughPlayersException : DomainException

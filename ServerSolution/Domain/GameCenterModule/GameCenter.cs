@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Domain.DomainLayerExceptions;
 using Domain.GameModule;
 using Domain.UserModule;
 
@@ -185,6 +186,8 @@ namespace Domain.GameCenterModule
         public int JoinGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
+            if (game.IsSpectatorExist(username))
+                throw new AlreadyParticipatingException("The user " + username + " is already spectating game #" + gameID);
             User user = userController.GetUserByName(username);
             Player player = game.AddPlayer(user);
             return player.PlayerId;
@@ -244,6 +247,8 @@ namespace Domain.GameCenterModule
         public int SpectateGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
+            if (game.IsPlayerExist(username))
+                throw new AlreadyParticipatingException("The user " + username + " is already playing in game #" + gameID);
             User user = userController.GetUserByName(username);
             Spectator spectator = game.AddSpectatingPlayer(user);
             return spectator.Id;

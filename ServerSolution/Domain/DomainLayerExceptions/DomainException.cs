@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain
+namespace Domain.DomainLayerExceptions
 {
     public class DomainException : Exception
     {

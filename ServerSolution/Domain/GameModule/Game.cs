@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Domain.DomainLayerExceptions;
 using Domain.ObserverFramework;
 using Domain.UserModule;
 
@@ -18,6 +19,7 @@ namespace Domain.GameModule
         bool Fold(Player player);
         bool Call(Player player);
         bool IsPlayerExist(string name);
+        bool IsSpectatorExist(string name);
         Player GetPlayerByUsername(string username);
         Player GetPlayerById(int playerId);
 
