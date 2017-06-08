@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Communication;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -20,8 +23,12 @@ namespace Presentation
     /// </summary>
     public partial class UserControlGame : UserControl
     {
-        public UserControlGame()
+        private int gameID;
+        private int playerID;
+        public UserControlGame(int gameID, int playerID)
         {
+            this.gameID = gameID;
+            this.playerID = playerID;
             InitializeComponent();
             rdbtFold.Visibility = Visibility.Hidden;
             rdbtnBet.Visibility = Visibility.Hidden;
@@ -42,19 +49,41 @@ namespace Presentation
 
         }
 
-        private void BtnLeaveTable_Click(object sender, RoutedEventArgs e)
+        private async void BtnLeaveTable_Click(object sender, RoutedEventArgs e)
         {
-            if (UserControlTabs.userControlTabs.tabControl.Items.Count <= 2)
-            {
-                UserControlTabs.firstInitiate = true;
-                Menu menu = new Menu();
-                UserControlTabs.userControlTabs.Content = menu;
-            }
-            else
-            {
 
-                UserControlTabs.userControlTabs.tabControl.Items.Remove(UserControlTabs.userControlTabs.tabControl.SelectedItem);
+            Reply accept;
+            try
+            {
+                accept = await Client.LeaveGame(gameID);
+            
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                }
+                else
+                {
+
+                    if (UserControlTabs.userControlTabs.tabControl.Items.Count <= 2)
+                    {
+                        UserControlTabs.firstInitiate = true;
+                        Menu menu = new Menu();
+                        UserControlTabs.userControlTabs.Content = menu;
+                    }
+                    else
+                    {
+
+                        UserControlTabs.userControlTabs.tabControl.Items.Remove(UserControlTabs.userControlTabs
+                            .tabControl.SelectedItem);
+                    }
+
+                }
             }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+            }
+
 
         }
 
@@ -87,37 +116,172 @@ namespace Presentation
             btnConfirm.IsEnabled = true;
         }
 
-        private void BtnConfirm_Click(object sender, RoutedEventArgs e)
+        private int GetBetAmount()
         {
-            rdbtFold.IsChecked = false;
-            rdbtnBet.IsChecked = false;
-            rdbtnCall.IsChecked = false;
-            rdbtnCheck.IsChecked = false;
-            btnConfirm.IsEnabled = false;
-            btnConfirm.Visibility = Visibility.Hidden;
-            txtBetSize.IsEnabled = false;
-            txtBetSize.Visibility = Visibility.Hidden;
+            return Int32.Parse(txtBetSize.Text);
+        }
+
+        private async void BtnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            bool success = false;
+            if (rdbtFold.IsChecked == true)
+                success = await MakeFold(playerID, gameID); 
+            else if (rdbtnCall.IsChecked == true)
+                success = await MakeCall(playerID, gameID);
+            else if (rdbtnCheck.IsChecked == true)
+                success = await MakeCheck(playerID, gameID);
+            else if (rdbtnBet.IsChecked == true)
+                success = await MakeBet(playerID, gameID, GetBetAmount());
+
+            else
+                success = false;
+
+            if (success)
+            {
+                rdbtFold.IsChecked = false;
+                rdbtnBet.IsChecked = false;
+                rdbtnCall.IsChecked = false;
+                rdbtnCheck.IsChecked = false;
+                btnConfirm.IsEnabled = false;
+                btnConfirm.Visibility = Visibility.Hidden;
+                txtBetSize.IsEnabled = false;
+                txtBetSize.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private async Task<bool> MakeFold(int playerID, int gameID)
+        {
+            Reply accept;
+            try
+            {
+               accept = await Client.Fold(playerID, gameID);
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                    return false;
+
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+                return false;
+            }
+            
+        }
+
+        private async Task<bool> MakeCall(int playerID, int gameID)
+        {
+            Reply accept;
+            try
+            {
+                accept = await Client.Call(playerID , gameID);
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                    return false;
+
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+                return false;
+            }
 
         }
 
-        private void BtnStartGame_Click(object sender, RoutedEventArgs e)
+        private async Task<bool> MakeCheck(int playerID, int gameID)
         {
-            btnStartGame.Visibility = Visibility.Hidden;
+            Reply accept;
+            try
+            {
+                accept = await Client.Check(playerID, gameID);
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                    return false;
 
-            rdbtFold.Visibility = Visibility.Visible;
-            rdbtnBet.Visibility = Visibility.Visible;
-            rdbtnCall.Visibility = Visibility.Visible;
-            rdbtnCheck.Visibility = Visibility.Visible;
-            txtPotSize.Visibility = Visibility.Visible;
-            lblPotSize.Visibility = Visibility.Visible;
-            hole1.Visibility = Visibility.Visible;
-            hole2.Visibility = Visibility.Visible;
-            com1.Visibility = Visibility.Visible;
-            com2.Visibility = Visibility.Visible;
-            com3.Visibility = Visibility.Visible;
-            com4.Visibility = Visibility.Visible;
-            com5.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+                return false;
+            }
 
+        }
+
+        private async Task<bool> MakeBet(int playerID, int gameID, int amount)
+        {
+            Reply accept;
+            try
+            {
+                accept = await Client.Bet(playerID, gameID, amount);
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                    return false;
+
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+                return false;
+            }
+
+        }
+
+        private async void BtnStartGame_Click(object sender, RoutedEventArgs e)
+        {
+            Reply accept;
+            try
+            {
+                accept = await Client.StartGame(gameID);
+
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                }
+                else
+                {
+                    btnStartGame.Visibility = Visibility.Hidden;
+                    rdbtFold.Visibility = Visibility.Visible;
+                    rdbtnBet.Visibility = Visibility.Visible;
+                    rdbtnCall.Visibility = Visibility.Visible;
+                    rdbtnCheck.Visibility = Visibility.Visible;
+                    txtPotSize.Visibility = Visibility.Visible;
+                    lblPotSize.Visibility = Visibility.Visible;
+                    hole1.Visibility = Visibility.Visible;
+                    hole2.Visibility = Visibility.Visible;
+                    com1.Visibility = Visibility.Visible;
+                    com2.Visibility = Visibility.Visible;
+                    com3.Visibility = Visibility.Visible;
+                    com4.Visibility = Visibility.Visible;
+                    com5.Visibility = Visibility.Visible;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+            }
         }
     }
 }

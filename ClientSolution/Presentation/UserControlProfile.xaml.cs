@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Communication;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -26,13 +27,13 @@ namespace Presentation
         public UserControlProfile()
         {
             InitializeComponent();
-            LabelUsername.Content = User.GetUser().GetUsername();
-            txbxMail.Text = User.GetUser().GetEmail();
-            txbxPassword.Text = User.GetUser().GetPassword();
-            if (User.GetUser().GetMoneyBalance() < 0)
+            LabelUsername.Content = UserInfo.GetUser().GetUsername();
+            txbxMail.Text = UserInfo.GetUser().GetEmail();
+            txbxPassword.Text = UserInfo.GetUser().GetPassword();
+            if (UserInfo.GetUser().GetMoneyBalance() < 0)
                 txbxMoney.Text = "no information";
             else
-                txbxMoney.Text = User.GetUser().GetMoneyBalance().ToString();
+                txbxMoney.Text = UserInfo.GetUser().GetMoneyBalance().ToString();
 
         }
 
@@ -65,39 +66,64 @@ namespace Presentation
             btnEditMail.Content = "Save Email";
             txbxMail.IsEnabled = true;
             btnBack.IsEnabled = false;
+            btnEditMail.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(btnEditMail_Click));
             btnEditMail.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnSaveMail_Click));
         }
 
         private async void btnSaveMail_Click(object sender, RoutedEventArgs e)
         {
-
-            Reply accept;
-            try
+            if (MainWindow.debug)
             {
-                accept = await Client.EditProfileEmail(txbxMail.Text);
+               
+                btnChangePassword.IsEnabled = true;
+                txbxMail.IsEnabled = false;
+                btnBack.IsEnabled = true;
+                btnEditMail.Content = "Edit Email";
+                btnEditMail.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(btnSaveMail_Click));
+                btnEditMail.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnEditMail_Click));
 
-                if (!accept.Sucsses)
+            }
+            else
+            {
+                Reply accept;
+                try
                 {
-                    MessageBox.Show(accept.StringContext, "Warning");
+                    accept = await Client.EditProfileEmail(txbxMail.Text);
+
+                    if (!accept.Sucsses)
+                    {
+                        MessageBox.Show(accept.ErrorMessage, "Warning");
+                        txbxMail.Text = UserInfo.GetUser().GetEmail();
+                        btnChangePassword.IsEnabled = true;
+                        txbxMail.IsEnabled = false;
+                        btnBack.IsEnabled = true;
+                        btnEditMail.Content = "Edit Email";
+                        btnEditMail.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(btnSaveMail_Click));
+                        btnEditMail.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnEditMail_Click));
+                    }
+                    else
+                    {
+                       
+                        btnChangePassword.IsEnabled = true;
+                        txbxMail.IsEnabled = false;
+                        btnBack.IsEnabled = true;
+                        btnEditMail.Content = "Edit Email";
+                        btnEditMail.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(btnSaveMail_Click));
+                        btnEditMail.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnEditMail_Click));
+
+                    }
                 }
-                else
+                catch (HttpRequestException exception)
                 {
+                    MessageBox.Show(exception.Message, "Warning");
+                    txbxMail.Text = UserInfo.GetUser().GetEmail();
                     btnChangePassword.IsEnabled = true;
                     txbxMail.IsEnabled = false;
                     btnBack.IsEnabled = true;
                     btnEditMail.Content = "Edit Email";
+                    btnEditMail.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(btnSaveMail_Click));
                     btnEditMail.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnEditMail_Click));
-
                 }
-            }
-            catch (HttpRequestException exception)
-            {
-                MessageBox.Show(exception.Message, "Warning");
-                  btnChangePassword.IsEnabled = true;
-                    txbxMail.IsEnabled = false;
-                    btnBack.IsEnabled = true;
-                    btnEditMail.Content = "Edit Email";
-                    btnEditMail.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnEditMail_Click));
             }
         }
 
@@ -107,42 +133,73 @@ namespace Presentation
             btnChangePassword.Content = "Save Password";
             txbxPassword.IsEnabled = true;
             btnBack.IsEnabled = false;
+            btnChangePassword.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(btnChangePassword_Click));
             btnChangePassword.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnSavePassword_Click));
 
         }
 
         private async void btnSavePassword_Click(object sender, RoutedEventArgs e)
         {
-
-            Reply accept;
-            try
+            if (MainWindow.debug)
             {
-                accept = await Client.EditProfilePassword(txbxPassword.Text);
-
-                if (!accept.Sucsses)
-                {
-                    MessageBox.Show(accept.StringContext, "Warning");
-                }
-                else
-                {
-                    btnEditMail.IsEnabled = true;
-                    btnChangePassword.Content = "Change password";
-                    txbxPassword.IsEnabled = false;
-                    btnBack.IsEnabled = true;
-                    btnChangePassword.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnChangePassword_Click));
-
-                }
-            }
-            catch (HttpRequestException exception)
-            {
-                MessageBox.Show(exception.Message, "Warning");
+                
                 btnEditMail.IsEnabled = true;
                 btnChangePassword.Content = "Change password";
                 txbxPassword.IsEnabled = false;
                 btnBack.IsEnabled = true;
-                btnChangePassword.AddHandler(Button.ClickEvent, new RoutedEventHandler(btnChangePassword_Click));
+                btnChangePassword.RemoveHandler(Button.ClickEvent,
+                    new RoutedEventHandler(btnSavePassword_Click));
+                btnChangePassword.AddHandler(Button.ClickEvent,
+                    new RoutedEventHandler(btnChangePassword_Click));
+
             }
-           
+            else
+            {
+                Reply accept;
+                try
+                {
+                    accept = await Client.EditProfilePassword(txbxPassword.Text);
+
+                    if (!accept.Sucsses)
+                    {
+                        MessageBox.Show(accept.ErrorMessage, "Warning");
+                        txbxPassword.Text = UserInfo.GetUser().GetPassword();
+                        btnEditMail.IsEnabled = true;
+                        btnChangePassword.Content = "Change password";
+                        txbxPassword.IsEnabled = false;
+                        btnBack.IsEnabled = true;
+                        btnChangePassword.RemoveHandler(Button.ClickEvent,
+                            new RoutedEventHandler(btnSavePassword_Click));
+                        btnChangePassword.AddHandler(Button.ClickEvent,
+                            new RoutedEventHandler(btnChangePassword_Click));
+                    }
+                    else
+                    {   
+                        btnEditMail.IsEnabled = true;
+                        btnChangePassword.Content = "Change password";
+                        txbxPassword.IsEnabled = false;
+                        btnBack.IsEnabled = true;
+                        btnChangePassword.RemoveHandler(Button.ClickEvent,
+                            new RoutedEventHandler(btnSavePassword_Click));
+                        btnChangePassword.AddHandler(Button.ClickEvent,
+                            new RoutedEventHandler(btnChangePassword_Click));
+
+                    }
+                }
+                catch (HttpRequestException exception)
+                {
+                    MessageBox.Show(exception.Message, "Warning");
+                    txbxPassword.Text = UserInfo.GetUser().GetPassword();
+                    btnEditMail.IsEnabled = true;
+                    btnChangePassword.Content = "Change password";
+                    txbxPassword.IsEnabled = false;
+                    btnBack.IsEnabled = true;
+                    btnChangePassword.RemoveHandler(Button.ClickEvent,
+                        new RoutedEventHandler(btnSavePassword_Click));
+                    btnChangePassword.AddHandler(Button.ClickEvent,
+                        new RoutedEventHandler(btnChangePassword_Click));
+                }
+            }
 
 
         }

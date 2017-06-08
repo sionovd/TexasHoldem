@@ -17,6 +17,11 @@ namespace Domain.UserModule
             registerUsers = new Dictionary<string, User>();
         }
 
+        public User GetUserByUsername(string username)
+        {
+            return registerUsers[username];
+        }
+
         public static UserController GetInstance
         {
             get

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Communication;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -20,26 +23,48 @@ namespace Presentation
     /// </summary>
     public partial class UserControlSpectate : UserControl
     {
-        public UserControlSpectate()
+        private int gameID;
+        private int spectatorID;
+        public UserControlSpectate(int gameID, int spectatorID)
         {
+            this.gameID = gameID;
+            this.spectatorID = spectatorID;
             InitializeComponent();
         }
 
-        private void BtnLeaveTable_Click(object sender, RoutedEventArgs e)
+        private async void BtnLeaveTable_Click(object sender, RoutedEventArgs e)
         {
-            if (UserControlTabs.userControlTabs.tabControl.Items.Count <= 2)
+            Reply accept;
+            try
             {
-                UserControlTabs.firstInitiate = true;
-                Menu menu = new Menu();
-                UserControlTabs.userControlTabs.Content = menu;
+                accept = await Client.LeaveGame(gameID);
 
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                }
+                else
+                {
+
+                    if (UserControlTabs.userControlTabs.tabControl.Items.Count <= 2)
+                    {
+                        UserControlTabs.firstInitiate = true;
+                        Menu menu = new Menu();
+                        UserControlTabs.userControlTabs.Content = menu;
+                    }
+                    else
+                    {
+
+                        UserControlTabs.userControlTabs.tabControl.Items.Remove(UserControlTabs.userControlTabs
+                            .tabControl.SelectedItem);
+                    }
+
+                }
             }
-            else
+            catch (HttpRequestException exception)
             {
-
-                UserControlTabs.userControlTabs.tabControl.Items.Remove(UserControlTabs.userControlTabs.tabControl.SelectedItem);
+                MessageBox.Show(exception.Message, "Warning");
             }
-
         }
 
 

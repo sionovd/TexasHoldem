@@ -87,6 +87,14 @@
                 <SolidColorBrush Color="White" Opacity="0.3"/>
             </Label.Background>
         </Label>
+        <Label Content="Min Bet:"  Grid.Column="6" FontSize="20"   HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Margin="0,0,38,0">
+            <Label.Background>
+                <SolidColorBrush Color="White" Opacity="0.3"/>
+            </Label.Background>
+        </Label>
+        <TextBox x:Name="txtMinBet" TextAlignment="Center" Text="10" TextChanged="txtNum_TextChanged3" Grid.Column="8" Grid.Row="7" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button x:Name="cmdUp3"   Content="˄"  Click="cmdUp_Click3" Grid.Column="9" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Height="22"/>
+        <Button x:Name="cmdDown3" Content="˅"  Click="cmdDown_Click3" Grid.Column="9" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="20" Height="22"/>
 
     </Grid>
 </UserControl>

@@ -195,13 +195,13 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             game.StartCounter++;
             if (game.StartCounter < game.Seats.Count)
-                return false;
+                return true;
             if (game.Seats.Count >= game.Pref.MinPlayers)
             {
                 game.Start();
                 return true;
             }
-            return false;
+            return true;
         }
 
         public bool EvaluateEndGame(int gameID)

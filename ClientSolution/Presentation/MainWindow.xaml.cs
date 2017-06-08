@@ -20,6 +20,7 @@ namespace Presentation
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool debug = false;
         public MainWindow()
         {
             InitializeComponent();

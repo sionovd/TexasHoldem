@@ -84,6 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Game.cs" />
     <Compile Include="UserControlCreateGame.xaml.cs">
       <DependentUpon>UserControlCreateGame.xaml</DependentUpon>
     </Compile>

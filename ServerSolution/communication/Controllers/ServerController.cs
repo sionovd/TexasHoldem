@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using communication.Models;
-using Newtonsoft.Json;
+using System.Web.UI.WebControls;
+using Communication.Replies;
+using Domain;
 using Domain.ServiceLayer;
+using Domain.UserModule;
+
 
 namespace communication.Controllers
 {
@@ -22,16 +22,16 @@ namespace communication.Controllers
             try
             {
                 if (service.Register(username, password, email))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
             catch (NullReferenceException e)
             {
-                return new Reply(e.Message, false, null, -1);
+                return new Reply(false, e.Message);
             }
         }
 
@@ -41,12 +41,12 @@ namespace communication.Controllers
             try
             {
                 if (service.EditProfile(username, password, email))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
@@ -56,42 +56,54 @@ namespace communication.Controllers
             try
             {
                 if (service.Login(username, password))
-                    return new Reply(service.GetEmail(username), true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                {
+                    User temp = UserController.GetInstance.GetUserByName(username);
+                    return new Reply(true, temp.Email);
+                }
+                    
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, a.Message);
             }
         }
 
+        [HttpGet]
+        public int GetBalance(string username)
+        {
+            return UserController.GetInstance.GetUserByName(username).MoneyBalance;
+        }
         [HttpPost]
         public Reply Logout(string username)
         {
             try
             {
                 if (service.Logout(username))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
+
+
         [HttpPost]
-        public Reply JoinGame(string username, int gameId)
+        public ReplyInt JoinGame(string username, int gameId)
         {
             try
             {
                 int playerID = service.JoinGame(username, gameId);
                 Hub.addPlayerToTableCom(username, gameId);
                 return new Reply("", true, null, playerID);
+                return new ReplyInt(true,"", service.JoinGame(username, gameId));
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new ReplyInt(false, a.Message,-1);
             }
 
         }
@@ -102,12 +114,12 @@ namespace communication.Controllers
             try
             {
                 if (service.StartGame(username, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
 
         }
@@ -118,6 +130,8 @@ namespace communication.Controllers
             try
             {
                 if (service.LeaveGame(username, gameID))
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
                 {
                     Hub.removePlayerFromTableCom(username, gameID);
                     return new Reply("true", true, null, -1);
@@ -126,7 +140,7 @@ namespace communication.Controllers
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
@@ -136,12 +150,12 @@ namespace communication.Controllers
             try
             {
                 if (service.LeaveGame(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
@@ -151,12 +165,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Bet(playerID, gameID, amount))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
@@ -166,12 +180,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Check(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
@@ -181,12 +195,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Fold(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
@@ -196,12 +210,12 @@ namespace communication.Controllers
             try
             {
                 if (service.Call(playerID, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
@@ -211,30 +225,73 @@ namespace communication.Controllers
             try
             {
                 if (service.ReplayGame(username, gameID))
-                    return new Reply("true", true, null, -1);
-                return new Reply("unknow error", false, null, -1);
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
             }
         }
 
-        [HttpGet]
-        public Reply SpectateGame(string username, int gameID)
+  /*      [HttpPost]
+        public Reply SaveTurns(string username, int gameID, string turnData)
         {
             try
             {
-                return new Reply("true", true, null, service.SpectateGame(username, gameID));
+                if (service.SaveTurns(username, gameID, turnData))
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new Reply(false, (a.Message));
+            }
+        }*/
+
+        [HttpGet]
+        public ReplyInt SpectateGame(string username, int gameID)
+        {
+            try
+            {
+                return new ReplyInt(true,"", service.SpectateGame(username, gameID));
+            }
+            catch (DomainException a)
+            {
+                return new ReplyInt(false, a.Message,-1);
             }
         }
 
         [HttpPost]
-        public Reply CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
+        public ReplyInt CreateGame(string username, List<KeyValuePair<string, string>> pl)
+        {
+            List<KeyValuePair<string, int>> preferenceList = convertToInt(pl);
+            try
+            {
+                return new ReplyInt(true, "",service.CreateGame(username, preferenceList));
+            }
+            catch (DomainException a)
+            {
+                return new ReplyInt(false, a.Message,-1);
+            }
+        }
+
+        private List<KeyValuePair<string, int>> convertToInt(List<KeyValuePair<string, string>> pl)
+        {
+            if (pl != null)
+            {
+                KeyValuePair<string, string>[] a = pl.ToArray();
+                List<KeyValuePair<string, int>> ans = new List<KeyValuePair<string, int>>();
+                for (int i = 0; i < a.Length; i++)
+                    ans.Add(new KeyValuePair<string, int>(a[i].Key, Convert.ToInt32(a[i].Value)));
+                return ans;
+            }
+            return null;
+        }
+
+       [HttpPost]
+        public ReplyInt CreateGame(string username, int gameType, int minPlayers, int maxPlayers, int minBet,
+            int chipPolicy, int spectateGame, int buyIn)
         {
             try
             {
@@ -244,60 +301,60 @@ namespace communication.Controllers
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new ReplyInt(false, a.Message,-1);
             }
         }
 
         [HttpGet]
-        public Reply SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet,
+        public ReplyListInt SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet,
             int maxPlayers, int minPlayers, int spectateGame)
         {
             try
             {
-                return new Reply("true", true, service.SearchActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame), -1);
+                return new ReplyListInt(true, service.SearchActiveGamesByPreferences(gameType, buyIn, chipPolicy, minBet, maxPlayers, minPlayers, spectateGame),"");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new ReplyListInt(false, null,(a.Message));
             }
         }
 
         [HttpGet]
-        public Reply SearchActiveGamesByPot(int pot)
+        public ReplyListInt SearchActiveGamesByPot(int pot)
         {
             try
             {
-                return new Reply("true", true, service.SearchActiveGamesByPot(pot), -1);
+                return new ReplyListInt(true, service.SearchActiveGamesByPot(pot),"");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new ReplyListInt(false,null, a.Message);
             }
         }
 
         [HttpGet]
-        public Reply SearchActiveGamesByPlayerName(string username)
+        public ReplyListInt SearchActiveGamesByPlayerName(string username)
         {
             try
             {
-                return new Reply("true", true, service.SearchActiveGamesByPlayerName(username), -1);
+                return new ReplyListInt(true, service.SearchActiveGamesByPlayerName(username),"");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new ReplyListInt(false,null, a.Message);
             }
         }
 
         [HttpGet]
-        public Reply ViewSpectatableGames()
+        public ReplyListInt ViewSpectatableGames()
         {
             try
             {
-                return new Reply("true", true, service.ViewSpectatableGames(), -1);
+                return new ReplyListInt(true, service.ViewSpectatableGames(),"");
             }
             catch (DomainException a)
             {
-                return new Reply(a.Message, false, null, -1);
+                return new ReplyListInt(false,null, a.Message);
             }
         }
     }
