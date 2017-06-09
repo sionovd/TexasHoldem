@@ -85,6 +85,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Game.cs" />
+    <Compile Include="GameInfo.cs" />
+    <Compile Include="GUICards.cs" />
+    <Compile Include="PlayerCardsInfo.cs" />
+    <Compile Include="PlayerInfo.cs" />
     <Compile Include="UserControlCreateGame.xaml.cs">
       <DependentUpon>UserControlCreateGame.xaml</DependentUpon>
     </Compile>
@@ -242,67 +246,6 @@
     <Resource Include="images\profile-cards.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\cards\10_of_clubs.png" />
-    <Resource Include="images\cards\10_of_diamonds.png" />
-    <Resource Include="images\cards\10_of_hearts.png" />
-    <Resource Include="images\cards\10_of_spades.png" />
-    <Resource Include="images\cards\2_of_clubs.png" />
-    <Resource Include="images\cards\2_of_diamonds.png" />
-    <Resource Include="images\cards\2_of_hearts.png" />
-    <Resource Include="images\cards\2_of_spades.png" />
-    <Resource Include="images\cards\3_of_clubs.png" />
-    <Resource Include="images\cards\3_of_diamonds.png" />
-    <Resource Include="images\cards\3_of_hearts.png" />
-    <Resource Include="images\cards\3_of_spades.png" />
-    <Resource Include="images\cards\4_of_clubs.png" />
-    <Resource Include="images\cards\4_of_diamonds.png" />
-    <Resource Include="images\cards\4_of_hearts.png" />
-    <Resource Include="images\cards\4_of_spades.png" />
-    <Resource Include="images\cards\5_of_clubs.png" />
-    <Resource Include="images\cards\5_of_diamonds.png" />
-    <Resource Include="images\cards\5_of_hearts.png" />
-    <Resource Include="images\cards\5_of_spades.png" />
-    <Resource Include="images\cards\6_of_clubs.png" />
-    <Resource Include="images\cards\6_of_diamonds.png" />
-    <Resource Include="images\cards\6_of_hearts.png" />
-    <Resource Include="images\cards\6_of_spades.png" />
-    <Resource Include="images\cards\7_of_clubs.png" />
-    <Resource Include="images\cards\7_of_diamonds.png" />
-    <Resource Include="images\cards\7_of_hearts.png" />
-    <Resource Include="images\cards\7_of_spades.png" />
-    <Resource Include="images\cards\8_of_clubs.png" />
-    <Resource Include="images\cards\8_of_diamonds.png" />
-    <Resource Include="images\cards\8_of_hearts.png" />
-    <Resource Include="images\cards\8_of_spades.png" />
-    <Resource Include="images\cards\9_of_clubs.png" />
-    <Resource Include="images\cards\9_of_diamonds.png" />
-    <Resource Include="images\cards\9_of_hearts.png" />
-    <Resource Include="images\cards\9_of_spades.png" />
-    <Resource Include="images\cards\ace_of_clubs.png" />
-    <Resource Include="images\cards\ace_of_diamonds.png" />
-    <Resource Include="images\cards\ace_of_hearts.png" />
-    <Resource Include="images\cards\ace_of_spades.png" />
-    <Resource Include="images\cards\back%402x.png" />
-    <Resource Include="images\cards\back.png" />
-    <Resource Include="images\cards\black_joker.png" />
-    <Resource Include="images\cards\jack_of_clubs.png" />
-    <Resource Include="images\cards\jack_of_diamonds.png" />
-    <Resource Include="images\cards\jack_of_hearts.png" />
-    <Resource Include="images\cards\jack_of_spades.png" />
-    <Resource Include="images\cards\king_of_clubs.png" />
-    <Resource Include="images\cards\king_of_diamonds.png" />
-    <Resource Include="images\cards\king_of_hearts.png" />
-    <Resource Include="images\cards\king_of_spades.png" />
-    <Resource Include="images\cards\queen_of_clubs.png" />
-    <Resource Include="images\cards\queen_of_diamonds.png" />
-    <Resource Include="images\cards\queen_of_hearts.png" />
-    <Resource Include="images\cards\queen_of_spades.png" />
-    <Resource Include="images\cards\red_joker.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\table.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\table1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -312,9 +255,63 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\cards\Club\Ace.png" />
+    <Resource Include="images\cards\Club\Eight.png" />
+    <Resource Include="images\cards\Club\Five.png" />
+    <Resource Include="images\cards\Club\Four.png" />
+    <Resource Include="images\cards\Club\Jack.png" />
+    <Resource Include="images\cards\Club\King.png" />
+    <Resource Include="images\cards\Club\Nine.png" />
+    <Resource Include="images\cards\Club\Queen.png" />
+    <Resource Include="images\cards\Club\Seven.png" />
+    <Resource Include="images\cards\Club\Six.png" />
+    <Resource Include="images\cards\Club\Ten.png" />
+    <Resource Include="images\cards\Club\Three.png" />
+    <Resource Include="images\cards\Club\Two.png" />
+    <Resource Include="images\cards\Diamond\Ace.png" />
+    <Resource Include="images\cards\Diamond\Eight.png" />
+    <Resource Include="images\cards\Diamond\Five.png" />
+    <Resource Include="images\cards\Diamond\Four.png" />
+    <Resource Include="images\cards\Diamond\Jack.png" />
+    <Resource Include="images\cards\Diamond\King.png" />
+    <Resource Include="images\cards\Diamond\Nine.png" />
+    <Resource Include="images\cards\Diamond\Queen.png" />
+    <Resource Include="images\cards\Diamond\Seven.png" />
+    <Resource Include="images\cards\Diamond\Six.png" />
+    <Resource Include="images\cards\Diamond\Ten.png" />
+    <Resource Include="images\cards\Diamond\Three.png" />
+    <Resource Include="images\cards\Diamond\Two.png" />
+    <Resource Include="images\cards\Heart\Ace.png" />
+    <Resource Include="images\cards\Heart\Eight.png" />
+    <Resource Include="images\cards\Heart\Five.png" />
+    <Resource Include="images\cards\Heart\Four.png" />
+    <Resource Include="images\cards\Heart\Jack.png" />
+    <Resource Include="images\cards\Heart\King.png" />
+    <Resource Include="images\cards\Heart\Nine.png" />
+    <Resource Include="images\cards\Heart\Queen.png" />
+    <Resource Include="images\cards\Heart\Seven.png" />
+    <Resource Include="images\cards\Heart\Six.png" />
+    <Resource Include="images\cards\Heart\Ten.png" />
+    <Resource Include="images\cards\Heart\Three.png" />
+    <Resource Include="images\cards\Heart\Two.png" />
+    <Resource Include="images\cards\Spade\Ace.png" />
+    <Resource Include="images\cards\Spade\Eight.png" />
+    <Resource Include="images\cards\Spade\Five.png" />
+    <Resource Include="images\cards\Spade\Four.png" />
+    <Resource Include="images\cards\Spade\Jack.png" />
+    <Resource Include="images\cards\Spade\King.png" />
+    <Resource Include="images\cards\Spade\Nine.png" />
+    <Resource Include="images\cards\Spade\Queen.png" />
+    <Resource Include="images\cards\Spade\Seven.png" />
+    <Resource Include="images\cards\Spade\Six.png" />
+    <Resource Include="images\cards\Spade\Ten.png" />
+    <Resource Include="images\cards\Spade\Three.png" />
+    <Resource Include="images\cards\Spade\Two.png" />
+    <Resource Include="images\cards\Back.png" />
     <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

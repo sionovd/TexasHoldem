@@ -23,8 +23,10 @@ namespace Presentation
     /// </summary>
     public partial class UserControlGame : UserControl
     {
+       
         private int gameID;
         private int playerID;
+
         public UserControlGame(int gameID, int playerID)
         {
             this.gameID = gameID;
@@ -251,6 +253,7 @@ namespace Presentation
 
         private async void BtnStartGame_Click(object sender, RoutedEventArgs e)
         {
+          
             Reply accept;
             try
             {

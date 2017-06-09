@@ -11,42 +11,42 @@
             <ImageBrush ImageSource="images\table1.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
-            <RowDefinition Height="50*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="16" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="14*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="16*" />
+            <RowDefinition Height="16*" />
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -87,13 +87,13 @@
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
-        <Image Name="com3" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="16" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,0,0,0"/>
-        <Image Name="com4" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="18" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,1,0,0"/>
-        <Image Name="com2" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="14" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="41" Margin="14,0,0,0"/>
-        <Image Name="com5" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="20" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,1,0,0"/>
-        <Image Name="com1" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="12" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="41" Margin="13,0,0,0"/>
-        <Image Name="hole2" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="17" HorizontalAlignment="Left" Height="59" Grid.Row="21" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="7,0,0,0"/>
-        <Image Name="hole1" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="15" HorizontalAlignment="Left" Height="59" Grid.Row="21" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="7,0,0,0"/>
+        <Image Name="com3" Source="images/cards/Back.png" Grid.ColumnSpan="4" Grid.Column="16" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="18,0,0,0"/>
+        <Image Name="com4" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="19" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="10,0,0,0"/>
+        <Image Name="com2" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="14" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="5,0,0,0"/>
+        <Image Name="com5" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="22" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="3,0,0,0"/>
+        <Image Name="com1" Source="images/cards/Back.png" Grid.ColumnSpan="4" Grid.Column="11" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="13,0,0,0"/>
+        <Image Name="hole2" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="18" HorizontalAlignment="Left" Height="112" Grid.Row="20" Grid.RowSpan="7" VerticalAlignment="Top" Width="52"/>
+        <Image Name="hole1" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="15" HorizontalAlignment="Left" Height="112" Grid.Row="20" Grid.RowSpan="7" VerticalAlignment="Top" Width="52" Margin="7,0,0,0"/>
         <Button x:Name="btnLeaveTable" Content="Leave Table" HorizontalAlignment="Stretch"  Margin="0,0,10,9" VerticalAlignment="Bottom" Height="20" Click="BtnLeaveTable_Click" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
         <RadioButton x:Name="rdbtnBet" Content="Bet" IsEnabled="True" HorizontalAlignment="Stretch"   Grid.Row="31" VerticalAlignment="Stretch" Foreground="White" Grid.ColumnSpan="3" Checked="RadioButton_Checked" />
         <RadioButton x:Name="rdbtnCall" Content="Call" IsEnabled="True" HorizontalAlignment="Stretch"   Grid.Row="32" VerticalAlignment="Stretch" Foreground="White" Grid.ColumnSpan="3" Checked="RadioButton_Checked" />

@@ -12,6 +12,7 @@ namespace Presentation
 
         public Game(int gameID)
         {
+
             GameID = gameID;
         }
 

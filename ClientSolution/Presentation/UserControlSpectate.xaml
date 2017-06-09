@@ -87,11 +87,11 @@
             <ColumnDefinition Width="50*" />
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
-        <Image Name="com3" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="16" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,0,0,0"/>
-        <Image Name="com4" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="18" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,1,0,0"/>
-        <Image Name="com2" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="14" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="41" Margin="14,0,0,0"/>
-        <Image Name="com5" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="20" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="42" Margin="15,1,0,0"/>
-        <Image Name="com1" Source="images/cards/back.png" Grid.ColumnSpan="3" Grid.Column="12" HorizontalAlignment="Left" Height="59" Grid.Row="16" Grid.RowSpan="4" VerticalAlignment="Top" Width="41" Margin="13,0,0,0"/>
+        <Image Name="com3" Source="images/cards/Back.png" Grid.ColumnSpan="4" Grid.Column="16" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="18,0,0,0"/>
+        <Image Name="com4" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="19" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="10,0,0,0"/>
+        <Image Name="com2" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="14" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="5,0,0,0"/>
+        <Image Name="com5" Source="images/cards/Back.png" Grid.ColumnSpan="3" Grid.Column="22" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="3,0,0,0"/>
+        <Image Name="com1" Source="images/cards/Back.png" Grid.ColumnSpan="4" Grid.Column="11" HorizontalAlignment="Left" Height="112" Grid.Row="14" Grid.RowSpan="8" VerticalAlignment="Top" Width="52" Margin="13,0,0,0"/>
         <Button x:Name="btnLeaveTable" Content="Leave Table" HorizontalAlignment="Stretch"  Margin="0,0,10,9" VerticalAlignment="Bottom" Height="20" Click="BtnLeaveTable_Click" Grid.ColumnSpan="4" Grid.RowSpan="2"/>
         <DataGrid Name="stateGameBoard" Grid.ColumnSpan="16" Grid.Column="20" HorizontalAlignment="Stretch" Grid.RowSpan="13" VerticalAlignment="Stretch" />
         <TextBlock Name="txtPotSize" Background="White" Grid.ColumnSpan="6" FontSize="16" Grid.Column="30" HorizontalAlignment="Stretch" TextAlignment="Center"  Grid.Row="34" Grid.RowSpan="2" TextWrapping="Wrap" Text="0" VerticalAlignment="Stretch" />
