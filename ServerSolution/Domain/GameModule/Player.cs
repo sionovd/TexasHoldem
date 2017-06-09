@@ -5,7 +5,7 @@ namespace Domain.GameModule
 {
     public class Player
     {
-        private static int counter = 0;
+        internal static int counter = 0;
 
         public Player(int chipBalance, string username)
         {
@@ -38,6 +38,8 @@ namespace Domain.GameModule
         {
             Cards = new[] { c1, c2 };
         }
+
+        public bool ReadyToStart { get; set; }
 
         public int ChipBalance { get; set; }
 

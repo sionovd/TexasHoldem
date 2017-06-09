@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using Domain.DomainLayerExceptions;
 
 namespace Domain.UserModule
 {
     public class UserController
     {
         private static UserController userController;
-        private DataBase db = new DataBase();
         private static bool init = true;
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;

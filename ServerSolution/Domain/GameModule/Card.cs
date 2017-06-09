@@ -2,7 +2,7 @@
 
 namespace Domain.GameModule
 {
-    public enum Cards
+    public enum CardType
     {
         HeartTwo, DiamondTwo, SpadesTwo, ClubsTwo,
         HeartThree, DiamondThree, SpadesThree, ClubsThree,
@@ -20,16 +20,16 @@ namespace Domain.GameModule
     };
     public class Card : IComparable<Card>
     {
-        private Cards cards;
+        private CardType cardType;
 
-        public Card(Cards cards)
+        public Card(CardType cardType)
         {
-            this.cards = cards;
+            this.cardType = cardType;
         }
 
-        public Cards getCardId()
+        public CardType getCardId()
         {
-            return this.cards;
+            return this.cardType;
         }
 
         public int CompareTo(Card other)

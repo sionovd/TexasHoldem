@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
-using Domain.ServiceLayer;
+using Domain.DomainLayerExceptions;
+using ServiceLayer;
 
 namespace AcceptanceTests
 {
@@ -149,11 +150,7 @@ namespace AcceptanceTests
                 ErrorLogger.LogError(e);
                 return false;
             }
-            catch (Exception e)
-            {
-                ErrorLogger.LogError(e);
-                throw e;
-            }
+
         }
 
         public bool Call(int playerID, int gameID)
@@ -167,11 +164,7 @@ namespace AcceptanceTests
                 ErrorLogger.LogError(e);
                 return false;
             }
-            catch (Exception e)
-            {
-                ErrorLogger.LogError(e);
-                throw e;
-            }
+
         }
 
         public bool Check(int playerID, int gameID)
@@ -199,11 +192,7 @@ namespace AcceptanceTests
                 ErrorLogger.LogError(e);
                 return false;
             }
-            catch (Exception e)
-            {
-                ErrorLogger.LogError(e);
-                throw e;
-            }
+
         }
 
         public bool SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int minPlayers, int maxPlayers, int spectateGame)

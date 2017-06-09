@@ -43,94 +43,94 @@ namespace UnitTestProject1
         [TestInitialize]
         public void BeforeTest()
         {
-            royalFlush = new List<Card>{new Card(Cards.HeartAce),
-                                        new Card(Cards.HeartKing),
-                                        new Card(Cards.HeartQueen),
-                                        new Card(Cards.HeartJack),
-                                        new Card(Cards.HeartTen),
-                                        new Card(Cards.SpadesFour),
-                                        new Card(Cards.SpadesJack)
+            royalFlush = new List<Card>{new Card(CardType.HeartAce),
+                                        new Card(CardType.HeartKing),
+                                        new Card(CardType.HeartQueen),
+                                        new Card(CardType.HeartJack),
+                                        new Card(CardType.HeartTen),
+                                        new Card(CardType.SpadesFour),
+                                        new Card(CardType.SpadesJack)
             };
 
-            straightFlush = new List<Card> {new Card(Cards.HeartKing),
-                                            new Card(Cards.HeartQueen),
-                                            new Card(Cards.HeartJack),
-                                            new Card(Cards.HeartTen),
-                                            new Card(Cards.HeartNine),
-                                            new Card(Cards.SpadesFour),
-                                            new Card(Cards.SpadesJack)
+            straightFlush = new List<Card> {new Card(CardType.HeartKing),
+                                            new Card(CardType.HeartQueen),
+                                            new Card(CardType.HeartJack),
+                                            new Card(CardType.HeartTen),
+                                            new Card(CardType.HeartNine),
+                                            new Card(CardType.SpadesFour),
+                                            new Card(CardType.SpadesJack)
             };
 
-            fourOfAKind = new List<Card> {  new Card(Cards.HeartAce),
-                                            new Card(Cards.SpadesAce),
-                                            new Card(Cards.DiamondAce),
-                                            new Card(Cards.ClubsAce),
-                                            new Card(Cards.SpadesFour),
-                                            new Card(Cards.DiamondJack),
-                                            new Card(Cards.ClubsSix)
+            fourOfAKind = new List<Card> {  new Card(CardType.HeartAce),
+                                            new Card(CardType.SpadesAce),
+                                            new Card(CardType.DiamondAce),
+                                            new Card(CardType.ClubsAce),
+                                            new Card(CardType.SpadesFour),
+                                            new Card(CardType.DiamondJack),
+                                            new Card(CardType.ClubsSix)
             };
 
-            fullHouse = new List<Card> {new Card(Cards.HeartKing),
-                                        new Card(Cards.DiamondKing),
-                                        new Card(Cards.HeartEight),
-                                        new Card(Cards.ClubsEight),
-                                        new Card(Cards.SpadesEight),
-                                        new Card(Cards.DiamondJack),
-                                        new Card(Cards.ClubsSix)
+            fullHouse = new List<Card> {new Card(CardType.HeartKing),
+                                        new Card(CardType.DiamondKing),
+                                        new Card(CardType.HeartEight),
+                                        new Card(CardType.ClubsEight),
+                                        new Card(CardType.SpadesEight),
+                                        new Card(CardType.DiamondJack),
+                                        new Card(CardType.ClubsSix)
             };
 
-            flush = new List<Card> {new Card(Cards.HeartKing),
-                                    new Card(Cards.HeartFive),
-                                    new Card(Cards.HeartEight),
-                                    new Card(Cards.HeartJack),
-                                    new Card(Cards.HeartTwo),
-                                    new Card(Cards.SpadesEight),
-                                    new Card(Cards.DiamondJack)
+            flush = new List<Card> {new Card(CardType.HeartKing),
+                                    new Card(CardType.HeartFive),
+                                    new Card(CardType.HeartEight),
+                                    new Card(CardType.HeartJack),
+                                    new Card(CardType.HeartTwo),
+                                    new Card(CardType.SpadesEight),
+                                    new Card(CardType.DiamondJack)
             };
 
-            straight = new List<Card> { new Card(Cards.HeartNine), 
-                                        new Card(Cards.ClubsEight),
-                                        new Card(Cards.DiamondSeven),
-                                        new Card(Cards.DiamondSix),
-                                        new Card(Cards.HeartFive),
-                                        new Card(Cards.HeartTen),
-                                        new Card(Cards.DiamondQueen)
+            straight = new List<Card> { new Card(CardType.HeartNine), 
+                                        new Card(CardType.ClubsEight),
+                                        new Card(CardType.DiamondSeven),
+                                        new Card(CardType.DiamondSix),
+                                        new Card(CardType.HeartFive),
+                                        new Card(CardType.HeartTen),
+                                        new Card(CardType.DiamondQueen)
             };
 
-            threeOfAKind = new List<Card> { new Card(Cards.HeartAce),
-                                            new Card(Cards.SpadesAce),
-                                            new Card(Cards.DiamondAce),
-                                            new Card(Cards.SpadesEight),
-                                            new Card(Cards.DiamondJack),
-                                            new Card(Cards.ClubsSix),
-                                            new Card(Cards.ClubsNine)
+            threeOfAKind = new List<Card> { new Card(CardType.HeartAce),
+                                            new Card(CardType.SpadesAce),
+                                            new Card(CardType.DiamondAce),
+                                            new Card(CardType.SpadesEight),
+                                            new Card(CardType.DiamondJack),
+                                            new Card(CardType.ClubsSix),
+                                            new Card(CardType.ClubsNine)
             };
 
-            twoPairs = new List<Card> { new Card(Cards.HeartAce),
-                                        new Card(Cards.SpadesAce),
-                                        new Card(Cards.DiamondQueen),
-                                        new Card(Cards.ClubsQueen),
-                                        new Card(Cards.SpadesEight),
-                                        new Card(Cards.DiamondJack),
-                                        new Card(Cards.ClubsSix)
+            twoPairs = new List<Card> { new Card(CardType.HeartAce),
+                                        new Card(CardType.SpadesAce),
+                                        new Card(CardType.DiamondQueen),
+                                        new Card(CardType.ClubsQueen),
+                                        new Card(CardType.SpadesEight),
+                                        new Card(CardType.DiamondJack),
+                                        new Card(CardType.ClubsSix)
             };
 
-            onePair = new List<Card> {  new Card(Cards.HeartAce),
-                                        new Card(Cards.SpadesAce),
-                                        new Card(Cards.SpadesEight),
-                                        new Card(Cards.DiamondJack),
-                                        new Card(Cards.ClubsSix),
-                                        new Card(Cards.ClubsNine),
-                                        new Card(Cards.ClubsFive)
+            onePair = new List<Card> {  new Card(CardType.HeartAce),
+                                        new Card(CardType.SpadesAce),
+                                        new Card(CardType.SpadesEight),
+                                        new Card(CardType.DiamondJack),
+                                        new Card(CardType.ClubsSix),
+                                        new Card(CardType.ClubsNine),
+                                        new Card(CardType.ClubsFive)
             };
 
-            highHand = new List<Card> { new Card(Cards.HeartAce),
-                                        new Card(Cards.ClubsFour),
-                                        new Card(Cards.HeartEight),
-                                        new Card(Cards.SpadesTwo),
-                                        new Card(Cards.DiamondJack),
-                                        new Card(Cards.ClubsNine),
-                                        new Card(Cards.ClubsFive)
+            highHand = new List<Card> { new Card(CardType.HeartAce),
+                                        new Card(CardType.ClubsFour),
+                                        new Card(CardType.HeartEight),
+                                        new Card(CardType.SpadesTwo),
+                                        new Card(CardType.DiamondJack),
+                                        new Card(CardType.ClubsNine),
+                                        new Card(CardType.ClubsFive)
             };
         }
 
@@ -217,13 +217,13 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestRoyalBug()
         {
-            List<Card> royalFlushBug = new List<Card>{new Card(Cards.SpadesAce),
-                                        new Card(Cards.ClubsJack),
-                                        new Card(Cards.DiamondTen),
-                                        new Card(Cards.ClubsSeven),
-                                        new Card(Cards.DiamondQueen),
-                                        new Card(Cards.ClubsKing),
-                                        new Card(Cards.HeartJack)
+            List<Card> royalFlushBug = new List<Card>{new Card(CardType.SpadesAce),
+                                        new Card(CardType.ClubsJack),
+                                        new Card(CardType.DiamondTen),
+                                        new Card(CardType.ClubsSeven),
+                                        new Card(CardType.DiamondQueen),
+                                        new Card(CardType.ClubsKing),
+                                        new Card(CardType.HeartJack)
             };
             eval = new HandEvaluator(royalFlushBug.ToArray());
             Console.WriteLine(eval.Evaluate());

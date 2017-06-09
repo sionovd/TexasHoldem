@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Domain;
+using Domain.DomainLayerExceptions;
 using Domain.GameCenterModule;
-using Domain.GameModule;
-using Domain.UserModule;
 
-namespace Domain.ServiceLayer
+namespace ServiceLayer
 {
     public class Service : IService
     {
@@ -25,10 +22,6 @@ namespace Domain.ServiceLayer
             return gameCenter.Register(username, password, email);
         }
 
-        public string GetEmail(string username)
-        {
-            return gameCenter.GetEmail(username);
-        }
         public bool EditProfile(string username, string password, string email)
         {
             return gameCenter.EditProfile(username, password, email);

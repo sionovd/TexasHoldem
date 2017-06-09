@@ -1,4 +1,6 @@
-﻿namespace Domain.UserModule
+﻿using Domain.DomainLayerExceptions;
+
+namespace Domain.UserModule
 {
     public class Statistics
     {

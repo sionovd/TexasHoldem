@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.GameModule;
 
 namespace Domain
@@ -6,12 +7,13 @@ namespace Domain
     public class GameLog
     {
         Dictionary<int, string> logOfMoves;
-        int gameId;
+        private Game game;
         int loggerCounter;
-        public GameLog(int gameId)
+        public string LatestAction { get; private set; }
+        public GameLog(Game game)
         {
             //this = database.getGameLog(gameLogID);
-            this.gameId = gameId;
+            this.game = game;
             this.logOfMoves = new Dictionary<int, string>();
             this.loggerCounter = 0;
         }
@@ -26,7 +28,11 @@ namespace Domain
             }
             else
             {
-                logOfMoves.Add(loggerCounter++, "Player: " + player.PlayerId + " " + Move); //while parsing, check if first word is "Player:" then strip by spaces the ID
+                string line = "Player: " + player.PlayerId + " " + Move;
+                LatestAction = line;
+                Console.WriteLine(line);
+                logOfMoves.Add(loggerCounter++, line); //while parsing, check if first word is "Player:" then strip by spaces the ID
+                //game.Subject.Notify();
             }
         }
     }

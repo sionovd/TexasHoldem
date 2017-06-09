@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-namespace Domain
+namespace Domain.DomainLayerExceptions
 {
     [Serializable]
     internal class illegalMinBetException : DomainException

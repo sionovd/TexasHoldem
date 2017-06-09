@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Domain
+namespace Domain.DomainLayerExceptions
 {
     [Serializable]
     public  class NotAPasswordException : DomainException

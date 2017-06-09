@@ -50,16 +50,14 @@ namespace Communication
             return connection;
         }
 
-        /*
-            FOR DEBUGGING
-        
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             HubConnection con;
             con=connection();
             Console.ReadLine();
             disconnect(con);
         }
-        */
+        
     }
 }

@@ -49,10 +49,10 @@ namespace AcceptanceTests
             player5 = JoinGame("shavit", game1);
             Assert.IsTrue(player5 > 0);
 
-            Assert.IsFalse(StartGame("doron", game1));
-            Assert.IsFalse(StartGame("tamir", game1));
-            Assert.IsFalse(StartGame("shavit", game1));
-            Assert.IsFalse(StartGame("leon", game1));
+            Assert.IsTrue(StartGame("doron", game1));
+            Assert.IsTrue(StartGame("tamir", game1));
+            Assert.IsTrue(StartGame("shavit", game1));
+            Assert.IsTrue(StartGame("leon", game1));
             Assert.IsTrue(StartGame("avner", game1));
         }
 

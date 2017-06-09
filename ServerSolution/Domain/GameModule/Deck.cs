@@ -16,7 +16,7 @@ namespace Domain.GameModule
 
         private void InitDeck()
         {
-            foreach (Cards card in Enum.GetValues(typeof(Cards)))
+            foreach (CardType card in Enum.GetValues(typeof(CardType)))
             {
                 this.deckOfCards.Add(new Card(card));
             }

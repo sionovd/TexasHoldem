@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Domain;
+using Domain.DomainLayerExceptions;
 using Domain.UserModule;
 
 namespace UnitTestProject1

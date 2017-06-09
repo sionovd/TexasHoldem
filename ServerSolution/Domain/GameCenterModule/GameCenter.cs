@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Domain.DomainLayerExceptions;
 using Domain.GameModule;
 using Domain.UserModule;
 
@@ -10,7 +11,6 @@ namespace Domain.GameCenterModule
     {
         private static GameCenter gameCenter;
         private Dictionary<int, IGame> games;   // int-Game id
-        private IDataBase db = new DataBase();
         private UserController userController;
         
         private GameCenter()
@@ -59,7 +59,7 @@ namespace Domain.GameCenterModule
 
         public List<int> GetActiveGamesByPot(int pot)
         {
-            List<IGame> gamesList = games.Values.ToList<IGame>().Where(p => p.Pot == pot).ToList<IGame>();
+            List<IGame> gamesList = games.Values.ToList<IGame>().Where(p => p.State.Pot == pot).ToList<IGame>();
             return getGameIDs(gamesList);
         }
 
@@ -185,6 +185,8 @@ namespace Domain.GameCenterModule
         public int JoinGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
+            if (game.IsSpectatorExist(username))
+                throw new AlreadyParticipatingException("The user " + username + " is already spectating game #" + gameID);
             User user = userController.GetUserByName(username);
             Player player = game.AddPlayer(user);
             return player.PlayerId;
@@ -193,9 +195,13 @@ namespace Domain.GameCenterModule
         public bool StartGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
-            game.StartCounter++;
-            if (game.StartCounter < game.Seats.Count)
-                return true;
+            Player player = game.GetPlayerByUsername(username);
+            player.ReadyToStart = true;
+            foreach (var p in game.Seats)
+            {
+                if (!p.ReadyToStart)
+                    return true;
+            }
             if (game.Seats.Count >= game.Pref.MinPlayers)
             {
                 game.Start();
@@ -240,6 +246,8 @@ namespace Domain.GameCenterModule
         public int SpectateGame(string username, int gameID)
         {
             IGame game = GetGameById(gameID);
+            if (game.IsPlayerExist(username))
+                throw new AlreadyParticipatingException("The user " + username + " is already playing in game #" + gameID);
             User user = userController.GetUserByName(username);
             Spectator spectator = game.AddSpectatingPlayer(user);
             return spectator.Id;
@@ -250,7 +258,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Bet(player, amount);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -260,7 +268,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Check(player);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -270,7 +278,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Fold(player);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -280,7 +288,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Call(player);
-            if (game.RoundNumber > 4)
+            if (game.State.RoundNumber > 4)
                 EvaluateEndGame(gameID);
             return true;
         }

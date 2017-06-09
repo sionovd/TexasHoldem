@@ -672,11 +672,11 @@ namespace Domain.GameModule
             int royalCounter = 0;
             for (int i = 0; i < 7; i++)
             {
-                if (hand[i].getCardId() == Cards.HeartAce ||
-                    hand[i].getCardId() == Cards.HeartKing ||
-                    hand[i].getCardId() == Cards.HeartQueen ||
-                    hand[i].getCardId() == Cards.HeartJack ||
-                    hand[i].getCardId() == Cards.HeartTen)
+                if (hand[i].getCardId() == CardType.HeartAce ||
+                    hand[i].getCardId() == CardType.HeartKing ||
+                    hand[i].getCardId() == CardType.HeartQueen ||
+                    hand[i].getCardId() == CardType.HeartJack ||
+                    hand[i].getCardId() == CardType.HeartTen)
                 {
                     royalCounter++;
                 }
@@ -686,11 +686,11 @@ namespace Domain.GameModule
             royalCounter = 0;
             for (int i = 0; i < 7; i++)
             {
-                if (hand[i].getCardId() == Cards.DiamondAce ||
-                    hand[i].getCardId() == Cards.DiamondKing ||
-                    hand[i].getCardId() == Cards.DiamondQueen ||
-                    hand[i].getCardId() == Cards.DiamondJack ||
-                    hand[i].getCardId() == Cards.DiamondTen)
+                if (hand[i].getCardId() == CardType.DiamondAce ||
+                    hand[i].getCardId() == CardType.DiamondKing ||
+                    hand[i].getCardId() == CardType.DiamondQueen ||
+                    hand[i].getCardId() == CardType.DiamondJack ||
+                    hand[i].getCardId() == CardType.DiamondTen)
                 {
                     royalCounter++;
                 }
@@ -700,11 +700,11 @@ namespace Domain.GameModule
             royalCounter = 0;
             for (int i = 0; i < 7; i++)
             {
-                if (hand[i].getCardId() == Cards.SpadesAce ||
-                    hand[i].getCardId() == Cards.SpadesKing ||
-                    hand[i].getCardId() == Cards.SpadesQueen ||
-                    hand[i].getCardId() == Cards.SpadesJack ||
-                    hand[i].getCardId() == Cards.SpadesTen)
+                if (hand[i].getCardId() == CardType.SpadesAce ||
+                    hand[i].getCardId() == CardType.SpadesKing ||
+                    hand[i].getCardId() == CardType.SpadesQueen ||
+                    hand[i].getCardId() == CardType.SpadesJack ||
+                    hand[i].getCardId() == CardType.SpadesTen)
                 {
                     royalCounter++;
                 }
@@ -714,11 +714,11 @@ namespace Domain.GameModule
             royalCounter = 0;
             for (int i = 0; i < 7; i++)
             {
-                if (hand[i].getCardId() == Cards.ClubsAce ||
-                    hand[i].getCardId() == Cards.ClubsKing ||
-                    hand[i].getCardId() == Cards.ClubsQueen ||
-                    hand[i].getCardId() == Cards.ClubsJack ||
-                    hand[i].getCardId() == Cards.ClubsTen)
+                if (hand[i].getCardId() == CardType.ClubsAce ||
+                    hand[i].getCardId() == CardType.ClubsKing ||
+                    hand[i].getCardId() == CardType.ClubsQueen ||
+                    hand[i].getCardId() == CardType.ClubsJack ||
+                    hand[i].getCardId() == CardType.ClubsTen)
                 {
                     royalCounter++;
                 }

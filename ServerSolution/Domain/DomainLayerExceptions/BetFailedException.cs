@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-namespace Domain.GameModule
+namespace Domain.DomainLayerExceptions
 {
     [Serializable]
     class BetFailedException : DomainException

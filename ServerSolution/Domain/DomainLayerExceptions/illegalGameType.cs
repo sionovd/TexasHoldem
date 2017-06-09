@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-namespace Domain
+namespace Domain.DomainLayerExceptions
 {
     public class illegalGameTypeException : DomainException
     {
