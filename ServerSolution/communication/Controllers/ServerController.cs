@@ -14,7 +14,6 @@ namespace communication.Controllers
     public class ServerController : ApiController
     {
         private Service service = new Service();
-     //   private ServerHub Hub = ServerHub.GetInstance;
 
 
         [HttpPost]
@@ -98,7 +97,7 @@ namespace communication.Controllers
             try
             {
                 int playerID = service.JoinGame(username, gameId);
-             //   Hub.addPlayerToTableCom(username, gameId);
+                ServerHub.addPlayerToTableCom(username, gameId);
                 return new ReplyInt(true,"",playerID);
             }
             catch (DomainException a)
@@ -131,7 +130,7 @@ namespace communication.Controllers
             {
                 if (service.LeaveGame(username, gameID))
                 {
-             //       Hub.removePlayerFromTableCom(username, gameID);
+                    ServerHub.removePlayerFromTableCom(username, gameID);
                     return new Reply(true, "");
                 }
                 return new Reply(false, "unknow error");
@@ -267,7 +266,7 @@ namespace communication.Controllers
             try
             {
                 int gameId = service.CreateGame(username, preferenceList);
-            //   Hub.addPlayerToTableCom(username, gameId);
+                ServerHub.addPlayerToTableCom(username, gameId);
                 return new ReplyInt(true, "",gameId);
             }
             catch (DomainException a)
@@ -291,7 +290,7 @@ namespace communication.Controllers
                 toSand.Add(new KeyValuePair<string, int>("spectateGame", spectateGame));
                 toSand.Add(new KeyValuePair<string, int>("buyIn", buyIn));
                 int gameId = service.CreateGame(username, toSand);
-             //   Hub.addPlayerToTableCom(username, gameId);
+                ServerHub.addPlayerToTableCom(username, gameId);
                 return new ReplyInt(true, "", gameId);
             }
             catch (DomainException a)

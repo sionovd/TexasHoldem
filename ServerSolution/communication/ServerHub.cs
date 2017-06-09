@@ -54,23 +54,19 @@ namespace communication
         */
         public void chat(string message,int tableId)
         {
-            Clients.Group(tableId.ToString(),message).chatMessage(message,tableId);    
+            Clients.Group(tableId.ToString(),message).chatMessage(message,tableId);
         }
 
         /*
         THIS METHODS CALLS FROM SERVER TO MANAGE THE HUB
         */
-        internal void addPlayerToTableCom(string username,int tableId)
+        internal static void addPlayerToTableCom(string username,int tableId)
         {
-            int index=uList.FindIndex(user => user.UserName == username);
-            Groups.Add(uList[index].ConnectionID, tableId.ToString());
             allObservers.Add(new ClientObserver(username, tableId));
         }
 
-        internal void removePlayerFromTableCom(string username, int tableId)
+        internal static void removePlayerFromTableCom(string username, int tableId)
         {
-            int index = uList.FindIndex(user => user.UserName == username);
-            Groups.Remove(uList[index].ConnectionID, tableId.ToString());
             foreach (var o in allObservers)
             {
                 if (o.Username == username)
@@ -78,11 +74,12 @@ namespace communication
             }
         }
 
-        internal void sendMessageToUser(string username,string message)
+        internal static void sendMessageToUser(string username,string message)
         {
+            var ctx = GlobalHost.ConnectionManager.GetHubContext<ServerHub>();
             var user = uList.Where(u => u.UserName == username);
             if(user.Any())
-                Clients.Client(user.First().ConnectionID).particularMessage(message);
+                ctx.Clients.Client(user.First().ConnectionID).particularMessage(message);
         }
         
     }
