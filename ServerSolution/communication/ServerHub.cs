@@ -9,7 +9,7 @@ namespace communication
 {
     public class ServerHub : Hub
     {
-        private static ServerHub serverHub;
+       /* private static ServerHub serverHub = new ServerHub();
 
         private ServerHub(){}
 
@@ -17,11 +17,9 @@ namespace communication
         {
             get
             {
-                if (serverHub == null)
-                    serverHub = new ServerHub();
                 return serverHub;
             }
-        }
+        }*/
 
         //uList is a list of UserConnection, each userConnection has userName(unique) and ConnectionId
         static List<UserConnection> uList = new List<UserConnection>();

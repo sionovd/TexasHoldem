@@ -18,7 +18,7 @@ namespace communication
 
         public ClientObserver(string username, int gameID)
         {
-            Hub = ServerHub.GetInstance;
+         //   Hub = ServerHub.GetInstance;
             Username = username;
             game = GameCenter.GetInstance.GetGameById(gameID);
             game.Subject.Attach(this);
@@ -26,7 +26,7 @@ namespace communication
 
         public override void Update()
         {
-            Hub.sendMessageToUser(Username, game.Logger.LatestAction);
+          //  Hub.sendMessageToUser(Username, game.Logger.LatestAction);
         }
 
         public void Unsubscribe()

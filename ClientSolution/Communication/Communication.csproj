@@ -64,7 +64,6 @@
     <Compile Include="Replies\ReplyInt.cs" />
     <Compile Include="Replies\ReplyListInt.cs" />
     <Compile Include="Replies\ReplyString.cs" />
-    <Compile Include="Service\IService.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="signalRClient.cs" />
     <Compile Include="UserInfo.cs" />
