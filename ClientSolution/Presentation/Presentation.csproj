@@ -85,10 +85,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Game.cs" />
-    <Compile Include="GameInfo.cs" />
     <Compile Include="GUICards.cs" />
-    <Compile Include="PlayerCardsInfo.cs" />
-    <Compile Include="PlayerInfo.cs" />
     <Compile Include="UserControlCreateGame.xaml.cs">
       <DependentUpon>UserControlCreateGame.xaml</DependentUpon>
     </Compile>

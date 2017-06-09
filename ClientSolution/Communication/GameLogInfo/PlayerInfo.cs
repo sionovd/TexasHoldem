@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Presentation
+namespace Communication.GameLogInfo
 { 
-   public class PlayerInfo
+   public class PlayerInfo 
     {
         private int PlayerID { get; }
         public string Username { get; set;}
@@ -20,6 +20,11 @@ namespace Presentation
             this.Username = username;
             this.MoneyBalance = moneyBalance;
             this.AmountBetOnCurrentRound = amountBetOnCurrentRound;
+        }
+
+        public PlayerInfo Parse(string content)
+        {
+            return this;
         }
     }
 

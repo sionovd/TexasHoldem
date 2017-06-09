@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Presentation
+namespace Communication.GameLogInfo
 {
 
     public enum CardType
@@ -27,6 +27,11 @@ namespace Presentation
     {
         private CardType[] cards = new CardType[2];
 
+        public PlayerCardsInfo()
+        {
+            
+        }
+
         public PlayerCardsInfo(CardType first, CardType second)
         {
             cards[0] = first;
@@ -37,6 +42,11 @@ namespace Presentation
         public CardType[] GetCards()
         {
             return cards;
+        }
+
+        public PlayerCardsInfo Parse(string content)
+        {
+            return this;
         }
     }
 }

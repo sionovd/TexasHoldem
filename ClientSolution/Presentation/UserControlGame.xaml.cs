@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Communication;
+using Communication.GameLogInfo;
 using Communication.Replies;
 
 namespace Presentation
@@ -21,7 +22,7 @@ namespace Presentation
     /// <summary>
     /// Interaction logic for UserControlGame.xaml
     /// </summary>
-    public partial class UserControlGame : UserControl
+    public partial class UserControlGame : UserControl , GameListener
     {
        
         private int gameID;
@@ -285,6 +286,16 @@ namespace Presentation
             {
                 MessageBox.Show(exception.Message, "Warning");
             }
+        }
+
+        public void Update(GameInfo gameInfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(PlayerCardsInfo playerCardsInfo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

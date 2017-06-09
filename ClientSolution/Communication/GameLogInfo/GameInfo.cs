@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Presentation
+namespace Communication.GameLogInfo
 {
-    public class GameInfo
+    public class GameInfo 
     {
         private int GameID { get; }
         private int PotSize { get; }
@@ -14,7 +14,10 @@ namespace Presentation
         private int PlayerTurnID { get; }
         private List<PlayerInfo> PlayersInfo { get; }
 
-
+        public GameInfo()
+        {
+            
+        }
         public GameInfo(int gameID, int potSize, int currentStake, int playerTurnID, List<PlayerInfo> playersInfo)
         {
             this.GameID = gameID;
@@ -23,6 +26,11 @@ namespace Presentation
             this.PlayerTurnID = PlayerTurnID;
             this.PlayersInfo = playersInfo;
 
+        }
+
+        public GameInfo Parse(string content)
+        {
+            return this;
         }
     }
 }

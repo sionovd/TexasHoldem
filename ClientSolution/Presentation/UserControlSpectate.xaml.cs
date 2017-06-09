@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Communication;
+using Communication.GameLogInfo;
 using Communication.Replies;
 
 namespace Presentation
@@ -21,7 +22,7 @@ namespace Presentation
     /// <summary>
     /// Interaction logic for UserControlSpectate.xaml
     /// </summary>
-    public partial class UserControlSpectate : UserControl
+    public partial class UserControlSpectate : UserControl , GameListener
     {
         private int gameID;
         private int spectatorID;
@@ -68,6 +69,14 @@ namespace Presentation
         }
 
 
+        public void Update(GameInfo gameInfo)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void Update(PlayerCardsInfo playerCardsInfo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
