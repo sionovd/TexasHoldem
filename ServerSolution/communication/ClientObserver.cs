@@ -12,7 +12,6 @@ namespace communication
     {
         private IGame game;
        // private GameState State;
-        private ServerHub Hub;
 
         public string Username { get; }
 
@@ -26,7 +25,7 @@ namespace communication
 
         public override void Update()
         {
-          //  Hub.sendMessageToUser(Username, game.Logger.LatestAction);
+            ServerHub.sendMessageToUser(Username, game.Logger.LatestAction);
         }
 
         public void Unsubscribe()

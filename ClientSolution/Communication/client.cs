@@ -16,7 +16,7 @@ namespace Communication
     {
         private static string url = "http://localhost:53133/api/server/";
 
-      
+        static void Main() { }
 
         public static async Task<Reply> RegisterWithMoney(string username, string password, string email, int money)
         {
@@ -67,7 +67,7 @@ namespace Communication
                 Reply ans = await PostBool(newUrl);
                 if (ans.Sucsses)
                 {
-                    signalRClient.connection();
+                    signalRClient.connection(username);
                     await Login(username, password);
                 }
                 return ans;

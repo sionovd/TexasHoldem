@@ -26,11 +26,16 @@ namespace Communication
         {   // at future will send to method that print message at the suitable table
             myHub.On<string,int>("chatMessage", (message,tableNumber) => Console.WriteLine(message));
             // at future will pop-up message
-            myHub.On<string>("particularMessage", message => Console.WriteLine(message));
+            myHub.On<string>("particularMessage", message => method(message));
            
             /*
                 MORE METHODS...
             */
+        }
+
+        static void method(string str)
+        {
+            Console.WriteLine(str);
         }
 
         public static async void sendMessage(IHubProxy h, string message, int tableId)
@@ -38,25 +43,16 @@ namespace Communication
             await h.Invoke("chat", message, tableId);
         }
 
-        public static HubConnection connection()
+        public static HubConnection connection(string username)
         {
             var context = SynchronizationContext.Current;
             var querystringData = new Dictionary<string, string>();
-            querystringData.Add("id", "anik");
+            querystringData.Add("id", username);
             var connection = new HubConnection("http://localhost:53133/signalr", querystringData);  // the address we eant to connect
             IHubProxy myHub = connection.CreateHubProxy("ServerHub");    // the name of the hub we want to
             apiConfigure(myHub);
             connection.Start();
             return connection;
-        }
-
-
-        private static void Main(string[] args)
-        {
-            HubConnection con;
-            con=connection();
-            Console.ReadLine();
-            disconnect(con);
         }
         
     }
