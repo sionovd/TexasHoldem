@@ -16,6 +16,10 @@ namespace Communication.GameLogInfo
         public int AmountBetOnCurrentRound { get; set; }
         public bool IsFold { get; set; }
 
+        public PlayerInfo()
+        {
+            
+        }
         public PlayerInfo(string content)
         {
             PlayerInfo playerInfo = new JavaScriptSerializer().Deserialize<PlayerInfo>(content);
@@ -32,6 +36,11 @@ namespace Communication.GameLogInfo
             this.MoneyBalance = moneyBalance;
             this.AmountBetOnCurrentRound = amountBetOnCurrentRound;
             this.IsFold = isFold;
+        }
+
+        public static string ConvertToString(PlayerInfo playerInfo)
+        {
+            return new JavaScriptSerializer().Serialize(playerInfo);
         }
 
     }
