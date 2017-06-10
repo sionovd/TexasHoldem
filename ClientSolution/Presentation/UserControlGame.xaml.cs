@@ -6,13 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Communication;
 using Communication.GameLogInfo;
 using Communication.Replies;
@@ -145,6 +138,10 @@ namespace Presentation
                 rdbtnBet.IsChecked = false;
                 rdbtnCall.IsChecked = false;
                 rdbtnCheck.IsChecked = false;
+                rdbtFold.IsEnabled = false;
+                rdbtnBet.IsEnabled = false;
+                rdbtnCall.IsEnabled = false;
+                rdbtnCheck.IsEnabled = false;
                 btnConfirm.IsEnabled = false;
                 btnConfirm.Visibility = Visibility.Hidden;
                 txtBetSize.IsEnabled = false;
@@ -290,8 +287,44 @@ namespace Presentation
 
         public void Update(GameInfo gameInfo)
         {
-            throw new NotImplementedException();
-        }
+            this.Dispatcher.Invoke(() =>
+                {
+                    if (gameInfo.GameID == gameID)
+                    {
+                        if (gameInfo.PlayerTurnID == playerID)
+                        {
+                            rdbtFold.IsEnabled = true;
+                            rdbtnBet.IsEnabled = true;
+                            rdbtnCall.IsEnabled = true;
+                            rdbtnCheck.IsEnabled = true;
+                        }
+
+                        txtPotSize.Text = gameInfo.PotSize.ToString();
+                        CardType[] cards = gameInfo.TableCards;
+                        int roundNumber = gameInfo.RoundNumber;
+                        switch (roundNumber)
+                        {
+                            case 2:
+                                com1.Source = GUICards.GetImageSource(cards[0]);
+                                com2.Source = GUICards.GetImageSource(cards[1]);
+                                com3.Source = GUICards.GetImageSource(cards[2]);
+                                break;
+                            case 3:
+                                com4.Source = GUICards.GetImageSource(cards[3]);
+                                break;
+                            case 4:
+                                com5.Source = GUICards.GetImageSource(cards[4]);
+                                break;
+                        }
+
+                        stateGameBoard.ItemsSource = gameInfo.PlayersInfo;
+
+                    }
+                }
+            );
+
+
+            }
 
         public void Update(PlayerCardsInfo playerCardsInfo)
         {
