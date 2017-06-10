@@ -18,7 +18,7 @@ namespace Communication
 
         public void UpdateGameInfo(string content)
         {
-            GameInfo gameInfo= (new GameInfo()).Parse(content);
+            GameInfo gameInfo = new GameInfo(content);
             foreach (GameListener gameListener in RECEIVER.gameListeners)
             {
                 gameListener.Update(gameInfo);
@@ -27,7 +27,7 @@ namespace Communication
 
         public void UpdatePlayerCardsInfo(string content)
         {
-            PlayerCardsInfo playerCardsInfo = (new PlayerCardsInfo()).Parse(content);
+            PlayerCardsInfo playerCardsInfo = new PlayerCardsInfo(content);
             foreach (GameListener gameListener in RECEIVER.gameListeners)
             {
                 gameListener.Update(playerCardsInfo);
