@@ -26,14 +26,14 @@ namespace Domain
                 //can be: add card to table, declare score
                 LatestAction = Move;
                 logOfMoves.Add(loggerCounter++, Move);
-                game.Subject.Notify();
+                game.Subject.NotifyAll();
             }
             else
             {
                 string line = "Player: " + player.PlayerId + " " + Move;
                 LatestAction = line;
                 logOfMoves.Add(loggerCounter++, line); //while parsing, check if first word is "Player:" then strip by spaces the ID
-                game.Subject.Notify();
+                game.Subject.NotifyAll();
             }
         }
     }

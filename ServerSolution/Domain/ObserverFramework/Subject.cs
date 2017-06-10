@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Domain.ObserverFramework
 {
@@ -15,22 +11,35 @@ namespace Domain.ObserverFramework
             observers = new List<Observer>();
         }
 
-        public void Attach(Observer o)
+        public void Attach(Observer observer)
         {
-            observers.Add(o);
+            observers.Add(observer);
         }
 
-        public void Detach(Observer o)
+        public void Detach(Observer observer)
         {
-            observers.Remove(o);
+            foreach (var o in observers)
+            {
+                if (o.Username == observer.Username)
+                    observers.Remove(o);
+            }
         }
 
-        public void Notify()
+        public void NotifyAll()
         {
             foreach (var o in observers)
             {
                 o.Update();
             }     
+        }
+
+        public void Notify(string username)
+        {
+            foreach (var o in observers)
+            {
+                if(o.Username == username)
+                    o.Update();
+            }
         }
     }
 }

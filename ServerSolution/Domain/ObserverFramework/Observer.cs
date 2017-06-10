@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.ObserverFramework
+﻿namespace Domain.ObserverFramework
 {
     public abstract class Observer
     {
+        public string Username { get; set; }
         public abstract void Update();
     }
 }
