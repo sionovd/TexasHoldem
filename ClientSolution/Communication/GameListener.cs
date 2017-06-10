@@ -11,5 +11,6 @@ namespace Communication
     {
        void Update(GameInfo gameInfo);
        void Update(PlayerCardsInfo playerCardsInfo);
+       void Update(EndGameInfo endGameInfo);
     }
 }

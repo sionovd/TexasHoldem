@@ -35,6 +35,15 @@ namespace Communication
             }
         }
 
+        public void UpdateEndGameInfo(string content)
+        {
+            EndGameInfo endGameInfoInfo = new EndGameInfo(content);
+            foreach (GameListener gameListener in RECEIVER.gameListeners)
+            {
+                gameListener.Update(endGameInfoInfo);
+            }
+        }
+
         public void Attach(GameListener gameListener)
         {   if(!gameListeners.Contains(gameListener))
                  gameListeners.Add(gameListener);
