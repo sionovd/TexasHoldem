@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace Communication.GameLogInfo
 {
@@ -25,28 +26,20 @@ namespace Communication.GameLogInfo
     };
     public class PlayerCardsInfo
     {
-        private CardType[] cards = new CardType[2];
+        public CardType[] PlayerCards { get; set; }
 
-        public PlayerCardsInfo()
+        public PlayerCardsInfo(string content)
         {
-            
+            PlayerCardsInfo playerCardsInfo = new JavaScriptSerializer().Deserialize<PlayerCardsInfo>(content);
+            this.PlayerCards = playerCardsInfo.PlayerCards;
         }
 
         public PlayerCardsInfo(CardType first, CardType second)
         {
-            cards[0] = first;
-            cards[1] = second;
+            PlayerCards = new CardType[2];
+            PlayerCards[0] = first;
+            PlayerCards[1] = second;
         }
 
-        
-        public CardType[] GetCards()
-        {
-            return cards;
-        }
-
-        public PlayerCardsInfo Parse(string content)
-        {
-            return this;
-        }
     }
 }
