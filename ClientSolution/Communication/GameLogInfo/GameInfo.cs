@@ -20,14 +20,15 @@ namespace Communication.GameLogInfo
         }
 
         public GameInfo(string content)
-        {   GameInfo gameInfo = new JavaScriptSerializer().Deserialize<GameInfo>(content);
-            this.GameID = gameInfo.GameID;
-            this.PotSize = gameInfo.PotSize;
-            this.CurrentStake = gameInfo.CurrentStake;
-            this.RoundNumber = gameInfo.RoundNumber;
-            this.PlayerTurnID = PlayerTurnID;
-            this.PlayersInfo = PlayersInfo;
-            this.TableCards = TableCards;
+        {
+            GameInfo gameInfo = new JavaScriptSerializer().Deserialize<GameInfo>(content);
+            GameID = gameInfo.GameID;
+            PotSize = gameInfo.PotSize;
+            CurrentStake = gameInfo.CurrentStake;
+            RoundNumber = gameInfo.RoundNumber;
+            PlayerTurnID = gameInfo.PlayerTurnID;
+            PlayersInfo = gameInfo.PlayersInfo;
+            TableCards = gameInfo.TableCards;
         }
         public GameInfo(int gameID, int potSize, int currentStake, int roundNumber, int playerTurnID, List<PlayerInfo> playersInfo, CardType[] tableCards)
         {

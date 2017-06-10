@@ -15,8 +15,8 @@ namespace AcceptanceTests
             Assert.IsTrue(Login("yossi", "pass2"));
             Assert.IsTrue(Logout("yossi"));
             Assert.IsTrue(Logout("doron"));
-            //deleteUser("doron");
-            //deleteUser("yossi");
+            Assert.IsTrue(DeleteAccount("doron"));
+            Assert.IsTrue(DeleteAccount("yossi"));
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace AcceptanceTests
             Assert.IsFalse(Login("doron1", "wrongpassword"));
             Assert.IsFalse(Login("doron1", "Password"));
             Assert.IsFalse(Logout("doron1"));
-            //deleteUser("doron");
+            Assert.IsTrue(DeleteAccount("doron1"));
         }
     }
 }

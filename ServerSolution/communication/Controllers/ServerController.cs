@@ -89,6 +89,20 @@ namespace communication.Controllers
             }
         }
 
+        [HttpPost]
+        public Reply DeleteAccount(string username)
+        {
+            try
+            {
+                service.DeleteAccount(username);
+                return new Reply(true, "");
+            }
+            catch (DomainException a)
+            {
+                return new Reply(false, a.Message);
+            }
+        }
+
 
 
         [HttpPost]

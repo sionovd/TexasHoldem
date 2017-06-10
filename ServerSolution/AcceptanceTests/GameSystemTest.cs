@@ -76,9 +76,18 @@ namespace AcceptanceTests
             }
         }
 
-        public int ViewMoneyBalanceOfUser(string username)
+        public bool DeleteAccount(string username)
         {
-            return bridge.ViewMoneyBalanceOfUser(username);
+            try
+            {
+                bridge.DeleteAccount(username);
+                return true;
+            }
+            catch (DomainException e)
+            {
+                ErrorLogger.LogError(e);
+                return false;
+            }
         }
 
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)

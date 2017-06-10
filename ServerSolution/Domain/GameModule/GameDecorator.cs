@@ -29,9 +29,9 @@ namespace Domain.GameModule
             MyGame.Start();
         }
 
-        public Player EvaluateWinner()
+        public void EvaluateWinner()
         {
-            return MyGame.EvaluateWinner();
+            MyGame.EvaluateWinner();
         }
 
         public bool RemovePlayer(Player player)
@@ -133,6 +133,11 @@ namespace Domain.GameModule
         public Subject Subject {
             get { return MyGame.Subject; }
             set { MyGame.Subject = value; }
+        }
+
+        public Player Winner {
+            get { return MyGame.Winner; }
+            set { MyGame.Winner = value; }
         }
     }
 

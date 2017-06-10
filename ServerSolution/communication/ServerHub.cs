@@ -90,5 +90,13 @@ namespace communication
                 ctx.Clients.Client(user.First().ConnectionID).updateGameState(message);
         }
 
+        internal static void sendEndGameToUser(string username, string message)
+        {
+            var ctx = GlobalHost.ConnectionManager.GetHubContext<ServerHub>();
+            var user = uList.Where(u => u.UserName == username);
+            if (user.Any())
+                ctx.Clients.Client(user.First().ConnectionID).endGame(message);
+        }
+
     }
 }

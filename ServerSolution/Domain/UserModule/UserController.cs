@@ -46,7 +46,8 @@ namespace Domain.UserModule
             {
                 if (init)
                     Initialized();
-                
+                if(username.Length == 0)
+                    throw new DomainException("invalid details - username was empty");
                 User user = new User(username, password, email);
                 if (registerUsers.ContainsKey(username))
                     throw new AlreadyHasNameException(user.Username);
@@ -90,7 +91,11 @@ namespace Domain.UserModule
             }
         }
 
-        
 
+        public void DeleteUser(string username)
+        {
+            registerUsers.Remove(username);
+            //database call
+        }
     }
 }

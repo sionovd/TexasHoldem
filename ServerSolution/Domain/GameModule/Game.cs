@@ -10,7 +10,7 @@ namespace Domain.GameModule
     {
         Player AddPlayer(User user);
         void Start();
-        Player EvaluateWinner();
+        void EvaluateWinner();
         bool RemovePlayer(Player player);
         Spectator AddSpectatingPlayer(User user);
         bool RemoveSpectatingPlayer(Spectator spectator);
@@ -31,6 +31,7 @@ namespace Domain.GameModule
         League League { get; set; }
         GameLog Logger { get; set; }
         Subject Subject { get; set; }
+        Player Winner { get; set; }
     }
 
     public class GameState
@@ -67,6 +68,7 @@ namespace Domain.GameModule
         public League League { get; set; }
         public GameLog Logger { get; set; }
         public Subject Subject { get; set; }
+        public Player Winner { get; set; }
         public Player PreviousPlayer { get; set; }
         public Game(GamePreferences pref)
         {
@@ -145,6 +147,9 @@ namespace Domain.GameModule
             if (foldedCount == Seats.Count - 1 && winner != null)
             {
                 Console.WriteLine("The winner is (because everyone folded): " + winner.Username);
+                winner.ChipBalance = State.Pot;
+                Winner = winner;
+                Logger.LogEndGame(true);
                 return;
             }
 
@@ -153,7 +158,10 @@ namespace Domain.GameModule
             for (int i = 0; i < Seats.Count; i++)
             {
                 if (!Seats[i].MadeMove && !Seats[i].Folded)
+                {
+                    Logger.LogGameState();
                     return;
+                }
                 if (Seats[i].ChipBalance == 0 || Seats[i].Folded)
                 {
                     finishRoundCounter++;
@@ -177,8 +185,11 @@ namespace Domain.GameModule
             {
                 State.RoundNumber++;
                 if (State.RoundNumber > 4)
+                {
+                    EvaluateWinner();
+                    Logger.LogEndGame(false);
                     return;
-
+                }
                 State.CurrentStake = 0;
                 AddCardToTable();
                 foreach (Player p in Seats)
@@ -188,17 +199,22 @@ namespace Domain.GameModule
                 }
                 PreviousPlayer = Seats[Seats.Count - 1];
             }
+            Logger.LogGameState();
         }
 
 
-        public Player EvaluateWinner()
+        public void EvaluateWinner()
         {
             Player bestHand = null;
             int bestHandScore = 0;
 
-            Console.WriteLine("Table cards: " + State.TableCards[0].getCardId() + " " + State.TableCards[1].getCardId() + " " +
-                              State.TableCards[2].getCardId() + " " + State.TableCards[3].getCardId() + " " +
-                              State.TableCards[4].getCardId());
+            Console.Write("Table cards: ");
+            for (int i = 0; i < State.TableCards.Length; i++)
+            {
+                if(State.TableCards[i] != null)
+                    Console.Write(State.TableCards[i] + " ");
+            }
+            Console.WriteLine();
             Console.WriteLine();
             foreach (var player in Seats)
             {
@@ -220,8 +236,8 @@ namespace Domain.GameModule
             }
             bestHand.ChipBalance = State.Pot;
             Console.WriteLine("\nThe winner is: " + bestHand.Username);
+            Winner = bestHand;
             Logger.LogTurn(null, "Winner: " + bestHand.PlayerId);
-            return bestHand;
         }
 
         public Player GetPlayerById(int playerID)

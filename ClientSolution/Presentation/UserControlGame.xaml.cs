@@ -138,11 +138,11 @@ namespace Presentation
                 rdbtnBet.IsChecked = false;
                 rdbtnCall.IsChecked = false;
                 rdbtnCheck.IsChecked = false;
-                rdbtFold.IsEnabled = false;
+                /*rdbtFold.IsEnabled = false;
                 rdbtnBet.IsEnabled = false;
                 rdbtnCall.IsEnabled = false;
                 rdbtnCheck.IsEnabled = false;
-                btnConfirm.IsEnabled = false;
+                btnConfirm.IsEnabled = false;*/
                 btnConfirm.Visibility = Visibility.Hidden;
                 txtBetSize.IsEnabled = false;
                 txtBetSize.Visibility = Visibility.Hidden;

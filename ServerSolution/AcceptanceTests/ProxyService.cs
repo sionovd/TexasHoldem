@@ -34,6 +34,11 @@ namespace AcceptanceTests
             return true;
         }
 
+        public void DeleteAccount(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public int ViewMoneyBalanceOfUser(string username)
         {
             return 5;

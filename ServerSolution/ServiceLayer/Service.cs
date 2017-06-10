@@ -18,7 +18,7 @@ namespace ServiceLayer
         public bool Register(string username, string password, string email)
         {
             if (password == null)
-                throw new NotAPasswordException("hello");
+                throw new NotAPasswordException("no password was entered");
             return gameCenter.Register(username, password, email);
         }
 
@@ -37,9 +37,9 @@ namespace ServiceLayer
             return gameCenter.Logout(username);
         }
 
-        public int ViewMoneyBalanceOfUser(string username)
+        public void DeleteAccount(string username)
         {
-            throw new NotImplementedException();
+            gameCenter.DeleteAccount(username);
         }
 
         public int JoinGame(string username, int gameID)

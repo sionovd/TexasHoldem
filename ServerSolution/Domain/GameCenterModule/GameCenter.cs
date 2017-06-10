@@ -213,7 +213,7 @@ namespace Domain.GameCenterModule
         public bool EvaluateEndGame(int gameID)
         {
             IGame game = GetGameById(gameID);
-            Player winner = game.EvaluateWinner();
+            Player winner = game.Winner;
             foreach (var player in game.Seats)
             {
                 User user = userController.GetUserByName(player.Username);
@@ -226,6 +226,7 @@ namespace Domain.GameCenterModule
                 else
                     user.Stats.Points -= 1;
             }
+            games.Remove(gameID);
             return true;
         }
 
@@ -297,6 +298,11 @@ namespace Domain.GameCenterModule
         public string GetEmail(string username)
         {
             return userController.GetUserByName(username).Email;
+        }
+
+        public void DeleteAccount(string username)
+        {
+            userController.DeleteUser(username);
         }
     }
 }

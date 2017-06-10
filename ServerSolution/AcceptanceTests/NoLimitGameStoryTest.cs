@@ -23,7 +23,6 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("shavit", "password3", "shavit@gmail.com"));
             Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
             Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
-            Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
             username = "doron";
             
             List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
@@ -122,11 +121,15 @@ namespace AcceptanceTests
         {
             Assert.IsFalse(Bet(player1, game1, 3));
         }
-
+        
         [TestCleanup]
         public void TearDown()
         {
-            //delete objects from setup...
+            Assert.IsTrue(DeleteAccount("doron"));
+            Assert.IsTrue(DeleteAccount("shavit"));
+            Assert.IsTrue(DeleteAccount("tamir"));
+            Assert.IsTrue(DeleteAccount("leon"));
+            Assert.IsTrue(DeleteAccount("avner"));
         }
 
     }

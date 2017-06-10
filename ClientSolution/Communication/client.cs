@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
 using Communication.Replies;
+using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -15,6 +16,7 @@ namespace Communication
     public class Client
     {
         private static string url = "http://localhost:53133/api/server/";
+        private static Dictionary<string, HubConnection> connections = new Dictionary<string, HubConnection>();
 
         static void Main() { }
 
@@ -67,7 +69,6 @@ namespace Communication
                 Reply ans = await PostBool(newUrl);
                 if (ans.Sucsses)
                 {
-                    signalRClient.connection(username);
                     await Login(username, password);
                 }
                 return ans;
@@ -84,7 +85,7 @@ namespace Communication
                 Reply ans = await PostBool(newUrl);
                 if (ans.Sucsses)
                 {
-                   // signalRClient.connection();
+                    connections.Add(username, signalRClient.connection(username));                    
                     UserInfo.GetUser().SetUserName(username);
                     UserInfo.GetUser().SetPassword(password);
                     UserInfo.GetUser().SetEmail(ans.ErrorMessage);
@@ -115,6 +116,16 @@ namespace Communication
         public static async Task<Reply> Logout()
         {
             string newUrl = url + "Logout?username=" + UserInfo.GetUser().GetUsername();
+            Reply ans = await PostBool(newUrl);
+            string username = UserInfo.GetUser().GetUsername();
+            signalRClient.disconnect(connections[username]);
+            connections.Remove(username);
+            return ans;
+        }
+
+        public static async Task<Reply> DeleteAccount()
+        {
+            string newUrl = url + "DeleteAccount?username=" + UserInfo.GetUser().GetUsername();
             Reply ans = await PostBool(newUrl);
             return ans;
         }

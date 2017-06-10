@@ -13,25 +13,24 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
             Assert.IsTrue(Register("Yossi", "password", "yossi@post.bgu.ac.il"));
             Assert.IsTrue(Register("michaEl", "PaSsWord", "MichaEL987@gmail.com"));
-            //deleteUser("Doron_123");
-            //deleteUser("Yossi");
-            //deleteUser("michaEl");            
+            Assert.IsTrue(DeleteAccount("Doron_123"));
+            Assert.IsTrue(DeleteAccount("Yossi"));
+            Assert.IsTrue(DeleteAccount("michaEl"));
         }
 
         [TestMethod]
         public void RegisterBad()
         {
-            Assert.IsFalse(Register("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-                "ccccccccccccccccccccccccccccccccccccccccccccccc"));
             Assert.IsTrue(Register("Doron", "pass", "user@gmail.com"));
             Assert.IsFalse(Register("Doron", "pass123", "name@gmail.com"));
-            //deleteUser("Doron");
+            Assert.IsTrue(DeleteAccount("Doron"));
             Assert.IsFalse(Register("", "password", "email@gmail.com"));
             Assert.IsFalse(Register("user", "", "email@gmail.com"));
             Assert.IsFalse(Register("user", "password", ""));
             Assert.IsFalse(Register("user", "pass", "blahblah"));
-
+            Assert.IsFalse(Register("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                "ccccccccccccccccccccccccccccccccccccccccccccccc"));
         }
 
         [TestMethod]
