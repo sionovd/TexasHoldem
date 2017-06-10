@@ -49,7 +49,7 @@ namespace UnitTestProject1
         public void IsSpectatorExistWhenNotExistById()
         {
             Spectator s = new Spectator("guri");
-            Assert.IsFalse(game.IsSpectatorExist(s.Name));
+            Assert.IsFalse(game.IsSpectatorExist(s.Username));
         }
 
         [TestMethod]
@@ -57,14 +57,14 @@ namespace UnitTestProject1
         {
             User user = new User("ni", "4363", "ro5@gmail.com", 233);
             Spectator spec = game.AddSpectatingPlayer(user);
-            Assert.IsTrue(game.IsSpectatorExist(spec.Name));
+            Assert.IsTrue(game.IsSpectatorExist(spec.Username));
         }
 
         [TestMethod]
         public void IsSpectatorExistWhenNotExistByName()
         {
             Spectator s = new Spectator("guri");
-            Assert.IsFalse(game.IsSpectatorExist(s.Name));
+            Assert.IsFalse(game.IsSpectatorExist(s.Username));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace UnitTestProject1
         {
             User user = new User("ni", "4363", "ro5@gmail.com", 233);
             Spectator spec = game.AddSpectatingPlayer(user);
-            Assert.IsTrue(game.IsSpectatorExist(spec.Name));
+            Assert.IsTrue(game.IsSpectatorExist(spec.Username));
         }
 
         [TestMethod]
@@ -130,7 +130,7 @@ namespace UnitTestProject1
         {
             User user = new User("roni", "4363", "roni55@gmail.com");
             Spectator spec = game.AddSpectatingPlayer(user);
-            Assert.IsTrue(game.IsSpectatorExist(spec.Name));
+            Assert.IsTrue(game.IsSpectatorExist(spec.Username));
         }
 
 

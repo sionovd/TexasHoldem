@@ -29,7 +29,7 @@ namespace Presentation
         private int playerID;
 
         public UserControlGame(int gameID, int playerID)
-        {
+        {   Receiver.GetReceiver().Attach(this);
             this.gameID = gameID;
             this.playerID = playerID;
             InitializeComponent();
@@ -295,7 +295,15 @@ namespace Presentation
 
         public void Update(PlayerCardsInfo playerCardsInfo)
         {
-            throw new NotImplementedException();
+            if (playerCardsInfo.GameID == gameID && playerCardsInfo.PlayerID == playerID)
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    hole1.Source = GUICards.GetImageSource(playerCardsInfo.PlayerCards[0]);
+                    hole2.Source = GUICards.GetImageSource(playerCardsInfo.PlayerCards[1]);
+                });
+                
+            }
         }
     }
 }

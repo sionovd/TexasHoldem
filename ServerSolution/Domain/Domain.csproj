@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,8 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTypes\GameInfo.cs" />
     <Compile Include="DomainLayerExceptions\AlreadySpectatingException.cs" />
+    <Compile Include="GameLogInfo\GameInfo.cs" />
+    <Compile Include="GameLogInfo\PlayerCardsInfo.cs" />
+    <Compile Include="GameLogInfo\PlayerInfo.cs" />
     <Compile Include="ObserverFramework\Observer.cs" />
     <Compile Include="ObserverFramework\Subject.cs" />
     <Compile Include="DomainLayerExceptions\DomainException.cs" />
@@ -60,7 +63,7 @@
     <Compile Include="DomainLayerExceptions\LeagueMismatchException.cs" />
     <Compile Include="DomainLayerExceptions\NoBetToCallException.cs" />
     <Compile Include="DomainLayerExceptions\NotCurrentPlayerException.cs" />
-    <Compile Include="DomainLayerExceptions\NotEnoughChipsException.cs" />
+    <Compile Include="DomainLayerExceptions\NoMoreChipsException.cs" />
     <Compile Include="IDataBase.cs" />
     <Compile Include="GameModule\Deck.cs" />
     <Compile Include="DomainLayerExceptions\FullTableException.cs" />
@@ -91,9 +94,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameLogInfo\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

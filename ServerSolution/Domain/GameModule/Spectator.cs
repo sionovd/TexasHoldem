@@ -9,7 +9,7 @@
         public Spectator(string name)
         {
             counter++;
-            this.Name = name;
+            this.Username = name;
             Id = counter;
         }
 
@@ -26,7 +26,7 @@
             }
         }
 
-        public string Name
+        public string Username
         {
             get
             {

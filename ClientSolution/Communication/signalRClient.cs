@@ -26,16 +26,27 @@ namespace Communication
         {   // at future will send to method that print message at the suitable table
             myHub.On<string,int>("chatMessage", (message,tableNumber) => Console.WriteLine(message));
             // at future will pop-up message
-            myHub.On<string>("particularMessage", message => method(message));
-           
+            myHub.On<string>("updateCards", message => ReceiveCards(message));
+            myHub.On<string>("updateGameState", message => ReceiveGameInfo(message));
+            myHub.On<string>("endGame", message => ReceiveWinner(message));
             /*
                 MORE METHODS...
             */
         }
 
-        static void method(string str)
+        static void ReceiveCards(string content)
         {
-            Console.WriteLine(str);
+            Receiver.GetReceiver().UpdatePlayerCardsInfo(content);
+        }
+
+        static void ReceiveGameInfo(string content)
+        {
+            Receiver.GetReceiver().UpdateGameInfo(content);
+        }
+
+        static void ReceiveWinner(string content)
+        {
+            
         }
 
         public static async void sendMessage(IHubProxy h, string message, int tableId)

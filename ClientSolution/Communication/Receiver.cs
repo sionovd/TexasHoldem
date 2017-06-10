@@ -8,8 +8,9 @@ using Communication.GameLogInfo;
 namespace Communication
 {
     public class Receiver
-    {   private static Receiver RECEIVER = new Receiver();
-        private List<GameListener> gameListeners ;
+    {
+        private static Receiver RECEIVER = new Receiver();
+        private List<GameListener> gameListeners;
 
         private Receiver()
         {
@@ -44,7 +45,7 @@ namespace Communication
             gameListeners.Remove(gameListener);
         }
 
-        public Receiver GetReceiver()
+        public static Receiver GetReceiver()
         {
             return RECEIVER;
         }

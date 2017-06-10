@@ -21,24 +21,35 @@ namespace Domain.ObserverFramework
             foreach (var o in observers)
             {
                 if (o.Username == observer.Username)
+                {
                     observers.Remove(o);
+                    break;
+                }
             }
         }
 
-        public void NotifyAll()
+        public void NotifyGameState()
         {
             foreach (var o in observers)
             {
-                o.Update();
+                o.UpdateGameState();
             }     
         }
 
-        public void Notify(string username)
+        public void NotifyEndGame()
+        {
+            foreach (var o in observers)
+            {
+                o.UpdateEndGame();
+            }
+        }
+
+        public void NotifyCards(string username)
         {
             foreach (var o in observers)
             {
                 if(o.Username == username)
-                    o.Update();
+                    o.UpdateCards();
             }
         }
     }

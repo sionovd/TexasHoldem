@@ -15,9 +15,19 @@ namespace communication
             game.Subject.Attach(this);
         }
 
-        public override void Update()
+        public override void UpdateCards()
         {
-            ServerHub.sendMessageToUser(Username, game.Logger.LatestAction);
+            ServerHub.sendCardsToUser(Username, game.Logger.LatestAction);
+        }
+
+        public override void UpdateGameState()
+        {
+            ServerHub.sendGameInfoToUser(Username, game.Logger.LatestAction);
+        }
+
+        public override void UpdateEndGame()
+        {
+            throw new System.NotImplementedException();
         }
 
 

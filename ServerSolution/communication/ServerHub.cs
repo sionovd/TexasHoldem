@@ -74,13 +74,21 @@ namespace communication
             }
         }
 
-        internal static void sendMessageToUser(string username,string message)
+        internal static void sendCardsToUser(string username,string message)
         {
             var ctx = GlobalHost.ConnectionManager.GetHubContext<ServerHub>();
             var user = uList.Where(u => u.UserName == username);
             if(user.Any())
-                ctx.Clients.Client(user.First().ConnectionID).particularMessage(message);
+                ctx.Clients.Client(user.First().ConnectionID).updateCards(message);
         }
-        
+
+        internal static void sendGameInfoToUser(string username, string message)
+        {
+            var ctx = GlobalHost.ConnectionManager.GetHubContext<ServerHub>();
+            var user = uList.Where(u => u.UserName == username);
+            if (user.Any())
+                ctx.Clients.Client(user.First().ConnectionID).updateGameState(message);
+        }
+
     }
 }

@@ -36,6 +36,7 @@ namespace Domain.GameModule
     public class GameState
     {
         public Card[] TableCards { get; }
+        public Player CurrentPlayer { get; set; }
         public int RoundNumber { get; set; }
         public int Pot { get; set; }
         public int CurrentStake { get; set; }
@@ -94,9 +95,10 @@ namespace Domain.GameModule
                 if (player != null)
                 {
                     player.AddHand(Cards.GetCard(), Cards.GetCard());
-                    Logger.LogTurn(null,
+                    Logger.LogPlayerCards(player, player.Cards);
+                    /*Logger.LogTurn(null,
                         "Deal: " + player.PlayerId + " , Hand: " + player.Cards[0].getCardId() + " " +
-                        player.Cards[1].getCardId());
+                        player.Cards[1].getCardId());*/
                 }
             }
         }
@@ -132,6 +134,7 @@ namespace Domain.GameModule
                 return;
             Player winner = null;
             int foldedCount = 0;
+            State.CurrentPlayer = GetCurrentPlayer();
             foreach (Player p in Seats)
             {
                 if (p.Folded)
@@ -313,7 +316,7 @@ namespace Domain.GameModule
         public bool IsSpectatorExist(string name)
         {
             foreach (Spectator s in spectators)
-                if (s.Name.Equals(name))
+                if (s.Username.Equals(name))
                     return true;
             return false;
         }
@@ -355,7 +358,7 @@ namespace Domain.GameModule
 
         public bool Bet(Player player, int amount)
         {
-            if (!IsCurrentPlayer(player))
+            if (GetCurrentPlayer().PlayerId != player.PlayerId)
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             int balance = player.ChipBalance;
             if (balance >= amount && amount >= State.CurrentStake)
@@ -375,7 +378,7 @@ namespace Domain.GameModule
 
         public bool Call(Player player)
         {
-            if (!IsCurrentPlayer(player))
+            if (GetCurrentPlayer().PlayerId != player.PlayerId)
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             if (State.CurrentStake == 0)
             {
@@ -384,11 +387,11 @@ namespace Domain.GameModule
                                                " can't call because the current stake is 0.");
             }
             int amount = State.CurrentStake - player.AmountBetOnCurrentRound;
-            if (player.ChipBalance < amount) // not enough money
-                throw new NotEnoughChipsException("The player " + player.Username + " can't call b/c he has " +
-                                                  player.ChipBalance + " chips, and the current stake is " +
-                                                  State.CurrentStake + ".");
-
+            if (player.ChipBalance == 0) // not enough money
+                throw new NoMoreChipsException("The player " + player.Username +
+                                                  " can't call b/c he has no chips left");
+            if (player.ChipBalance < amount)
+                amount = player.ChipBalance;
             State.Pot += amount;
             player.ChipBalance -= amount;
             player.AmountBetOnCurrentRound += amount;
@@ -400,7 +403,7 @@ namespace Domain.GameModule
         }
         public bool Check(Player player)
         {
-            if (!IsCurrentPlayer(player))
+            if (GetCurrentPlayer().PlayerId != player.PlayerId)
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             if (State.RoundNumber == 1)
             {
@@ -415,7 +418,7 @@ namespace Domain.GameModule
 
         public bool Fold(Player player)
         {
-            if (!IsCurrentPlayer(player))
+            if (GetCurrentPlayer().PlayerId != player.PlayerId)
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             player.Folded = true;
             PreviousPlayer = player;
@@ -425,7 +428,7 @@ namespace Domain.GameModule
             return true;
         }
 
-        private bool IsCurrentPlayer(Player player)
+        private Player GetCurrentPlayer()
         {
             Player currentPlayer = Seats[(Seats.IndexOf(PreviousPlayer) + 1) % Seats.Count];
             while (currentPlayer.Folded)
@@ -433,9 +436,7 @@ namespace Domain.GameModule
                 PreviousPlayer = currentPlayer;
                 currentPlayer = Seats[(Seats.IndexOf(PreviousPlayer) + 1) % Seats.Count];
             }
-            if (player.PlayerId != currentPlayer.PlayerId)
-                return false;
-            return true;
+            return currentPlayer;
         }
     }
 }
