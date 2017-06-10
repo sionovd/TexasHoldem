@@ -46,7 +46,7 @@ namespace Communication
 
         static void ReceiveWinner(string content)
         {
-            
+            Receiver.GetReceiver().UpdateEndGameInfo(content);
         }
 
         public static async void sendMessage(IHubProxy h, string message, int tableId)

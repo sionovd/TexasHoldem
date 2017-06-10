@@ -341,10 +341,13 @@ namespace Presentation
 
         public void Update(EndGameInfo endGameInfo)
         {
-            if (endGameInfo.GameID == gameID)
+            Dispatcher.Invoke(() =>
             {
-                this.Content = new UserControlEndGame(endGameInfo);
-            }
+                if (endGameInfo.GameID == gameID)
+                {
+                    this.Content = new UserControlEndGame(endGameInfo);
+                }
+            });
         }
     }
 }

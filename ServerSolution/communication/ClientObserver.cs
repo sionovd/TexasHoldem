@@ -27,7 +27,7 @@ namespace communication
 
         public override void UpdateEndGame()
         {
-            throw new System.NotImplementedException();
+            ServerHub.sendEndGameToUser(Username, game.Logger.LatestAction);
         }
 
 
