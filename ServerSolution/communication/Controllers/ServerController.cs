@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.UI.WebControls;
 using Communication.Replies;
-
+using Domain.DomainLayerExceptions;
+using Domain.UserModule;
 using ServiceLayer;
 
 

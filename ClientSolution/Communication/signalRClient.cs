@@ -59,7 +59,7 @@ namespace Communication
             var context = SynchronizationContext.Current;
             var querystringData = new Dictionary<string, string>();
             querystringData.Add("id", username);
-            var connection = new HubConnection("http://texasholdem1.azurewebsites.net/signalr", querystringData);  // the address we eant to connect
+            var connection = new HubConnection("http://localhost:53133/signalr", querystringData);  // the address we eant to connect
             IHubProxy myHub = connection.CreateHubProxy("ServerHub");    // the name of the hub we want to
             apiConfigure(myHub);
             connection.Start();
