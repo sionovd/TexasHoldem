@@ -118,7 +118,7 @@ namespace Communication
             string newUrl = url + "Logout?username=" + UserInfo.GetUser().GetUsername();
             Reply ans = await PostBool(newUrl);
             string username = UserInfo.GetUser().GetUsername();
-            signalRClient.disconnect(connections[username]);
+            //signalRClient.disconnect(connections[username]);
             connections.Remove(username);
             return ans;
         }
@@ -308,6 +308,8 @@ namespace Communication
                }*/
         private static async Task<ReplyInt> PostInt(string surl, List<KeyValuePair<string, string>> preferenceList)
         {
+
+
             IEnumerable<KeyValuePair<string, string>> quieries = preferenceList;
             HttpContent q = new FormUrlEncodedContent(quieries);
            q.Headers.Add("a","1");
