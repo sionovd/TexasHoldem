@@ -78,6 +78,16 @@ namespace ServiceLayer
             return gameCenter.Call(playerID, gameID);
         }
 
+        public void SendMessage(string senderUsername, string message, int gameID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)
+        {
+            throw new NotImplementedException();
+        }
+
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
             return gameCenter.CreateGame(username, preferenceList);

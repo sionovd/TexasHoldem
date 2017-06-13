@@ -90,6 +90,34 @@ namespace AcceptanceTests
             }
         }
 
+        public bool SendMessage(string senderUsername, string message, int gameID)
+        {
+            try
+            {
+                bridge.SendMessage(senderUsername, message, gameID);
+                return true;
+            }
+            catch (DomainException e)
+            {
+                ErrorLogger.LogError(e);
+                return false;
+            }
+        }
+
+        public bool SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)
+        {
+            try
+            {
+                bridge.SendWhisper(senderUsername, receiverUsername, whisper, gameID);
+                return true;
+            }
+            catch (DomainException e)
+            {
+                ErrorLogger.LogError(e);
+                return false;
+            }
+        }
+
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
             try

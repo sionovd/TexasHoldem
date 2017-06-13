@@ -130,6 +130,25 @@ namespace Communication
             return ans;
         }
 
+        public static async Task<Reply> SendMessage(string senderUsername, string message, int gameID)
+        {
+            string newUrl = url + "SendMessage?senderUsername=" + senderUsername;
+            newUrl = newUrl + "&message=" + message;
+            newUrl = newUrl + "gameID=" + gameID;
+            Reply ans = await PostBool(newUrl);
+            return ans;
+        }
+
+        public static async Task<Reply> SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)
+        {
+            string newUrl = url + "SendMessage?senderUsername=" + senderUsername;
+            newUrl = newUrl + "&receiverUsername=" + receiverUsername;
+            newUrl = newUrl + "&whisper=" + whisper;
+            newUrl = newUrl + "gameID=" + gameID;
+            Reply ans = await PostBool(newUrl);
+            return ans;
+        }
+
         public static async Task<ReplyInt> JoinGame(int gameID)
         {
             string newUrl = url + "JoinGame?username=" + UserInfo.GetUser().GetUsername();

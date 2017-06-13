@@ -290,11 +290,11 @@ namespace Domain.GameModule
                 if (p != null && p.PlayerId == player.PlayerId)
                 {
                     Seats.Remove(p);
-                    if (Seats.Count > 1)
+                    if (Seats.Count > 1 && IsActive)
                     {
                             Logger.LogGameState();
                     }
-                    if (Seats.Count == 1)
+                    if (Seats.Count == 1 && IsActive)
                     {
                         Winner = Seats[0];
                         Logger.LogEndGame(true);

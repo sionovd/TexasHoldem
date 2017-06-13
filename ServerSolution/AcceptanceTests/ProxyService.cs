@@ -84,6 +84,14 @@ namespace AcceptanceTests
             return true;
         }
 
+        public void SendMessage(string senderUsername, string message, int gameID)
+        {
+        }
+
+        public void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)
+        {
+        }
+
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)
         {
             return 1;

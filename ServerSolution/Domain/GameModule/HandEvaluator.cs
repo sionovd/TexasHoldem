@@ -305,22 +305,89 @@ namespace Domain.GameModule
         }
         private int getThreeOfAKind()
         {
-            int currentCardValue = 0;
-            int incrementalInd = 1;
+            int oneSign = 0;
+            int twoSign = 0;
+            int threeSign = 0;
+            int fourSign = 0;
+            int fiveSign = 0;
+            int sixSign = 0;
+            int sevenSign = 0;
+            int eightSign = 0;
+            int nineSign = 0;
+            int tenSign = 0;
+            int elevenSign = 0;
+            int twelveSign = 0;
+            int thirteenSign = 0;
             int cardScore = 0;
-            for (int j = 0; j < 5; j++)
+            for (int i = 0; i < hand.Length; i++)
             {
-                currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < hand.Length; i++)
+                switch ((int)hand[i].getCardId() / 4)
                 {
-                    if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
-                    {
-                        incrementalInd = incrementalInd + 1;
-                    }
-                    if (incrementalInd == 3)
-                    {
-                        cardScore = (int)hand[j].getCardId() / 4;
-                    }
+                    case 0:
+                        oneSign++;
+                        if (oneSign == 3)
+                            if (cardScore < 0) cardScore = 0;
+                        break;
+                    case 1:
+                        twoSign++;
+                        if (twoSign == 3)
+                            if (cardScore < 1) cardScore = 1;
+                        break;
+                    case 2:
+                        threeSign++;
+                        if (threeSign == 3)
+                            if (cardScore < 2) cardScore = 2;
+                        break;
+                    case 3:
+                        fourSign++;
+                        if (fourSign == 3)
+                            if (cardScore < 3) cardScore = 3;
+                        break;
+                    case 4:
+                        fiveSign++;
+                        if (fiveSign == 3)
+                            if (cardScore < 4) cardScore = 4;
+                        break;
+                    case 5:
+                        sixSign++;
+                        if (sixSign == 3)
+                            if (cardScore < 5) cardScore = 5;
+                        break;
+                    case 6:
+                        sevenSign++;
+                        if (sevenSign == 3)
+                            if (cardScore < 6) cardScore = 6;
+                        break;
+                    case 7:
+                        eightSign++;
+                        if (eightSign == 3)
+                            if (cardScore < 7) cardScore = 7;
+                        break;
+                    case 8:
+                        nineSign++;
+                        if (nineSign == 3)
+                            if (cardScore < 8) cardScore = 8;
+                        break;
+                    case 9:
+                        tenSign++;
+                        if (tenSign == 3)
+                            if (cardScore < 9) cardScore = 9;
+                        break;
+                    case 10:
+                        elevenSign++;
+                        if (elevenSign == 3)
+                            if (cardScore < 10) cardScore = 10;
+                        break;
+                    case 11:
+                        twelveSign++;
+                        if (twelveSign == 3)
+                            if (cardScore < 11) cardScore = 11;
+                        break;
+                    case 12:
+                        thirteenSign++;
+                        if (thirteenSign == 3)
+                            if (cardScore < 12) cardScore = 12;
+                        break;
                 }
             }
             return cardScore + THREE_OF_A_KIND;
@@ -753,22 +820,70 @@ namespace Domain.GameModule
 
         private bool isFourOfAKind()
         {
-            int currentCardValue = 0;
-            int incrementalInd = 1;
-            for (int j = 0; j < 4; j++)
+            int oneSign = 0;
+            int twoSign = 0;
+            int threeSign = 0;
+            int fourSign = 0;
+            int fiveSign = 0;
+            int sixSign = 0;
+            int sevenSign = 0;
+            int eightSign = 0;
+            int nineSign = 0;
+            int tenSign = 0;
+            int elevenSign = 0;
+            int twelveSign = 0;
+            int thirteenSign = 0;
+            for (int i = 0; i < hand.Length; i++)
             {
-                currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < hand.Length; i++)
+                switch ((int)hand[i].getCardId() / 4)
                 {
-                    if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
-                    {
-                        incrementalInd = incrementalInd + 1;
-                    }
-                    if (incrementalInd == 4)
-                    {
-                        return true;
-                    }
+                    case 0:
+                        oneSign++;
+                        break;
+                    case 1:
+                        twoSign++;
+                        break;
+                    case 2:
+                        threeSign++;
+                        break;
+                    case 3:
+                        fourSign++;
+                        break;
+                    case 4:
+                        fiveSign++;
+                        break;
+                    case 5:
+                        sixSign++;
+                        break;
+                    case 6:
+                        sevenSign++;
+                        break;
+                    case 7:
+                        eightSign++;
+                        break;
+                    case 8:
+                        nineSign++;
+                        break;
+                    case 9:
+                        tenSign++;
+                        break;
+                    case 10:
+                        elevenSign++;
+                        break;
+                    case 11:
+                        twelveSign++;
+                        break;
+                    case 12:
+                        thirteenSign++;
+                        break;
                 }
+            }
+            if (oneSign == 4 || twoSign == 4 || threeSign == 4 || fourSign == 4 ||
+                fiveSign == 4 || sixSign == 4 || sevenSign == 4 || eightSign == 4 ||
+                nineSign == 4 || tenSign == 4 || elevenSign == 4 || twelveSign == 4 ||
+                thirteenSign == 4)
+            {
+                return true;
             }
             return false;
         }
@@ -987,23 +1102,70 @@ namespace Domain.GameModule
 
         private bool isThreeOfAKind()
         {
-            int currentCardValue = 0;
-            int incrementalInd = 1;
-            for (int j = 0; j < 5; j++)
+            int oneSign = 0;
+            int twoSign = 0;
+            int threeSign = 0;
+            int fourSign = 0;
+            int fiveSign = 0;
+            int sixSign = 0;
+            int sevenSign = 0;
+            int eightSign = 0;
+            int nineSign = 0;
+            int tenSign = 0;
+            int elevenSign = 0;
+            int twelveSign = 0;
+            int thirteenSign = 0;
+            for (int i = 0; i < hand.Length; i++)
             {
-                currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < hand.Length; i++)
+                switch ((int)hand[i].getCardId() / 4)
                 {
-                    if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
-                    {
-                        incrementalInd = incrementalInd + 1;
-                    }
-                    if (incrementalInd == 3)
-                    {
-                        return true;
-                    }
+                    case 0:
+                        oneSign++;
+                        break;
+                    case 1:
+                        twoSign++;
+                        break;
+                    case 2:
+                        threeSign++;
+                        break;
+                    case 3:
+                        fourSign++;
+                        break;
+                    case 4:
+                        fiveSign++;
+                        break;
+                    case 5:
+                        sixSign++;
+                        break;
+                    case 6:
+                        sevenSign++;
+                        break;
+                    case 7:
+                        eightSign++;
+                        break;
+                    case 8:
+                        nineSign++;
+                        break;
+                    case 9:
+                        tenSign++;
+                        break;
+                    case 10:
+                        elevenSign++;
+                        break;
+                    case 11:
+                        twelveSign++;
+                        break;
+                    case 12:
+                        thirteenSign++;
+                        break;
                 }
-                incrementalInd = 1;
+            }
+            if (oneSign == 3 || twoSign == 3 || threeSign == 3 || fourSign == 3 ||
+                fiveSign == 3 || sixSign == 3 || sevenSign == 3 || eightSign == 3 ||
+                nineSign == 3 || tenSign == 3 || elevenSign == 3 || twelveSign == 3 ||
+                thirteenSign == 3)
+            {
+                return true;
             }
             return false;
         }

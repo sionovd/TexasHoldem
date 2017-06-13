@@ -18,6 +18,8 @@ namespace ServiceLayer
         bool Fold(int playerID, int gameID);
         bool Call(int playerID, int gameID);
 
+        void SendMessage(string senderUsername, string message, int gameID);
+        void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID);
 
         int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList);
         List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet,

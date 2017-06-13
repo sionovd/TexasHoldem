@@ -24,6 +24,10 @@ namespace UnitTestProject1
         private List<Card> twoPairs;
         private List<Card> onePair;
         private List<Card> highHand;
+        private List<Card> buggedCombo1;
+        private List<Card> buggedCombo2;
+        private List<Card> buggedCombo3;
+        private List<Card> buggedCombo4;
         private HandEvaluator eval;
         #endregion
 
@@ -132,6 +136,62 @@ namespace UnitTestProject1
                                         new Card(CardType.ClubsNine),
                                         new Card(CardType.ClubsFive)
             };
+
+            buggedCombo1 = new List<Card> {
+                                        new Card(CardType.SpadesFive),
+                                        new Card(CardType.ClubsSix),
+                                        new Card(CardType.SpadesNine),
+                                        new Card(CardType.ClubsNine),
+                                        new Card(CardType.ClubsKing),
+                                        new Card(CardType.DiamondThree),
+                                        new Card(CardType.ClubsThree),
+            };
+            buggedCombo2 = new List<Card> {
+                new Card(CardType.SpadesFive),
+                new Card(CardType.ClubsSix),
+                new Card(CardType.SpadesNine),
+                new Card(CardType.ClubsNine),
+                new Card(CardType.ClubsKing),
+                new Card(CardType.HeartFour),
+                new Card(CardType.HeartTen),
+            };
+            buggedCombo3 = new List<Card> {
+                new Card(CardType.DiamondFive),
+                new Card(CardType.ClubsKing),
+                new Card(CardType.HeartSix),
+                new Card(CardType.SpadesSix),
+                new Card(CardType.HeartAce),
+                new Card(CardType.SpadesSeven),
+                new Card(CardType.DiamondAce),
+            };
+            buggedCombo4 = new List<Card> {
+                new Card(CardType.ClubsTen),
+                new Card(CardType.SpadesSeven),
+                
+                new Card(CardType.HeartAce),
+                new Card(CardType.SpadesSeven),
+                new Card(CardType.DiamondAce),
+                new Card(CardType.HeartSix),
+                new Card(CardType.SpadesSix),
+            };
+        }
+
+        [TestMethod]
+        public void TestBug1()
+        {
+            eval = new HandEvaluator(buggedCombo1.ToArray());
+            Console.WriteLine(eval.Evaluate());
+            eval = new HandEvaluator(buggedCombo2.ToArray());
+            Console.WriteLine(eval.Evaluate());
+        }
+
+        [TestMethod]
+        public void TestBug2()
+        {
+            eval = new HandEvaluator(buggedCombo3.ToArray());
+            Console.WriteLine(eval.Evaluate());
+            eval = new HandEvaluator(buggedCombo4.ToArray());
+            Console.WriteLine(eval.Evaluate());
         }
 
         [TestMethod]

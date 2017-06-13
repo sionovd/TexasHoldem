@@ -96,13 +96,39 @@ namespace communication.Controllers
                 service.DeleteAccount(username);
                 return new Reply(true, "");
             }
-            catch (DomainException a)
+            catch (DomainException e)
             {
-                return new Reply(false, a.Message);
+                return new Reply(false, e.Message);
             }
         }
 
+        [HttpPost]
+        public Reply SendMessage(string senderUsername, string message, int gameID)
+        {
+            try
+            {
+                service.SendMessage(senderUsername, message, gameID);
+                return new Reply(true, "");
+            }
+            catch (DomainException e)
+            {
+                return new Reply(false, e.Message);
+            }
+        }
 
+        [HttpPost]
+        public Reply SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)
+        {
+            try
+            {
+                service.SendWhisper(senderUsername, receiverUsername, whisper, gameID);
+                return new Reply(true, "");
+            }
+            catch (DomainException e)
+            {
+                return new Reply(false, e.Message);
+            }
+        }
 
         [HttpPost]
         public ReplyInt JoinGame(string username, int gameId)
