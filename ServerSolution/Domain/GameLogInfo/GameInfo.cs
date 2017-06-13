@@ -11,8 +11,12 @@ namespace Domain.GameLogInfo
         public int CurrentStake { get; set; }
         public int RoundNumber { get; set; }
         public int PlayerTurnID { get; set; }
+        public int SmallBlindPlayerID { get; set; }
+        public int BigBlindPlayerID { get; set; }
         public List<PlayerInfo> PlayersInfo { get; set; }
         public CardType[] TableCards { get; set; }
+
+
 
 
         public GameInfo()
@@ -26,11 +30,13 @@ namespace Domain.GameLogInfo
             this.GameID = gameInfo.GameID;
             this.PotSize = gameInfo.PotSize;
             this.CurrentStake = gameInfo.CurrentStake;
-            this.PlayerTurnID = PlayerTurnID;
-            this.PlayersInfo = PlayersInfo;
-            this.TableCards = TableCards;
+            this.PlayerTurnID = gameInfo.PlayerTurnID;
+            this.PlayersInfo = gameInfo.PlayersInfo;
+            this.TableCards = gameInfo.TableCards;
+            this.SmallBlindPlayerID = gameInfo.SmallBlindPlayerID;
+            this.BigBlindPlayerID = gameInfo.BigBlindPlayerID;
         }
-        public GameInfo(int gameID, int potSize, int currentStake, int roundNumber, int playerTurnID, List<PlayerInfo> playersInfo, CardType[] tableCards)
+        public GameInfo(int gameID, int potSize, int currentStake, int roundNumber, int playerTurnID, List<PlayerInfo> playersInfo, CardType[] tableCards, int smallBlindPlayerID, int bigBlindPlayerID)
         {
             this.GameID = gameID;
             this.PotSize = potSize;
@@ -39,6 +45,8 @@ namespace Domain.GameLogInfo
             this.PlayerTurnID = playerTurnID;
             this.PlayersInfo = playersInfo;
             this.TableCards = tableCards;
+            this.SmallBlindPlayerID = smallBlindPlayerID;
+            this.BigBlindPlayerID = bigBlindPlayerID;
 
         }
 

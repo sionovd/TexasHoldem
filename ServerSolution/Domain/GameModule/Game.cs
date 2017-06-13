@@ -42,6 +42,8 @@ namespace Domain.GameModule
         public int RoundNumber { get; set; }
         public int Pot { get; set; }
         public int CurrentStake { get; set; }
+        public Player BigBlind { get; set;}
+        public Player SmallBlind { get; set; }
         public bool Over { get; set; }
 
         public GameState()
@@ -129,8 +131,11 @@ namespace Domain.GameModule
             PlaceSmallBlind(Seats[0]);
             PlaceBigBlind(Seats[1]);
             PreviousPlayer = Seats[1];
+            this.State.CurrentPlayer = GetCurrentPlayer();
             State.RoundNumber = 1;
             IsActive = true;
+
+            Logger.LogGameState();
         }
 
         public void UpdateState()
@@ -285,9 +290,18 @@ namespace Domain.GameModule
                 if (p != null && p.PlayerId == player.PlayerId)
                 {
                     Seats.Remove(p);
+                    if (IsActive)
+                    {
+                            Logger.LogGameState();
+                    } 
+                    
+                       
+
+                    
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -370,12 +384,14 @@ namespace Domain.GameModule
                 State.Pot += SmallBlind;
                 player.ChipBalance -= SmallBlind;
                 player.AmountBetOnCurrentRound += SmallBlind;
+                State.SmallBlind = player;
                 Logger.LogTurn(player, "Smallblind: " + SmallBlind);
             }
         }
 
         public void PlaceBigBlind(Player player)
         {
+           
             int balance = player.ChipBalance;
             if (balance >= BigBlind && BigBlind >= State.CurrentStake || BigBlind == balance)
             {
@@ -383,6 +399,7 @@ namespace Domain.GameModule
                 State.Pot += BigBlind;
                 player.ChipBalance -= BigBlind;
                 player.AmountBetOnCurrentRound += BigBlind;
+                State.BigBlind = player;
                 player.MadeMove = true;
                 Logger.LogTurn(player, "Bigblind: " + BigBlind);
             }

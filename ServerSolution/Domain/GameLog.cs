@@ -65,7 +65,7 @@ namespace Domain
             {
                 playerInfos.Add(new PlayerInfo(player.PlayerId, player.Username, player.ChipBalance, player.AmountBetOnCurrentRound, player.Folded));
             }
-            GameInfo gameInfo = new GameInfo(game.Id, game.State.Pot, game.State.CurrentStake, game.State.RoundNumber, game.State.CurrentPlayer.PlayerId, playerInfos, tableCards);
+            GameInfo gameInfo = new GameInfo(game.Id, game.State.Pot, game.State.CurrentStake, game.State.RoundNumber, game.State.CurrentPlayer.PlayerId, playerInfos, tableCards, game.State.SmallBlind.PlayerId, game.State.BigBlind.PlayerId);
             string str = GameInfo.ConvertToString(gameInfo);
             logOfGameStates.Add(str);
             LatestAction = str;

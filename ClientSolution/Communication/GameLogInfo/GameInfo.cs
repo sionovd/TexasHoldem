@@ -10,6 +10,8 @@ namespace Communication.GameLogInfo
         public int CurrentStake { get; set; }
         public int RoundNumber { get; set; }
         public int PlayerTurnID { get; set; }
+        public int SmallBlindPlayerID { get; set; }
+        public int BigBlindPlayerID { get; set; }
         public List<PlayerInfo> PlayersInfo { get; set; }
         public CardType[] TableCards { get; set; }
 
@@ -29,16 +31,20 @@ namespace Communication.GameLogInfo
             PlayerTurnID = gameInfo.PlayerTurnID;
             PlayersInfo = gameInfo.PlayersInfo;
             TableCards = gameInfo.TableCards;
+            SmallBlindPlayerID = gameInfo.SmallBlindPlayerID;
+            BigBlindPlayerID = gameInfo.BigBlindPlayerID;
         }
-        public GameInfo(int gameID, int potSize, int currentStake, int roundNumber, int playerTurnID, List<PlayerInfo> playersInfo, CardType[] tableCards)
+        public GameInfo(int gameID, int potSize, int currentStake, int roundNumber, int playerTurnID, List<PlayerInfo> playersInfo, CardType[] tableCards, int smallBlindPlayerID, int bigBlindPlayerID)
         {
-            this.GameID = gameID;
-            this.PotSize = potSize;
-            this.CurrentStake = currentStake;
-            this.RoundNumber = roundNumber;
-            this.PlayerTurnID = playerTurnID;
-            this.PlayersInfo = playersInfo;
-            this.TableCards = tableCards;
+           GameID = gameID;
+           PotSize = potSize;
+           CurrentStake = currentStake;
+           RoundNumber = roundNumber;
+           PlayerTurnID = playerTurnID;
+           PlayersInfo = playersInfo;
+           TableCards = tableCards;
+           SmallBlindPlayerID = smallBlindPlayerID;
+           BigBlindPlayerID = bigBlindPlayerID;
 
         }
 

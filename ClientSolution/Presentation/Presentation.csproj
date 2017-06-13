@@ -84,8 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChatMessege.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GUICards.cs" />
+    <Compile Include="Seat.cs" />
     <Compile Include="UserControlCreateGame.xaml.cs">
       <DependentUpon>UserControlCreateGame.xaml</DependentUpon>
     </Compile>
@@ -312,6 +314,8 @@
     <Resource Include="images\cards\Spade\Three.png" />
     <Resource Include="images\cards\Spade\Two.png" />
     <Resource Include="images\cards\Back.png" />
+    <Resource Include="images\BB.png" />
+    <Resource Include="images\SB.png" />
     <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
