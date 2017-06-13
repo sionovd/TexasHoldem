@@ -205,6 +205,7 @@ namespace Domain.GameCenterModule
             if (game.Seats.Count >= game.Pref.MinPlayers)
             {
                 game.Start();
+                
                 return true;
             }
             return true;

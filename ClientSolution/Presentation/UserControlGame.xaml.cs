@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using Communication;
 using Communication.GameLogInfo;
 using Communication.Replies;
@@ -33,8 +34,8 @@ namespace Presentation
             this.playerID = playerID;
             seatsHaveBeenTaken = false;
             seats = new Seat[9] { new Seat(ImgSmallBigBlind1, TxtUsername1, TxtChips1, TxtBet1), new Seat(ImgSmallBigBlind2, TxtUsername2, TxtChips2, TxtBet2), new Seat(ImgSmallBigBlind3, TxtUsername3, TxtChips3, TxtBet3),
-                new Seat(ImgSmallBigBlind4, TxtUsername4,TxtChips4, TxtBet4), new Seat(ImgSmallBigBlind5, TxtUsername5, TxtChips5, TxtBet5), new Seat(ImgSmallBigBlind6, TxtUsername6, TxtChips6, TxtBet6),
-                new Seat(ImgSmallBigBlind7, TxtUsername7, TxtChips7, TxtBet7), new Seat(ImgSmallBigBlind8, TxtUsername8, TxtChips8, TxtBet8), new Seat(ImgSmallBigBlind9, TxtUsername9, TxtChips9, TxtBet9) };
+                    new Seat(ImgSmallBigBlind4, TxtUsername4,TxtChips4, TxtBet4), new Seat(ImgSmallBigBlind5, TxtUsername5, TxtChips5, TxtBet5), new Seat(ImgSmallBigBlind6, TxtUsername6, TxtChips6, TxtBet6),
+                    new Seat(ImgSmallBigBlind7, TxtUsername7, TxtChips7, TxtBet7), new Seat(ImgSmallBigBlind8, TxtUsername8, TxtChips8, TxtBet8), new Seat(ImgSmallBigBlind9, TxtUsername9, TxtChips9, TxtBet9) };
            
             rdbtFold.Visibility = Visibility.Hidden;
             rdbtnBet.Visibility = Visibility.Hidden;
@@ -306,7 +307,7 @@ namespace Presentation
 
                         txtPotSize.Text = gameInfo.PotSize.ToString();
                         UpdateCommunityCards(gameInfo.RoundNumber, gameInfo.TableCards);
-                        UpdateSeats(gameInfo.PlayersInfo, gameInfo.PlayerTurnID);
+                        UpdateSeats(gameInfo.PlayersInfo, gameInfo.PlayerTurnID, gameInfo.SmallBlindPlayerID, gameInfo.BigBlindPlayerID);
 
 
                         // stateGameBoard.ItemsSource = gameInfo.PlayersInfo;
@@ -318,7 +319,7 @@ namespace Presentation
 
             }
 
-        private void UpdateSeats(List<PlayerInfo> gameInfoPlayersInfo, int gameInfoPlayerTurnId)
+        private void UpdateSeats(List<PlayerInfo> gameInfoPlayersInfo, int gameInfoPlayerTurnId, int smallBlindPlayerID, int bigBlindPlayerID )
         {
             if (!seatsHaveBeenTaken)
             {
@@ -387,7 +388,22 @@ namespace Presentation
                         seats[8].TakeSeat(gameInfoPlayersInfo[8].Username, gameInfoPlayersInfo[8].PlayerID);
                         break;
                 }
+
+
+                foreach (Seat seat in seats)
+                {
+                    if (seat.IsActive)
+                    {
+                        if (seat.PlayerID == smallBlindPlayerID)
+                            seat.Blind.Source = new BitmapImage(new Uri(@"pack://application:,,,/Presentation;component/images/SB.png"));
+                        if (seat.PlayerID == bigBlindPlayerID)
+                            seat.Blind.Source = new BitmapImage(new Uri(@"pack://application:,,,/Presentation;component/images/BB.png"));
+
+                    }
+                }
             }
+
+          
             
             
                 foreach (Seat seat in seats)

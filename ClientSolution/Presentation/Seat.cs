@@ -98,7 +98,7 @@ namespace Presentation
 
         public void LeaveRoom()
        {
-           Blind.Visibility = Visibility.Hidden;
+           
            Username.Visibility = Visibility.Hidden;
            Chips.Visibility = Visibility.Hidden;
            Bet.Visibility = Visibility.Hidden;
