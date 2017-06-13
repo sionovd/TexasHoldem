@@ -85,7 +85,7 @@ namespace Communication
                 Reply ans = await PostBool(newUrl);
                 if (ans.Sucsses)
                 {
-                    connections.Add(username, signalRClient.connection(username));                    
+                    connections.Add(username, SignalRClient.connection(username));                    
                     UserInfo.GetUser().SetUserName(username);
                     UserInfo.GetUser().SetPassword(password);
                     UserInfo.GetUser().SetEmail(ans.ErrorMessage);
@@ -237,7 +237,7 @@ namespace Communication
 
         public static async Task<ReplyListInt> SearchActiveGamesByPlayerName(string name)
         {
-            string newUrl = url + "SearchActiveGamesByPot?pot=" + name;
+            string newUrl = url + "SearchActiveGamesByPlayerName?username=" + name;
             ReplyListInt ans = await GetListInt(newUrl);
             return ans;
         }

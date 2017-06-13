@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="client.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="GameLogInfo\EndGameInfo.cs" />
     <Compile Include="GameLogInfo\GameInfo.cs" />
     <Compile Include="GameListener.cs" />

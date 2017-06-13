@@ -6,7 +6,7 @@ using Microsoft.AspNet.SignalR.Client;
 
 namespace Communication
 {
-    class signalRClient
+    class SignalRClient
     {
         
         // this method make the query to send while connection established 

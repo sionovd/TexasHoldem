@@ -79,7 +79,6 @@ namespace Domain.GameModule
         {
             _counter++;
             Id = _counter;
-            //subjectID = Id;
             Logger = new GameLog(this);
             Pref = pref;
             Seats = new List<Player>();
@@ -128,11 +127,11 @@ namespace Domain.GameModule
         public void Start()
         {
             DealCards(); // deal 2 cards for each player, take money from each
+            State.RoundNumber = 1;
             PlaceSmallBlind(Seats[0]);
             PlaceBigBlind(Seats[1]);
             PreviousPlayer = Seats[1];
             this.State.CurrentPlayer = GetCurrentPlayer();
-            State.RoundNumber = 1;
             IsActive = true;
 
             Logger.LogGameState();
@@ -208,6 +207,7 @@ namespace Domain.GameModule
                     p.AmountBetOnCurrentRound = 0;
                 }
                 PreviousPlayer = Seats[Seats.Count - 1];
+                State.CurrentPlayer = GetCurrentPlayer();
             }
             Logger.LogGameState();
         }
@@ -290,18 +290,19 @@ namespace Domain.GameModule
                 if (p != null && p.PlayerId == player.PlayerId)
                 {
                     Seats.Remove(p);
-                    if (IsActive)
+                    if (Seats.Count > 1)
                     {
                             Logger.LogGameState();
-                    } 
-                    
-                       
-
-                    
+                    }
+                    if (Seats.Count == 1)
+                    {
+                        Winner = Seats[0];
+                        Logger.LogEndGame(true);
+                        State.Over = true;
+                    }
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -431,12 +432,11 @@ namespace Domain.GameModule
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
             if (State.CurrentStake == 0)
             {
-                // no bet was made yet
                 throw new NoBetToCallException("The player " + player.Username +
                                                " can't call because the current stake is 0.");
             }
             int amount = State.CurrentStake - player.AmountBetOnCurrentRound;
-            if (player.ChipBalance == 0) // not enough money
+            if (player.ChipBalance == 0)
                 throw new NoMoreChipsException("The player " + player.Username +
                                                   " can't call b/c he has no chips left");
             if (player.ChipBalance < amount)

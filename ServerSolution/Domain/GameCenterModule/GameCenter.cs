@@ -205,7 +205,6 @@ namespace Domain.GameCenterModule
             if (game.Seats.Count >= game.Pref.MinPlayers)
             {
                 game.Start();
-                
                 return true;
             }
             return true;
@@ -241,8 +240,8 @@ namespace Domain.GameCenterModule
                 return game.RemoveSpectatingPlayer(spectator);
             }
             game.RemovePlayer(player);
-            if (game.Seats.Count == 0)
-                games.Remove(gameID);
+            if (game.State.Over)
+                EvaluateEndGame(gameID);
             return true;
         }
 

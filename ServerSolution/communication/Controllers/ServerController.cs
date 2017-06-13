@@ -229,21 +229,6 @@ namespace communication.Controllers
             }
         }
 
-  /*      [HttpPost]
-        public Reply SaveTurns(string username, int gameID, string turnData)
-        {
-            try
-            {
-                if (service.SaveTurns(username, gameID, turnData))
-                    return new Reply(true, "");
-                return new Reply(false, "unknow error");
-            }
-            catch (DomainException a)
-            {
-                return new Reply(false, (a.Message));
-            }
-        }*/
-
         [HttpGet]
         public ReplyInt SpectateGame(string username, int gameID)
         {
