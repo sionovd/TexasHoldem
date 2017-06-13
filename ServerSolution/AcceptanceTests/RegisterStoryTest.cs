@@ -26,8 +26,6 @@ namespace AcceptanceTests
             Assert.IsTrue(DeleteAccount("Doron"));
             Assert.IsFalse(Register("", "password", "email@gmail.com"));
             Assert.IsFalse(Register("user", "", "email@gmail.com"));
-            Assert.IsFalse(Register("user", "password", ""));
-            Assert.IsFalse(Register("user", "pass", "blahblah"));
             Assert.IsFalse(Register("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
                 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
                 "ccccccccccccccccccccccccccccccccccccccccccccccc"));

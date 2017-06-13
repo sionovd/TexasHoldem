@@ -21,7 +21,6 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("shavit", "password3", "shavit@gmail.com"));
             Assert.IsTrue(Register("leon", "password4", "leon@gmail.com"));
             Assert.IsTrue(Register("avner", "password5", "avner@gmail.com"));
-            Assert.IsTrue(Register("someone", "password6", "someone@gmail.com"));
 
             List<KeyValuePair<string, int>> preferenceList = new List<KeyValuePair<string, int>>
             {
@@ -44,10 +43,10 @@ namespace AcceptanceTests
             player5 = JoinGame("shavit", game1);
             Assert.IsTrue(player5 > 0);
 
-            Assert.IsFalse(StartGame("doron", game1));
-            Assert.IsFalse(StartGame("tamir", game1));
-            Assert.IsFalse(StartGame("shavit", game1));
-            Assert.IsFalse(StartGame("leon", game1));
+            Assert.IsTrue(StartGame("doron", game1));
+            Assert.IsTrue(StartGame("tamir", game1));
+            Assert.IsTrue(StartGame("shavit", game1));
+            Assert.IsTrue(StartGame("leon", game1));
             Assert.IsTrue(StartGame("avner", game1));
 
             // Assert.IsTrue(Bet(player1, game1, 25));
@@ -84,7 +83,11 @@ namespace AcceptanceTests
         [TestCleanup]
         public void TearDown()
         {
-            // finish game
+            Assert.IsTrue(DeleteAccount("doron"));
+            Assert.IsTrue(DeleteAccount("shavit"));
+            Assert.IsTrue(DeleteAccount("tamir"));
+            Assert.IsTrue(DeleteAccount("leon"));
+            Assert.IsTrue(DeleteAccount("avner"));
         }
     }
 }

@@ -87,5 +87,16 @@ namespace AcceptanceTests
 //            Assert.IsFalse(ViewSpectatableGames());
             //Assert.IsFalse(SpectateGame("doron", game) > 0);
         }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            Assert.IsTrue(DeleteAccount("doron"));
+            Assert.IsTrue(DeleteAccount("shavit"));
+            Assert.IsTrue(DeleteAccount("tamir"));
+            Assert.IsTrue(DeleteAccount("leon"));
+            Assert.IsTrue(DeleteAccount("avner"));
+            Assert.IsTrue(DeleteAccount("someone"));
+        }
     }
 }

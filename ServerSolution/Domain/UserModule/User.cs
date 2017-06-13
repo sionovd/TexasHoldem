@@ -39,6 +39,8 @@ namespace Domain.UserModule
         public User (string username, string password, string email)
         {
             Username = username;
+            if(username.Equals(""))
+                throw new DomainException("Invalid username - can't be empty");
             if (password.Equals(""))
                 throw new NotAPasswordException("");
             this.password = password;

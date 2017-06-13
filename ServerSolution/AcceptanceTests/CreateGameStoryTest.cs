@@ -199,9 +199,12 @@ namespace AcceptanceTests
         [TestCleanup]
         public void TearDown()
         {
-            //deleteUser("doron");
-            //deleteUser("yossi");
-            //deleteGames(...);
+            Assert.IsTrue(DeleteAccount("doron"));
+            Assert.IsTrue(DeleteAccount("shavit"));
+            Assert.IsTrue(DeleteAccount("tamir"));
+            Assert.IsTrue(DeleteAccount("leon"));
+            Assert.IsTrue(DeleteAccount("avner"));
+            Assert.IsTrue(DeleteAccount("yossi"));
         }
     }
 }

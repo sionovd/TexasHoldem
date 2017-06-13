@@ -122,19 +122,6 @@ namespace AcceptanceTests
             }
         }
 
-        public bool LeaveGame(int playerID, int gameID)
-        {
-            try
-            {
-                return bridge.LeaveGame(playerID, gameID);
-            }
-            catch (DomainException e)
-            {
-                ErrorLogger.LogError(e);
-                return false;
-            }
-        }
-
         public bool LeaveGame(string username, int gameID)
         {
             try

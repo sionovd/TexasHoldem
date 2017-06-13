@@ -13,7 +13,7 @@ namespace AcceptanceTests
             Assert.IsTrue(EditProfile("Doron123", "password", "yossi@post.bgu.ac.il"));
             Assert.IsTrue(EditProfile("Doron123", "bldnsaldasl544324", "yossi@post.bgu.ac.il"));
             Assert.IsTrue(EditProfile("Doron123", "009password", "user@gmail.com"));
-            //deleteUser("Doron123");
+            Assert.IsTrue(DeleteAccount("Doron123"));
 
         }
 
@@ -22,9 +22,7 @@ namespace AcceptanceTests
         {
             Assert.IsTrue(Register("user", "pass", "user@gmail.com"));
             Assert.IsFalse(EditProfile("user", "", "name@gmail.com"));
-            Assert.IsFalse(EditProfile("user", "password", ""));
-            Assert.IsFalse(EditProfile("user", "pass", "blahblah"));
-            //deleteUser("Doron");
+            Assert.IsTrue(DeleteAccount("user"));
         }
 
         [TestMethod]
@@ -33,7 +31,7 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
             Assert.IsFalse(EditProfile("Doron", "pass", "user@gmail.com"));
             Assert.IsTrue(EditProfile("Doron123", "bldnsaldasl544324", "yossi@post.bgu.ac.il"));
-            //deleteUser("Doron");
+            Assert.IsTrue(DeleteAccount("Doron123"));
         }
     }
 }

@@ -13,7 +13,6 @@ namespace ServiceLayer
         int JoinGame(string username, int gameID);
         bool StartGame(string username, int gameID);
         bool LeaveGame(string username, int gameID);
-        bool LeaveGame(int playerID, int gameID);
         bool Bet(int playerID, int gameID, int amount);
         bool Check(int playerID, int gameID);
         bool Fold(int playerID, int gameID);

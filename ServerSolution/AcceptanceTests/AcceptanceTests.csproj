@@ -59,7 +59,6 @@
     <Compile Include="ProxyService.cs" />
     <Compile Include="RegisterStoryTest.cs" />
     <Compile Include="NoLimitGameStoryTest.cs" />
-    <Compile Include="ReplayGameStoryTest.cs" />
     <Compile Include="SearchActiveGamesStoryTest.cs" />
     <Compile Include="SpectateGameStoryTest.cs" />
   </ItemGroup>

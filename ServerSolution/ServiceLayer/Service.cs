@@ -57,10 +57,6 @@ namespace ServiceLayer
             return gameCenter.LeaveGame(username, gameID);
         }
 
-        public bool LeaveGame(int playerID, int gameID)
-        {
-            return gameCenter.LeaveGame(playerID, gameID);
-        }
 
         public bool Bet(int playerID, int gameID, int amount)
         {

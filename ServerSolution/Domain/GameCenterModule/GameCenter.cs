@@ -234,14 +234,15 @@ namespace Domain.GameCenterModule
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerByUsername(username);
-            return game.RemovePlayer(player);
-        }
-
-        public bool LeaveGame(int playerID, int gameID)
-        {
-            IGame game = GetGameById(gameID);
-            Player player = game.GetPlayerById(playerID);
-            return game.RemovePlayer(player);
+            if (player == null)
+            {
+                Spectator spectator = game.GetSpectatorByUsername(username);
+                return game.RemoveSpectatingPlayer(spectator);
+            }
+            game.RemovePlayer(player);
+            if (game.Seats.Count == 0)
+                games.Remove(gameID);
+            return true;
         }
 
         public int SpectateGame(string username, int gameID)
@@ -259,7 +260,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Bet(player, amount);
-            if (game.State.RoundNumber > 4)
+            if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -269,7 +270,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Check(player);
-            if (game.State.RoundNumber > 4)
+            if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -279,7 +280,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Fold(player);
-            if (game.State.RoundNumber > 4)
+            if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;
         }
@@ -289,7 +290,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
             game.Call(player);
-            if (game.State.RoundNumber > 4)
+            if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;
         }

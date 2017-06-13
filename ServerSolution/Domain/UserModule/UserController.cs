@@ -48,6 +48,11 @@ namespace Domain.UserModule
                     Initialized();
                 if(username.Length == 0)
                     throw new DomainException("invalid details - username was empty");
+                if(username.Length > 16)
+                    throw new DomainException("invalid details - username was too long");
+                if (username.Contains(";") || username.Contains(" ") || username.Contains(":") ||
+                    username.Contains("_") || username.Contains(","))
+                    throw new DomainException("invalid details - illegal characters in username");
                 User user = new User(username, password, email);
                 if (registerUsers.ContainsKey(username))
                     throw new AlreadyHasNameException(user.Username);

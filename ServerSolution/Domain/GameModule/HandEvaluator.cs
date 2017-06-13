@@ -27,7 +27,7 @@ namespace Domain.GameModule
 
         public int Evaluate()
         {
-            if (hand.Length != 7)
+            if (hand.Length != 7 && hand.Length != 5)
                 return -1;
             if (isRoyalFlush())
             {
@@ -102,7 +102,7 @@ namespace Domain.GameModule
             int thirteenSign = 0;
             int cardScore = 0;
             bool flag = true;
-            for (int i = 0; i < 7 && flag; i++)
+            for (int i = 0; i < hand.Length && flag; i++)
             {
                 switch ((int)hand[i].getCardId() / 4)
                 {
@@ -230,7 +230,7 @@ namespace Domain.GameModule
             int twelveSign = 0;
             int thirteenSign = 0;
             int cardScore = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 switch ((int)hand[i].getCardId() / 4)
                 {
@@ -311,7 +311,7 @@ namespace Domain.GameModule
             for (int j = 0; j < 5; j++)
             {
                 currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < 7; i++)
+                for (int i = j + 1; i < hand.Length; i++)
                 {
                     if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
                     {
@@ -333,7 +333,7 @@ namespace Domain.GameModule
             for (int j = 0; j < 3; j++)
             {
                 currentCardValue = (int)hand[j].getCardId() / 4;
-                for (int i = j + 1; i < 7; i++)
+                for (int i = j + 1; i < hand.Length; i++)
                 {
                     if (currentCardValue + incrementalInd == (int)hand[i].getCardId() / 4)
                     {
@@ -355,7 +355,7 @@ namespace Domain.GameModule
             int threeSign = 0;
             int fourSign = 0;
             int cardScore = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 switch ((int)hand[i].getCardId() % 4)
                 {
@@ -395,7 +395,7 @@ namespace Domain.GameModule
             int twelveSign = 0;
             int thirteenSign = 0;
             int maxTriple = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 switch ((int)hand[i].getCardId() / 4)
                 {
@@ -524,7 +524,7 @@ namespace Domain.GameModule
             int thirteenSign = 0;
             int cardScore = 0;
             bool flag = true;
-            for (int i = 0; i < 7 && flag; i++)
+            for (int i = 0; i < hand.Length && flag; i++)
             {
                 switch ((int)hand[i].getCardId() / 4)
                 {
@@ -644,7 +644,7 @@ namespace Domain.GameModule
             for (int j = 0; j < 3 && flag; j++)
             {
                 currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < 7 && flag; i++)
+                for (int i = j + 1; i < hand.Length && flag; i++)
                 {
                     if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
                     {
@@ -670,7 +670,7 @@ namespace Domain.GameModule
         {
 
             int royalCounter = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 if (hand[i].getCardId() == CardType.HeartAce ||
                     hand[i].getCardId() == CardType.HeartKing ||
@@ -684,7 +684,7 @@ namespace Domain.GameModule
             if (royalCounter == 5)
                 return true;
             royalCounter = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 if (hand[i].getCardId() == CardType.DiamondAce ||
                     hand[i].getCardId() == CardType.DiamondKing ||
@@ -698,7 +698,7 @@ namespace Domain.GameModule
             if (royalCounter == 5)
                 return true;
             royalCounter = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 if (hand[i].getCardId() == CardType.SpadesAce ||
                     hand[i].getCardId() == CardType.SpadesKing ||
@@ -712,7 +712,7 @@ namespace Domain.GameModule
             if (royalCounter == 5)
                 return true;
             royalCounter = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 if (hand[i].getCardId() == CardType.ClubsAce ||
                     hand[i].getCardId() == CardType.ClubsKing ||
@@ -736,7 +736,7 @@ namespace Domain.GameModule
             for (int j = 0; j < 3; j++)
             {
                 currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < 7; i++)
+                for (int i = j + 1; i < hand.Length; i++)
                 {
                     if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
                     {
@@ -758,7 +758,7 @@ namespace Domain.GameModule
             for (int j = 0; j < 4; j++)
             {
                 currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < 7; i++)
+                for (int i = j + 1; i < hand.Length; i++)
                 {
                     if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
                     {
@@ -790,7 +790,7 @@ namespace Domain.GameModule
             int thirteenSign = 0;
             int pairCount = 0;
             int tripleCount = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 switch ((int)hand[i].getCardId() / 4)
                 {
@@ -937,7 +937,7 @@ namespace Domain.GameModule
             int twoSign = 0;
             int threeSign = 0;
             int fourSign = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 switch ((int)hand[i].getCardId() % 4)
                 {
@@ -969,7 +969,7 @@ namespace Domain.GameModule
             for (int j = 0; j < 3; j++)
             {
                 currentCardValue = (int)hand[j].getCardId() / 4;
-                for (int i = j + 1; i < 7; i++)
+                for (int i = j + 1; i < hand.Length; i++)
                 {
                     if (currentCardValue + incrementalInd == (int)hand[i].getCardId() / 4)
                     {
@@ -992,7 +992,7 @@ namespace Domain.GameModule
             for (int j = 0; j < 5; j++)
             {
                 currentCardValue = (int)hand[j].getCardId();
-                for (int i = j + 1; i < 7; i++)
+                for (int i = j + 1; i < hand.Length; i++)
                 {
                     if (currentCardValue + incrementalInd == (int)hand[i].getCardId())
                     {
@@ -1024,7 +1024,7 @@ namespace Domain.GameModule
             int twelveSign = 0;
             int thirteenSign = 0;
             int pairCount = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 switch ((int)hand[i].getCardId() / 4)
                 {
@@ -1115,7 +1115,7 @@ namespace Domain.GameModule
             int elevenSign = 0;
             int twelveSign = 0;
             int thirteenSign = 0;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 switch ((int)hand[i].getCardId() / 4)
                 {

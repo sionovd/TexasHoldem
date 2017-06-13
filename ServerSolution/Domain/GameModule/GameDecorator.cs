@@ -84,6 +84,11 @@ namespace Domain.GameModule
             return MyGame.GetPlayerByUsername(username);
         }
 
+        public Spectator GetSpectatorByUsername(string username)
+        {
+            return MyGame.GetSpectatorByUsername(username);
+        }
+
         public Player GetPlayerById(int playerId)
         {
             return MyGame.GetPlayerById(playerId);

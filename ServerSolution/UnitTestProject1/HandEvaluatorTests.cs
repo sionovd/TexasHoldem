@@ -227,7 +227,9 @@ namespace UnitTestProject1
             };
             eval = new HandEvaluator(royalFlushBug.ToArray());
             Console.WriteLine(eval.Evaluate());
-            Assert.IsTrue(eval.Evaluate() == ROYAL_FLUSH);
+            //Assert.IsTrue(eval.Evaluate() == ROYAL_FLUSH);
+            Assert.IsFalse(eval.Evaluate() == ROYAL_FLUSH);
+
         }
     }
 }

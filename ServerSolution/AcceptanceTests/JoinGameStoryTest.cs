@@ -78,15 +78,18 @@ namespace AcceptanceTests
         [TestMethod]
         public void JoinGameSad()
         {
-            int player1 = JoinGame("someone", game1);
-            Assert.IsFalse(player1 > 0);
-           // Assert.IsTrue(ViewMoneyBalanceOfUser("someone") > 0);
+            // a case where game already started
         }
 
         [TestCleanup]
         public void TearDown()
         {
-            //deleteUsers....
+            Assert.IsTrue(DeleteAccount("doron"));
+            Assert.IsTrue(DeleteAccount("shavit"));
+            Assert.IsTrue(DeleteAccount("tamir"));
+            Assert.IsTrue(DeleteAccount("leon"));
+            Assert.IsTrue(DeleteAccount("avner"));
+            Assert.IsTrue(DeleteAccount("someone"));
         }
     }
 }

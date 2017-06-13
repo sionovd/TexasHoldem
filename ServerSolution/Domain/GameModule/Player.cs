@@ -31,13 +31,29 @@ namespace Domain.GameModule
             // need to evaluate Hand
             HandEvaluator handEval = new HandEvaluator(unionCards);
             Console.Write(this.Username + "'s best hand is: ");
-            return handEval.Evaluate();
+            BestHandValue = handEval.Evaluate();
+            
+            return BestHandValue;
+        }
+
+        public bool IsHandCommunity(Card[] tableCards)
+        {
+            HandEvaluator communityEval = new HandEvaluator(tableCards);
+            int commVal = communityEval.Evaluate();
+            if (BestHandValue == commVal)
+            {
+                Console.WriteLine("SPLIT THE POT!!!!!!!!!!!!!!!!!");
+                return true;
+            }
+            return false;
         }
 
         public void AddHand(Card c1, Card c2)
         {
             Cards = new[] { c1, c2 };
         }
+
+        public int BestHandValue { get; set; }
 
         public bool ReadyToStart { get; set; }
 

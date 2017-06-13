@@ -156,21 +156,6 @@ namespace communication.Controllers
         }
 
         [HttpPost]
-        public Reply LeaveGame(int playerID, int gameID)
-        {
-            try
-            {
-                if (service.LeaveGame(playerID, gameID))
-                    return new Reply(true, "");
-                return new Reply(false, "unknow error");
-            }
-            catch (DomainException a)
-            {
-                return new Reply(false, (a.Message));
-            }
-        }
-
-        [HttpPost]
         public Reply Bet(int playerID, int gameID, int amount)
         {
             try

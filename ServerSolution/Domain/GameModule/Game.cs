@@ -21,6 +21,7 @@ namespace Domain.GameModule
         bool IsPlayerExist(string name);
         bool IsSpectatorExist(string name);
         Player GetPlayerByUsername(string username);
+        Spectator GetSpectatorByUsername(string username);
         Player GetPlayerById(int playerId);
 
         GamePreferences Pref { get; set; }
@@ -41,6 +42,7 @@ namespace Domain.GameModule
         public int RoundNumber { get; set; }
         public int Pot { get; set; }
         public int CurrentStake { get; set; }
+        public bool Over { get; set; }
 
         public GameState()
         {
@@ -48,6 +50,7 @@ namespace Domain.GameModule
             RoundNumber = 1;
             Pot = 0;
             CurrentStake = 0;
+            Over = false;
         }
     }
 
@@ -150,6 +153,7 @@ namespace Domain.GameModule
                 winner.ChipBalance = State.Pot;
                 Winner = winner;
                 Logger.LogEndGame(true);
+                State.Over = true;
                 return;
             }
 
@@ -188,6 +192,7 @@ namespace Domain.GameModule
                 {
                     EvaluateWinner();
                     Logger.LogEndGame(false);
+                    State.Over = true;
                     return;
                 }
                 State.CurrentStake = 0;
@@ -212,7 +217,7 @@ namespace Domain.GameModule
             for (int i = 0; i < State.TableCards.Length; i++)
             {
                 if(State.TableCards[i] != null)
-                    Console.Write(State.TableCards[i] + " ");
+                    Console.Write(State.TableCards[i].getCardId() + " ");
             }
             Console.WriteLine();
             Console.WriteLine();
@@ -234,6 +239,7 @@ namespace Domain.GameModule
                     }
                 }
             }
+            bestHand.IsHandCommunity(State.TableCards);
             bestHand.ChipBalance = State.Pot;
             Console.WriteLine("\nThe winner is: " + bestHand.Username);
             Winner = bestHand;
@@ -256,6 +262,16 @@ namespace Domain.GameModule
             {
                 if (player != null && player.Username == username)
                     return player;
+            }
+            return null;
+        }
+
+        public Spectator GetSpectatorByUsername(string username)
+        {
+            foreach (var spectator in spectators)
+            {
+                if (spectator != null && spectator.Username == username)
+                    return spectator;
             }
             return null;
         }
@@ -421,6 +437,8 @@ namespace Domain.GameModule
         {
             if (GetCurrentPlayer().PlayerId != player.PlayerId)
                 throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
+            if(State.CurrentStake > 0)
+                throw new DomainException("can't check because the current stake is greater than 0");
             if (State.RoundNumber == 1)
             {
                 return Call(player);
