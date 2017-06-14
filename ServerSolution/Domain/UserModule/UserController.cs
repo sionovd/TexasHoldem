@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.DomainLayerExceptions;
 
 namespace Domain.UserModule
@@ -9,7 +10,7 @@ namespace Domain.UserModule
         private static bool init = true;
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;
-        private System.Object lockThis = new System.Object();
+        private Object lockThis = new Object();
 
         private UserController()
         {

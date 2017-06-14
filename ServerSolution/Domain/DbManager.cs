@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SQLite;
 using Domain.UserModule;
 using PersistenceLayer;
-using System.Data.SQLite;
 
 namespace Domain
 {

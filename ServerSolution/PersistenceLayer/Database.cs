@@ -5,7 +5,7 @@ namespace PersistenceLayer
 {
     public class Database : IDatabase
     {
-        public static bool isDBExists = false;
+        public static bool isDBExists;
         private SQLiteConnection m_dbConnection;
 
         public Database()

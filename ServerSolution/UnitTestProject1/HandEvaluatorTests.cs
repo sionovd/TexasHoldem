@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
 using Domain.GameModule;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject1
 {
@@ -144,7 +140,7 @@ namespace UnitTestProject1
                                         new Card(CardType.ClubsNine),
                                         new Card(CardType.ClubsKing),
                                         new Card(CardType.DiamondThree),
-                                        new Card(CardType.ClubsThree),
+                                        new Card(CardType.ClubsThree)
             };
             buggedCombo2 = new List<Card> {
                 new Card(CardType.SpadesFive),
@@ -153,7 +149,7 @@ namespace UnitTestProject1
                 new Card(CardType.ClubsNine),
                 new Card(CardType.ClubsKing),
                 new Card(CardType.HeartFour),
-                new Card(CardType.HeartTen),
+                new Card(CardType.HeartTen)
             };
             buggedCombo3 = new List<Card> {
                 new Card(CardType.DiamondFive),
@@ -162,7 +158,7 @@ namespace UnitTestProject1
                 new Card(CardType.SpadesSix),
                 new Card(CardType.HeartAce),
                 new Card(CardType.SpadesSeven),
-                new Card(CardType.DiamondAce),
+                new Card(CardType.DiamondAce)
             };
             buggedCombo4 = new List<Card> {
                 new Card(CardType.ClubsTen),
@@ -172,7 +168,7 @@ namespace UnitTestProject1
                 new Card(CardType.SpadesSeven),
                 new Card(CardType.DiamondAce),
                 new Card(CardType.HeartSix),
-                new Card(CardType.SpadesSix),
+                new Card(CardType.SpadesSix)
             };
         }
 

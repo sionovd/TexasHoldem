@@ -17,7 +17,7 @@ namespace Domain.GameModule
         HeartQueen, DiamondQueen, SpadesQueen, ClubsQueen,
         HeartKing, DiamondKing, SpadesKing, ClubsKing,
         HeartAce, DiamondAce, SpadesAce, ClubsAce
-    };
+    }
     public class Card : IComparable<Card>
     {
         private CardType cardType;
@@ -29,14 +29,14 @@ namespace Domain.GameModule
 
         public CardType getCardId()
         {
-            return this.cardType;
+            return cardType;
         }
 
         public int CompareTo(Card other)
         {
-            if (this.getCardId() > other.getCardId())
+            if (getCardId() > other.getCardId())
                 return 1;
-            if (this.getCardId() == other.getCardId())
+            if (getCardId() == other.getCardId())
                 return 0;
             return -1;
         }

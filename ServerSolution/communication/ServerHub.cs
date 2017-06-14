@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNet.SignalR;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNet.SignalR;
 
 namespace communication
 {
@@ -36,7 +34,7 @@ namespace communication
 
         public override Task OnDisconnected(bool stopCalled)
         {
-            if (stopCalled == true)
+            if (stopCalled)
             {
                 uList.RemoveAt(uList.FindIndex(o => o.UserName == Context.QueryString["id"]));
                 //it's auto remove connectionId from all groups.

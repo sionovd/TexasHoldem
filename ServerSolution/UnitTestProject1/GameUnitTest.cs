@@ -1,9 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
-using Domain.DomainLayerExceptions;
+﻿using Domain.DomainLayerExceptions;
 using Domain.GameModule;
 using Domain.UserModule;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject1
 {
@@ -31,7 +29,8 @@ namespace UnitTestProject1
         public void AddPlayerChipGameTest()
         {
             User user = new User("roni","4363","roni55@gmail.com",233);
-            Player player = game.AddPlayer(user);
+            Player player = new Player(game, 0, "roni");
+            game.AddPlayer(user, player);
             Assert.IsTrue(game.IsPlayerExist(player.Username));
         }
 
@@ -42,7 +41,8 @@ namespace UnitTestProject1
             game.Pref.ChipPolicy = 0;
             game.Pref.BuyIn = 204;
             User user = new User("roni", "4363", "roni55@gmail.com", 233);
-            Player player = game.AddPlayer(user);
+            Player player = new Player(game, 0, user.Username);
+            game.AddPlayer(user, player);
         }
 
         [TestMethod]
@@ -78,7 +78,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void IsPlayerExistWhenNotExistByName()
         {
-            Player p = new Player(234, "guri");
+            Player p = new Player(game, 234, "guri");
             Assert.IsFalse(game.IsPlayerExist(p.Username));
         }
 
@@ -86,7 +86,8 @@ namespace UnitTestProject1
         public void IsPlayerExistWhenExistByName()
         {
             User user = new User("roni", "4363", "roni55@gmail.com", 233);
-            Player player = game.AddPlayer(user);
+            Player player = new Player(game, 0, user.Username);
+            game.AddPlayer(user, player);
             Assert.IsTrue(game.IsPlayerExist(player.Username));
         }
 
@@ -94,7 +95,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void IsPlayerExistWhenNotExistById()
         {
-            Player p = new Player(234, "guri");
+            Player p = new Player(game, 234, "guri");
             Assert.IsFalse(game.IsPlayerExist(p.Username));
         }
 
@@ -102,7 +103,8 @@ namespace UnitTestProject1
         public void IsPlayerExistWhenExistById()
         {
             User user = new User("roni", "4363", "roni55@gmail.com", 233);
-            Player player = game.AddPlayer(user);
+            Player player = new Player(game, 0, user.Username);
+            game.AddPlayer(user, player);
             Assert.IsTrue(game.IsPlayerExist(player.Username));
         }
 
@@ -110,18 +112,19 @@ namespace UnitTestProject1
         [ExpectedException(typeof(FullTableException))]
         public void MaxPlayerInGameTest()
         {
-            game.AddPlayer(new User("roni", "4363", "roni55@gmail.com", 233));
-            game.AddPlayer(new User("dana", "4133", "dana55@gmail.com", 270));
-            game.AddPlayer(new User("yaron", "431363", "yaron@gmail.com", 233));
-            game.AddPlayer(new User("clara", "12314", "clarita@gmail.com", 23));
-            game.AddPlayer(new User("pini", "754231", "pinini@gmail.com", 23));
+            game.AddPlayer(new User("roni", "4363", "roni55@gmail.com", 233), new Player(game, 0, "roni"));
+            game.AddPlayer(new User("dana", "4133", "dana55@gmail.com", 270), new Player(game, 0, "dana"));
+            game.AddPlayer(new User("yaron", "431363", "yaron@gmail.com", 233), new Player(game, 0, "yaron"));
+            game.AddPlayer(new User("clara", "12314", "clarita@gmail.com", 23), new Player(game, 0, "clara"));
+            game.AddPlayer(new User("pini", "754231", "pinini@gmail.com", 23), new Player(game, 0, "pini"));
         }
 
         [TestMethod]
         public void IsPlayerPlayTest()
         {
             User user = new User("roni", "4363", "roni55@gmail.com");
-            Player player = game.AddPlayer(user);
+            Player player = new Player(game, 0, user.Username);
+            game.AddPlayer(user, player);
             Assert.IsTrue(game.IsPlayerExist(player.Username));
         }
 
@@ -138,7 +141,8 @@ namespace UnitTestProject1
         public void RemovePlayerTest()
         {
             User user = new User("roni", "4363", "roni55@gmail.com");
-            Player player = game.AddPlayer(user);
+            Player player = new Player(game, 0, user.Username);
+            game.AddPlayer(user, player);
             game.RemovePlayer(player);
             Assert.IsFalse(game.IsPlayerExist(player.Username));
         }

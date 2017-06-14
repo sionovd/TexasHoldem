@@ -20,7 +20,7 @@ namespace Domain.GameModule
         public HandEvaluator(Card[] hand)
         {
             this.hand = hand;
-            onlyDealed = new Card[] { hand[0], hand[1] };
+            onlyDealed = new[] { hand[0], hand[1] };
             Array.Sort(onlyDealed);
             Array.Sort(this.hand);
         }

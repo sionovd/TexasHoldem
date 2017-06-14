@@ -5,7 +5,7 @@ namespace Domain.DomainLayerExceptions
     public class illegalGameTypeException : DomainException
     {
         public illegalGameTypeException()
-        : base() { }
+        { }
 
         public illegalGameTypeException(string message)
         : base(String.Format("Invalid game type: {0} , expected value between 0 and 2." , message)) { }

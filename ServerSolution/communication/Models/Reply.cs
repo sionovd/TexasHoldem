@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+
 namespace Communication.Replies
 {
     public class Reply

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Script.Serialization;
+﻿using System.Web.Script.Serialization;
 
 namespace Domain.GameLogInfo
 {
@@ -23,19 +17,19 @@ namespace Domain.GameLogInfo
         public PlayerInfo(string content)
         {
             PlayerInfo playerInfo = new JavaScriptSerializer().Deserialize<PlayerInfo>(content);
-            this.PlayerID = playerInfo.PlayerID;
-            this.Username = playerInfo.Username;
-            this.MoneyBalance = playerInfo.MoneyBalance;
-            this.AmountBetOnCurrentRound = playerInfo.AmountBetOnCurrentRound;
-            this.IsFold = playerInfo.IsFold;
+            PlayerID = playerInfo.PlayerID;
+            Username = playerInfo.Username;
+            MoneyBalance = playerInfo.MoneyBalance;
+            AmountBetOnCurrentRound = playerInfo.AmountBetOnCurrentRound;
+            IsFold = playerInfo.IsFold;
         }
         public PlayerInfo(int playerID, string username, int moneyBalance, int amountBetOnCurrentRound, bool isFold)
         {
-            this.PlayerID = playerID;
-            this.Username = username;
-            this.MoneyBalance = moneyBalance;
-            this.AmountBetOnCurrentRound = amountBetOnCurrentRound;
-            this.IsFold = isFold;
+            PlayerID = playerID;
+            Username = username;
+            MoneyBalance = moneyBalance;
+            AmountBetOnCurrentRound = amountBetOnCurrentRound;
+            IsFold = isFold;
         }
 
     }

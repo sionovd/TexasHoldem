@@ -8,16 +8,14 @@ namespace Domain.GameModule
 {
     public interface IGame
     {
-        Player AddPlayer(User user);
+        void AddPlayer(User user, Player player);
         void Start();
         void EvaluateWinner();
         bool RemovePlayer(Player player);
         Spectator AddSpectatingPlayer(User user);
         bool RemoveSpectatingPlayer(Spectator spectator);
-        bool Bet(Player player, int amount);
-        bool Check(Player player);
-        bool Fold(Player player);
-        bool Call(Player player);
+        bool IsBetValid(int chipBalance, int amount);
+        
         bool IsPlayerExist(string name);
         bool IsSpectatorExist(string name);
         Player GetPlayerByUsername(string username);
@@ -33,6 +31,9 @@ namespace Domain.GameModule
         GameLog Logger { get; set; }
         Subject Subject { get; set; }
         Player Winner { get; set; }
+        Player PreviousPlayer { get; set; }
+        void UpdateState();
+        Player GetCurrentPlayer();
     }
 
     public class GameState
@@ -131,7 +132,7 @@ namespace Domain.GameModule
             PlaceSmallBlind(Seats[0]);
             PlaceBigBlind(Seats[1]);
             PreviousPlayer = Seats[1];
-            this.State.CurrentPlayer = GetCurrentPlayer();
+            State.CurrentPlayer = GetCurrentPlayer();
             IsActive = true;
 
             Logger.LogGameState();
@@ -306,7 +307,7 @@ namespace Domain.GameModule
             return false;
         }
 
-        public Player AddPlayer(User user)
+        public void AddPlayer(User user, Player player)
         {
             if (user.Stats.NumOfGames > 10 && user.League.Id != League.Id)
                 throw new LeagueMismatchException("The user " + user.Username + " is in league \"" + user.League.Name + "\" but the game is in league \"" + League.Name + "\".");
@@ -316,19 +317,17 @@ namespace Domain.GameModule
                 throw new FullTableException();
             if (IsPlayerExist(user.Username))
                 throw new AlreadyJoinedGameException("The user " + user.Username + " has already joined game #" + Id);
-            Player p;
             if (Pref.ChipPolicy == 0)
             {
                 if (user.MoneyBalance < Pref.BuyIn + Pref.MinBet)
                     throw new notEnoughMoneyException(user.MoneyBalance.ToString(), Pref.BuyIn.ToString());
                 int m = user.DecreaseMoney(Pref.BuyIn);
-                p = new Player(m, user.Username);
-                AddPlayerToSeat(p);
-                return p;
+                player.ChipBalance = m;
+                AddPlayerToSeat(player);
+                return;
             }
-            p = new Player(Pref.ChipPolicy, user.Username);
-            AddPlayerToSeat(p);
-            return p;
+            player.ChipBalance = Pref.ChipPolicy;
+            AddPlayerToSeat(player);
         }
 
         private void AddPlayerToSeat(Player player)
@@ -357,6 +356,13 @@ namespace Domain.GameModule
                     spectators.Remove(spec);
                     return true;
                 }
+            return false;
+        }
+
+        public bool IsBetValid(int chipBalance, int amount)
+        {
+            if (chipBalance >= amount && amount >= State.CurrentStake)
+                return true;
             return false;
         }
 
@@ -406,80 +412,7 @@ namespace Domain.GameModule
             }
         }
 
-        public bool Bet(Player player, int amount)
-        {
-            if (GetCurrentPlayer().PlayerId != player.PlayerId)
-                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
-            int balance = player.ChipBalance;
-            if (balance >= amount && amount >= State.CurrentStake)
-            {
-                State.CurrentStake = amount;
-                State.Pot += amount;
-                player.ChipBalance -= amount;
-                player.AmountBetOnCurrentRound += amount;
-                PreviousPlayer = player;
-                player.MadeMove = true;
-                UpdateState();
-                Logger.LogTurn(player, "Bet: " + amount);
-                return true;
-            }
-            throw new BetFailedException("Player " + player.Username + " failed to make bet of amount " + amount);
-        }
-
-        public bool Call(Player player)
-        {
-            if (GetCurrentPlayer().PlayerId != player.PlayerId)
-                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
-            if (State.CurrentStake == 0)
-            {
-                throw new NoBetToCallException("The player " + player.Username +
-                                               " can't call because the current stake is 0.");
-            }
-            int amount = State.CurrentStake - player.AmountBetOnCurrentRound;
-            if (player.ChipBalance == 0)
-                throw new NoMoreChipsException("The player " + player.Username +
-                                                  " can't call b/c he has no chips left");
-            if (player.ChipBalance < amount)
-                amount = player.ChipBalance;
-            State.Pot += amount;
-            player.ChipBalance -= amount;
-            player.AmountBetOnCurrentRound += amount;
-            PreviousPlayer = player;
-            player.MadeMove = true;
-            UpdateState();
-            Logger.LogTurn(player, "Call: " + State.CurrentStake);
-            return true;
-        }
-        public bool Check(Player player)
-        {
-            if (GetCurrentPlayer().PlayerId != player.PlayerId)
-                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
-            if(State.CurrentStake > 0)
-                throw new DomainException("can't check because the current stake is greater than 0");
-            if (State.RoundNumber == 1)
-            {
-                return Call(player);
-            }
-            PreviousPlayer = player;
-            player.MadeMove = true;
-            UpdateState();
-            Logger.LogTurn(player, "Check: ");
-            return true;
-        }
-
-        public bool Fold(Player player)
-        {
-            if (GetCurrentPlayer().PlayerId != player.PlayerId)
-                throw new NotCurrentPlayerException("It is not " + player.Username + "'s turn yet.");
-            player.Folded = true;
-            PreviousPlayer = player;
-            player.MadeMove = true;
-            UpdateState();
-            Logger.LogTurn(player, "Fold: ");
-            return true;
-        }
-
-        private Player GetCurrentPlayer()
+        public Player GetCurrentPlayer()
         {
             Player currentPlayer = Seats[(Seats.IndexOf(PreviousPlayer) + 1) % Seats.Count];
             while (currentPlayer.Folded)

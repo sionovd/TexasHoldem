@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using Domain.DomainLayerExceptions;
 
 namespace Domain.GameModule
 {
     public class Player
     {
-        internal static int counter = 0;
+        internal static int counter;
 
-        public Player(int chipBalance, string username)
+        public Player(IGame game, int chipBalance, string username)
         {
             counter++;
             PlayerId = counter;
@@ -16,7 +16,7 @@ namespace Domain.GameModule
             Cards = new Card[2];
             AmountBetOnCurrentRound = 0;
             Folded = false;
-
+            Game = game;
         }
 
         public int GetBestHand(Card[] tableCards)
@@ -26,11 +26,11 @@ namespace Domain.GameModule
             {
                 unionCards[i] = tableCards[i];
             }
-            unionCards[5] = this.Cards[0];
-            unionCards[6] = this.Cards[1];
+            unionCards[5] = Cards[0];
+            unionCards[6] = Cards[1];
             // need to evaluate Hand
             HandEvaluator handEval = new HandEvaluator(unionCards);
-            Console.Write(this.Username + "'s best hand is: ");
+            Console.Write(Username + "'s best hand is: ");
             BestHandValue = handEval.Evaluate();
             
             return BestHandValue;
@@ -70,5 +70,76 @@ namespace Domain.GameModule
         public int PlayerId { get; set; }
 
         public Card[] Cards { get; set; }
+
+        public IGame Game { get; }
+
+        public bool Bet(int amount)
+        {
+            if (Game.GetCurrentPlayer().PlayerId != PlayerId)
+                throw new NotCurrentPlayerException("It is not " + Username + "'s turn yet.");
+            if (Game.IsBetValid(ChipBalance, amount))
+            {
+                Game.State.CurrentStake = amount;
+                Game.State.Pot += amount;
+                ChipBalance -= amount;
+                AmountBetOnCurrentRound += amount;
+                Game.PreviousPlayer = this;
+                MadeMove = true;
+                Game.UpdateState();
+                return true;
+            }
+            throw new BetFailedException("Player " + Username + " failed to make bet of amount " + amount);
+        }
+
+        public bool Call()
+        {
+            if (Game.GetCurrentPlayer().PlayerId != PlayerId)
+                throw new NotCurrentPlayerException("It is not " + Username + "'s turn yet.");
+            if (Game.State.CurrentStake == 0)
+            {
+                throw new NoBetToCallException("The player " + Username +
+                                               " can't call because the current stake is 0.");
+            }
+            int amount = Game.State.CurrentStake - AmountBetOnCurrentRound;
+            if (ChipBalance == 0)
+                throw new NoMoreChipsException("The player " + Username +
+                                               " can't call b/c he has no chips left");
+            if (ChipBalance < amount)
+                amount = ChipBalance;
+            Game.State.Pot += amount;
+            ChipBalance -= amount;
+            AmountBetOnCurrentRound += amount;
+            Game.PreviousPlayer = this;
+            MadeMove = true;
+            Game.UpdateState();
+            return true;
+        }
+
+        public bool Check()
+        {
+            if (Game.GetCurrentPlayer().PlayerId != PlayerId)
+                throw new NotCurrentPlayerException("It is not " + Username + "'s turn yet.");
+            if(Game.State.CurrentStake > 0)
+                throw new DomainException("can't check because the current stake is greater than 0");
+            if (Game.State.RoundNumber == 1)
+            {
+                return Call();
+            }
+            Game.PreviousPlayer = this;
+            MadeMove = true;
+            Game.UpdateState();
+            return true;
+        }
+
+        public bool Fold()
+        {
+            if (Game.GetCurrentPlayer().PlayerId != PlayerId)
+                throw new NotCurrentPlayerException("It is not " + Username + "'s turn yet.");
+            Folded = true;
+            Game.PreviousPlayer = this;
+            MadeMove = true;
+            Game.UpdateState();
+            return true;
+        }
     }
 }

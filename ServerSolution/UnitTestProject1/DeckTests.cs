@@ -1,8 +1,5 @@
-﻿using System;
-
+﻿using Domain.GameModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Domain;
-using Domain.GameModule;
 
 namespace UnitTestProject1
 {

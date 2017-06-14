@@ -6,7 +6,7 @@ namespace Domain.GameModule
 {
     public class Deck
     {
-        private List<Card> deckOfCards = null;
+        private List<Card> deckOfCards;
         public Deck()
         {
             deckOfCards = new List<Card>();
@@ -18,22 +18,22 @@ namespace Domain.GameModule
         {
             foreach (CardType card in Enum.GetValues(typeof(CardType)))
             {
-                this.deckOfCards.Add(new Card(card));
+                deckOfCards.Add(new Card(card));
             }
         }
         public Card GetCard()
         {
-            Card card = this.deckOfCards[0];
-            this.deckOfCards.RemoveAt(0);
+            Card card = deckOfCards[0];
+            deckOfCards.RemoveAt(0);
             return card;
         }
         public int GetSize()
         {
-            return deckOfCards.Count<Card>();
+            return deckOfCards.Count();
         }
         public List<Card> GetEnumeratableDeck()
         {
-            return this.deckOfCards;
+            return deckOfCards;
         }
         private void ShuffleDeck()
         {
@@ -46,9 +46,9 @@ namespace Domain.GameModule
             {
                 temp = rng.Next(maxDeckSize - 1);
                 temp2 = rng.Next(maxDeckSize - 1);
-                tempCard = this.deckOfCards.ElementAt(temp);
-                this.deckOfCards[temp] = this.deckOfCards[temp2];
-                this.deckOfCards[temp2] = tempCard;
+                tempCard = deckOfCards.ElementAt(temp);
+                deckOfCards[temp] = deckOfCards[temp2];
+                deckOfCards[temp2] = tempCard;
             }
         }
     }

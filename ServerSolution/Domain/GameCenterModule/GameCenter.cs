@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Domain.DomainLayerExceptions;
 using Domain.GameModule;
 using Domain.UserModule;
@@ -36,7 +35,7 @@ namespace Domain.GameCenterModule
 
         public List<int> GetActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet, int maxPlayers, int minPlayers, int spectateGame)
         {
-            var filteredGames = games.Values.AsEnumerable<IGame>();
+            var filteredGames = games.Values.AsEnumerable();
             if (gameType >= 0)
                 filteredGames = filteredGames.Where(g => g.Pref.GameType == gameType);
             if (buyIn >= 0)
@@ -52,26 +51,26 @@ namespace Domain.GameCenterModule
             if (spectateGame == 0)
                 filteredGames = filteredGames.Where(g => g.Pref.SpectateGame == false);
             if (spectateGame == 1)
-                filteredGames = filteredGames.Where(g => g.Pref.SpectateGame == true);
-            List<IGame> gamesList = filteredGames.ToList<IGame>();
+                filteredGames = filteredGames.Where(g => g.Pref.SpectateGame);
+            List<IGame> gamesList = filteredGames.ToList();
             return getGameIDs(gamesList);
         }
 
         public List<int> GetActiveGamesByPot(int pot)
         {
-            List<IGame> gamesList = games.Values.ToList<IGame>().Where(p => p.State.Pot == pot).ToList<IGame>();
+            List<IGame> gamesList = games.Values.ToList().Where(p => p.State.Pot == pot).ToList();
             return getGameIDs(gamesList);
         }
 
         public List<int> GetActiveGamesByPlayerName(string name)
         {
-            List<IGame> gamesList = games.Values.ToList().Where(g => g.IsPlayerExist(name) == true).ToList();
+            List<IGame> gamesList = games.Values.ToList().Where(g => g.IsPlayerExist(name)).ToList();
             return getGameIDs(gamesList);
         }
 
         public List<int> GetSpectatableGames()
         {
-            List<IGame> gamesList = games.Values.ToList().Where(p => p.Pref.SpectateGame == true).ToList();
+            List<IGame> gamesList = games.Values.ToList().Where(p => p.Pref.SpectateGame).ToList();
             return getGameIDs(gamesList);
         }
 
@@ -152,7 +151,7 @@ namespace Domain.GameCenterModule
             }
             if (user.MoneyBalance < game.Pref.BuyIn)
                 throw new notEnoughMoneyException(user.MoneyBalance.ToString(), game.Pref.BuyIn.ToString());
-            game.AddPlayer(user);
+            game.AddPlayer(user, new Player(game, 0, username));
             game.League = user.League;
             games.Add(game.Id, game);
             return game.Id;
@@ -188,7 +187,8 @@ namespace Domain.GameCenterModule
             if (game.IsSpectatorExist(username))
                 throw new AlreadyParticipatingException("The user " + username + " is already spectating game #" + gameID);
             User user = userController.GetUserByName(username);
-            Player player = game.AddPlayer(user);
+            Player player = new Player(game, 0, username);
+            game.AddPlayer(user, player);
             return player.PlayerId;
         }
 
@@ -259,7 +259,7 @@ namespace Domain.GameCenterModule
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            game.Bet(player, amount);
+            player.Bet(amount);
             if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;
@@ -269,7 +269,7 @@ namespace Domain.GameCenterModule
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            game.Check(player);
+            player.Check();
             if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;
@@ -279,7 +279,7 @@ namespace Domain.GameCenterModule
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            game.Fold(player);
+            player.Fold();
             if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;
@@ -289,7 +289,7 @@ namespace Domain.GameCenterModule
         {
             IGame game = GetGameById(gameID);
             Player player = game.GetPlayerById(playerID);
-            game.Call(player);
+            player.Call();
             if (game.State.Over)
                 EvaluateEndGame(gameID);
             return true;

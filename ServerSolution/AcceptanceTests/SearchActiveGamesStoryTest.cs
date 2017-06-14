@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AcceptanceTests
@@ -29,7 +28,7 @@ namespace AcceptanceTests
                 new KeyValuePair<string, int>("chipPolicy", 100),
                 new KeyValuePair<string, int>("minBet", 10),
                 new KeyValuePair<string, int>("minPlayers", 2),
-                new KeyValuePair<string, int>("maxPlayers", 5),
+                new KeyValuePair<string, int>("maxPlayers", 5)
             };
             game1 = CreateGame("doron", preferenceList);
 

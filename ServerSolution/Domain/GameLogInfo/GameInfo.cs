@@ -27,26 +27,26 @@ namespace Domain.GameLogInfo
         public GameInfo(string content)
         {
             GameInfo gameInfo = new JavaScriptSerializer().Deserialize<GameInfo>(content);
-            this.GameID = gameInfo.GameID;
-            this.PotSize = gameInfo.PotSize;
-            this.CurrentStake = gameInfo.CurrentStake;
-            this.PlayerTurnID = gameInfo.PlayerTurnID;
-            this.PlayersInfo = gameInfo.PlayersInfo;
-            this.TableCards = gameInfo.TableCards;
-            this.SmallBlindPlayerID = gameInfo.SmallBlindPlayerID;
-            this.BigBlindPlayerID = gameInfo.BigBlindPlayerID;
+            GameID = gameInfo.GameID;
+            PotSize = gameInfo.PotSize;
+            CurrentStake = gameInfo.CurrentStake;
+            PlayerTurnID = gameInfo.PlayerTurnID;
+            PlayersInfo = gameInfo.PlayersInfo;
+            TableCards = gameInfo.TableCards;
+            SmallBlindPlayerID = gameInfo.SmallBlindPlayerID;
+            BigBlindPlayerID = gameInfo.BigBlindPlayerID;
         }
         public GameInfo(int gameID, int potSize, int currentStake, int roundNumber, int playerTurnID, List<PlayerInfo> playersInfo, CardType[] tableCards, int smallBlindPlayerID, int bigBlindPlayerID)
         {
-            this.GameID = gameID;
-            this.PotSize = potSize;
-            this.CurrentStake = currentStake;
-            this.RoundNumber = roundNumber;
-            this.PlayerTurnID = playerTurnID;
-            this.PlayersInfo = playersInfo;
-            this.TableCards = tableCards;
-            this.SmallBlindPlayerID = smallBlindPlayerID;
-            this.BigBlindPlayerID = bigBlindPlayerID;
+            GameID = gameID;
+            PotSize = potSize;
+            CurrentStake = currentStake;
+            RoundNumber = roundNumber;
+            PlayerTurnID = playerTurnID;
+            PlayersInfo = playersInfo;
+            TableCards = tableCards;
+            SmallBlindPlayerID = smallBlindPlayerID;
+            BigBlindPlayerID = bigBlindPlayerID;
 
         }
 

@@ -2,14 +2,14 @@
 {
     public class Spectator
     {
-        private static int counter = 0;
+        private static int counter;
         private int id;
         private string name;
 
         public Spectator(string name)
         {
             counter++;
-            this.Username = name;
+            Username = name;
             Id = counter;
         }
 

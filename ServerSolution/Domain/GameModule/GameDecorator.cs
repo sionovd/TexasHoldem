@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Domain.DomainLayerExceptions;
 using Domain.ObserverFramework;
 using Domain.UserModule;
@@ -16,12 +12,12 @@ namespace Domain.GameModule
 
         public GameDecorator(IGame gameToBeDecorated)
         {
-            this.MyGame = gameToBeDecorated;
+            MyGame = gameToBeDecorated;
         }
 
-        public Player AddPlayer(User user)
+        public void AddPlayer(User user, Player player)
         {
-            return MyGame.AddPlayer(user);
+            MyGame.AddPlayer(user, player);
         }
 
         public void Start()
@@ -49,24 +45,9 @@ namespace Domain.GameModule
             return MyGame.RemoveSpectatingPlayer(spectator);
         }
 
-        public virtual bool Bet(Player player, int amount)
+        public virtual bool IsBetValid(int chipBalance, int amount)
         {
-            return MyGame.Bet(player, amount);
-        }
-
-        public bool Check(Player player)
-        {
-            return MyGame.Check(player);
-        }
-
-        public bool Fold(Player player)
-        {
-            return MyGame.Fold(player);
-        }
-
-        public bool Call(Player player)
-        {
-            return MyGame.Call(player);
+            return MyGame.IsBetValid(chipBalance, amount);
         }
 
         public bool IsPlayerExist(string name)
@@ -144,13 +125,27 @@ namespace Domain.GameModule
             get { return MyGame.Winner; }
             set { MyGame.Winner = value; }
         }
+
+        public Player PreviousPlayer {
+            get { return MyGame.PreviousPlayer; }
+            set { MyGame.PreviousPlayer = value; }
+        }
+        public void UpdateState()
+        {
+            MyGame.UpdateState();
+        }
+
+        public Player GetCurrentPlayer()
+        {
+            return MyGame.GetCurrentPlayer();
+        }
     }
 
     class BuyInDecorator : GameDecorator
     {
         public BuyInDecorator(IGame gameToBeDecorated, int buyIn) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.BuyIn = buyIn;
+            MyGame.Pref.BuyIn = buyIn;
         }
     }
 
@@ -158,14 +153,14 @@ namespace Domain.GameModule
     {
         public MinBetDecorator(IGame gameToBeDecorated, int minBet) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.MinBet = minBet;
+            MyGame.Pref.MinBet = minBet;
         }
 
-        public override bool Bet(Player player, int amount)
+        public override bool IsBetValid(int chipBalance, int amount)
         {
             if (MyGame.Pref.MinBet <= amount)
-                return base.Bet(player, amount);
-            throw new DomainException(player.Username + " tried to bet " + amount + " but the min bet is " + MyGame.Pref.MinBet);
+                return base.IsBetValid(chipBalance, amount);
+            throw new DomainException("tried to bet " + amount + " but the min bet is " + MyGame.Pref.MinBet);
         }
     }
 
@@ -173,7 +168,7 @@ namespace Domain.GameModule
     {
         public MinPlayersDecorator(IGame gameToBeDecorated, int minPlayers) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.MinPlayers = minPlayers;
+            MyGame.Pref.MinPlayers = minPlayers;
         }
 
     }
@@ -182,7 +177,7 @@ namespace Domain.GameModule
     {
         public MaxPlayersDecorator(IGame gameToBeDecorated, int maxPlayers) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.MaxPlayers = maxPlayers;
+            MyGame.Pref.MaxPlayers = maxPlayers;
         }
     }
 
@@ -190,7 +185,7 @@ namespace Domain.GameModule
     {
         public ChipPolicyDecorator(IGame gameToBeDecorated, int chipPolicy) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.ChipPolicy = chipPolicy;
+            MyGame.Pref.ChipPolicy = chipPolicy;
         }
     }
 
@@ -198,7 +193,7 @@ namespace Domain.GameModule
     {
         public SpectateGameDecorator(IGame gameToBeDecorated, bool isSpectatable) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.SpectateGame = isSpectatable;
+            MyGame.Pref.SpectateGame = isSpectatable;
         }
     }
 
@@ -206,20 +201,20 @@ namespace Domain.GameModule
     {
         public LimitHoldemDecorator(IGame gameToBeDecorated) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.GameType = 0;
+            MyGame.Pref.GameType = 0;
         }
 
-        public override bool Bet(Player player, int amount)
+        public override bool IsBetValid(int chipBalance, int amount)
         {
-            if (this.MyGame.State.RoundNumber <= 2 && amount == this.MyGame.BigBlind)
+            if (MyGame.State.RoundNumber <= 2 && amount == MyGame.BigBlind)
             {
-                return base.Bet(player, amount);
+                return base.IsBetValid(chipBalance, amount);
             }
-            if (this.MyGame.State.RoundNumber > 2 && amount == 2 * this.MyGame.BigBlind)
+            if (MyGame.State.RoundNumber > 2 && amount == 2 * MyGame.BigBlind)
             {
-                return base.Bet(player, amount);
+                return base.IsBetValid(chipBalance, amount);
             }
-            throw new DomainException(player.Username + " tried to bet " + amount +
+            throw new DomainException("tried to bet " + amount +
                                       " during round " + MyGame.State.RoundNumber + " which is illegal");
 
         }
@@ -229,13 +224,13 @@ namespace Domain.GameModule
     {
         public PotLimitHoldemDecorator(IGame gameToBeDecorated) : base(gameToBeDecorated)
         {
-            this.MyGame.Pref.GameType = 2;
+            MyGame.Pref.GameType = 2;
         }
 
-        public override bool Bet(Player player, int amount)
+        public override bool IsBetValid(int chipBalance, int amount)
         {
-            if (amount >= this.MyGame.State.CurrentStake && amount <= this.MyGame.State.Pot + 2 * this.MyGame.State.CurrentStake)
-                return base.Bet(player, amount);
+            if (amount >= MyGame.State.CurrentStake && amount <= MyGame.State.Pot + 2 * MyGame.State.CurrentStake)
+                return base.IsBetValid(chipBalance, amount);
             throw new DomainException("the bet amount: " + amount + " is not legal according to PotLimit rules");
         }
     }
