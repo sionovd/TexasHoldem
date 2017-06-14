@@ -15,6 +15,16 @@ namespace communication
             game.Subject.Attach(this);
         }
 
+        public override void UpdateMessage(string sender, string message)
+        {
+            ServerHub.sendMessageToUser(sender, Username, message, game.Id);
+        }
+
+        public override void UpdateWhisper(string sender, string whisper)
+        {
+            ServerHub.sendWhisperToUser(sender, Username, whisper, game.Id);
+        }
+
         public override void UpdateCards()
         {
             ServerHub.sendCardsToUser(Username, game.Logger.LatestAction);

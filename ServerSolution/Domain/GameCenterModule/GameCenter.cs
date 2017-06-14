@@ -305,5 +305,17 @@ namespace Domain.GameCenterModule
         {
             userController.DeleteUser(username);
         }
+
+        public void SendMessage(string senderUsername, string message, int gameId)
+        {
+            IGame game = GetGameById(gameId);
+            game.Subject.NotifyMessage(senderUsername, message);
+        }
+
+        public void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameId)
+        {
+            IGame game = GetGameById(gameId);
+            game.Subject.NotifyWhisper(senderUsername, receiverUsername, whisper);
+        }
     }
 }

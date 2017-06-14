@@ -79,7 +79,7 @@ namespace ServiceLayer
 
         public void SendMessage(string senderUsername, string message, int gameID)
         {
-            throw new NotImplementedException();
+            gameCenter.SendMessage(senderUsername, message, gameID);
         }
 
         public void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)

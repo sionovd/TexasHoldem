@@ -5,10 +5,12 @@ namespace Domain.ObserverFramework
     public class Subject
     {
         private List<Observer> observers;
+        private int gameID;
 
-        public Subject()
+        public Subject(int gameID)
         {
             observers = new List<Observer>();
+            this.gameID = gameID;
         }
 
         public void Attach(Observer observer)
@@ -25,6 +27,23 @@ namespace Domain.ObserverFramework
                     observers.Remove(o);
                     break;
                 }
+            }
+        }
+
+        public void NotifyMessage(string sender, string message)
+        {
+            foreach (var o in observers)
+            {
+                o.UpdateMessage(sender, message);
+            }
+        }
+
+        public void NotifyWhisper(string sender, string receiver, string whisper)
+        {
+            foreach (var o in observers)
+            {
+                if(o.Username == receiver)
+                    o.UpdateWhisper(sender, whisper);
             }
         }
 

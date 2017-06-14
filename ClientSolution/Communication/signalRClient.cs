@@ -8,7 +8,7 @@ namespace Communication
 {
     class SignalRClient
     {
-        
+
         // this method make the query to send while connection established 
         private static void queryStringByUserName(Dictionary<string, string> query)
         {
@@ -24,7 +24,10 @@ namespace Communication
         // this method include all the methods the client expose to the server
         private static void apiConfigure(IHubProxy myHub)
         {   // at future will send to method that print message at the suitable table
-            myHub.On<string,int>("chatMessage", (message,tableNumber) => Console.WriteLine(message));
+            myHub.On<string, string, int>("updateMessage",
+                (senderUsername, message, gameID) => ReceiveMessage(senderUsername, message, gameID));
+            myHub.On<string, string, int>("updateWhisper",
+                (senderUsername, whisper, gameID) => ReceiveWhisper(senderUsername, whisper, gameID));
             // at future will pop-up message
             myHub.On<string>("updateCards", message => ReceiveCards(message));
             myHub.On<string>("updateGameState", message => ReceiveGameInfo(message));
@@ -32,6 +35,16 @@ namespace Communication
             /*
                 MORE METHODS...
             */
+        }
+
+        static void ReceiveMessage(string sender, string message, int gameID)
+        {
+
+        }
+
+        static void ReceiveWhisper(string sender, string whisper, int gameID)
+        {
+
         }
 
         static void ReceiveCards(string content)
@@ -65,6 +78,6 @@ namespace Communication
             connection.Start();
             return connection;
         }
-        
+
     }
 }

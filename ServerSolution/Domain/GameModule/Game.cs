@@ -91,7 +91,7 @@ namespace Domain.GameModule
             State = new GameState();
             StartCounter = 0;
             IsActive = false;
-            Subject = new Subject();
+            Subject = new Subject(Id);
         }
 
         private void DealCards()
