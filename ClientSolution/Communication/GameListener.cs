@@ -12,5 +12,7 @@ namespace Communication
        void Update(GameInfo gameInfo);
        void Update(PlayerCardsInfo playerCardsInfo);
        void Update(EndGameInfo endGameInfo);
+       void UpdateMessage(string sender, string message, int gameID);
+       void UpdateWhisper(string sender, string whisper, int gameID);
     }
 }

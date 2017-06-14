@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Communication;
 using Communication.GameLogInfo;
@@ -486,10 +487,69 @@ namespace Presentation
             });
         }
 
-        private void Expander_OnExpanded(object sender, RoutedEventArgs e)
+        public void UpdateMessage(string sender, string message, int gameID)
         {
-           
+            if (this.gameID == gameID)
+            {
+                ListViewChat.Items.Add(new ChatMessage(sender, message));
+                (ListViewChat.Items[ListViewChat.Items.Count - 1] as DataGridRow).Background = Brushes.Blue;
+                ScrollViewerChat.ScrollToBottom();
+
+
+            }
         }
 
+        public void UpdateWhisper(string sender, string whisper, int gameID)
+        {
+            if (this.gameID == gameID)
+            {
+
+                ListViewChat.Items.Add(new ChatMessage(sender, whisper));
+                (ListViewChat.Items[ListViewChat.Items.Count -1] as DataGridRow).Background = Brushes.Aqua;
+                ScrollViewerChat.ScrollToBottom();
+
+            }
+
+        }
+
+
+        private async void BtnSend_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!TxtMessage.Text.Equals(""))
+            {
+                if (TxtTo.Text.Equals(""))
+                {
+                    Reply accept;
+                    try
+                    {
+                        accept = await Client.SendMessage(UserInfo.GetUser().GetUsername(), TxtMessage.Text, gameID);
+                        if (!accept.Sucsses)
+                        {
+                            MessageBox.Show(accept.ErrorMessage, "Warning");
+                        }
+                    }
+                    catch (HttpRequestException exception)
+                    {
+                        MessageBox.Show(exception.Message, "Warning");
+                    }
+                }
+                else
+                {
+                    Reply accept;
+                    try
+                    {
+                        accept = await Client.SendWhisper(UserInfo.GetUser().GetUsername(),TxtTo.Text, TxtMessage.Text, gameID);
+                        if (!accept.Sucsses)
+                        {
+                            MessageBox.Show(accept.ErrorMessage, "Warning");
+                        }
+                    }
+                    catch (HttpRequestException exception)
+                    {
+                        MessageBox.Show(exception.Message, "Warning");
+                    }
+                }
+            }
+        }
     }
 }

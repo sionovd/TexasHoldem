@@ -44,6 +44,26 @@ namespace Communication
             }
         }
 
+        public void UpdateWhisper(string sender ,string whisper, int gameID)
+        {
+            
+            foreach (GameListener gameListener in RECEIVER.gameListeners)
+            {
+                gameListener.UpdateWhisper(sender, whisper, gameID);
+            }
+        }
+
+        public void UpdateMessage(string sender, string message, int gameID)
+        {
+            
+            foreach (GameListener gameListener in RECEIVER.gameListeners)
+            {
+                gameListener.UpdateMessage(sender, message, gameID);
+            }
+        }
+
+
+
         public void Attach(GameListener gameListener)
         {   if(!gameListeners.Contains(gameListener))
                  gameListeners.Add(gameListener);
