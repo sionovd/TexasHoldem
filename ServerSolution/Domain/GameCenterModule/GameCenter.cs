@@ -309,13 +309,19 @@ namespace Domain.GameCenterModule
         public void SendMessage(string senderUsername, string message, int gameId)
         {
             IGame game = GetGameById(gameId);
-            game.Subject.NotifyMessage(senderUsername, message);
+            if (game.IsSpectatorExist(senderUsername))
+                game.Subject.NotifySpectatorsMessage(senderUsername, message);
+            else if(game.IsPlayerExist(senderUsername))
+                game.Subject.NotifyMessage(senderUsername, message);
         }
 
         public void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameId)
         {
             IGame game = GetGameById(gameId);
-            game.Subject.NotifyWhisper(senderUsername, receiverUsername, whisper);
+            if (game.IsSpectatorExist(senderUsername))
+                game.Subject.NotifySpectatorWhisper(senderUsername, receiverUsername, whisper);
+            else if(game.IsPlayerExist(senderUsername))
+                game.Subject.NotifyWhisper(senderUsername, receiverUsername, whisper);
         }
     }
 }

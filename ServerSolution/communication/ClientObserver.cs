@@ -7,11 +7,13 @@ namespace communication
     public class ClientObserver : Observer
     {
         private IGame game;
+        private bool isSpectator;
 
         public ClientObserver(string username, int gameID)
         {
             Username = username;
             game = GameCenter.GetInstance.GetGameById(gameID);
+            isSpectator = game.IsSpectatorExist(username);
             game.Subject.Attach(this);
         }
 
@@ -40,6 +42,17 @@ namespace communication
             ServerHub.sendEndGameToUser(Username, game.Logger.LatestAction);
         }
 
+        public override void UpdateSpectatorMessage(string sender, string message)
+        {
+            if(isSpectator)
+                ServerHub.sendMessageToUser(sender, Username, message, game.Id);
+        }
+
+        public override void UpdateSpectatorWhisper(string sender, string whisper)
+        {
+            if(isSpectator)
+                ServerHub.sendWhisperToUser(sender, Username, whisper, game.Id);
+        }
 
         public void Unsubscribe()
         {
