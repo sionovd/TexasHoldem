@@ -489,26 +489,32 @@ namespace Presentation
 
         public void UpdateMessage(string sender, string message, int gameID)
         {
-            if (this.gameID == gameID)
-            {
-                ListViewChat.Items.Add(new ChatMessage(sender, message));
-                (ListViewChat.Items[ListViewChat.Items.Count - 1] as DataGridRow).Background = Brushes.Blue;
-                ScrollViewerChat.ScrollToBottom();
+            Dispatcher.Invoke(() => {
+                if (this.gameID == gameID)
+                {
+                    ListViewChat.Items.Add(new ChatMessage(sender, message));
+                    
+                    ScrollViewerChat.ScrollToBottom();
 
 
-            }
+                }
+            });
+           
         }
 
         public void UpdateWhisper(string sender, string whisper, int gameID)
         {
-            if (this.gameID == gameID)
-            {
+            Dispatcher.Invoke(() => {
+                if (this.gameID == gameID)
+                {
 
-                ListViewChat.Items.Add(new ChatMessage(sender, whisper));
-                (ListViewChat.Items[ListViewChat.Items.Count -1] as DataGridRow).Background = Brushes.Aqua;
-                ScrollViewerChat.ScrollToBottom();
+                    ListViewChat.Items.Add(new ChatMessage(sender, whisper));
+                  
+                    ScrollViewerChat.ScrollToBottom();
 
-            }
+                }
+            });
+                
 
         }
 

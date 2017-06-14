@@ -84,7 +84,7 @@ namespace ServiceLayer
 
         public void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)
         {
-            throw new NotImplementedException();
+            gameCenter.SendWhisper(senderUsername, receiverUsername, whisper, gameID);
         }
 
         public int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList)

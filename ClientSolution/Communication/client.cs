@@ -134,17 +134,17 @@ namespace Communication
         {
             string newUrl = url + "SendMessage?senderUsername=" + senderUsername;
             newUrl = newUrl + "&message=" + message;
-            newUrl = newUrl + "gameID=" + gameID;
+            newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await PostBool(newUrl);
             return ans;
         }
 
         public static async Task<Reply> SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID)
         {
-            string newUrl = url + "SendMessage?senderUsername=" + senderUsername;
+            string newUrl = url + "SendWhisper?senderUsername=" + senderUsername;
             newUrl = newUrl + "&receiverUsername=" + receiverUsername;
             newUrl = newUrl + "&whisper=" + whisper;
-            newUrl = newUrl + "gameID=" + gameID;
+            newUrl = newUrl + "&gameID=" + gameID;
             Reply ans = await PostBool(newUrl);
             return ans;
         }

@@ -39,12 +39,12 @@ namespace Communication
 
         static void ReceiveMessage(string sender, string message, int gameID)
         {
-
+            Receiver.GetReceiver().UpdateMessage(sender, message, gameID);
         }
 
         static void ReceiveWhisper(string sender, string whisper, int gameID)
         {
-
+            Receiver.GetReceiver().UpdateWhisper(sender, whisper, gameID);
         }
 
         static void ReceiveCards(string content)

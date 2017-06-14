@@ -258,7 +258,9 @@ namespace communication.Controllers
         {
             try
             {
-                return new ReplyInt(true,"", service.SpectateGame(username, gameID));
+                int spectatorID = service.SpectateGame(username, gameID);
+                ServerHub.addPlayerToTableCom(username, gameID);
+                return new ReplyInt(true,"", spectatorID);
             }
             catch (DomainException a)
             {

@@ -83,9 +83,12 @@ namespace communication
         internal static void sendWhisperToUser(string senderUsername, string receiverUsername, string whisper, int gameID)
         {
             var ctx = GlobalHost.ConnectionManager.GetHubContext<ServerHub>();
-            var user = uList.Where(u => u.UserName == receiverUsername);
-            if (user.Any())
-                ctx.Clients.Client(user.First().ConnectionID).updateMessage(senderUsername, whisper, gameID);
+            var sourceUser = uList.Where(u => u.UserName == senderUsername);
+            if (sourceUser.Any())
+                ctx.Clients.Client(sourceUser.First().ConnectionID).updateWhisper(senderUsername, whisper, gameID);
+            var destUser = uList.Where(u => u.UserName == receiverUsername);
+            if (destUser.Any())
+                ctx.Clients.Client(destUser.First().ConnectionID).updateWhisper(senderUsername, whisper, gameID);
         }
 
         internal static void sendCardsToUser(string username,string message)
