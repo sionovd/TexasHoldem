@@ -27,10 +27,11 @@ namespace Presentation
         private int gameID;
         private int spectatorID;
         public UserControlSpectate(int gameID, int spectatorID)
-        {
+        {   
             this.gameID = gameID;
             this.spectatorID = spectatorID;
             InitializeComponent();
+            Receiver.GetReceiver().Attach(this);
         }
 
         private async void BtnLeaveTable_Click(object sender, RoutedEventArgs e)
@@ -111,6 +112,16 @@ namespace Presentation
             {
                 this.Content = new UserControlEndGame(endGameInfo);
             }
+        }
+
+        public void UpdateMessage(string sender, string message, int gameID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateWhisper(string sender, string whisper, int gameID)
+        {
+            throw new NotImplementedException();
         }
     }
 }
