@@ -88,7 +88,7 @@
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
         <Button Name="BtnLeave" Grid.ColumnSpan="4" Content="Leave" Click="BtnLeave_OnClick" Grid.Column="31" HorizontalAlignment="Stretch" Grid.Row="33" VerticalAlignment="Stretch"  Grid.RowSpan="2"/>
-        <Label Name="LblWinner" Content="THE WINNER" FontSize="35"   Grid.Column="13" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="10"  Grid.RowSpan="4" VerticalContentAlignment="Bottom"/>
+        <Label Name="LblWinner" Content="THE WINNER" FontSize="35"   Grid.Column="13" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" Grid.ColumnSpan="11"  Grid.RowSpan="4" VerticalContentAlignment="Bottom"/>
         <Label Name="LblWinnerName"  Content="[Winner]" FontSize="35" Grid.Column="13" Grid.Row="7" Grid.ColumnSpan="10" Grid.RowSpan="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Image Name="Img11" Grid.ColumnSpan="3" Source="images/cards/Back.png" Grid.Column="3" Grid.Row="18" Grid.RowSpan="7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         <Image Name="Img12" Grid.ColumnSpan="3" Source="images/cards/Back.png" Grid.Column="6" Grid.Row="18" Grid.RowSpan="7" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
