@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Domain.DomainLayerExceptions;
 using Domain.GameModule;
@@ -103,7 +104,7 @@ namespace Domain.GameCenterModule
                 }
                 if (pair.Key == "minBet")
                 {
-                    if (pair.Value <= 0)
+                    if (pair.Value <= 0 || (pair.Value > game.Pref.ChipPolicy && game.Pref.ChipPolicy != 0))
                         throw new illegalMinBetException(pair.Value.ToString());
                     game = new MinBetDecorator(game, pair.Value);
                 }
@@ -125,7 +126,7 @@ namespace Domain.GameCenterModule
                 }
                 if (pair.Key == "chipPolicy")
                 {
-                    if (pair.Value < 0)
+                    if (pair.Value < 0 || (pair.Value < game.Pref.MinBet && pair.Value != 0))
                         throw new illegalChipPolicyException(pair.Value.ToString());
                     game = new ChipPolicyDecorator(game, pair.Value);
                 }
@@ -218,6 +219,13 @@ namespace Domain.GameCenterModule
             {
                 User user = userController.GetUserByName(player.Username);
                 user.Stats.NumOfGames++;
+                user.Stats.TotalGrossProfit += player.ChipBalance - player.OriginalBalance;
+                user.Stats.HighestCashGain = Math.Max(player.ChipBalance - player.OriginalBalance,
+                    user.Stats.HighestCashGain);
+                user.Stats.AvgGrossProfit = user.Stats.TotalGrossProfit / user.Stats.NumOfGames;
+                user.Stats.AvgCashGain = (user.Stats.AvgCashGain * (user.Stats.NumOfGames - 1) +
+                                          Math.Max(player.ChipBalance - player.OriginalBalance, 0)) /
+                                         user.Stats.NumOfGames;
                 if (user.Username == winner.Username)
                 {
                     user.IncreaseMoney(winner.ChipBalance);

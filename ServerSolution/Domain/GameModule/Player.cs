@@ -59,6 +59,8 @@ namespace Domain.GameModule
 
         public int ChipBalance { get; set; }
 
+        public int OriginalBalance { get; set; }
+
         public int AmountBetOnCurrentRound { get; set; }
 
         public bool Folded { get; set; }

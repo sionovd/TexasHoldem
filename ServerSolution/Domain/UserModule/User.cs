@@ -47,7 +47,7 @@ namespace Domain.UserModule
             Email = email;
             Stats = new Statistics();
             League = new DefaultLeague();
-            MoneyBalance = 1000;
+            MoneyBalance = 10000;
         }
 
         public Statistics Stats { get; set; }
@@ -68,10 +68,9 @@ namespace Domain.UserModule
             return MoneyBalance;
         }
 
-        public int DecreaseMoney(int money)
+        public void DecreaseMoney(int money)
         {
             MoneyBalance = MoneyBalance - money;
-            return MoneyBalance;
         }
         public bool CheckPassword(string password)
         {

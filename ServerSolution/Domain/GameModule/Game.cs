@@ -321,13 +321,19 @@ namespace Domain.GameModule
             {
                 if (user.MoneyBalance < Pref.BuyIn + Pref.MinBet)
                     throw new notEnoughMoneyException(user.MoneyBalance.ToString(), Pref.BuyIn.ToString());
-                int m = user.DecreaseMoney(Pref.BuyIn);
-                player.ChipBalance = m;
+                user.DecreaseMoney(Pref.BuyIn);
+                player.ChipBalance = user.MoneyBalance;
                 AddPlayerToSeat(player);
-                return;
             }
-            player.ChipBalance = Pref.ChipPolicy;
-            AddPlayerToSeat(player);
+            else
+            {
+                if (user.MoneyBalance < Pref.BuyIn + Pref.ChipPolicy)
+                    throw new notEnoughMoneyException(user.MoneyBalance.ToString(), Pref.BuyIn.ToString());
+                user.DecreaseMoney(Pref.ChipPolicy);
+                player.ChipBalance = Pref.ChipPolicy;
+                player.OriginalBalance = Pref.ChipPolicy;
+                AddPlayerToSeat(player);
+            }
         }
 
         private void AddPlayerToSeat(Player player)
