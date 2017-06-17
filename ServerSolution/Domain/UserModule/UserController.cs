@@ -37,6 +37,12 @@ namespace Domain.UserModule
             return registerUsers[name];
         }
 
+        public List<string> GetAllUsernames()
+        {
+            List<string> usernames = new List<string>(registerUsers.Keys);
+            return usernames;
+        }
+
         public Statistics GetUserStats(string username)
         {
             User user = GetUserByName(username);

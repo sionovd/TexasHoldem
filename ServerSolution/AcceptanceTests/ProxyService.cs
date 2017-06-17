@@ -36,6 +36,16 @@ namespace AcceptanceTests
             throw new NotImplementedException();
         }
 
+        public List<string> GetAllUsernames()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetUserStats(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public int ViewMoneyBalanceOfUser(string username)
         {
             return 5;

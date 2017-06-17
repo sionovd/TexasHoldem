@@ -340,5 +340,10 @@ namespace Domain.GameCenterModule
             string serializedStats = serializer.Serialize(stats);
             return serializedStats;
         }
+
+        public List<string> GetAllUsernames()
+        {
+            return userController.GetAllUsernames();
+        }
     }
 }

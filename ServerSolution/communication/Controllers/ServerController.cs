@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using communication.Models;
 using Communication.Replies;
 using Domain.DomainLayerExceptions;
 using Domain.UserModule;
@@ -13,6 +14,20 @@ namespace communication.Controllers
     {
         private Service service = new Service();
 
+
+        [HttpGet]
+        public ReplyListString GetAllUsernames()
+        {
+            try
+            {
+                List<string> usernames = service.GetAllUsernames();
+                return new ReplyListString(true, usernames, "");
+            }
+            catch (DomainException e)
+            {
+                return new ReplyListString(false, null, e.Message);
+            }
+        }
 
         [HttpGet]
         public ReplyString GetUserStats(string username)
