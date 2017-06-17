@@ -9,6 +9,8 @@ namespace ServiceLayer
         bool Login(string username, string password);
         bool Logout(string username);
         void DeleteAccount(string username);
+        List<string> GetAllUsernames();
+        string GetUserStats(string username);
 
         int JoinGame(string username, int gameID);
         bool StartGame(string username, int gameID);

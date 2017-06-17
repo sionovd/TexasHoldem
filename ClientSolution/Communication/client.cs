@@ -20,20 +20,6 @@ namespace Communication
 
         static void Main() { }
 
-        public static async Task<Reply> RegisterWithMoney(string username, string password, string email, int money)
-        {
-            if (!username.Equals("") & !password.Equals("") & !email.Equals(""))
-            {
-                string newUrl = url + "RegisterWithMoney?username=" + username;
-                newUrl = newUrl + "&password=" + password + "&email=" + email + "&money" + money;
-                Reply ans = await PostBool(newUrl);
-                if(ans.Sucsses)
-                    UserInfo.GetUser().SetEmail(email);
-                return ans;
-            }
-            return new Reply(false, "Invalid input!");
-        }
-
         public static async Task<Reply> EditProfilePassword(string password)
         {
             if (!password.Equals(""))

@@ -8,5 +8,7 @@
         public abstract void UpdateCards();
         public abstract void UpdateGameState();
         public abstract void UpdateEndGame();
+        public abstract void UpdateSpectatorMessage(string sender, string message);
+        public abstract void UpdateSpectatorWhisper(string sender, string whisper);
     }
 }

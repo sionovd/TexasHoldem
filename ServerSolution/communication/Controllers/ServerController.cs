@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Script.Serialization;
+using communication.Models;
 using Communication.Replies;
 using Domain.DomainLayerExceptions;
 using Domain.UserModule;
@@ -12,6 +14,56 @@ namespace communication.Controllers
     {
         private Service service = new Service();
 
+
+        [HttpGet]
+        public ReplyListString GetAllUsernames()
+        {
+            try
+            {
+                List<string> usernames = service.GetAllUsernames();
+                return new ReplyListString(true, usernames, "");
+            }
+            catch (DomainException e)
+            {
+                return new ReplyListString(false, null, e.Message);
+            }
+        }
+
+        [HttpGet]
+        public ReplyString GetUserStats(string username)
+        {
+            try
+            {
+                string stats = service.GetUserStats(username);
+                return new ReplyString(true, stats, "");
+
+
+                /*
+                  
+                 this is how you call this function from the client:
+                 public static async Task<ReplyString> GetUserStats(string username)
+                 {
+                    string newUrl = url + "GetUserStats?username=" + username;
+                    ReplyString ans = await PostString(newUrl);
+                    return ans;
+                 }
+                 
+                
+                and this is how you deserialize it into your object:
+                 
+                
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Statistics a  = serializer.Deserialize<Statistics>(stats); <--- "stats" is a string
+
+                
+
+                 */
+            }
+            catch (DomainException e)
+            {
+                return new ReplyString(false, "", e.Message);
+            }
+        }
 
         [HttpPost]
         public Reply Register(string username, string password, string email)
@@ -65,6 +117,8 @@ namespace communication.Controllers
                 return new Reply(false, a.Message);
             }
         }
+
+        
 
         [HttpGet]
         public int GetBalance(string username)
