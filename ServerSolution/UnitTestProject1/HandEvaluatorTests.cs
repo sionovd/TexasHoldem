@@ -31,13 +31,13 @@ namespace UnitTestProject1
         private const int HIGHEST_CARD = 0;
         private const int ONE_PAIR = 20;
         private const int TWO_PAIR = 40;
-        private const int THREE_OF_A_KIND = 60;
-        private const int STRAIGHT = 80;
-        private const int FLUSH = 100;
-        private const int FULL_HOUSE = 120;
-        private const int FOUR_OF_A_KIND = 140;
-        private const int STRAIGHT_FLUSH = 160;
-        private const int ROYAL_FLUSH = 200;
+        private const int THREE_OF_A_KIND = 80;
+        private const int STRAIGHT = 100;
+        private const int FLUSH = 120;
+        private const int FULL_HOUSE = 140;
+        private const int FOUR_OF_A_KIND = 160;
+        private const int STRAIGHT_FLUSH = 180;
+        private const int ROYAL_FLUSH = 220;
         #endregion 
 
         [TestInitialize]
@@ -251,7 +251,7 @@ namespace UnitTestProject1
         {
             eval = new HandEvaluator(twoPairs.ToArray());
             Console.WriteLine(eval.Evaluate());
-            Assert.IsTrue(eval.Evaluate() == TWO_PAIR + 12);
+            Assert.IsTrue(eval.Evaluate() == TWO_PAIR + 22);
         }
 
         [TestMethod]

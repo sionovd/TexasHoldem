@@ -9,13 +9,13 @@ namespace Domain.GameModule
         private const int HIGHEST_CARD = 0;
         private const int ONE_PAIR = 20;
         private const int TWO_PAIR = 40;
-        private const int THREE_OF_A_KIND = 60;
-        private const int STRAIGHT = 80;
-        private const int FLUSH = 100;
-        private const int FULL_HOUSE = 120;
-        private const int FOUR_OF_A_KIND = 140;
-        private const int STRAIGHT_FLUSH = 160;
-        private const int ROYAL_FLUSH = 200;
+        private const int THREE_OF_A_KIND = 80;
+        private const int STRAIGHT = 100;
+        private const int FLUSH = 120;
+        private const int FULL_HOUSE = 140;
+        private const int FOUR_OF_A_KIND = 160;
+        private const int STRAIGHT_FLUSH = 180;
+        private const int ROYAL_FLUSH = 220;
 
         public HandEvaluator(Card[] hand)
         {
@@ -237,67 +237,67 @@ namespace Domain.GameModule
                     case 0:
                         oneSign++;
                         if (oneSign == 2)
-                            if (cardScore < 0) cardScore = 0;
+                            if (cardScore < 0) cardScore += 0;
                         break;
                     case 1:
                         twoSign++;
                         if (twoSign == 2)
-                            if (cardScore < 1) cardScore = 1;
+                            if (cardScore < 1) cardScore += 1;
                         break;
                     case 2:
                         threeSign++;
                         if (threeSign == 2)
-                            if (cardScore < 2) cardScore = 2;
+                            if (cardScore < 2) cardScore += 2;
                         break;
                     case 3:
                         fourSign++;
                         if (fourSign == 2)
-                            if (cardScore < 3) cardScore = 3;
+                            if (cardScore < 3) cardScore += 3;
                         break;
                     case 4:
                         fiveSign++;
                         if (fiveSign == 2)
-                            if (cardScore < 4) cardScore = 4;
+                            if (cardScore < 4) cardScore += 4;
                         break;
                     case 5:
                         sixSign++;
                         if (sixSign == 2)
-                            if (cardScore < 5) cardScore = 5;
+                            if (cardScore < 5) cardScore += 5;
                         break;
                     case 6:
                         sevenSign++;
                         if (sevenSign == 2)
-                            if (cardScore < 6) cardScore = 6;
+                            if (cardScore < 6) cardScore += 6;
                         break;
                     case 7:
                         eightSign++;
                         if (eightSign == 2)
-                            if (cardScore < 7) cardScore = 7;
+                            if (cardScore < 7) cardScore += 7;
                         break;
                     case 8:
                         nineSign++;
                         if (nineSign == 2)
-                            if (cardScore < 8) cardScore = 8;
+                            if (cardScore < 8) cardScore += 8;
                         break;
                     case 9:
                         tenSign++;
                         if (tenSign == 2)
-                            if (cardScore < 9) cardScore = 9;
+                            if (cardScore < 9) cardScore += 9;
                         break;
                     case 10:
                         elevenSign++;
                         if (elevenSign == 2)
-                            if (cardScore < 10) cardScore = 10;
+                            if (cardScore < 10) cardScore += 10;
                         break;
                     case 11:
                         twelveSign++;
                         if (twelveSign == 2)
-                            if (cardScore < 11) cardScore = 11;
+                            if (cardScore < 11) cardScore += 11;
                         break;
                     case 12:
                         thirteenSign++;
                         if (thirteenSign == 2)
-                            if (cardScore < 12) cardScore = 12;
+                            if (cardScore < 12) cardScore += 12;
                         break;
                 }
             }
