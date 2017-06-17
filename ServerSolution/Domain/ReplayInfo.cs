@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Script.Serialization;
-using Communication.GameLogInfo;
 using Newtonsoft.Json;
 
-namespace Communication.Replies
+namespace Domain
 {
     public class ReplayInfo
     {
@@ -18,17 +13,11 @@ namespace Communication.Replies
         [JsonProperty("EndGameInfo")]
         public string EndGameInfo { get; set; }
 
-        public ReplayInfo()
+        public ReplayInfo(int gameID, List<string> gameInfoList, string endGameInfo)
         {
-            
-        }
-
-        public ReplayInfo(string content)
-        {
-            ReplayInfo replayInfo = new JavaScriptSerializer().Deserialize<ReplayInfo>(content);
-            GameID = replayInfo.GameID;
-            GameInfoList = replayInfo.GameInfoList;
-            EndGameInfo = replayInfo.EndGameInfo;
+            GameID = gameID;
+            GameInfoList = gameInfoList;
+            EndGameInfo = endGameInfo;
         }
 
         public static string ConvertToString(ReplayInfo replayInfo)

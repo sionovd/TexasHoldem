@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Web.Script.Serialization;
 using communication.Models;
 using Communication.Replies;
+using Domain;
 using Domain.DomainLayerExceptions;
 using Domain.UserModule;
 using ServiceLayer;
@@ -58,6 +59,32 @@ namespace communication.Controllers
                 
 
                  */
+            }
+            catch (DomainException e)
+            {
+                return new ReplyString(false, "", e.Message);
+            }
+        }
+
+        [HttpPost]
+        public ReplyString GetUserDetails(string username)
+        {
+            try
+            {
+                return new ReplyString(true, service.GetUserDetails(username), "");
+            }
+            catch (DomainException e)
+            {
+                return new ReplyString(false, "", e.Message);
+            }
+        }
+
+        [HttpPost]
+        public ReplyString GetReplayInfo(int gameID)
+        {
+            try
+            {
+                return new ReplyString(true, service.GetReplayInfo(gameID), "");
             }
             catch (DomainException e)
             {

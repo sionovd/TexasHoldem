@@ -72,7 +72,7 @@
     <Compile Include="Replies\ReplyInt.cs" />
     <Compile Include="Replies\ReplyListInt.cs" />
     <Compile Include="Replies\ReplyString.cs" />
-    <Compile Include="Replies\Session.cs" />
+    <Compile Include="Replies\UserDetails.cs" />
     <Compile Include="signalRClient.cs" />
     <Compile Include="UserInfo.cs" />
   </ItemGroup>

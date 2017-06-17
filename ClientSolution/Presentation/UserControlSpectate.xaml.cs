@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Communication;
 using Communication.GameLogInfo;
 using Communication.Replies;
+using UserInfo = Communication.UserInfo;
 
 namespace Presentation
 {

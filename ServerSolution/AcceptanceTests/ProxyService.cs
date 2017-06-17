@@ -36,6 +36,11 @@ namespace AcceptanceTests
             throw new NotImplementedException();
         }
 
+        public string GetUserDetails(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<string> GetAllUsernames()
         {
             throw new NotImplementedException();
@@ -89,6 +94,11 @@ namespace AcceptanceTests
         public bool Call(int playerID, int gameID)
         {
             return true;
+        }
+
+        public string GetReplayInfo(int gameID)
+        {
+            throw new NotImplementedException();
         }
 
         public void SendMessage(string senderUsername, string message, int gameID)

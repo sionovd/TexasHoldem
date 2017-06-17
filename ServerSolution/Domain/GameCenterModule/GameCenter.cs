@@ -13,7 +13,7 @@ namespace Domain.GameCenterModule
         private static GameCenter gameCenter;
         private Dictionary<int, IGame> games;   // int-Game id
         private UserController userController;
-        
+
         private GameCenter()
         {
             userController = UserController.GetInstance;
@@ -24,7 +24,7 @@ namespace Domain.GameCenterModule
         {
             get
             {
-                if(gameCenter == null)
+                if (gameCenter == null)
                     gameCenter = new GameCenter();
                 return gameCenter;
             }
@@ -94,7 +94,7 @@ namespace Domain.GameCenterModule
             User user = userController.GetUserByName(username);
             GamePreferences pref = new GamePreferences();
             IGame game = new Game(pref);
-            
+
             foreach (var pair in preferenceList)
             {
                 if (pair.Key == "buyIn")
@@ -113,7 +113,7 @@ namespace Domain.GameCenterModule
                 {
                     if (pair.Value > game.Pref.MaxPlayers)
                         throw new illegalGapPlayersException(pair.Value.ToString(), game.Pref.MaxPlayers.ToString());
-                    if(pair.Value < 2)
+                    if (pair.Value < 2)
                         throw new illegalMinPlayersException(pair.Value.ToString());
                     game = new MinPlayersDecorator(game, pair.Value);
                 }
@@ -121,7 +121,7 @@ namespace Domain.GameCenterModule
                 {
                     if (pair.Value > 9)
                         throw new illegalMaxPlayersException(pair.Value.ToString());
-                    if(pair.Value < game.Pref.MinPlayers)
+                    if (pair.Value < game.Pref.MinPlayers)
                         throw new illegalGapPlayersException(game.Pref.MinPlayers.ToString(), pair.Value.ToString());
                     game = new MaxPlayersDecorator(game, pair.Value);
                 }
@@ -320,7 +320,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameId);
             if (game.IsSpectatorExist(senderUsername))
                 game.Subject.NotifySpectatorsMessage(senderUsername, message);
-            else if(game.IsPlayerExist(senderUsername))
+            else if (game.IsPlayerExist(senderUsername))
                 game.Subject.NotifyMessage(senderUsername, message);
         }
 
@@ -329,7 +329,7 @@ namespace Domain.GameCenterModule
             IGame game = GetGameById(gameId);
             if (game.IsSpectatorExist(senderUsername))
                 game.Subject.NotifySpectatorWhisper(senderUsername, receiverUsername, whisper);
-            else if(game.IsPlayerExist(senderUsername))
+            else if (game.IsPlayerExist(senderUsername))
                 game.Subject.NotifyWhisper(senderUsername, receiverUsername, whisper);
         }
 
@@ -344,6 +344,19 @@ namespace Domain.GameCenterModule
         public List<string> GetAllUsernames()
         {
             return userController.GetAllUsernames();
+        }
+
+        public string GetUserDetails(string username)
+        {
+            User user = userController.GetUserByName(username);
+            UserDetails userDetails = new UserDetails(user.MoneyBalance, user.Email, user.League.Name);
+            return new JavaScriptSerializer().Serialize(userDetails);
+        }
+
+        public string GetReplayInfo(int gameId)
+        {
+            ReplayInfo replayInfo = new ReplayInfo(1, new List<string>(), "");
+            return ReplayInfo.ConvertToString(replayInfo);
         }
     }
 }

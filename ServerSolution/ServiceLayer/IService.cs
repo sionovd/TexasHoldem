@@ -9,6 +9,7 @@ namespace ServiceLayer
         bool Login(string username, string password);
         bool Logout(string username);
         void DeleteAccount(string username);
+        string GetUserDetails(string username);
         List<string> GetAllUsernames();
         string GetUserStats(string username);
 
@@ -19,6 +20,7 @@ namespace ServiceLayer
         bool Check(int playerID, int gameID);
         bool Fold(int playerID, int gameID);
         bool Call(int playerID, int gameID);
+        string GetReplayInfo(int gameID);
 
         void SendMessage(string senderUsername, string message, int gameID);
         void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID);

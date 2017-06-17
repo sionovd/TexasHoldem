@@ -41,6 +41,11 @@ namespace ServiceLayer
             gameCenter.DeleteAccount(username);
         }
 
+        public string GetUserDetails(string username)
+        {
+            return gameCenter.GetUserDetails(username);
+        }
+
         public List<string> GetAllUsernames()
         {
             return gameCenter.GetAllUsernames();
@@ -85,6 +90,11 @@ namespace ServiceLayer
         public bool Call(int playerID, int gameID)
         {
             return gameCenter.Call(playerID, gameID);
+        }
+
+        public string GetReplayInfo(int gameID)
+        {
+            return gameCenter.GetReplayInfo(gameID);
         }
 
         public void SendMessage(string senderUsername, string message, int gameID)

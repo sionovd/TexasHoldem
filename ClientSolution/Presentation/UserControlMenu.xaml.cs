@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Communication.Replies;
+using UserInfo = Communication.UserInfo;
 
 namespace Presentation
 {
