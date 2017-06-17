@@ -41,6 +41,11 @@ namespace ServiceLayer
             gameCenter.DeleteAccount(username);
         }
 
+        public string GetUserStats(string username)
+        {
+            return gameCenter.GetUserStats(username);
+        }
+
         public int JoinGame(string username, int gameID)
         {
             return gameCenter.JoinGame(username, gameID);

@@ -18,11 +18,6 @@ namespace Domain.UserModule
             registerUsers = new Dictionary<string, User>();
         }
 
-        public User GetUserByUsername(string username)
-        {
-            return registerUsers[username];
-        }
-
         public static UserController GetInstance
         {
             get
@@ -40,6 +35,12 @@ namespace Domain.UserModule
         public User GetUserByName(string name)
         {
             return registerUsers[name];
+        }
+
+        public Statistics GetUserStats(string username)
+        {
+            User user = GetUserByName(username);
+            return user.Stats;
         }
         public User Register(string username, string password, string email)
         {

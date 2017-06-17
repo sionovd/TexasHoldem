@@ -13,6 +13,20 @@ namespace communication.Controllers
         private Service service = new Service();
 
 
+        [HttpGet]
+        public ReplyString GetUserStats(string username)
+        {
+            try
+            {
+                string stats = service.GetUserStats(username);
+                return new ReplyString(true, stats, "");
+            }
+            catch (DomainException e)
+            {
+                return new ReplyString(false, "", e.Message);
+            }
+        }
+
         [HttpPost]
         public Reply Register(string username, string password, string email)
         {
@@ -65,6 +79,8 @@ namespace communication.Controllers
                 return new Reply(false, a.Message);
             }
         }
+
+        
 
         [HttpGet]
         public int GetBalance(string username)

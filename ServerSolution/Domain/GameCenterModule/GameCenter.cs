@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
 using Domain.DomainLayerExceptions;
 using Domain.GameModule;
 using Domain.UserModule;
@@ -330,6 +331,14 @@ namespace Domain.GameCenterModule
                 game.Subject.NotifySpectatorWhisper(senderUsername, receiverUsername, whisper);
             else if(game.IsPlayerExist(senderUsername))
                 game.Subject.NotifyWhisper(senderUsername, receiverUsername, whisper);
+        }
+
+        public string GetUserStats(string username)
+        {
+            Statistics stats = userController.GetUserStats(username);
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            string serializedStats = serializer.Serialize(stats);
+            return serializedStats;
         }
     }
 }
