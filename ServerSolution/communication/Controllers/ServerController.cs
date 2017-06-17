@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using Communication.Replies;
 using Domain.DomainLayerExceptions;
 using Domain.UserModule;
@@ -23,13 +24,23 @@ namespace communication.Controllers
 
 
                 /*
-                 
+                  
+                 this is how you call this function from the client:
                  public static async Task<ReplyString> GetUserStats(string username)
                  {
                     string newUrl = url + "GetUserStats?username=" + username;
                     ReplyString ans = await PostString(newUrl);
                     return ans;
                  }
+                 
+                
+                and this is how you deserialize it into your object:
+                 
+                
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                Statistics a  = serializer.Deserialize<Statistics>(stats); <--- "stats" is a string
+
+                
 
                  */
             }
