@@ -110,6 +110,24 @@ namespace ServiceLayer
             
         }
 
+        /****************************/
+
+        public List<string> Get20TopHighestCashInGame()
+        {
+            return gameCenter.Get20TopHighestCashInGame();
+        }
+
+        public List<string> Get20TopAmountOfGames()
+        {
+            return gameCenter.Get20TopAmountOfGames();
+        }
+
+        public List<string> Get20TopTotalGrossProfit()
+        {
+            return gameCenter.Get20TopTotalGrossProfit();
+        }
+
+        /*************************/
         public List<int> SearchActiveGamesByPot(int pot)
         {
             return gameCenter.GetActiveGamesByPot(pot);

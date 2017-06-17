@@ -91,6 +91,7 @@
     <Compile Include="DomainLayerExceptions\NoUserNameException.cs" />
     <Compile Include="DomainLayerExceptions\notEnoughMoneyException.cs" />
     <Compile Include="GameModule\Player.cs" />
+    <Compile Include="PlayerLeader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GameModule\Spectator.cs" />

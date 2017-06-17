@@ -142,5 +142,20 @@ namespace AcceptanceTests
         {
             throw new NotImplementedException();
         }
+
+        public List<string> Get20TopHighestCashInGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> Get20TopAmountOfGames()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> Get20TopTotalGrossProfit()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
