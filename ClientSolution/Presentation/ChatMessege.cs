@@ -10,13 +10,15 @@ namespace Presentation
     {
         public string Username { get; set; }
         public string Message { get; set; }
+        public string Color { get; set; }
 
         public ChatMessage()
         {
             
         }
-        public ChatMessage(string username , string message)
+        public ChatMessage(string username , string message , string color)
         {
+            Color = color;
             Username = username;
             Message = message;
 

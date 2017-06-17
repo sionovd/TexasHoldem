@@ -93,7 +93,7 @@ namespace Presentation
 
        public void WaitToTurn()
        {
-           this.ChangeColor(Brushes.DarkSalmon);
+           this.ChangeColor(Brushes.Beige);
        }
 
         public void LeaveRoom()

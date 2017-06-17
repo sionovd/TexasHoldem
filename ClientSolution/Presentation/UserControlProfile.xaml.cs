@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Win32;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -209,6 +210,30 @@ namespace Presentation
             
             Menu menu = new Menu();
             this.Content = menu;
+        }
+
+        private async void BtnDelete_OnClick(object sender, RoutedEventArgs e)
+        {
+            Reply accept;
+            try
+            {
+                accept = await Client.DeleteAccount();
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                }
+                else
+                {
+                    MessageBox.Show("Account has been deleted", "Success");
+                    UserControlLogin login = new UserControlLogin();
+                    this.Content = login;
+                }
+
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+            }
         }
     }
 }

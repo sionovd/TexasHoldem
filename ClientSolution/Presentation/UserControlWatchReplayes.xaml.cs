@@ -45,14 +45,14 @@ namespace Presentation
                 newMenu.btnLogout.Visibility = Visibility.Hidden;
                 newTabItem.Content = newMenu;
                 UserControlTabs.userControlTabs.tabControl.Items.Add(newTabItem);
-                UserControlReplay replay = new UserControlReplay();
+                UserControlReplay replay = new UserControlReplay(null);
                 this.Content = replay;
             }
             else
             {
                 UserControlTabs.firstInitiate = false;
                 UserControlTabs.userControlTabs = new UserControlTabs();
-                UserControlTabs.userControlTabs.firstTab.Content = new UserControlReplay();
+                UserControlTabs.userControlTabs.firstTab.Content = new UserControlReplay(null);
                 UserControlTabs.userControlTabs.firstTab.Header = "Replay";
                 this.Content = UserControlTabs.userControlTabs;
 

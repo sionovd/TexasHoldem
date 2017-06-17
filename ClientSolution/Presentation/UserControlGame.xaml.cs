@@ -37,7 +37,8 @@ namespace Presentation
             seats = new Seat[9] { new Seat(ImgSmallBigBlind1, TxtUsername1, TxtChips1, TxtBet1), new Seat(ImgSmallBigBlind2, TxtUsername2, TxtChips2, TxtBet2), new Seat(ImgSmallBigBlind3, TxtUsername3, TxtChips3, TxtBet3),
                     new Seat(ImgSmallBigBlind4, TxtUsername4,TxtChips4, TxtBet4), new Seat(ImgSmallBigBlind5, TxtUsername5, TxtChips5, TxtBet5), new Seat(ImgSmallBigBlind6, TxtUsername6, TxtChips6, TxtBet6),
                     new Seat(ImgSmallBigBlind7, TxtUsername7, TxtChips7, TxtBet7), new Seat(ImgSmallBigBlind8, TxtUsername8, TxtChips8, TxtBet8), new Seat(ImgSmallBigBlind9, TxtUsername9, TxtChips9, TxtBet9) };
-           
+
+            LblUsername.Content = LblUsername.Content + UserInfo.GetUser().GetUsername();
             rdbtFold.Visibility = Visibility.Hidden;
             rdbtnBet.Visibility = Visibility.Hidden;
             rdbtnCall.Visibility = Visibility.Hidden;
@@ -492,9 +493,13 @@ namespace Presentation
             Dispatcher.Invoke(() => {
                 if (this.gameID == gameID)
                 {
-                    ListViewChat.Items.Add(new ChatMessage(sender, message));
-                    
+                    ListViewChat.Items.Add(new ChatMessage(sender, message, ""));
                     ScrollViewerChat.ScrollToBottom();
+                    foreach (GridViewColumn column in GridView.Columns)
+                    {
+                        column.Width = 0;
+                        column.Width = double.NaN;
+                    }
 
 
                 }
@@ -508,9 +513,13 @@ namespace Presentation
                 if (this.gameID == gameID)
                 {
 
-                    ListViewChat.Items.Add(new ChatMessage(sender, whisper));
-                  
+                    ListViewChat.Items.Add(new ChatMessage(sender, whisper, "Gray"));
                     ScrollViewerChat.ScrollToBottom();
+                    foreach (GridViewColumn column in GridView.Columns)
+                    {
+                        column.Width = 0;
+                        column.Width = double.NaN;
+                    }
 
                 }
             });
@@ -518,7 +527,11 @@ namespace Presentation
 
         }
 
-
+        private void ClearChatFields()
+        {
+            TxtMessage.Text = "Message";
+            TxtTo.Text = "";
+        }
         private async void BtnSend_OnClick(object sender, RoutedEventArgs e)
         {
             if (!TxtMessage.Text.Equals(""))
@@ -532,6 +545,10 @@ namespace Presentation
                         if (!accept.Sucsses)
                         {
                             MessageBox.Show(accept.ErrorMessage, "Warning");
+                        }
+                        else
+                        {
+                            ClearChatFields();
                         }
                     }
                     catch (HttpRequestException exception)
@@ -549,6 +566,10 @@ namespace Presentation
                         {
                             MessageBox.Show(accept.ErrorMessage, "Warning");
                         }
+                        else
+                        {
+                            ClearChatFields();
+                        }
                     }
                     catch (HttpRequestException exception)
                     {
@@ -556,6 +577,20 @@ namespace Presentation
                     }
                 }
             }
+        }
+
+
+
+        private void TxtMessage_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            if (TxtMessage.Text.Equals("Message"))
+                TxtMessage.Text = "";
+        }
+
+        private void TxtMessage_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TxtMessage.Text.Equals(""))
+                TxtMessage.Text = "Message";
         }
     }
 }

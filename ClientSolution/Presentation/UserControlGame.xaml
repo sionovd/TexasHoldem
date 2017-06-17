@@ -105,57 +105,57 @@
         <Label Name="lblPotSize" Content="Pot Size:" Foreground="White" FontSize="16" Grid.Column="26" HorizontalAlignment="Stretch" Grid.Row="34" Grid.RowSpan="2" VerticalAlignment="Stretch" Grid.ColumnSpan="4" />
         <Button Name="btnStartGame" Grid.ColumnSpan="4" Content="Start Game" Grid.Column="16" HorizontalAlignment="Stretch" Grid.Row="34" VerticalAlignment="Stretch"  Grid.RowSpan="2" Click="BtnStartGame_Click" />
         <StackPanel Grid.ColumnSpan="5" Grid.Column="11" HorizontalAlignment="Left" Height="78" Grid.Row="27" Grid.RowSpan="6" VerticalAlignment="Top" Width="84" Margin="19,5,0,0">
-            <TextBlock Name="TxtUsername1" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet1" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips1" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername1" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet1" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips1" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind1"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="9" Grid.Column="5" HorizontalAlignment="Left" Height="78" Grid.Row="24" Grid.RowSpan="10" VerticalAlignment="Top" Width="84" Margin="13,10,0,0">
-            <TextBlock Name="TxtUsername2" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet2" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips2" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername2" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet2" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips2" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind2"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="5" Grid.Column="3" HorizontalAlignment="Left" Height="78" Grid.Row="16" Grid.RowSpan="7" VerticalAlignment="Top" Width="84" Margin="4,4,0,0">
-            <TextBlock Name="TxtUsername3" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet3" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips3" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername3" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet3" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips3" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind3"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="5" Grid.Column="6" HorizontalAlignment="Left" Height="78" Grid.Row="8" Grid.RowSpan="6" VerticalAlignment="Top" Width="84" Margin="1,2,0,0">
-            <TextBlock Name="TxtUsername4" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet4" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips4" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername4" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet4" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips4" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind4"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="6" Grid.Column="11" HorizontalAlignment="Left" Height="78" Grid.Row="5" Grid.RowSpan="7" VerticalAlignment="Top" Width="84" Margin="19,9,0,0">
-            <TextBlock Name="TxtUsername5" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet5" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips5" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername5" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet5" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips5" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind5"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="5" Grid.Column="20" HorizontalAlignment="Left" Height="78" Grid.Row="5" Grid.RowSpan="6" VerticalAlignment="Top" Width="84" Margin="1,10,0,0">
-            <TextBlock Name="TxtUsername6" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet6" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips6" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername6" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet6" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips6" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind6"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="5" Grid.Column="28" HorizontalAlignment="Left" Height="78" Grid.Row="16" Grid.RowSpan="7" VerticalAlignment="Top" Width="84" Margin="10,4,0,0">
-            <TextBlock Name="TxtUsername7" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet7" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips7" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername7" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet7" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips7" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind7"  Height="27" Margin="52,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="5" Grid.Column="26" HorizontalAlignment="Left" Height="78" Grid.Row="24" Grid.RowSpan="6" VerticalAlignment="Top" Width="84" Margin="10,10,0,0">
-            <TextBlock Name="TxtUsername8" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet8" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips8" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername8" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet8" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips8" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind8"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="4" Grid.Column="20" HorizontalAlignment="Left" Height="78" Grid.Row="27" Grid.RowSpan="7" VerticalAlignment="Top" Width="84" Margin="0,5,0,0">
-            <TextBlock Name="TxtUsername9" TextWrapping="Wrap" Text="Player Name" Background="DarkSalmon"/>
-            <TextBlock Name="TxtBet9" TextWrapping="Wrap" Text="Bet:" Background="DarkSalmon"/>
-            <TextBlock Name="TxtChips9" TextWrapping="Wrap" Text="Chips:"  Background="DarkSalmon"/>
+            <TextBlock Name="TxtUsername9" TextWrapping="Wrap" Text="Player Name" Background="Beige"/>
+            <TextBlock Name="TxtBet9" TextWrapping="Wrap" Text="Bet:" Background="Beige"/>
+            <TextBlock Name="TxtChips9" TextWrapping="Wrap" Text="Chips:"  Background="Beige"/>
             <Image     Name="ImgSmallBigBlind9"  Height="30" Margin="54,0,0,0" />
         </StackPanel>
         <Expander Name="ExpChat"  Grid.ColumnSpan="18"  Background="#00FFFFFF" HorizontalAlignment="Stretch" Grid.RowSpan="14" VerticalAlignment="Stretch"  IsExpanded="False" Grid.Column="18">
@@ -202,20 +202,31 @@
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
                 <Button Name="BtnSend" Content="Send" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="17" Grid.RowSpan="3" Grid.ColumnSpan="3" Click="BtnSend_OnClick"/>
-                <TextBox Name="TxtMessage" Grid.ColumnSpan="5" Grid.Column="3" HorizontalAlignment="Stretch"  Grid.Row="17" Grid.RowSpan="3" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"/>
-                <TextBox Name="TxtTo" Grid.ColumnSpan="3" Grid.Column="8" HorizontalAlignment="Stretch"  Grid.Row="17" Grid.RowSpan="3" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"/>
+                <TextBox Name="TxtMessage" Grid.ColumnSpan="5" Grid.Column="3" HorizontalAlignment="Stretch"  Grid.Row="17" Grid.RowSpan="3" TextWrapping="Wrap" Text="Message" VerticalAlignment="Stretch" GotFocus="TxtMessage_OnGotFocus" LostFocus="TxtMessage_OnLostFocus"/>
+                <TextBox Name="TxtTo" Grid.ColumnSpan="3" Grid.Column="8" HorizontalAlignment="Stretch"  Grid.Row="17" Grid.RowSpan="3" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" />
                 <ScrollViewer Name="ScrollViewerChat" Grid.ColumnSpan="11" Grid.RowSpan="17">
-                    <ListView Name="ListViewChat" Grid.ColumnSpan="11" HorizontalAlignment="Stretch" Grid.RowSpan="17" VerticalAlignment="Stretch">
+                    <ListView Name="ListViewChat"  HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
                         <ListView.View>
-                            <GridView>
+                            
+                            <GridView x:Name="GridView">
                                 <GridViewColumn Header="Name"  DisplayMemberBinding="{Binding Username}"/>
                                 <GridViewColumn Header="Message"  DisplayMemberBinding="{Binding Message}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
-                    </ListView>
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Color}" Value="Gray">
+                                        <Setter Property="Background" Value="LightGray"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Resources>
+                        </ListView>
                 </ScrollViewer>
             </Grid>
         </Expander>
+        <Label Name="LblUsername" Content="Player: " Foreground="White" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="8" Grid.RowSpan="4" Grid.Row="1" Margin="0,6,0,0"/>
 
     </Grid>
 </UserControl>

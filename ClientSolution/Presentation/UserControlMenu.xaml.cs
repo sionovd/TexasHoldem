@@ -26,6 +26,7 @@ namespace Presentation
         public Menu()
         {
             InitializeComponent();
+            LblUserWelcome.Content = LblUserWelcome.Content + UserInfo.GetUser().GetUsername() + "!";
             if (UserControlTabs.firstInitiate == false)
                 btnLogout.Visibility = Visibility.Hidden;
         }

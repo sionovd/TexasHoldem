@@ -149,6 +149,14 @@ namespace Communication
             return ans;
         }
 
+        //public static async Task<Session> GetUserInfo(string username)
+        //{
+          //  string newUrl = url + "GetUserInfo?username=" + username;
+            //Session ans = await PostSession(newUrl);
+            //return ans;
+        //}
+
+
         public static async Task<ReplyInt> JoinGame(int gameID)
         {
             string newUrl = url + "JoinGame?username=" + UserInfo.GetUser().GetUsername();

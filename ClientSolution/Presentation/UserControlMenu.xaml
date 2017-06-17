@@ -44,6 +44,9 @@
         <Button x:Name="btnJoinGame" Grid.ColumnSpan="6" Content="Join Game" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="5" Margin="28,3,28,5" Grid.Column="3" Click="btnJoinActiveGame_Click"/>
         <Button x:Name="btnSpectateGame" Grid.ColumnSpan="6" Content="Spectate Game" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="6" Margin="28,3,28,4" Grid.Column="3" Click="btnSpectateGame_Click"/>
         <Button x:Name="btnWatchReplayes" Grid.ColumnSpan="6" Content="Watch Replayes" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="7" Margin="28,4" Grid.Column="3" Click="btnWatchReplayes_Click"/>
-        <Label Content="MENU" FontSize="40" Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.ColumnSpan="2"  Grid.RowSpan="2" />
+        <Label Content="MENU" FontSize="40" Foreground="Beige"  Grid.Column="5" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Grid.ColumnSpan="2"  Grid.RowSpan="2" />
+        <Label Name="LblUserWelcome" FontSize="14" Content="HI " Foreground="White" HorizontalAlignment="Stretch" Margin="0,22,0,0" VerticalAlignment="Stretch"  Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <Image Grid.ColumnSpan="2" Source="images/gray_chip.png" HorizontalAlignment="Left" Height="94" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Top" Width="97" Grid.Column="1"/>
+        <Image Grid.ColumnSpan="2" Source="images/gray_chip.png" HorizontalAlignment="Left" Height="94" Margin="34,0,0,0" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Top" Width="93" Grid.Column="9"/>
     </Grid>
 </UserControl>

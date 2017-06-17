@@ -27,6 +27,60 @@ namespace Presentation
         public UserControlRegister()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(MainKeyDown);
+            txbxUsername.Focus();
+        }
+
+        private void MainKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (txbxUsername.IsFocused)
+                {
+                    txbxEmail.Focus();
+                }
+
+                else if (txbxEmail.IsFocused)
+                {
+                   txbxPassword.Focus();
+                }
+
+                else if (txbxPassword.IsFocused)
+                {
+                    btnRegister.Focus();
+                }
+
+
+            }
+
+             if (e.Key == Key.Tab)
+            {
+                if (txbxUsername.IsFocused)
+                {
+                    txbxEmail.Focus();
+                }
+
+                else if (txbxEmail.IsFocused)
+                {
+                    txbxPassword.Focus();
+                }
+
+                else if (txbxPassword.IsFocused)
+                {
+                    btnRegister.Focus();
+                }
+
+                else if (btnRegister.IsFocused)
+                {
+                    btnBack.Focus();
+                }
+
+                else if (btnBack.IsFocused)
+                {
+                    txbxUsername.Focus();
+                }
+
+            }
         }
 
         private async void Button_Click_Register (object sender, RoutedEventArgs e)

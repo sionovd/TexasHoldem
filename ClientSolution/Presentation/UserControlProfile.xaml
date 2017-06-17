@@ -71,6 +71,7 @@
         <Button x:Name="btnChangePassword" Content="Change password" Grid.Column="10" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.Row="5" VerticalAlignment="Top" Width="101" Grid.ColumnSpan="2" Height="34" Click="btnChangePassword_Click"/>
         <Image x:Name="imageCards" Source="images/profile-cards.png" Grid.ColumnSpan="3" Grid.Column="9" HorizontalAlignment="Stretch"  Grid.Row="8" Grid.RowSpan="4" VerticalAlignment="Stretch" />
         <Button x:Name="btnBack" Content="Back" HorizontalAlignment="Stretch"  Margin="0,0,0,24" VerticalAlignment="Stretch" Height="20" Click="Button_Click_Back"/>
+        <Button Name="BtnDelete" Content="Delete Account" Background="DarkRed" Foreground="Beige" FontSize="16" Click="BtnDelete_OnClick" HorizontalAlignment="Stretch" Margin="0,10,0,0" Grid.Row="11" VerticalAlignment="Stretch"  Grid.ColumnSpan="2" Grid.Column="5"/>
 
     </Grid>
 </UserControl>

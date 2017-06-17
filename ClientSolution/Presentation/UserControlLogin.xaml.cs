@@ -26,9 +26,50 @@ namespace Presentation
         public UserControlLogin()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(MainKeyDown);
+            txbxUsername.Focus();
+
         }
 
+        private void MainKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (txbxUsername.IsFocused)
+                {
+                    txbxPassword.Focus();
+                }
 
+                else if (txbxPassword.IsFocused)
+                {
+                    btnLogin.Focus();
+                }
+            }
+
+            if (e.Key == Key.Tab)
+            {
+                if (txbxUsername.IsFocused)
+                {
+                    txbxPassword.Focus();
+                }
+
+                else if (txbxPassword.IsFocused)
+                {
+                    btnLogin.Focus();
+                }
+
+                else if (btnLogin.IsFocused)
+                {
+                    btnCreateAccount.Focus();
+                }
+
+                else if (btnCreateAccount.IsFocused)
+                {
+                    txbxUsername.Focus();
+                }
+
+            }
+        }
         private async void  Button_Click_Login(object sender, RoutedEventArgs e)
         {
             if (MainWindow.debug)
