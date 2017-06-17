@@ -20,6 +20,18 @@ namespace communication.Controllers
             {
                 string stats = service.GetUserStats(username);
                 return new ReplyString(true, stats, "");
+
+
+                /*
+                 
+                 public static async Task<ReplyString> GetUserStats(string username)
+                 {
+                    string newUrl = url + "GetUserStats?username=" + username;
+                    ReplyString ans = await PostString(newUrl);
+                    return ans;
+                 }
+
+                 */
             }
             catch (DomainException e)
             {
