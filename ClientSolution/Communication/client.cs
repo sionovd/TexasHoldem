@@ -111,6 +111,7 @@ namespace Communication
 
         public static async Task<Reply> DeleteAccount()
         {
+            Logout();
             string newUrl = url + "DeleteAccount?username=" + UserInfo.GetUser().GetUsername();
             Reply ans = await PostBool(newUrl);
             return ans;
