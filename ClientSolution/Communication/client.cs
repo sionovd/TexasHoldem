@@ -20,12 +20,12 @@ namespace Communication
 
         static void Main() { }
 
-        public static async Task<Reply> EditProfilePassword(string password)
+        public static async Task<Reply> EditProfilePassword(string password, string email)
         {
             if (!password.Equals(""))
             {
                 string newUrl = url + "EditProfile?username=" + UserInfo.GetUser().GetUsername();
-                newUrl = newUrl + "&password=" + password + "&email=" + UserInfo.GetUser().GetEmail();
+                newUrl = newUrl + "&password=" + password + "&email=" + email;
                 Reply ans = await PostBool(newUrl);
                 if (ans.Sucsses)
                     UserInfo.GetUser().SetPassword(password);
@@ -74,8 +74,7 @@ namespace Communication
                     connections.Add(username, SignalRClient.connection(username));                    
                     UserInfo.GetUser().SetUserName(username);
                     UserInfo.GetUser().SetPassword(password);
-                    UserInfo.GetUser().SetEmail(ans.ErrorMessage);
-                    UserInfo.GetUser().SetMoneyBalance(Convert.ToInt32(await GetInt(url + "GetBalance?username=" + username)));
+                    
                 }
                 return ans;
             }
@@ -135,12 +134,6 @@ namespace Communication
             return ans;
         }
 
-        //public static async Task<Session> GetUserInfo(string username)
-        //{
-          //  string newUrl = url + "GetUserInfo?username=" + username;
-            //Session ans = await PostSession(newUrl);
-            //return ans;
-        //}
 
 
         public static async Task<ReplyInt> JoinGame(int gameID)
@@ -263,15 +256,20 @@ namespace Communication
         }
 
 
-        // GameLog
-        public static async Task<Reply> ReplayGame( int gameLogID)
+        
+        public static async Task<ReplyString> GetReplayInfo(int gameID)
         {
-            string newUrl = url + "ReplayGame?username=" + UserInfo.GetUser().GetUsername();
-            newUrl = newUrl + "&gameLogID=" + gameLogID;
-            Reply ans = await PostBool(newUrl);
+            string newUrl = url + "GetReplayInfo?gameID=" + gameID;
+            ReplyString ans = await PostString(newUrl);
             return ans;
         }
 
+        public static async Task<ReplyString> GetUserDetails()
+        {
+            string newUrl = url + "GetUserDetails?username=" + UserInfo.GetUser().GetUsername();
+            ReplyString ans = await PostString(newUrl);
+            return ans;
+        }
         public static async Task<ReplyInt> SpectateGame( int gameID)
         {
             string newUrl = url + "SpectateGame?username=" + UserInfo.GetUser().GetUsername();
@@ -397,6 +395,29 @@ namespace Communication
 
                         Task<string> ans = content.ReadAsStringAsync();
                         return JsonConvert.DeserializeObject<ReplyInt>(JToken.Parse(ans.Result).ToString());
+                    }
+                }
+            }
+        }
+
+        private static async Task<ReplyString> PostString(string url)
+        {
+            IEnumerable<KeyValuePair<string, string>> quieries = new List<KeyValuePair<string, string>>()
+            {
+                // new KeyValuePair<string,string>("x","1"),
+                //  new KeyValuePair<string,string>("y","2")
+            };
+            HttpContent q = new FormUrlEncodedContent(quieries);
+
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage res = await client.PostAsync(url, q))
+                {
+                    using (HttpContent content = res.Content)
+                    {
+
+                        Task<string> ans = content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<ReplyString>(JToken.Parse(ans.Result).ToString());
                     }
                 }
             }

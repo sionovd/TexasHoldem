@@ -13,6 +13,11 @@ namespace Domain
         [JsonProperty("EndGameInfo")]
         public string EndGameInfo { get; set; }
 
+        public ReplayInfo()
+        {
+            
+        }
+
         public ReplayInfo(int gameID, List<string> gameInfoList, string endGameInfo)
         {
             GameID = gameID;

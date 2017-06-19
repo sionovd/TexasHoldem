@@ -26,17 +26,15 @@ namespace Presentation
     /// </summary>
     public partial class UserControlProfile : UserControl
     {
-        public UserControlProfile()
+        private UserDetails userDetails; 
+        public UserControlProfile(UserDetails userDetails)
         {
             InitializeComponent();
+            this.userDetails = userDetails;
             LabelUsername.Content = UserInfo.GetUser().GetUsername();
-            txbxMail.Text = UserInfo.GetUser().GetEmail();
             txbxPassword.Text = UserInfo.GetUser().GetPassword();
-            if (UserInfo.GetUser().GetMoneyBalance() < 0)
-                txbxMoney.Text = "no information";
-            else
-                txbxMoney.Text = UserInfo.GetUser().GetMoneyBalance().ToString();
-
+            txbxMail.Text = userDetails.Email;
+            txbxMoney.Text = userDetails.MoneyBalance.ToString();
         }
 
         
@@ -95,7 +93,7 @@ namespace Presentation
                     if (!accept.Sucsses)
                     {
                         MessageBox.Show(accept.ErrorMessage, "Warning");
-                        txbxMail.Text = UserInfo.GetUser().GetEmail();
+                        txbxMail.Text = userDetails.Email;
                         btnChangePassword.IsEnabled = true;
                         txbxMail.IsEnabled = false;
                         btnBack.IsEnabled = true;
@@ -105,7 +103,7 @@ namespace Presentation
                     }
                     else
                     {
-                       
+                        userDetails.Email = txbxMail.Text;
                         btnChangePassword.IsEnabled = true;
                         txbxMail.IsEnabled = false;
                         btnBack.IsEnabled = true;
@@ -118,7 +116,7 @@ namespace Presentation
                 catch (HttpRequestException exception)
                 {
                     MessageBox.Show(exception.Message, "Warning");
-                    txbxMail.Text = UserInfo.GetUser().GetEmail();
+                    txbxMail.Text = userDetails.Email;
                     btnChangePassword.IsEnabled = true;
                     txbxMail.IsEnabled = false;
                     btnBack.IsEnabled = true;
@@ -160,7 +158,7 @@ namespace Presentation
                 Reply accept;
                 try
                 {
-                    accept = await Client.EditProfilePassword(txbxPassword.Text);
+                    accept = await Client.EditProfilePassword(txbxPassword.Text, userDetails.Email);
 
                     if (!accept.Sucsses)
                     {
@@ -176,7 +174,7 @@ namespace Presentation
                             new RoutedEventHandler(btnChangePassword_Click));
                     }
                     else
-                    {   
+                    {   UserInfo.GetUser().SetPassword(txbxPassword.Text);
                         btnEditMail.IsEnabled = true;
                         btnChangePassword.Content = "Change password";
                         txbxPassword.IsEnabled = false;

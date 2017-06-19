@@ -32,10 +32,28 @@ namespace Presentation
                 btnLogout.Visibility = Visibility.Hidden;
         }
 
-        private void Button_Click_Profile(object sender, RoutedEventArgs e)
+        private async void Button_Click_Profile(object sender, RoutedEventArgs e)
         {
-            UserControlProfile profile = new UserControlProfile();
-            this.Content = profile;
+            ReplyString accept;
+            try
+            {
+                accept = await Client.GetUserDetails();
+                if (!accept.Sucsses)
+                {
+
+                }
+                else
+                {
+                    UserDetails userDetails = new UserDetails(accept.StringContent);
+                    UserControlProfile profile = new UserControlProfile(userDetails);
+                    this.Content = profile;
+                }
+               
+            }
+            catch (HttpRequestException exception)
+            {
+                
+            }
 
         }
 
