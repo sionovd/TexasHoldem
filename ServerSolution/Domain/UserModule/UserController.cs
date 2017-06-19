@@ -107,6 +107,7 @@ namespace Domain.UserModule
 
         public void DeleteUser(string username)
         {
+           // Logout(username);
             registerUsers.Remove(username);
             //database call
         }
