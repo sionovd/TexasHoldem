@@ -62,16 +62,6 @@ namespace Domain.UserModule
 
         public int MoneyBalance { get; set; }
 
-        public int IncreaseMoney(int money)
-        {
-            MoneyBalance = MoneyBalance + money;
-            return MoneyBalance;
-        }
-
-        public void DecreaseMoney(int money)
-        {
-            MoneyBalance = MoneyBalance - money;
-        }
         public bool CheckPassword(string password)
         {
             return this.password.Equals(password);

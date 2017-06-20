@@ -232,11 +232,14 @@ namespace Domain.GameCenterModule
                                          user.Stats.NumOfGames;
                 if (user.Username == winner.Username)
                 {
-                    user.IncreaseMoney(winner.ChipBalance);
                     user.Stats.Points += 5;
                 }
                 else
                     user.Stats.Points -= 1;
+                if (game.Pref.ChipPolicy > 0)
+                    user.MoneyBalance = user.MoneyBalance + player.ChipBalance;
+                else
+                    user.MoneyBalance = player.ChipBalance;
                 dbManager.UpdateUserStats(user);
                 dbManager.EditUser(user);
             }

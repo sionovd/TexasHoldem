@@ -153,7 +153,7 @@ namespace Domain.GameModule
             if (foldedCount == Seats.Count - 1 && winner != null)
             {
                 Console.WriteLine("The winner is (because everyone folded): " + winner.Username);
-                winner.ChipBalance = State.Pot;
+                winner.ChipBalance += State.Pot;
                 Winner = winner;
                 Logger.LogEndGame(true);
                 State.Over = true;
@@ -244,7 +244,7 @@ namespace Domain.GameModule
                 }
             }
             bestHand.IsHandCommunity(State.TableCards);
-            bestHand.ChipBalance = State.Pot;
+            bestHand.ChipBalance += State.Pot;
             Console.WriteLine("\nThe winner is: " + bestHand.Username);
             Winner = bestHand;
         }
@@ -318,7 +318,7 @@ namespace Domain.GameModule
             {
                 if (user.MoneyBalance < Pref.BuyIn + Pref.MinBet)
                     throw new notEnoughMoneyException(user.MoneyBalance.ToString(), Pref.BuyIn.ToString());
-                user.DecreaseMoney(Pref.BuyIn);
+                user.MoneyBalance = user.MoneyBalance - Pref.BuyIn;
                 player.ChipBalance = user.MoneyBalance;
                 AddPlayerToSeat(player);
             }
@@ -326,7 +326,7 @@ namespace Domain.GameModule
             {
                 if (user.MoneyBalance < Pref.BuyIn + Pref.ChipPolicy)
                     throw new notEnoughMoneyException(user.MoneyBalance.ToString(), Pref.BuyIn.ToString());
-                user.DecreaseMoney(Pref.ChipPolicy);
+                user.MoneyBalance = user.MoneyBalance - Pref.ChipPolicy;
                 player.ChipBalance = Pref.ChipPolicy;
                 player.OriginalBalance = Pref.ChipPolicy;
                 AddPlayerToSeat(player);
