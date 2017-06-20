@@ -49,15 +49,16 @@ namespace Presentation
                     {
                         ImgWinner1.Source = GUICards.GetImageSource(playerCards.PlayerCards[0]);
                         ImgWinner2.Source = GUICards.GetImageSource(playerCards.PlayerCards[1]);
+                        LblWinnerCandidate.Content = usernameWinner;
                     }
 
                 }
 
                 for (int j = i; j < 8; j++)
                 {
-                    images[2 * i].Visibility = Visibility.Hidden;
-                    images[2 * i + 1].Visibility = Visibility.Hidden;
-                    labels[i].Visibility = Visibility.Hidden;
+                    images[2 * j].Visibility = Visibility.Hidden;
+                    images[2 * j + 1].Visibility = Visibility.Hidden;
+                    labels[j].Visibility = Visibility.Hidden;
 
 
                 }
@@ -76,6 +77,7 @@ namespace Presentation
                     images[2 * i + 1].Visibility = Visibility.Hidden;
                     labels[i].Visibility = Visibility.Hidden;  
                 }
+
                 ImgCom1.Visibility = Visibility.Hidden;
                 ImgCom2.Visibility = Visibility.Hidden;
                 ImgCom3.Visibility = Visibility.Hidden;
@@ -83,6 +85,7 @@ namespace Presentation
                 ImgCom5.Visibility = Visibility.Hidden;
                 ImgWinner1.Visibility = Visibility.Hidden;
                 ImgWinner2.Visibility = Visibility.Hidden;
+                LblWinnerCandidate.Visibility = Visibility.Hidden;
             }
         }
         private void BtnLeave_OnClick(object sender, RoutedEventArgs e)
