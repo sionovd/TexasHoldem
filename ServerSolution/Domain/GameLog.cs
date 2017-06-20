@@ -11,6 +11,7 @@ namespace Domain
         public List<string> LogOfGameStates { get; }
         public int GameID { get; }
         public string LatestAction { get; private set; }
+        public bool IsSplitPot { get; private set; }
         public GameLog(Game game)
         {
             //this = database.getGameLog(gameLogID);
@@ -29,8 +30,9 @@ namespace Domain
             game.Subject.NotifyCards(player.Username);
         }
 
-        public void LogEndGame(bool onePlayerLeft)
+        public void LogEndGame(bool onePlayerLeft, bool isSplitPot)
         {
+            IsSplitPot = isSplitPot;
             CardType[] communityCards = new CardType[5];
             for (int i = 0; i < 5; i++)
             {
@@ -43,7 +45,7 @@ namespace Domain
                 if(!player.Folded)
                     playersCards.Add(new PlayerCardsInfo(player.Cards[0].getCardId(), player.Cards[1].getCardId(), game.Id, player.PlayerId, player.Username));
             }
-            EndGameInfo endGameInfo = new EndGameInfo(game.Id, false /*CHANGE HERE DORON!!!! False=No Split*/,game.Winner.Username, playersCards, communityCards,
+            EndGameInfo endGameInfo = new EndGameInfo(game.Id, isSplitPot,game.Winner.Username, playersCards, communityCards,
                 onePlayerLeft);
             string str = EndGameInfo.ConvertToString(endGameInfo);
             LatestAction = str;

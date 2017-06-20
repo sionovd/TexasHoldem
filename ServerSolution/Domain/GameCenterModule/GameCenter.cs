@@ -218,6 +218,7 @@ namespace Domain.GameCenterModule
         public bool EvaluateEndGame(int gameID)
         {
             IGame game = GetGameById(gameID);
+            bool isSplitPot = game.Logger.IsSplitPot;
             Player winner = game.Winner;
             foreach (var player in game.Seats)
             {
@@ -236,8 +237,10 @@ namespace Domain.GameCenterModule
                 }
                 else
                     user.Stats.Points -= 1;
-                if (game.Pref.ChipPolicy > 0)
-                    user.MoneyBalance = user.MoneyBalance + player.ChipBalance;
+                if (isSplitPot)
+                    user.MoneyBalance += game.State.Pot / game.Seats.Count;
+                else if (game.Pref.ChipPolicy > 0)
+                    user.MoneyBalance += player.ChipBalance;
                 else
                     user.MoneyBalance = player.ChipBalance;
                 dbManager.UpdateUserStats(user);

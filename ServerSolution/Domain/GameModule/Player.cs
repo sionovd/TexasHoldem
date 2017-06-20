@@ -42,7 +42,6 @@ namespace Domain.GameModule
             int commVal = communityEval.Evaluate();
             if (BestHandValue == commVal)
             {
-                Console.WriteLine("SPLIT THE POT!!!!!!!!!!!!!!!!!");
                 return true;
             }
             return false;
