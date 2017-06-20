@@ -143,7 +143,12 @@ namespace AcceptanceTests
             return list;
         }
 
-        public bool ReplayGame(string username, int gameLogID)
+        public List<int> ViewReplays()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ReplayGame(int gameID)
         {
             throw new NotImplementedException();
         }

@@ -20,19 +20,21 @@ namespace ServiceLayer
         bool Check(int playerID, int gameID);
         bool Fold(int playerID, int gameID);
         bool Call(int playerID, int gameID);
-        string GetReplayInfo(int gameID);
+        
 
         void SendMessage(string senderUsername, string message, int gameID);
         void SendWhisper(string senderUsername, string receiverUsername, string whisper, int gameID);
 
         int CreateGame(string username, List<KeyValuePair<string, int>> preferenceList);
+
         List<int> SearchActiveGamesByPreferences(int gameType, int buyIn, int chipPolicy, int minBet,
             int maxPlayers, int minPlayers, int spectateGame);
         List<int> SearchActiveGamesByPot(int pot);
         List<int> SearchActiveGamesByPlayerName(string name);
         List<int> ViewSpectatableGames();
-        
-        bool ReplayGame(string username, int gameLogID);
+        List<int> ViewReplays();
+        string ReplayGame(int gameID);
+
         int SpectateGame(string username, int gameID);
 
 

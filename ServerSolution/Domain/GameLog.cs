@@ -7,19 +7,17 @@ namespace Domain
     public class GameLog
     {
         private List<string> logOfCards;
-        private List<string> logOfGameStates;
-        private Dictionary<int, string> logOfMoves;
         private Game game;
-        private int moveLogCounter;
+        public List<string> LogOfGameStates { get; }
+        public int GameID { get; }
         public string LatestAction { get; private set; }
         public GameLog(Game game)
         {
             //this = database.getGameLog(gameLogID);
             this.game = game;
             logOfCards = new List<string>();
-            logOfMoves = new Dictionary<int, string>();
-            moveLogCounter = 0;
-            logOfGameStates = new List<string>();
+            LogOfGameStates = new List<string>();
+            GameID = game.Id;
         }
 
         public void LogPlayerCards(Player player, Card[] cards)
@@ -67,28 +65,11 @@ namespace Domain
             }
             GameInfo gameInfo = new GameInfo(game.Id, game.State.Pot, game.State.CurrentStake, game.State.RoundNumber, game.State.CurrentPlayer.PlayerId, playerInfos, tableCards, game.State.SmallBlind.PlayerId, game.State.BigBlind.PlayerId);
             string str = GameInfo.ConvertToString(gameInfo);
-            logOfGameStates.Add(str);
+            LogOfGameStates.Add(str);
             LatestAction = str;
             game.Subject.NotifyGameState();
         }
 
-        public void LogTurn(Player player, string Move)
-        {
-            if (player == null)
-            {
-                //means no player conducted move.
-                //can be: add card to table, declare score
-                LatestAction = Move;
-                logOfMoves.Add(moveLogCounter++, Move);
-                //game.Subject.NotifyAll();
-            }
-            else
-            {
-                string line = "Player: " + player.PlayerId + " " + Move;
-                LatestAction = line;
-                logOfMoves.Add(moveLogCounter++, line); //while parsing, check if first word is "Player:" then strip by spaces the ID
-                //game.Subject.NotifyAll();
-            }
-        }
+        
     }
 }

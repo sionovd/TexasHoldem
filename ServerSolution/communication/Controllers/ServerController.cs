@@ -84,7 +84,7 @@ namespace communication.Controllers
         {
             try
             {
-                return new ReplyString(true, service.GetReplayInfo(gameID), "");
+                return new ReplyString(true, service.ReplayGame(gameID), "");
             }
             catch (DomainException e)
             {
@@ -310,21 +310,6 @@ namespace communication.Controllers
             try
             {
                 if (service.Call(playerID, gameID))
-                    return new Reply(true, "");
-                return new Reply(false, "unknow error");
-            }
-            catch (DomainException a)
-            {
-                return new Reply(false, (a.Message));
-            }
-        }
-
-        [HttpPost]
-        public Reply ReplayGame(string username, int gameID)
-        {
-            try
-            {
-                if (service.ReplayGame(username, gameID))
                     return new Reply(true, "");
                 return new Reply(false, "unknow error");
             }

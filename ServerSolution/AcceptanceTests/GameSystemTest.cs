@@ -256,11 +256,12 @@ namespace AcceptanceTests
             }
         }
 
-        public bool ReplayGame(string username, int gameLogID)
+        public bool ReplayGame(int gameLogID)
         {
             try
             {
-                return bridge.ReplayGame(username, gameLogID);
+                bridge.ReplayGame(gameLogID);
+                return true;
             }
             catch (DomainException e)
             {

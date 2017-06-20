@@ -116,12 +116,10 @@ namespace Domain.GameModule
                 State.TableCards[0] = Cards.GetCard();
                 State.TableCards[1] = Cards.GetCard();
                 State.TableCards[2] = Cards.GetCard();
-                Logger.LogTurn(null, "Table: " + State.TableCards[0].getCardId() + " " + State.TableCards[1].getCardId() + " " + State.TableCards[2].getCardId());
             }
             else if (State.RoundNumber >= 3)
             {
                 State.TableCards[State.RoundNumber] = Cards.GetCard();
-                Logger.LogTurn(null, "Add Table: " + State.TableCards[State.RoundNumber].getCardId());
             }
         }
 
@@ -249,7 +247,6 @@ namespace Domain.GameModule
             bestHand.ChipBalance = State.Pot;
             Console.WriteLine("\nThe winner is: " + bestHand.Username);
             Winner = bestHand;
-            Logger.LogTurn(null, "Winner: " + bestHand.PlayerId);
         }
 
         public Player GetPlayerById(int playerID)
@@ -398,7 +395,6 @@ namespace Domain.GameModule
                 player.ChipBalance -= SmallBlind;
                 player.AmountBetOnCurrentRound += SmallBlind;
                 State.SmallBlind = player;
-                Logger.LogTurn(player, "Smallblind: " + SmallBlind);
             }
         }
 
@@ -414,7 +410,6 @@ namespace Domain.GameModule
                 player.AmountBetOnCurrentRound += BigBlind;
                 State.BigBlind = player;
                 player.MadeMove = true;
-                Logger.LogTurn(player, "Bigblind: " + BigBlind);
             }
         }
 

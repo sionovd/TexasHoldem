@@ -12,12 +12,15 @@ namespace Domain.GameCenterModule
     {
         private static GameCenter gameCenter;
         private Dictionary<int, IGame> games;   // int-Game id
+        private Dictionary<int, GameLog> gameLogCollection;
         private UserController userController;
-
+        private DbManager dbManager;
         private GameCenter()
         {
             userController = UserController.GetInstance;
             games = new Dictionary<int, IGame>();
+            gameLogCollection = new Dictionary<int, GameLog>(); // gameLogCollection = DbManager.GetReplays();
+            dbManager = new DbManager();
         }
 
         public static GameCenter GetInstance
@@ -234,7 +237,10 @@ namespace Domain.GameCenterModule
                 }
                 else
                     user.Stats.Points -= 1;
+                dbManager.UpdateUserStats(user);
+                dbManager.EditUser(user);
             }
+            gameLogCollection.Add(gameID, game.Logger);
             games.Remove(gameID);
             return true;
         }
@@ -355,8 +361,18 @@ namespace Domain.GameCenterModule
 
         public string GetReplayInfo(int gameId)
         {
-            ReplayInfo replayInfo = new ReplayInfo(1, new List<string>(), "");
+            GameLog gameLog = gameLogCollection[gameId];
+            ReplayInfo replayInfo = new ReplayInfo(gameId, gameLog.LogOfGameStates, gameLog.LatestAction);
             return ReplayInfo.ConvertToString(replayInfo);
+        }
+
+        public List<int> GetAllReplays()
+        {
+            List<GameLog> gameLogList = gameLogCollection.Values.ToList();
+            List<int> gameIDs = new List<int>();
+            foreach (GameLog g in gameLogList)
+                gameIDs.Add(g.GameID);
+            return gameIDs;
         }
     }
 }

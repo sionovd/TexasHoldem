@@ -6,12 +6,12 @@ using PersistenceLayer;
 
 namespace Domain
 {
-    public class DbManager : IDbManager
+    public class DbManager
     {
         private IDatabase db;
         public DbManager()
         {
-            db = new Database();
+          //  db = new Database();
         }
 
         public List<User> GetRegisteredUsers()
@@ -51,7 +51,7 @@ namespace Domain
 
         public bool EditUser(User user)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool UpdateUserLeague(User user, League league)
@@ -61,7 +61,7 @@ namespace Domain
 
         public bool UpdateUserStats(User user)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public bool AddGameLog()

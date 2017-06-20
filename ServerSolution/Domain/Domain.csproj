@@ -75,7 +75,6 @@
     <Compile Include="DomainLayerExceptions\NoBetToCallException.cs" />
     <Compile Include="DomainLayerExceptions\NotCurrentPlayerException.cs" />
     <Compile Include="DomainLayerExceptions\NoMoreChipsException.cs" />
-    <Compile Include="IDbManager.cs" />
     <Compile Include="GameModule\Deck.cs" />
     <Compile Include="DomainLayerExceptions\FullTableException.cs" />
     <Compile Include="GameModule\Game.cs" />

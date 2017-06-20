@@ -92,9 +92,9 @@ namespace ServiceLayer
             return gameCenter.Call(playerID, gameID);
         }
 
-        public string GetReplayInfo(int gameID)
+        public List<int> ViewReplays()
         {
-            return gameCenter.GetReplayInfo(gameID);
+            return gameCenter.GetAllReplays();
         }
 
         public void SendMessage(string senderUsername, string message, int gameID)
@@ -135,9 +135,9 @@ namespace ServiceLayer
             return gameCenter.GetSpectatableGames();
         }
 
-        public bool ReplayGame(string username, int gameLogID)
+        public string ReplayGame(int gameID)
         {
-            throw new NotImplementedException();
+            return gameCenter.GetReplayInfo(gameID);
         }
 
         public int SpectateGame(string username, int gameID)
