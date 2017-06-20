@@ -10,7 +10,7 @@ namespace Domain.GameModule
     {
         void AddPlayer(User user, Player player);
         void Start();
-        void EvaluateWinner();
+        bool EvaluateWinner();
         bool RemovePlayer(Player player);
         Spectator AddSpectatingPlayer(User user);
         bool RemoveSpectatingPlayer(Spectator spectator);
@@ -103,9 +103,6 @@ namespace Domain.GameModule
                 {
                     player.AddHand(Cards.GetCard(), Cards.GetCard());
                     Logger.LogPlayerCards(player, player.Cards);
-                    /*Logger.LogTurn(null,
-                        "Deal: " + player.PlayerId + " , Hand: " + player.Cards[0].getCardId() + " " +
-                        player.Cards[1].getCardId());*/
                 }
             }
         }
@@ -155,7 +152,7 @@ namespace Domain.GameModule
                 Console.WriteLine("The winner is (because everyone folded): " + winner.Username);
                 winner.ChipBalance += State.Pot;
                 Winner = winner;
-                Logger.LogEndGame(true);
+                Logger.LogEndGame(true, false);
                 State.Over = true;
                 return;
             }
@@ -193,8 +190,8 @@ namespace Domain.GameModule
                 State.RoundNumber++;
                 if (State.RoundNumber > 4)
                 {
-                    EvaluateWinner();
-                    Logger.LogEndGame(false);
+                    bool isSplitPot = !EvaluateWinner();
+                    Logger.LogEndGame(false, isSplitPot);
                     State.Over = true;
                     return;
                 }
@@ -212,7 +209,7 @@ namespace Domain.GameModule
         }
 
 
-        public void EvaluateWinner()
+        public bool EvaluateWinner()
         {
             Player bestHand = null;
             int bestHandScore = 0;
@@ -243,10 +240,15 @@ namespace Domain.GameModule
                     }
                 }
             }
-            bestHand.IsHandCommunity(State.TableCards);
+            if (bestHand.IsHandCommunity(State.TableCards))
+            {
+                Winner = bestHand;
+                return false;
+            }
             bestHand.ChipBalance += State.Pot;
             Console.WriteLine("\nThe winner is: " + bestHand.Username);
             Winner = bestHand;
+            return true;
         }
 
         public Player GetPlayerById(int playerID)
@@ -295,7 +297,7 @@ namespace Domain.GameModule
                     if (Seats.Count == 1 && IsActive)
                     {
                         Winner = Seats[0];
-                        Logger.LogEndGame(true);
+                        Logger.LogEndGame(true, false);
                         State.Over = true;
                     }
                     return true;

@@ -25,9 +25,9 @@ namespace Domain.GameModule
             MyGame.Start();
         }
 
-        public void EvaluateWinner()
+        public bool EvaluateWinner()
         {
-            MyGame.EvaluateWinner();
+            return MyGame.EvaluateWinner();
         }
 
         public bool RemovePlayer(Player player)
