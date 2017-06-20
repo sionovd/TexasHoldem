@@ -132,12 +132,38 @@ namespace Presentation
             }
         }
 
-        private void btnWatchReplayes_Click(object sender, RoutedEventArgs e)
+        private async void btnWatchReplayes_Click(object sender, RoutedEventArgs e)
         {
+            ReplyListInt accept;
+            try
+            {
+                accept = await Client.ViewSpectatableGames();
 
-            UserControlWatchReplayes watchReplays = new UserControlWatchReplayes();
-            this.Content = watchReplays;
+
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                }
+                else
+                {
+                    List<Game> replays = new List<Game>();
+                    foreach (int gameID in (accept.ListIntContent))
+                    {
+                        replays.Add(new Game(gameID));
+                    }
+
+                    UserControlWatchReplayes watchReplays = new UserControlWatchReplayes(replays);
+                    this.Content = watchReplays;
+                }
+            }
+            catch (HttpRequestException exception)
+            {
+                MessageBox.Show(exception.Message, "Warning");
+            }
+        }
+
+        
 
         }
     }
-}
+

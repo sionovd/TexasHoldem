@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Communication;
+using Communication.Replies;
 
 namespace Presentation
 {
@@ -20,10 +23,13 @@ namespace Presentation
     /// </summary>
     public partial class UserControlWatchReplayes : UserControl
     {
-        public UserControlWatchReplayes()
+        private List<Game> results;
+        public UserControlWatchReplayes(List<Game> results)
         {
             InitializeComponent();
-            
+            this.results = results;
+            dgReplays.ItemsSource = results;
+
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -32,30 +38,51 @@ namespace Presentation
             this.Content = menu;
         }
 
-        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private async void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
-            if (!UserControlTabs.firstInitiate)
+            DataGridRow row = sender as DataGridRow;
+            int index = row.GetIndex();
+            int replayID = results[index].GameID;
+            ReplyString accept;
+            try
             {
+                accept = await Client.GetReplayInfo(replayID);
+                if (!accept.Sucsses)
+                {
+                    MessageBox.Show(accept.ErrorMessage, "Warning");
+                }
+                else
+                {
+                    String replayInfoString= accept.StringContent;
+                    ReplayInfo replayInfo = new ReplayInfo(replayInfoString);
 
-                (UserControlTabs.userControlTabs.tabControl.SelectedItem as TabItem).Header = "Replay";
-                TabItem newTabItem = new TabItem();
-                newTabItem.Header = "Menu";
-                Menu newMenu = new Menu();
-                newMenu.btnLogout.Visibility = Visibility.Hidden;
-                newTabItem.Content = newMenu;
-                UserControlTabs.userControlTabs.tabControl.Items.Add(newTabItem);
-                UserControlReplay replay = new UserControlReplay(null);
-                this.Content = replay;
+                    if (!UserControlTabs.firstInitiate)
+                    {
+
+                        (UserControlTabs.userControlTabs.tabControl.SelectedItem as TabItem).Header = "Replay";
+                        TabItem newTabItem = new TabItem();
+                        newTabItem.Header = "Menu";
+                        Menu newMenu = new Menu();
+                        newMenu.btnLogout.Visibility = Visibility.Hidden;
+                        newTabItem.Content = newMenu;
+                        UserControlTabs.userControlTabs.tabControl.Items.Add(newTabItem);
+                        UserControlReplay replay = new UserControlReplay(replayInfo);
+                        this.Content = replay;
+                    }
+                    else
+                    {
+                        UserControlTabs.firstInitiate = false;
+                        UserControlTabs.userControlTabs = new UserControlTabs();
+                        UserControlTabs.userControlTabs.firstTab.Content = new UserControlReplay(replayInfo);
+                        UserControlTabs.userControlTabs.firstTab.Header = "Replay";
+                        this.Content = UserControlTabs.userControlTabs;
+
+                    }
+                }
             }
-            else
+            catch (HttpRequestException exception)
             {
-                UserControlTabs.firstInitiate = false;
-                UserControlTabs.userControlTabs = new UserControlTabs();
-                UserControlTabs.userControlTabs.firstTab.Content = new UserControlReplay(null);
-                UserControlTabs.userControlTabs.firstTab.Header = "Replay";
-                this.Content = UserControlTabs.userControlTabs;
-
+                MessageBox.Show(exception.Message, "Warning");
             }
         }
     }

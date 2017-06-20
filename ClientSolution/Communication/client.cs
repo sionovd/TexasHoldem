@@ -257,7 +257,15 @@ namespace Communication
         }
 
 
-        
+        public static async Task<ReplyListInt> ViewReplays()
+        {
+            string newUrl = url + "ViewReplays";
+            ReplyListInt ans = await GetListInt(newUrl);
+            return ans;
+        }
+
+
+
         public static async Task<ReplyString> GetReplayInfo(int gameID)
         {
             string newUrl = url + "GetReplayInfo?gameID=" + gameID;
