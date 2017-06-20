@@ -7,6 +7,7 @@ namespace Domain.GameLogInfo
     public class EndGameInfo
     {
         public int GameID { get; set; }
+        public bool IsSplitPot { get; set; }
         public string UsernameWinner { get; set; }
         public List<PlayerCardsInfo> PlayersCards { get; set; }
         public CardType[] CommunityCards { get; set; }
@@ -21,14 +22,16 @@ namespace Domain.GameLogInfo
         {
             EndGameInfo endGameInfo = new JavaScriptSerializer().Deserialize<EndGameInfo>(content);
             GameID = endGameInfo.GameID;
+            IsSplitPot = endGameInfo.IsSplitPot;
             UsernameWinner = endGameInfo.UsernameWinner;
             PlayersCards = endGameInfo.PlayersCards;
             CommunityCards = endGameInfo.CommunityCards;
             OnePlayerLeft = endGameInfo.OnePlayerLeft;
         }
-        public EndGameInfo(int gameID, string usernameWinner, List<PlayerCardsInfo> playersCards, CardType[] communityCards, bool onePlayerLeft)
+        public EndGameInfo(int gameID, bool isSplitPot ,string usernameWinner, List<PlayerCardsInfo> playersCards, CardType[] communityCards, bool onePlayerLeft)
         {
             GameID = gameID;
+            IsSplitPot = isSplitPot;
             UsernameWinner = usernameWinner;
             PlayersCards = playersCards;
             CommunityCards = communityCards;

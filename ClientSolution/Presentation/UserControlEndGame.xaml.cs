@@ -25,6 +25,11 @@ namespace Presentation
 
         private void UpdateEndGameWindow(EndGameInfo endGameInfo)
         {
+            if (endGameInfo.IsSplitPot)
+            {
+                LblWinner.Content = "Split Pot";
+                LblWinnerName.Visibility = Visibility.Hidden;
+            }
             string usernameWinner = endGameInfo.UsernameWinner;
             LblWinnerName.Content = usernameWinner;
             if (!endGameInfo.OnePlayerLeft)

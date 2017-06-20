@@ -43,7 +43,7 @@ namespace Domain
                 if(!player.Folded)
                     playersCards.Add(new PlayerCardsInfo(player.Cards[0].getCardId(), player.Cards[1].getCardId(), game.Id, player.PlayerId, player.Username));
             }
-            EndGameInfo endGameInfo = new EndGameInfo(game.Id, game.Winner.Username, playersCards, communityCards,
+            EndGameInfo endGameInfo = new EndGameInfo(game.Id, false /*CHANGE HERE DORON!!!! False=No Split*/,game.Winner.Username, playersCards, communityCards,
                 onePlayerLeft);
             string str = EndGameInfo.ConvertToString(endGameInfo);
             LatestAction = str;
