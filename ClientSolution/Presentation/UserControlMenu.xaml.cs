@@ -137,7 +137,7 @@ namespace Presentation
             ReplyListInt accept;
             try
             {
-                accept = await Client.ViewSpectatableGames();
+                accept = await Client.ViewReplays();
 
 
                 if (!accept.Sucsses)
@@ -161,9 +161,6 @@ namespace Presentation
                 MessageBox.Show(exception.Message, "Warning");
             }
         }
-
-        
-
         }
     }
 

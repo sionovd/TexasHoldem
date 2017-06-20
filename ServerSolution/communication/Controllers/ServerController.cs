@@ -92,7 +92,7 @@ namespace communication.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public ReplyListInt GetAllReplays()
         {
             try
