@@ -93,6 +93,19 @@ namespace communication.Controllers
         }
 
         [HttpPost]
+        public ReplyListInt GetAllReplays()
+        {
+            try
+            {
+                return new ReplyListInt(true, service.ViewReplays(), "");
+            }
+            catch (DomainException e)
+            {
+                return new ReplyListInt(false, null, e.Message);
+            }
+        }
+
+        [HttpPost]
         public Reply Register(string username, string password, string email)
         {
             try
