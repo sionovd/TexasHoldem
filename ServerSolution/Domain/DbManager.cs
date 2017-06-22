@@ -8,7 +8,6 @@ namespace Domain
 {
     public class DbManager
     {
-        private IDatabase db;
         public DbManager()
         {
           //  db = new Database();
@@ -16,27 +15,12 @@ namespace Domain
 
         public List<User> GetRegisteredUsers()
         {
-            SQLiteDataReader reader = db.GetRegisteredUsers();
-            List<User> users = new List<User>();
-            while (reader.Read())
-            {
-                User u = new User(reader["username"].ToString(), reader["password"].ToString(), reader["email"].ToString(), Int32.Parse(reader["money"].ToString()));
-                u.League = new DefaultLeague();
-                users.Add(u);
-            }
-            return users;
+            throw new NotImplementedException();
         }
 
         public User GetUser(string username)
         {
-            SQLiteDataReader reader = db.GetUser(username);
-            User user = null;
-            while (reader.Read())
-            {
-                user = new User(reader["username"].ToString(), reader["password"].ToString(), reader["email"].ToString(), Int32.Parse(reader["money"].ToString()));
-                user.League = new DefaultLeague();
-            }
-            return user;
+            throw new NotImplementedException();
         }
 
         public bool AddUser(User user)
