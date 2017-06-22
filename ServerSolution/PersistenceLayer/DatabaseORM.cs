@@ -214,6 +214,21 @@ namespace PersistenceLayer
             return false;
         }
 
+        public bool DeleteGameLog(int logId)
+        {
+            using (var context = new DatabaseORM())
+            {
+                GamelogsEntity gl = context.GameLogs.Find(logId);
+                if (gl != null)
+                {
+                    context.GameLogs.Remove(gl);
+                    context.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public GamelogsEntity GetGameLog(int logId)
         {
             using (var context = new DatabaseORM())
