@@ -49,6 +49,14 @@ namespace PersistenceLayer
     {
         public DBHelper() { }
 
+        public void DeleteDatabase()
+        {
+            using (var context = new DatabaseORM())
+            {
+                context.Database.Delete();
+            }
+        }
+
         public List<UserEntity> GetRegisteredUsers()
         {
             var users = new List<UserEntity>();

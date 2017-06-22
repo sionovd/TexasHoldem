@@ -58,6 +58,13 @@ namespace UnitTestProject1
             user = db.GetUser("hello");
             Assert.IsTrue(user.LeagueId == 3);
         }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            db.DeleteDatabase();
+        }
+        
         
     }
 }
