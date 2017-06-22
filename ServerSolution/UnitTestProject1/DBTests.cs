@@ -39,6 +39,7 @@ namespace UnitTestProject1
             db.AddUser("newUser", "fsafsa", "Fafs", 221, 3);
             users = db.GetRegisteredUsers();
             Assert.IsTrue(users.Count == 4);
+            Assert.IsTrue(db.DeleteUser("newUser"));
         }
         [TestMethod]
         public void editUser()
@@ -62,7 +63,9 @@ namespace UnitTestProject1
         [TestCleanup]
         public void TearDown()
         {
-            db.DeleteDatabase();
+            db.DeleteUser("admin");
+            db.DeleteUser("hello");
+            db.DeleteUser("world");
         }
         
         

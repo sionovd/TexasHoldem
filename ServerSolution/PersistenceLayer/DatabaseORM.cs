@@ -108,14 +108,30 @@ namespace PersistenceLayer
         {
             using (var context = new DatabaseORM())
             {
+                UserEntity user = null;
+                UserStatisticsEntity userStatistics = null;
                 foreach (UserEntity u in context.Users)
                 {
                     if (u.Username.Equals(username))
                     {
-                        context.Users.Remove(u);
-                        context.SaveChanges();
-                        return true;
+                        user = u;
+                        
                     }
+                }
+                foreach (UserStatisticsEntity us in context.UserStatstics)
+                {
+                    if (us.Username.Equals(username))
+                    {
+                        userStatistics = us;
+                    }
+                }
+                if (user != null && userStatistics != null)
+                {
+                    context.Users.Remove(user);
+                    context.SaveChanges();
+                    context.UserStatstics.Remove(userStatistics);
+                    context.SaveChanges();
+                    return true;
                 }
             }
             return false;
@@ -124,18 +140,20 @@ namespace PersistenceLayer
         {
             using (var context = new DatabaseORM())
             {
-                foreach (UserEntity u in context.Users)
+                UserEntity updatedUser = new UserEntity();
+                
+                var original = context.Users.Find(username);
+
+                if (original != null)
                 {
-                    if (u.Username.Equals(username))
-                    {
-                        context.Users.Remove(u);
-                        u.Password = password;
-                        u.Email = email;
-                        u.Money = money;
-                        context.Users.Add(u);
-                        context.SaveChanges();
-                        return true;
-                    }
+                    updatedUser.Username = username;
+                    updatedUser.Password = password;
+                    updatedUser.Email = email;
+                    updatedUser.Money = money;
+                    updatedUser.LeagueId = original.LeagueId;
+                    context.Entry(original).CurrentValues.SetValues(updatedUser);
+                    context.SaveChanges();
+                    return true;
                 }
             }
             return false;
@@ -144,16 +162,20 @@ namespace PersistenceLayer
         {
             using (var context = new DatabaseORM())
             {
-                foreach (UserEntity u in context.Users)
+                UserEntity updatedUser = new UserEntity();
+
+                var original = context.Users.Find(username);
+
+                if (original != null)
                 {
-                    if (u.Username.Equals(username))
-                    {
-                        context.Users.Remove(u);
-                        u.LeagueId = newLeagueID;
-                        context.Users.Add(u);
-                        context.SaveChanges();
-                        return true;
-                    }
+                    updatedUser.Username = original.Username;
+                    updatedUser.Password = original.Password;
+                    updatedUser.Email = original.Email;
+                    updatedUser.Money = original.Money;
+                    updatedUser.LeagueId = newLeagueID;
+                    context.Entry(original).CurrentValues.SetValues(updatedUser);
+                    context.SaveChanges();
+                    return true;
                 }
             }
             return false;
@@ -167,6 +189,7 @@ namespace PersistenceLayer
                     if (us.Username.Equals(username))
                     {
                         context.UserStatstics.Remove(us);
+                        context.SaveChanges();
                         us.Points = points;
                         us.NumOfGames = numOfGames;
                         us.TotalGrossProfit = totalGrossProfit;
