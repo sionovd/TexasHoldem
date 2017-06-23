@@ -62,11 +62,11 @@ public class Client
     }
 
     
-    public static async Task<Reply> LoginWebClient(string username, string password)
+    public static async Task<Reply> Login(string username, string password)
     {
         if (!username.Equals("") & !password.Equals(""))
         {
-            string newUrl = url + "Login?username=" + username;
+            string newUrl = url + "LoginWebClient?username=" + username;
             newUrl = newUrl + "&password=" + password;
             Reply ans = await PostBool(newUrl);
             if (ans.Sucsses)
@@ -100,9 +100,9 @@ public class Client
     }
     
 
-    public static async Task<Reply> LogoutWebClient(string user)
+    public static async Task<Reply> Logout(string user)
     {
-        string newUrl = url + "Logout?username=" + user;
+        string newUrl = url + "LogoutWebClient?username=" + user;
         Reply ans = await PostBool(newUrl);
         return ans;
     }
