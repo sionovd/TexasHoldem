@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.DomainLayerExceptions;
+using System.Linq;
+using System.Web.Script.Serialization;
 
 namespace Domain.UserModule
 {
@@ -43,6 +45,29 @@ namespace Domain.UserModule
             return usernames;
         }
 
+        public List<string> Get20TopByCategory(string comperator)
+        {
+            List<User> users = new List<User>(registerUsers.Values);
+            List<User> sortedUsers;
+            if (comperator.Equals("Amout of games"))
+                sortedUsers = (users.OrderBy(o => o.Stats.NumOfGames).ToList());
+            else if (comperator.Equals("Higest cash in game"))
+                sortedUsers = (users.OrderBy(o => o.Stats.HighestCashGain).ToList());
+            else if (comperator.Equals("Total gross profit"))
+                sortedUsers = (users.OrderBy(o => o.Stats.TotalGrossProfit).ToList());
+            else
+                sortedUsers = new List<User>();
+            if (sortedUsers.Count() > 20)
+                sortedUsers =(List<User>)sortedUsers.Take(20);
+            List<string> playerLeaderList = new List<string>();
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            foreach (User u in sortedUsers)
+            {
+                playerLeaderList.Add(serializer.Serialize(new PlayerLeader(u.Username, u.Stats.NumOfGames)));
+            }
+            return playerLeaderList;
+        }
+        
         public Statistics GetUserStats(string username)
         {
             User user = GetUserByName(username);

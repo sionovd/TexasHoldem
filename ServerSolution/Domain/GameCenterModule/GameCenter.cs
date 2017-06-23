@@ -181,6 +181,27 @@ namespace Domain.GameCenterModule
             return userController.Login(username, password);
         }
 
+
+        public List<string> Get20TopHighestCashInGame()
+        {
+            return userController.Get20TopByCategory("Higest cash in game");
+        }
+
+        public List<string> Get20TopAmountOfGames()
+        {
+            return userController.Get20TopByCategory("Amout of games");
+        }
+
+        public List<string> Get20TopTotalGrossProfit()
+        {
+            return userController.Get20TopByCategory("Total gross profit");
+        }
+
+
+
+
+
+
         public bool Logout(string username)
         {
             return userController.Logout(username);

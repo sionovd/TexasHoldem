@@ -31,6 +31,50 @@ namespace communication.Controllers
         }
 
         [HttpGet]
+        public ReplyListString Get20TopHighestCashInGame()
+        {
+            try
+            {
+                List<string> leader = service.Get20TopHighestCashInGame();
+                return new ReplyListString(true, leader, "");
+            }
+            catch 
+            {
+                return new ReplyListString(false, new List<string>(), "");
+            }
+        }
+
+        [HttpGet]
+        public ReplyListString Get20TopTotalGrossProfit()
+        {
+            try
+            {
+                List<string> leader = service.Get20TopTotalGrossProfit();
+                return new ReplyListString(true, leader, "");
+            }
+            catch 
+            {
+                return new ReplyListString(false, new List<string>() ,"");
+            }
+        }
+
+        [HttpGet]
+        public ReplyListString Get20TopAmountOfGames()
+        {
+            try
+            {
+                List<string> leader= service.Get20TopAmountOfGames();
+                return new ReplyListString(true, leader, "");
+            }
+            catch 
+            {
+                return new ReplyListString(false, new List<string>(), "");
+            }
+        }
+
+        
+
+        [HttpPost]
         public ReplyString GetUserStats(string username)
         {
             try
@@ -55,9 +99,7 @@ namespace communication.Controllers
                 
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 Statistics a  = serializer.Deserialize<Statistics>(stats); <--- "stats" is a string
-
                 
-
                  */
             }
             catch (DomainException e)

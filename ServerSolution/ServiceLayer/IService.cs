@@ -37,6 +37,8 @@ namespace ServiceLayer
 
         int SpectateGame(string username, int gameID);
 
-
+        List<string> Get20TopHighestCashInGame();
+        List<string> Get20TopAmountOfGames();
+        List<string> Get20TopTotalGrossProfit();
     }
 }
