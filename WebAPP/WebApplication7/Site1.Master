@@ -1,0 +1,75 @@
+﻿<%@ Master Language="C#"  AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication7.Site1" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 47px;
+        }
+        .auto-style2 {
+            width: 556px;
+        }
+    </style>
+</head>
+<body style="background-image: url(Images/bg.png); background-size:  cover" >
+    <form id="form1" runat="server">
+    <table style="width:1100px; margin:auto">
+        <tr style="width:1100px; height:50px;">
+            <td class="auto-style1">
+                <img src="Images/gray_chip.png" height="50" />
+            </td>
+            <td class="auto-style5">
+                <div style="font: status-bar; color:white">TexasHoldem Poker</div>
+            </td>
+            <td style="text-align:right" class="auto-style2">
+                
+            </td>
+        </tr>
+        <tr style="width:1100px; height:40px; background-color:#2d7e44">
+            <td style="width:580px;" colspan="3">
+                <asp:Menu ID="Menu1" Width="580" runat="server" Orientation="Horizontal" style="text-emphasis-color:white;" Font-Bold="True" Font-Names="Felix Titling">
+                    <DynamicHoverStyle Font-Bold="False" />
+                    <DynamicSelectedStyle BackColor="White" />
+                    <Items>
+                        <asp:MenuItem Text="HOME" Value="HOME" NavigateUrl="~/HomePage.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="STATISTICS" Value="STATISTICS" NavigateUrl="~/StatisticsPage.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="LEADERTABLE" Value="LEADERTABLE" NavigateUrl="~/LeaderBoardsPage.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="ABOUT US" Value="ABOUT US"></asp:MenuItem>
+                    </Items>
+                    <StaticHoverStyle BackColor="White" ForeColor="#2D7E44" />
+                    <StaticMenuItemStyle ForeColor="Black" HorizontalPadding="30px" />
+                    <StaticSelectedStyle Font-Bold="True" />
+                </asp:Menu>
+            </td>
+           
+            <td style="width:720px;">
+                <asp:Label ID="Label1" runat="server" Text="Hello "></asp:Label>
+                <asp:Label ID="usernameWelcome" runat="server" Text="Guest"></asp:Label>
+                <asp:LinkButton ID="Log_Out" runat="server" OnClick="Log_Out_Click" Visible="False">   Log out</asp:LinkButton>
+            </td>
+           
+        </tr>
+        
+        <tr style="width:1100px;">
+            <td colspan="2">
+                  <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                  </asp:ContentPlaceHolder>
+            </td>
+            <td class="auto-style2"></td>
+            <td style="width:250px"></td>
+        </tr>
+        <tr style="width:1100px; height:20px">
+            <td class="auto-style1"></td>
+        </tr>
+    </table>
+      
+    
+    </form>
+</body>
+
+</html>
