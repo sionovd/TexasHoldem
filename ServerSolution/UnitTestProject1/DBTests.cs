@@ -35,7 +35,11 @@ namespace UnitTestProject1
         public void getAllUsers()
         {
             List<UserEntity> users = db.GetRegisteredUsers();
+            List<UserStatisticsEntity> userStatistics = db.GetAllUserStatistics();
             Assert.IsTrue(users.Count == 3);
+            Assert.IsTrue(db.UpdateUserStats(users[0].Username, 20, 1, 0, 0, 0, 0));
+            Assert.IsTrue(userStatistics.Count == 3);
+            Assert.IsTrue(db.GetUserStats(users[0].Username).Points == 20);
         }
         [TestMethod]
         public void addUser()
@@ -107,6 +111,7 @@ namespace UnitTestProject1
         [TestCleanup]
         public void TearDown()
         {
+            return;
             db.DeleteUser("admin");
             db.DeleteUser("hello");
             db.DeleteUser("world");

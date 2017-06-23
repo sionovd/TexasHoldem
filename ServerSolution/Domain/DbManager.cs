@@ -13,10 +13,25 @@ namespace Domain
             db = new DBHelper();
         }
 
-        public List<User> GetRegisteredUsers()
+        public Dictionary<string, User> GetRegisteredUsers()
         {
-            List<UserEntity> registeredUsers = db.GetRegisteredUsers();
-            return null;
+            List<UserEntity> userEntitiesList = db.GetRegisteredUsers();
+            List<UserStatisticsEntity> userStatEntitiesList = db.GetAllUserStatistics();
+            Dictionary<string, User> registeredUsers = new Dictionary<string, User>();
+            for (int i = 0; i < userEntitiesList.Count; i++)
+            {
+                UserEntity ue = userEntitiesList[i];
+                UserStatisticsEntity use = userStatEntitiesList[i];
+                User user = new User(ue.Username, ue.Password, ue.Email, ue.Money);
+                user.Stats.Points = use.Points;
+                user.Stats.AvgCashGain = use.AvgCashGain;
+                user.Stats.AvgGrossProfit = use.AvgGrossProfit;
+                user.Stats.HighestCashGain = use.HighestCashGain;
+                user.Stats.NumOfGames = use.NumOfGames;
+                user.Stats.TotalGrossProfit = use.TotalGrossProfit;
+                registeredUsers.Add(user.Username, user);
+            }
+            return registeredUsers;
         }
 
         public User GetUser(string username)
@@ -26,7 +41,8 @@ namespace Domain
 
         public bool AddUser(User user)
         {
-            throw new NotImplementedException();
+            //db.AddUser(user.Username, user.Get)
+            return true;
         }
 
         public bool DeleteUser(User user)

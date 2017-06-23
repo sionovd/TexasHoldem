@@ -7,10 +7,11 @@ namespace Domain
     {
         static void Main()
         {
-            Console.WriteLine("hi");
-            Console.ReadKey();
-            ErrorLogger.LogError(new DomainException());
-
+            /*Console.WriteLine("hi");
+            Console.ReadLine();
+            DbManager a = new DbManager();
+            a.GetRegisteredUsers();
+            Console.ReadLine();*/
         }
     }
 }

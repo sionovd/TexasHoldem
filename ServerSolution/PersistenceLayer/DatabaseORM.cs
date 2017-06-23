@@ -70,6 +70,20 @@ namespace PersistenceLayer
             }
             return users;
         }
+
+        public List<UserStatisticsEntity> GetAllUserStatistics()
+        {
+            var userStats = new List<UserStatisticsEntity>();
+            using (var context = new DatabaseORM())
+            {
+                foreach (UserStatisticsEntity us in context.UserStatstics)
+                {
+                    userStats.Add(us);
+                }
+            }
+            return userStats;
+        }
+
         public UserEntity GetUser(string username)
         {
             UserEntity user = new UserEntity();
@@ -86,6 +100,16 @@ namespace PersistenceLayer
             }
             return null;
         }
+
+        public UserStatisticsEntity GetUserStats(string username)
+        {
+            using (var context = new DatabaseORM())
+            {
+                UserStatisticsEntity userstats = context.UserStatstics.Find(username);
+                return userstats;
+            }
+        }
+
         public bool AddUser(string username, string password, string email, int money, int leagueID)
         {
             using (var context = new DatabaseORM())
@@ -186,21 +210,22 @@ namespace PersistenceLayer
         {
             using (var context = new DatabaseORM())
             {
-                foreach (UserStatisticsEntity us in context.UserStatstics)
+                UserStatisticsEntity updatedUserStats = new UserStatisticsEntity();
+
+                var original = context.UserStatstics.Find(username);
+
+                if (original != null)
                 {
-                    if (us.Username.Equals(username))
-                    {
-                        context.UserStatstics.Remove(us);
-                        context.SaveChanges();
-                        us.Points = points;
-                        us.NumOfGames = numOfGames;
-                        us.TotalGrossProfit = totalGrossProfit;
-                        us.HighestCashGain = highestCashGain;
-                        us.AvgGrossProfit = avgGrossProfit;
-                        us.AvgCashGain = avgCashGain;
-                        context.UserStatstics.Add(us);
-                        context.SaveChanges();
-                    }
+                    updatedUserStats.Username = username;
+                    updatedUserStats.Points = points;
+                    updatedUserStats.NumOfGames = numOfGames;
+                    updatedUserStats.TotalGrossProfit = totalGrossProfit;
+                    updatedUserStats.HighestCashGain = highestCashGain;
+                    updatedUserStats.AvgGrossProfit = avgGrossProfit;
+                    updatedUserStats.AvgCashGain = avgCashGain;
+                    context.Entry(original).CurrentValues.SetValues(updatedUserStats);
+                    context.SaveChanges();
+                    return true;
                 }
             }
             return false;

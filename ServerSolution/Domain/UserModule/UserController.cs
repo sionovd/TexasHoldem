@@ -12,12 +12,14 @@ namespace Domain.UserModule
         private static bool init = true;
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;
+        private DbManager db;
         private Object lockThis = new Object();
 
         private UserController()
         {
             loginUsers = new Dictionary<string, User>();
-            registerUsers = new Dictionary<string, User>();
+            db = new DbManager();
+            registerUsers = db.GetRegisteredUsers();
         }
 
         public static UserController GetInstance
@@ -89,6 +91,7 @@ namespace Domain.UserModule
                 User user = new User(username, password, email);
                 if (registerUsers.ContainsKey(username))
                     throw new AlreadyHasNameException(user.Username);
+                db.AddUser(user);
                 registerUsers.Add(username, user);
                 return user;
             }
@@ -100,7 +103,11 @@ namespace Domain.UserModule
             {
                 if (!registerUsers.ContainsKey(username))
                     throw new NoUserNameException(username);
-                registerUsers[username] =  new User(username, password, email);
+                User originalUser = registerUsers[username];
+                User newUser = new User(username, password, email, originalUser.MoneyBalance);
+                newUser.Stats = originalUser.Stats;
+                registerUsers[username] = newUser;
+                db.EditUser(newUser);
                 return true;
             }
         }
@@ -132,9 +139,11 @@ namespace Domain.UserModule
 
         public void DeleteUser(string username)
         {
-           // Logout(username);
+            if (loginUsers.ContainsKey(username))
+                loginUsers.Remove(username);
+            User user = registerUsers[username]; 
             registerUsers.Remove(username);
-            //database call
+            db.DeleteUser(user);
         }
     }
 }
