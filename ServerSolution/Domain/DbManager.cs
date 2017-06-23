@@ -16,7 +16,7 @@ namespace Domain
         public List<User> GetRegisteredUsers()
         {
             List<UserEntity> registeredUsers = db.GetRegisteredUsers();
-
+            return null;
         }
 
         public User GetUser(string username)
