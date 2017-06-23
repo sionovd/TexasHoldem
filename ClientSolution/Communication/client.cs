@@ -10,12 +10,15 @@ using Communication.Replies;
 using Microsoft.AspNet.SignalR.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace Communication
 {
     public class Client
     {
-        private static string url = "http://texasholdem1.azurewebsites.net/api/server/";
+        private static string url = "https://texasholdem1.azurewebsites.net/api/server/"; //"https://localhost:44300/api/server/";
         private static Dictionary<string, HubConnection> connections = new Dictionary<string, HubConnection>();
 
         static void Main() { }
@@ -432,6 +435,8 @@ namespace Communication
             }
         }
 
+
+
         private static async Task<Reply> PostBool(string url)
         {
 
@@ -440,10 +445,13 @@ namespace Communication
                 // new KeyValuePair<string,string>("x","1"),
                 //  new KeyValuePair<string,string>("y","2")
             };
-            HttpContent q = new FormUrlEncodedContent(quieries);
 
+
+            HttpContent q = new FormUrlEncodedContent(quieries);
+            
             using (HttpClient client = new HttpClient())
             {
+            
                 using (HttpResponseMessage res = await client.PostAsync(url, q))
                 {
                     using (HttpContent content = res.Content)
