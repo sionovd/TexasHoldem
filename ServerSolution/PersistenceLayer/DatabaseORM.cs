@@ -41,6 +41,7 @@ namespace PersistenceLayer
     {
         [Key]
         public int LogId { get; set; }
+        public int GameID { get; set; }
         public string GameLogSerial { get; set; }
     }
 
@@ -90,6 +91,7 @@ namespace PersistenceLayer
             using (var context = new DatabaseORM())
             {
                 context.Users.Add(new UserEntity() { Username = username, Password = password, Email = email, Money = money, LeagueId = leagueID });
+                
                 context.UserStatstics.Add(new UserStatisticsEntity()
                 {
                     Username = username,
@@ -205,22 +207,40 @@ namespace PersistenceLayer
         }
 
 
-        public bool AddGameLog(int logId, string serial)
+        public bool AddGameLog(int gameID, string serial)
         {
             using (var context = new DatabaseORM())
             {
-                context.GameLogs.Add(new GamelogsEntity() { LogId = logId, GameLogSerial = serial });
+                context.GameLogs.Add(new GamelogsEntity() { GameID = gameID, GameLogSerial = serial });
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool DeleteGameLog(int gameID)
+        {
+            using (var context = new DatabaseORM())
+            {
+                GamelogsEntity gl = context.GameLogs.Single(gamelog => gamelog.GameID == gameID);
+                if (gl != null)
+                {
+                    context.GameLogs.Remove(gl);
+                    context.SaveChanges();
+                    return true;
+                }
+                Console.WriteLine("it was null????");
             }
             return false;
         }
 
-        public GamelogsEntity GetGameLog(int logId)
+        public GamelogsEntity GetGameLog(int gameID)
         {
             using (var context = new DatabaseORM())
             {
                 foreach (GamelogsEntity gl in context.GameLogs)
                 {
-                    if (gl.LogId == logId)
+                    Console.WriteLine(gl.GameID);
+                    if (gl.GameID == gameID)
                     {
                         return gl;
                     }

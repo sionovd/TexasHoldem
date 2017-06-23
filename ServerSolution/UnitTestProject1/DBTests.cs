@@ -19,6 +19,12 @@ namespace UnitTestProject1
             db.AddUser("world", "333", "afs2314af@afsasaf.com", 2222, 2);
         }
 
+     /*   [TestMethod]
+        public void deleteDB()
+        {
+            db.DeleteDatabase();
+        }*/
+
         [TestMethod]
         public void getHelloUser()
         {
@@ -60,14 +66,53 @@ namespace UnitTestProject1
             Assert.IsTrue(user.LeagueId == 3);
         }
 
+
+        [TestMethod]
+        public void addGameLog()
+        {
+            Assert.IsTrue(db.AddGameLog(1, "abcd"));
+            Assert.IsTrue(db.AddGameLog(2, "Wubba Lubba Dub Dub!"));
+            List<GamelogsEntity> gameLogs = db.GetListOfGameLogs();
+            Console.WriteLine(gameLogs.Count);
+            Assert.IsTrue(gameLogs.Count == 2);
+            db.AddGameLog(3, "Fsafsa");
+            gameLogs = db.GetListOfGameLogs();
+            Assert.IsTrue(gameLogs.Count == 3);
+            Assert.IsTrue(db.DeleteGameLog(3));
+
+            Assert.IsTrue(db.DeleteGameLog(1));
+            Assert.IsTrue(db.DeleteGameLog(2));
+        }
+
+        [TestMethod]
+        public void getGameLog()
+        {
+            Assert.IsTrue(db.AddGameLog(1, "abcd"));
+            GamelogsEntity gl = db.GetGameLog(1);
+            Assert.IsTrue(gl.GameLogSerial.Equals("abcd"));
+            Assert.IsTrue(db.DeleteGameLog(1));
+        }
+        [TestMethod]
+        public void getAllGameLogs()
+        {
+            Assert.IsTrue(db.AddGameLog(1, "abcd"));
+            Assert.IsTrue(db.AddGameLog(2, "Wubba Lubba Dub Dub!"));
+            List<GamelogsEntity> gameLogs = db.GetListOfGameLogs();
+            Assert.IsTrue(gameLogs.Count == 2);
+            
+            Assert.IsTrue(db.DeleteGameLog(1));
+            Assert.IsTrue(db.DeleteGameLog(2));
+        }
+
         [TestCleanup]
         public void TearDown()
         {
             db.DeleteUser("admin");
             db.DeleteUser("hello");
             db.DeleteUser("world");
+
         }
-        
-        
+
+
     }
 }

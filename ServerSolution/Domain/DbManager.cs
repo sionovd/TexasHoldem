@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using Domain.UserModule;
 using PersistenceLayer;
 
@@ -8,14 +7,16 @@ namespace Domain
 {
     public class DbManager
     {
+        private DBHelper db;
         public DbManager()
         {
-          //  db = new Database();
+            db = new DBHelper();
         }
 
         public List<User> GetRegisteredUsers()
         {
-            throw new NotImplementedException();
+            List<UserEntity> registeredUsers = db.GetRegisteredUsers();
+
         }
 
         public User GetUser(string username)
