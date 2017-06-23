@@ -59,7 +59,6 @@ namespace Domain.GameModule
 
     public class Game : IGame
     {
-        private static int _counter;
         private List<Spectator> spectators;
         
         public int Id { get; set; }
@@ -76,10 +75,9 @@ namespace Domain.GameModule
         public Subject Subject { get; set; }
         public Player Winner { get; set; }
         public Player PreviousPlayer { get; set; }
-        public Game(GamePreferences pref)
+        public Game(int id, GamePreferences pref)
         {
-            _counter++;
-            Id = _counter;
+            Id = id;
             Logger = new GameLog(this);
             Pref = pref;
             Seats = new List<Player>();

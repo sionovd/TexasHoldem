@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Domain.DomainLayerExceptions;
+using Domain.UserModule;
 
 namespace Domain
 {
@@ -10,7 +12,8 @@ namespace Domain
             /*Console.WriteLine("hi");
             Console.ReadLine();
             DbManager a = new DbManager();
-            a.GetRegisteredUsers();
+            Dictionary<string, User> users = a.GetRegisteredUsers();
+            Console.WriteLine(users["admin"].MoneyBalance);
             Console.ReadLine();*/
         }
     }

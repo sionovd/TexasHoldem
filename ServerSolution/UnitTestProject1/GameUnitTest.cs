@@ -15,14 +15,14 @@ namespace UnitTestProject1
         public void BeforeTest()
         {
             pref = new GamePreferences(0,0,100,30,4,2,true);
-            game = new Game(pref);
+            game = new Game(1, pref);
         }
 
         [TestMethod]
         public void GameIdTest()
         {
             Assert.IsTrue(game.Id == 1);
-            Assert.IsTrue(new Game(pref).Id == 2);
+            Assert.IsTrue(new Game(2, pref).Id == 2);
         }
 
         [TestMethod]

@@ -106,6 +106,7 @@
     <Compile Include="UserDetails.cs" />
     <Compile Include="UserModule\User.cs" />
     <Compile Include="UserModule\UserController.cs" />
+    <Compile Include="UserModule\UserHash.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

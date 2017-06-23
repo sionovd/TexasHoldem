@@ -7,10 +7,21 @@ namespace Domain
 {
     public class DbManager
     {
+        private static DbManager dbManager;
         private DBHelper db;
-        public DbManager()
+        private DbManager()
         {
             db = new DBHelper();
+        }
+
+        public static DbManager GetInstance
+        {
+            get
+            {
+                if (dbManager == null)
+                    dbManager = new DbManager();
+                return dbManager;
+            }
         }
 
         public Dictionary<string, User> GetRegisteredUsers()
@@ -41,43 +52,53 @@ namespace Domain
 
         public bool AddUser(User user)
         {
-            //db.AddUser(user.Username, user.Get)
-            return true;
+            return db.AddUser(user.Username, user.Password, user.Email, user.MoneyBalance, user.League.Id);
         }
 
         public bool DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            return db.DeleteUser(user.Username);
         }
 
         public bool EditUser(User user)
         {
-            return true;
+            return db.EditUser(user.Username, user.Password, user.Email, user.MoneyBalance);
         }
 
         public bool UpdateUserLeague(User user, League league)
         {
-            throw new NotImplementedException();
+            return db.UpdateUserLeague(user.Username, league.Id);
         }
 
         public bool UpdateUserStats(User user)
         {
-            return true;
+            return db.UpdateUserStats(user.Username, user.Stats.Points, user.Stats.NumOfGames,
+                user.Stats.TotalGrossProfit, user.Stats.HighestCashGain, user.Stats.AvgGrossProfit,
+                user.Stats.AvgCashGain);
         }
 
-        public bool AddGameLog()
+        public bool AddGameLog(GameLog log)
         {
-            throw new NotImplementedException();
+
+            return db.AddGameLog(log.GameID, GameLog.ConvertToString(log));
         }
 
-        public GameLog GetGameLog()
+        public GameLog GetGameLog(int gameID)
         {
-            throw new NotImplementedException();
+            GamelogsEntity logEntity = db.GetGameLog(gameID);
+            GameLog gameLog = new GameLog(logEntity.GameLogSerial);
+            return gameLog;
         }
 
-        public List<GameLog> GetListOfGameLogs()
+        public Dictionary<int, GameLog> GetListOfGameLogs()
         {
-            throw new NotImplementedException();
+            List<GamelogsEntity> gameLogEntities = db.GetListOfGameLogs();
+            Dictionary<int, GameLog> gameLogs = new Dictionary<int, GameLog>();
+            foreach (GamelogsEntity gamelogsEntity in gameLogEntities)
+            {
+                gameLogs.Add(gamelogsEntity.GameID, new GameLog(gamelogsEntity.GameLogSerial));
+            }
+            return gameLogs;
         }
     }
 }

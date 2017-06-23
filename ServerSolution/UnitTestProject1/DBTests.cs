@@ -111,7 +111,6 @@ namespace UnitTestProject1
         [TestCleanup]
         public void TearDown()
         {
-            return;
             db.DeleteUser("admin");
             db.DeleteUser("hello");
             db.DeleteUser("world");

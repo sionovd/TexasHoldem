@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Script.Serialization;
 using Domain.GameLogInfo;
 using Domain.GameModule;
 
@@ -6,12 +7,15 @@ namespace Domain
 {
     public class GameLog
     {
-        private List<string> logOfCards;
+        public List<string> logOfCards { get; set; }
         private Game game;
-        public List<string> LogOfGameStates { get; }
-        public int GameID { get; }
-        public string LatestAction { get; private set; }
-        public bool IsSplitPot { get; private set; }
+        public List<string> LogOfGameStates { get; set; }
+        public int GameID { get; set; }
+        public string LatestAction { get; set; }
+        public bool IsSplitPot { get; set; }
+
+        public GameLog() { }
+
         public GameLog(Game game)
         {
             //this = database.getGameLog(gameLogID);
@@ -19,6 +23,21 @@ namespace Domain
             logOfCards = new List<string>();
             LogOfGameStates = new List<string>();
             GameID = game.Id;
+        }
+
+        public GameLog(string serializedLog)
+        {
+            GameLog log = new JavaScriptSerializer().Deserialize<GameLog>(serializedLog);
+            logOfCards = log.logOfCards;
+            GameID = log.GameID;
+            IsSplitPot = log.IsSplitPot;
+            LatestAction = log.LatestAction;
+            LogOfGameStates = log.LogOfGameStates;
+        }
+
+        public static string ConvertToString(GameLog log)
+        {
+            return new JavaScriptSerializer().Serialize(log);
         }
 
         public void LogPlayerCards(Player player, Card[] cards)

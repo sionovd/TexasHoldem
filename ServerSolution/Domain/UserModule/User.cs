@@ -29,7 +29,7 @@ namespace Domain.UserModule
             Username = username;
             if (password.Equals(""))
                 throw new NotAPasswordException("");
-            this.password = password;
+            Password = password;
             Email = email;
             MoneyBalance = money;
             Stats = new Statistics();
@@ -43,7 +43,7 @@ namespace Domain.UserModule
                 throw new DomainException("Invalid username - can't be empty");
             if (password.Equals(""))
                 throw new NotAPasswordException("");
-            this.password = password;
+            Password = password;
             Email = email;
             Stats = new Statistics();
             League = new DefaultLeague();
@@ -56,7 +56,7 @@ namespace Domain.UserModule
 
         public string Username { get; set; }
 
-        private string password;
+        public string Password { get; }
 
         public string Email { get; set; }
 
@@ -64,7 +64,7 @@ namespace Domain.UserModule
 
         public bool CheckPassword(string password)
         {
-            return this.password.Equals(password);
+            return Password.Equals(password);
         }
     }
 }

@@ -15,12 +15,17 @@ namespace Domain.GameCenterModule
         private Dictionary<int, GameLog> gameLogCollection;
         private UserController userController;
         private DbManager dbManager;
+        private int currentID;
         private GameCenter()
         {
             userController = UserController.GetInstance;
+            dbManager = DbManager.GetInstance;
             games = new Dictionary<int, IGame>();
-            gameLogCollection = new Dictionary<int, GameLog>(); // gameLogCollection = DbManager.GetReplays();
-            dbManager = new DbManager();
+            gameLogCollection = dbManager.GetListOfGameLogs();
+            if (gameLogCollection.Count > 0)
+                currentID = gameLogCollection[gameLogCollection.Count - 1].GameID + 1;
+            else
+                currentID = 0;
         }
 
         public static GameCenter GetInstance
@@ -96,7 +101,7 @@ namespace Domain.GameCenterModule
         {
             User user = userController.GetUserByName(username);
             GamePreferences pref = new GamePreferences();
-            IGame game = new Game(pref);
+            IGame game = new Game(currentID++, pref);
 
             foreach (var pair in preferenceList)
             {
@@ -268,6 +273,7 @@ namespace Domain.GameCenterModule
                 dbManager.EditUser(user);
             }
             gameLogCollection.Add(gameID, game.Logger);
+            dbManager.AddGameLog(game.Logger);
             games.Remove(gameID);
             return true;
         }
