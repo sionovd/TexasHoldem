@@ -74,7 +74,7 @@ namespace communication.Controllers
 
         
 
-        [HttpPost]
+        [HttpGet]
         public ReplyString GetUserStats(string username)
         {
             try
