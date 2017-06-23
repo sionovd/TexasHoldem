@@ -50,6 +50,11 @@ namespace Domain.UserModule
             MoneyBalance = 10000;
         }
 
+        public string GetPassword()
+        {
+            return password;
+        }
+
         public Statistics Stats { get; set; }
 
         public League League { get; set; }
