@@ -12,7 +12,7 @@ namespace AcceptanceTests
             Assert.IsTrue(Register("Doron123", "009password", "user@gmail.com"));
             Assert.IsTrue(Register("Yossi", "password", "yossi@post.bgu.ac.il"));
             Assert.IsTrue(Register("michaEl", "PaSsWord", "MichaEL987@gmail.com"));
-            Assert.IsTrue(DeleteAccount("Doron_123"));
+            Assert.IsTrue(DeleteAccount("Doron123"));
             Assert.IsTrue(DeleteAccount("Yossi"));
             Assert.IsTrue(DeleteAccount("michaEl"));
         }

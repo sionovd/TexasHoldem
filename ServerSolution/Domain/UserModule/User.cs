@@ -24,6 +24,7 @@ namespace Domain.UserModule
 
     public class User
     {
+
         public User(string username, string password, string email, int money)
         {
             Username = username;
@@ -34,6 +35,7 @@ namespace Domain.UserModule
             MoneyBalance = money;
             Stats = new Statistics();
             League = new DefaultLeague();
+
         }
 
         public User (string username, string password, string email)

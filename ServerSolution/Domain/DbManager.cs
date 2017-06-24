@@ -100,5 +100,10 @@ namespace Domain
             }
             return gameLogs;
         }
+
+        public void DeleteData()
+        {
+            db.DeleteAllData();
+        }
     }
 }

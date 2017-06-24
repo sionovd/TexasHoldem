@@ -31,6 +31,16 @@ namespace AcceptanceTests
             return true;
         }
 
+        public bool LoginWebClient(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool LogoutWebClient(string username)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteAccount(string username)
         {
             throw new NotImplementedException();

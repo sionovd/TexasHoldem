@@ -7,11 +7,11 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
-           [TestMethod]
+        [TestMethod]
         public void deleteDB()
         {
             DBHelper db = new DBHelper();
-            db.DeleteDatabase();
+            db.DeleteAllData();
         }
     }
 }

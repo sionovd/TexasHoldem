@@ -23,9 +23,9 @@ namespace Domain.GameCenterModule
             games = new Dictionary<int, IGame>();
             gameLogCollection = dbManager.GetListOfGameLogs();
             if (gameLogCollection.Count > 0)
-                currentID = gameLogCollection[gameLogCollection.Count - 1].GameID + 1;
+                currentID = gameLogCollection[gameLogCollection.Count].GameID + 1;
             else
-                currentID = 0;
+                currentID = 1;
         }
 
         public static GameCenter GetInstance
@@ -181,12 +181,6 @@ namespace Domain.GameCenterModule
             return userController.EditProfile(username, password, email);
         }
 
-        public bool Login(string username, string password)
-        {
-            return userController.Login(username, password);
-        }
-
-
         public List<string> Get20TopHighestCashInGame()
         {
             return userController.Get20TopByCategory("Higest cash in game");
@@ -202,14 +196,24 @@ namespace Domain.GameCenterModule
             return userController.Get20TopByCategory("Total gross profit");
         }
 
-
-
-
-
+        public bool Login(string username, string password)
+        {
+            return userController.Login(username, password);
+        }
 
         public bool Logout(string username)
         {
             return userController.Logout(username);
+        }
+
+        public bool LogoutWebClient(string username)
+        {
+            return userController.LogoutWebClient(username);
+        }
+
+        public bool LoginWebClient(string username, string password)
+        {
+            return userController.LoginWebClient(username, password);
         }
 
         public int JoinGame(string username, int gameID)
@@ -269,6 +273,10 @@ namespace Domain.GameCenterModule
                     user.MoneyBalance += player.ChipBalance;
                 else
                     user.MoneyBalance = player.ChipBalance;
+                Console.WriteLine(user.Username + "avg cash gain : " + user.Stats.AvgCashGain);
+                Console.WriteLine(user.Username + "avg gross profit : " + user.Stats.AvgGrossProfit);
+                Console.WriteLine(user.Username + "highest cash gain : " + user.Stats.HighestCashGain);
+                Console.WriteLine(user.Username + "total gross profit : " + user.Stats.TotalGrossProfit);
                 dbManager.UpdateUserStats(user);
                 dbManager.EditUser(user);
             }

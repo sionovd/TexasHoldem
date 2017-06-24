@@ -8,6 +8,9 @@ namespace ServiceLayer
         bool EditProfile(string username, string password, string email);
         bool Login(string username, string password);
         bool Logout(string username);
+        bool LoginWebClient(string username, string password);
+        bool LogoutWebClient(string username);
+
         void DeleteAccount(string username);
         string GetUserDetails(string username);
         List<string> GetAllUsernames();

@@ -14,6 +14,7 @@ namespace UnitTestProject1
         public void BeforeTest()
         {
             db = new DBHelper();
+            db.DeleteAllData();
             db.AddUser("admin", "1234", "afsaf@afsasaf.com", 100, 2);
             db.AddUser("hello", "111", "afsafsaf@afsasaf.com", 23, 2);
             db.AddUser("world", "333", "afs2314af@afsasaf.com", 2222, 2);

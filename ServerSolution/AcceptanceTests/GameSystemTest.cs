@@ -168,7 +168,6 @@ namespace AcceptanceTests
             }
             catch (DomainException e)
             {
-                ErrorLogger.LogError(e);
                 return false;
             }
 
@@ -182,7 +181,6 @@ namespace AcceptanceTests
             }
             catch (DomainException e)
             {
-                ErrorLogger.LogError(e);
                 return false;
             }
 
@@ -196,7 +194,6 @@ namespace AcceptanceTests
             }
             catch (DomainException e)
             {
-                ErrorLogger.LogError(e);
                 return false;
             }
            
@@ -210,7 +207,6 @@ namespace AcceptanceTests
             }
             catch (DomainException e)
             {
-                ErrorLogger.LogError(e);
                 return false;
             }
 

@@ -9,15 +9,16 @@ namespace Domain.UserModule
     public class UserController
     {
         private static UserController userController;
-        private static bool init = true;
         private Dictionary<string, User> registerUsers;
         private Dictionary<string, User> loginUsers;
+        private Dictionary<string, User> loginWebUsers;
         private DbManager dbManager;
         private Object lockThis = new Object();
 
         private UserController()
         {
             loginUsers = new Dictionary<string, User>();
+            loginWebUsers = new Dictionary<string, User>();
             dbManager = DbManager.GetInstance;
             registerUsers = dbManager.GetRegisteredUsers();
         }
@@ -32,10 +33,6 @@ namespace Domain.UserModule
             }
         }
 
-        public void Initialized()
-        {
-            init = false;            
-        }
         public User GetUserByName(string name)
         {
             return registerUsers[name];
@@ -79,8 +76,6 @@ namespace Domain.UserModule
         {
             lock (lockThis)
             {
-                if (init)
-                    Initialized();
                 if(username.Length == 0)
                     throw new DomainException("invalid details - username was empty");
                 if(username.Length > 16)
@@ -136,11 +131,36 @@ namespace Domain.UserModule
             }
         }
 
+        public bool LoginWebClient(string username, string password)
+        {
+            lock (lockThis)
+            {
+                if (!registerUsers.ContainsKey(username))
+                    throw new NoUserNameException(username);
+                if (!registerUsers[username].CheckPassword(password))
+                    throw new NotAPasswordException(password);
+                loginWebUsers[username] = registerUsers[username];
+                return true;
+            }
+        }
+
+        public bool LogoutWebClient(string username)
+        {
+            lock (lockThis)
+            {
+                if (!registerUsers.ContainsKey(username) || !loginWebUsers.ContainsKey(username))
+                    throw new NoUserNameException(username);
+                loginWebUsers.Remove(username);
+                return true;
+            }
+        }
 
         public void DeleteUser(string username)
         {
             if (loginUsers.ContainsKey(username))
                 loginUsers.Remove(username);
+            if (loginWebUsers.ContainsKey(username))
+                loginWebUsers.Remove(username);
             User user = registerUsers[username]; 
             registerUsers.Remove(username);
             dbManager.DeleteUser(user);

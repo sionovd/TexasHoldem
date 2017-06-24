@@ -14,14 +14,5 @@ using System.Threading.Tasks;
         public int AvgGrossProfit { get; set; }
         public int AvgCashGain { get; set; }
 
-        public Statistics()
-        {
-            Points = 0;
-            NumOfGames = 0;
-            TotalGrossProfit = 0;
-            HighestCashGain = 0;
-            AvgGrossProfit = 0;
-            AvgCashGain = 0;
-        }
     }
 

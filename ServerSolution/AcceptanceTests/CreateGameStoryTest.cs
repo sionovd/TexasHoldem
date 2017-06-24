@@ -67,7 +67,8 @@ namespace AcceptanceTests
             };
             game = CreateGame(username, preferenceList1);
             Assert.IsTrue(game > 0);
-            
+            Assert.IsTrue(DeleteAccount("doron"));
+
         }
 
         [TestMethod]
@@ -162,6 +163,7 @@ namespace AcceptanceTests
             };
             game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
+            Assert.IsTrue(DeleteAccount("doronBad"));
         }
 
         [TestMethod]
@@ -193,16 +195,6 @@ namespace AcceptanceTests
             };
             game = CreateGame(username, preferenceList);
             Assert.IsTrue(game < 0);
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            Assert.IsTrue(DeleteAccount("doron"));
-            Assert.IsTrue(DeleteAccount("shavit"));
-            Assert.IsTrue(DeleteAccount("tamir"));
-            Assert.IsTrue(DeleteAccount("leon"));
-            Assert.IsTrue(DeleteAccount("avner"));
             Assert.IsTrue(DeleteAccount("yossi"));
         }
     }

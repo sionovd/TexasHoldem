@@ -36,6 +36,16 @@ namespace ServiceLayer
             return gameCenter.Logout(username);
         }
 
+        public bool LogoutWebClient(string username)
+        {
+            return gameCenter.LogoutWebClient(username);
+        }
+
+        public bool LoginWebClient(string username, string password)
+        {
+            return gameCenter.LoginWebClient(username, password);
+        }
+
         public void DeleteAccount(string username)
         {
             gameCenter.DeleteAccount(username);

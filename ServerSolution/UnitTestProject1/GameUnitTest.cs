@@ -1,4 +1,5 @@
-﻿using Domain.DomainLayerExceptions;
+﻿using Domain;
+using Domain.DomainLayerExceptions;
 using Domain.GameModule;
 using Domain.UserModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -145,6 +146,12 @@ namespace UnitTestProject1
             game.AddPlayer(user, player);
             game.RemovePlayer(player);
             Assert.IsFalse(game.IsPlayerExist(player.Username));
+        }
+
+        [TestCleanup]
+        public void TearDown()
+        {
+            DbManager.GetInstance.DeleteData();
         }
 
     }

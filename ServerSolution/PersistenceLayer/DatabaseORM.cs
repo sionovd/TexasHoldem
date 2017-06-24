@@ -11,7 +11,7 @@ namespace PersistenceLayer
     public class DatabaseORM : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
-        public DbSet<UserStatisticsEntity> UserStatstics { get; set; }
+        public DbSet<UserStatisticsEntity> UserStatistics { get; set; }
         public DbSet<GamelogsEntity> GameLogs { get; set; }
 
     }
@@ -58,6 +58,17 @@ namespace PersistenceLayer
             }
         }
 
+        public void DeleteAllData()
+        {
+            using (var context = new DatabaseORM())
+            {
+                context.UserStatistics.RemoveRange(context.UserStatistics);
+                context.Users.RemoveRange(context.Users);
+                context.GameLogs.RemoveRange(context.GameLogs);
+                context.SaveChanges();
+            }
+        }
+
         public List<UserEntity> GetRegisteredUsers()
         {
             var users = new List<UserEntity>();
@@ -76,7 +87,7 @@ namespace PersistenceLayer
             var userStats = new List<UserStatisticsEntity>();
             using (var context = new DatabaseORM())
             {
-                foreach (UserStatisticsEntity us in context.UserStatstics)
+                foreach (UserStatisticsEntity us in context.UserStatistics)
                 {
                     userStats.Add(us);
                 }
@@ -105,7 +116,7 @@ namespace PersistenceLayer
         {
             using (var context = new DatabaseORM())
             {
-                UserStatisticsEntity userstats = context.UserStatstics.Find(username);
+                UserStatisticsEntity userstats = context.UserStatistics.Find(username);
                 return userstats;
             }
         }
@@ -116,7 +127,7 @@ namespace PersistenceLayer
             {
                 context.Users.Add(new UserEntity() { Username = username, Password = password, Email = email, Money = money, LeagueId = leagueID });
                 
-                context.UserStatstics.Add(new UserStatisticsEntity()
+                context.UserStatistics.Add(new UserStatisticsEntity()
                 {
                     Username = username,
                     AvgCashGain = 0,
@@ -144,7 +155,7 @@ namespace PersistenceLayer
                         
                     }
                 }
-                foreach (UserStatisticsEntity us in context.UserStatstics)
+                foreach (UserStatisticsEntity us in context.UserStatistics)
                 {
                     if (us.Username.Equals(username))
                     {
@@ -155,7 +166,7 @@ namespace PersistenceLayer
                 {
                     context.Users.Remove(user);
                     context.SaveChanges();
-                    context.UserStatstics.Remove(userStatistics);
+                    context.UserStatistics.Remove(userStatistics);
                     context.SaveChanges();
                     return true;
                 }
@@ -212,7 +223,7 @@ namespace PersistenceLayer
             {
                 UserStatisticsEntity updatedUserStats = new UserStatisticsEntity();
 
-                var original = context.UserStatstics.Find(username);
+                var original = context.UserStatistics.Find(username);
 
                 if (original != null)
                 {

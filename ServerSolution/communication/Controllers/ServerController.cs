@@ -74,7 +74,7 @@ namespace communication.Controllers
 
         
 
-        [HttpPost]
+        [HttpGet]
         public ReplyString GetUserStats(string username)
         {
             try
@@ -105,6 +105,41 @@ namespace communication.Controllers
             catch (DomainException e)
             {
                 return new ReplyString(false, "", e.Message);
+            }
+        }
+
+
+        [HttpPost]
+        public Reply LogoutWebClient(string username)
+        {
+            try
+            {
+                if (service.LogoutWebClient(username))
+                    return new Reply(true, "");
+                return new Reply(false, "unknow error");
+            }
+            catch (DomainException a)
+            {
+                return new Reply(false, (a.Message));
+            }
+        }
+
+        [HttpPost]
+        public Reply LoginWebClient(string username, string password)
+        {
+            try
+            {
+                if (service.LoginWebClient(username, password))
+                {
+                    User temp = UserController.GetInstance.GetUserByName(username);
+                    return new Reply(true, temp.Email);
+                }
+
+                return new Reply(false, "unknow error");
+            }
+            catch (DomainException a)
+            {
+                return new Reply(false, a.Message);
             }
         }
 
