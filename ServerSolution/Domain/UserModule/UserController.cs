@@ -69,6 +69,7 @@ namespace Domain.UserModule
                 else if (comperator.Equals("Total gross profit"))
                     playerLeaderList.Add(serializer.Serialize(new PlayerLeader(u.Username, u.Stats.TotalGrossProfit)));
             }
+            playerLeaderList.Reverse(0, playerLeaderList.Count);
             return playerLeaderList;
         }
         

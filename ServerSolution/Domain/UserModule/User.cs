@@ -24,13 +24,14 @@ namespace Domain.UserModule
 
     public class User
     {
-
+        private UserHash hasher;
         public User(string username, string password, string email, int money)
         {
+            hasher = new UserHash();
             Username = username;
             if (password.Equals(""))
                 throw new NotAPasswordException("");
-            Password = password;
+            Password = hasher.GetHashed(username, password);
             Email = email;
             MoneyBalance = money;
             Stats = new Statistics();
@@ -40,12 +41,13 @@ namespace Domain.UserModule
 
         public User (string username, string password, string email)
         {
+            hasher = new UserHash();
             Username = username;
             if(username.Equals(""))
                 throw new DomainException("Invalid username - can't be empty");
             if (password.Equals(""))
                 throw new NotAPasswordException("");
-            Password = password;
+            Password = hasher.GetHashed(username, password);
             Email = email;
             Stats = new Statistics();
             League = new DefaultLeague();
@@ -66,7 +68,7 @@ namespace Domain.UserModule
 
         public bool CheckPassword(string password)
         {
-            return Password.Equals(password);
+            return Password.Equals(hasher.GetHashed(Username, password));
         }
     }
 }

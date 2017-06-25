@@ -9,19 +9,12 @@ namespace Domain.UserModule
 {
     class UserHash
     {
-        private User user;
-
-        public UserHash(User user)
+        
+        public string GetHashed(string username, string passStr)
         {
-            this.user = user;
-        }
-        public string GetHashed()
-        {
-            if (user == null) return null;
-            string passStr = user.Password;
             if (passStr == null) return null;
 
-            byte[] hashed = GenerateSaltedHash(Encoding.ASCII.GetBytes(passStr), Encoding.ASCII.GetBytes(user.Username));
+            byte[] hashed = GenerateSaltedHash(Encoding.ASCII.GetBytes(passStr), Encoding.ASCII.GetBytes(username));
             return System.Convert.ToBase64String(hashed);
         }
         private byte[] GenerateSaltedHash(byte[] plainText, byte[] salt)
