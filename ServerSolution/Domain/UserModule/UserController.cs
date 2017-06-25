@@ -62,7 +62,12 @@ namespace Domain.UserModule
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             foreach (User u in sortedUsers)
             {
-                playerLeaderList.Add(serializer.Serialize(new PlayerLeader(u.Username, u.Stats.NumOfGames)));
+                if (comperator.Equals("Amout of games"))
+                    playerLeaderList.Add(serializer.Serialize(new PlayerLeader(u.Username, u.Stats.NumOfGames)));
+                else if (comperator.Equals("Higest cash in game"))
+                    playerLeaderList.Add(serializer.Serialize(new PlayerLeader(u.Username, u.Stats.HighestCashGain)));
+                else if (comperator.Equals("Total gross profit"))
+                    playerLeaderList.Add(serializer.Serialize(new PlayerLeader(u.Username, u.Stats.TotalGrossProfit)));
             }
             return playerLeaderList;
         }
