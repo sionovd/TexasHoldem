@@ -11,7 +11,7 @@ using System;
 public class Client
 {
     //private static string url = "http://texasholdem1.azurewebsites.net/api/server/";
-    private static string url = "http://localhost:53133/api/server/";
+    private static string url = "http://172.20.10.2:53485/api/server/";
     //  private static Dictionary<string, HubConnection> connections = new Dictionary<string, HubConnection>();
 
     static void Main() { }

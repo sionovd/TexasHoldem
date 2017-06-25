@@ -115,6 +115,8 @@ namespace Domain.UserModule
                     throw new NoUserNameException(username);
                 if (!registerUsers[username].CheckPassword(password))
                     throw new NotAPasswordException(password);
+                if(loginUsers.ContainsKey(username))
+                    throw new AlreadyParticipatingException("you are already logged in");
                 loginUsers[username] = registerUsers[username];
                 return true;
             }
