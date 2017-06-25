@@ -10,8 +10,8 @@ namespace UnitTestProject1
         [TestMethod]
         public void deleteDB()
         {
-            DBHelper db = new DBHelper();
-            db.DeleteAllData();
+       //     DBHelper db = new DBHelper();
+         //   db.DeleteAllData();
         }
     }
 }

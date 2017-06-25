@@ -9364,3 +9364,433 @@ Stack Trace:    at Domain.UserModule.UserController.Register(String username, St
    at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
 ==================================== 6/24/2017 11:51:04 PM
 
+==================================== 6/25/2017 2:57:39 AM
+Error Message: Invalid game type: -1 , expected value between 0 and 2.
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 157
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:39 AM
+
+==================================== 6/25/2017 2:57:39 AM
+Error Message: Invalid game policy: -100 , expected not negative value.
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 111
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:39 AM
+
+==================================== 6/25/2017 2:57:39 AM
+Error Message: Invalid chip policy: -100 , expected not negative value.
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 139
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:39 AM
+
+==================================== 6/25/2017 2:57:39 AM
+Error Message: invalid min bet: -5, expected positive value
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 117
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:39 AM
+
+==================================== 6/25/2017 2:57:39 AM
+Error Message: invalid min players: 0, expected value >= 2
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 125
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:39 AM
+
+==================================== 6/25/2017 2:57:39 AM
+Error Message: invalid min players: 1, expected value >= 2
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 125
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:39 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Invalid amount of players: minimum players 5 has to be smaller than maximum players 2
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 133
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid min bet: 0, expected positive value
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 117
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid max bet: 10, expected value <= 9
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 131
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Invalid password: 
+Stack Trace:    at Domain.UserModule.User..ctor(String username, String password, String email, Int32 money) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\User.cs:line 32
+   at Domain.UserModule.UserController.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 102
+   at Domain.GameCenterModule.GameCenter.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 181
+   at ServiceLayer.Service.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 26
+   at AcceptanceTests.GameSystemTest.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 36
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 100
+   at Domain.GameCenterModule.GameCenter.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 181
+   at ServiceLayer.Service.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 26
+   at AcceptanceTests.GameSystemTest.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 36
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: table is full
+Stack Trace:    at Domain.GameModule.Game.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 314
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameCenterModule.GameCenter.JoinGame(String username, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 226
+   at ServiceLayer.Service.JoinGame(String username, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 71
+   at AcceptanceTests.GameSystemTest.JoinGame(String username, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 141
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 115
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 115
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 128
+   at Domain.GameCenterModule.GameCenter.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 206
+   at ServiceLayer.Service.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 36
+   at AcceptanceTests.GameSystemTest.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 66
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Invalid password: wrongpassword
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 117
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Invalid password: Password
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 117
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 128
+   at Domain.GameCenterModule.GameCenter.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 206
+   at ServiceLayer.Service.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 36
+   at AcceptanceTests.GameSystemTest.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 66
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.AlreadyHasNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 88
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid details - username was empty
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 80
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: Invalid password: 
+Stack Trace:    at Domain.UserModule.User..ctor(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\User.cs:line 47
+   at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 86
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid details - username was too long
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 82
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 2:57:40 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 2:57:40 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Invalid game type: -1 , expected value between 0 and 2.
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 157
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Invalid game policy: -100 , expected not negative value.
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 111
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Invalid chip policy: -100 , expected not negative value.
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 139
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: invalid min bet: -5, expected positive value
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 117
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: invalid min players: 0, expected value >= 2
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 125
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: invalid min players: 1, expected value >= 2
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 125
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Invalid amount of players: minimum players 5 has to be smaller than maximum players 2
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 133
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: invalid min bet: 0, expected positive value
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 117
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: invalid max bet: 10, expected value <= 9
+Stack Trace:    at Domain.GameCenterModule.GameCenter.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 131
+   at ServiceLayer.Service.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 122
+   at AcceptanceTests.GameSystemTest.CreateGame(String username, List`1 preferenceList) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 122
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Invalid password: 
+Stack Trace:    at Domain.UserModule.User..ctor(String username, String password, String email, Int32 money) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\User.cs:line 32
+   at Domain.UserModule.UserController.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 102
+   at Domain.GameCenterModule.GameCenter.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 181
+   at ServiceLayer.Service.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 26
+   at AcceptanceTests.GameSystemTest.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 36
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 100
+   at Domain.GameCenterModule.GameCenter.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 181
+   at ServiceLayer.Service.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 26
+   at AcceptanceTests.GameSystemTest.EditProfile(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 36
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: table is full
+Stack Trace:    at Domain.GameModule.Game.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\Game.cs:line 314
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameModule.GameDecorator.AddPlayer(User user, Player player) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameModule\GameDecorator.cs:line 20
+   at Domain.GameCenterModule.GameCenter.JoinGame(String username, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 226
+   at ServiceLayer.Service.JoinGame(String username, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 71
+   at AcceptanceTests.GameSystemTest.JoinGame(String username, Int32 gameID) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 141
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 115
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 115
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 128
+   at Domain.GameCenterModule.GameCenter.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 206
+   at ServiceLayer.Service.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 36
+   at AcceptanceTests.GameSystemTest.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 66
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Invalid password: wrongpassword
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 117
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Invalid password: Password
+Stack Trace:    at Domain.UserModule.UserController.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 117
+   at Domain.GameCenterModule.GameCenter.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 201
+   at ServiceLayer.Service.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 31
+   at AcceptanceTests.GameSystemTest.Login(String username, String password) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 52
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:30 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.NoUserNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 128
+   at Domain.GameCenterModule.GameCenter.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 206
+   at ServiceLayer.Service.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 36
+   at AcceptanceTests.GameSystemTest.Logout(String username) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 66
+==================================== 6/25/2017 3:50:30 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: Exception of type 'Domain.DomainLayerExceptions.AlreadyHasNameException' was thrown.
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 88
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: invalid details - username was empty
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 80
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: Invalid password: 
+Stack Trace:    at Domain.UserModule.User..ctor(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\User.cs:line 47
+   at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 86
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: invalid details - username was too long
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 82
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+
+==================================== 6/25/2017 3:50:31 AM
+Error Message: invalid details - illegal characters in username
+Stack Trace:    at Domain.UserModule.UserController.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\UserModule\UserController.cs:line 85
+   at Domain.GameCenterModule.GameCenter.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\Domain\GameCenterModule\GameCenter.cs:line 175
+   at ServiceLayer.Service.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\ServiceLayer\Service.cs:line 21
+   at AcceptanceTests.GameSystemTest.Register(String username, String password, String email) in C:\Users\Doron\Desktop\TexasHoldem\ServerSolution\AcceptanceTests\GameSystemTest.cs:line 22
+==================================== 6/25/2017 3:50:31 AM
+

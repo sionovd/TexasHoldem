@@ -9,7 +9,7 @@ namespace Communication
     class SignalRClient
     {
         //private static string url = "http://texasholdem1.azurewebsites.net/signalr";
-        private static string url = "http://localhost:53133/signalr";
+        private static string url = "http://172.20.10.2:53485/signalr";
         // this method make the query to send while connection established 
         private static void queryStringByUserName(Dictionary<string, string> query)
         {
